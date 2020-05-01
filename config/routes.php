@@ -21,7 +21,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-use Cake\Http\Middleware\CsrfProtectionMiddleware;
+// use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 
@@ -47,15 +47,15 @@ $routes->setRouteClass(DashedRoute::class);
 
 $routes->scope('/', function (RouteBuilder $builder) {
     // Register scoped middleware for in scopes.
-    $builder->registerMiddleware('csrf', new CsrfProtectionMiddleware([
-        'httpOnly' => true,
-    ]));
+    // $builder->registerMiddleware('csrf', new CsrfProtectionMiddleware([
+    //     'httpOnly' => true,
+    // ]));
 
     /*
      * Apply a middleware to the current route scope.
      * Requires middleware to be registered through `Application::routes()` with `registerMiddleware()`
      */
-    $builder->applyMiddleware('csrf');
+    // $builder->applyMiddleware('csrf');
 
     /*
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
