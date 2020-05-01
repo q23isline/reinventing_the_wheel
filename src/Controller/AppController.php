@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
 
 /**
  * Application Controller
@@ -44,10 +45,53 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 
+        $this->loadComponent('Auth', [
+            // controllerのisAuthorized()メソッドを呼ばせる
+            'authorize' => 'Controller',
+
+            'loginRedirect' => [
+                'controller' => 'Users',
+                'action' => 'index',
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Users',
+                'action' => 'login',
+                'home',
+            ],
+        ]);
+
         /*
          * Enable the following component for recommended CakePHP form protection settings.
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+    }
+
+    /**
+     * 事前処理
+     *
+     * @param EventInterface $event イベント
+     * @return void
+     */
+    public function beforeFilter(EventInterface $event)
+    {
+        $this->Auth->allow(['display']);
+    }
+
+    /**
+     * 操作権限があるかどうか
+     *
+     * @param object $user usersモデル
+     * @return bool adminであればtrue、それ以外はfalse
+     */
+    public function isAuthorized($user)
+    {
+        // 管理者はすべての操作にアクセス可能
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
+
+        // デフォルトは拒否
+        return false;
     }
 }
