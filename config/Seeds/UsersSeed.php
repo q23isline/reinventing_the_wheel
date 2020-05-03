@@ -25,7 +25,7 @@ class UsersSeed extends AbstractSeed
         $data = [
             [
                 'username' => 'admin',
-                'password' => $this->setPassword('admin00'),
+                'password' => $this->_setPassword('admin00'),
                 'role' => 'admin',
                 'created' => $datetime,
                 'modified' => $datetime,
