@@ -46,6 +46,18 @@ class UsersSeed extends AbstractSeed
             ],
         ];
 
+        for ($i = 0; $i < 1000; $i++) {
+            $user = [
+                'username' => 'test' . $i,
+                'password' => $this->_setPassword('test' . $i),
+                'role' => 'viewer',
+                'created' => $datetime,
+                'modified' => $datetime,
+            ];
+
+            $data[] = $user;
+        }
+
         $table = $this->table('users');
         $table->insert($data)->save();
     }
