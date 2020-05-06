@@ -62,6 +62,9 @@ return [
              * You can use a DSN string to set the entire configuration
              */
             'url' => env('DATABASE_URL', null),
+
+            // SQLをログに出力
+            'log' => true,
         ],
 
         /*
@@ -78,6 +81,9 @@ return [
             // 'database' => 'test_myapp',
             'database' => 'reinventing_the_wheel_test',
             //'schema' => 'myapp',
+
+            // SQLをログに出力
+            'log' => true,
         ],
     ],
 
