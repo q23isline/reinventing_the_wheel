@@ -29,6 +29,8 @@ class UsersSeed extends AbstractSeed
                 'role' => 'admin',
                 'created' => $datetime,
                 'modified' => $datetime,
+                'first_name' => 'admin',
+                'last_name' => '管理者',
             ],
             [
                 'username' => 'editor',
@@ -36,6 +38,8 @@ class UsersSeed extends AbstractSeed
                 'role' => 'editor',
                 'created' => $datetime,
                 'modified' => $datetime,
+                'first_name' => 'editor',
+                'last_name' => '編集者',
             ],
             [
                 'username' => 'viewer',
@@ -43,6 +47,8 @@ class UsersSeed extends AbstractSeed
                 'role' => 'viewer',
                 'created' => $datetime,
                 'modified' => $datetime,
+                'first_name' => 'viewer',
+                'last_name' => '閲覧者',
             ],
         ];
 
@@ -53,12 +59,17 @@ class UsersSeed extends AbstractSeed
                 'role' => 'viewer',
                 'created' => $datetime,
                 'modified' => $datetime,
+                'first_name' => '太郎' . $i,
+                'last_name' => 'テスト',
             ];
 
             $data[] = $user;
         }
 
         $table = $this->table('users');
+
+        // delete insert
+        $table->truncate();
         $table->insert($data)->save();
     }
 
