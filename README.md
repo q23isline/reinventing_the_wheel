@@ -61,3 +61,5 @@ custom styles.
 4. `docker-compose build`コマンド実行
 5. `docker-compose up -d`コマンド実行
 6. `docker exec -it app php composer.phar install`コマンド実行
+7. `docker exec -it app bin/cake migrations migrate`コマンド実行
+8. `docker exec -it app bin/cake migrations seed`コマンド実行
