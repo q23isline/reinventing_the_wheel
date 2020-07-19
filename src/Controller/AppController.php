@@ -17,7 +17,6 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
-use Cake\Event\EventInterface;
 
 /**
  * Application Controller
@@ -56,7 +55,6 @@ class AppController extends Controller
             'logoutRedirect' => [
                 'controller' => 'Users',
                 'action' => 'login',
-                'home',
             ],
         ]);
 
@@ -65,17 +63,6 @@ class AppController extends Controller
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
-    }
-
-    /**
-     * 事前処理
-     *
-     * @param EventInterface $event イベント
-     * @return void
-     */
-    public function beforeFilter(EventInterface $event)
-    {
-        $this->Auth->allow(['display']);
     }
 
     /**
