@@ -63,3 +63,16 @@ custom styles.
 6. `docker exec -it app php composer.phar install`コマンド実行
 7. `docker exec -it app bin/cake migrations migrate`コマンド実行
 8. `docker exec -it app bin/cake migrations seed`コマンド実行
+
+## 動作確認
+
+### URL
+
+- <http://localhost>
+
+### ログイン情報
+
+- Username
+  - admin
+- Password
+  - admin00
