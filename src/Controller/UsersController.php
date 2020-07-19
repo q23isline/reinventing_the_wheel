@@ -23,7 +23,7 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow('add', 'logout');
+        $this->Auth->allow(['add', 'logout']);
     }
 
     /**
@@ -154,7 +154,6 @@ class UsersController extends AppController
      */
     public function isAuthorized($user)
     {
-        $this->log($user['role'], 'debug');
         // 一覧、詳細はeditor、viewer操作可能
         if (in_array($this->request->getParam('action'), ['index', 'view'], true)) {
             if (isset($user['role']) && in_array($user['role'], ['editor', 'viewer'], true)) {
