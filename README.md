@@ -76,3 +76,15 @@ custom styles.
   - admin
 - Password
   - admin00
+
+## ユニットテスト
+
+```bash
+# テスト実行
+php ./vendor/bin/phpunit
+# カバレッジ生成
+phpdbg -qrr ./vendor/bin/phpunit --coverage-html webroot/coverage
+```
+
+- カバレッジ確認URL
+  - <http://localhost/coverage/index.html>
