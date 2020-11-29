@@ -21,7 +21,6 @@ use Cake\Core\Exception\MissingPluginException;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Http\MiddlewareQueue;
-use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
@@ -66,15 +65,6 @@ class Application extends BaseApplication
      */
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
-        $csrf = new CsrfProtectionMiddleware(['httpOnly' => true]);
-        // すべてのcontrollerでCSRFを無効
-        // CakePHP 4.0.6にて、`Missing CSRF token body`エラーが発生するため
-        // <https://github.com/cakephp/cakephp/issues/14471>
-        // 修正コード参考：<https://ao-system.net/note/93>
-        $csrf->whitelistCallback(function () {
-            return true;
-        });
-
         $middlewareQueue
             // Catch any exceptions in the lower layers,
             // and make an error page/response
@@ -91,9 +81,7 @@ class Application extends BaseApplication
             // creating the middleware instance specify the cache config name by
             // using it's second constructor argument:
             // `new RoutingMiddleware($this, '_cake_routes_')`
-            ->add(new RoutingMiddleware($this))
-
-            ->add($csrf);
+            ->add(new RoutingMiddleware($this));
 
         return $middlewareQueue;
     }
