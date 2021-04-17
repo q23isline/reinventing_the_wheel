@@ -19,11 +19,15 @@ class AddFirstNameAndLastNameToUsers extends AbstractMigration
             'default' => null,
             'limit' => 50,
             'null' => false,
+            'after' => 'role',
+            'comment' => '姓',
         ]);
         $table->addColumn('last_name', 'string', [
             'default' => null,
             'limit' => 50,
             'null' => false,
+            'after' => 'first_name',
+            'comment' => '名',
         ]);
         $table->update();
     }
