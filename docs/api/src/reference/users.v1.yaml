@@ -1,0 +1,288 @@
+openapi: 3.0.0
+info:
+  title: users
+  version: '1.0'
+  description: ユーザー情報を管理する
+  contact:
+    name: rowpure
+servers:
+  - url: 'http://localhost:3000/api/v1'
+paths:
+  '/users/{userId}':
+    parameters:
+      - schema:
+          type: integer
+        name: userId
+        in: path
+        required: true
+        description: 存在するユーザーID
+    get:
+      summary: ユーザー詳細
+      tags:
+        - User
+      responses:
+        '200':
+          description: 存在するユーザー情報
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+              examples:
+                example:
+                  value:
+                    data:
+                      id: 1
+                      loginId: saitou
+                      roleName: viewer
+                      firstName: 斉藤
+                      lastName: 太郎
+                      created: '2019-08-24T14:15:22Z'
+                      modified: '2019-08-24T14:15:22Z'
+      operationId: get-users-userId
+      description: ユーザーIDと一致するユーザー情報を返却する
+    patch:
+      summary: ユーザー更新
+      operationId: patch-users-userId
+      responses:
+        '200':
+          description: 更新後のユーザー情報
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+              examples:
+                example:
+                  value:
+                    data:
+                      id: 1
+                      loginId: saitou
+                      roleName: viewer
+                      firstName: 斉藤
+                      lastName: 太郎
+                      created: '2019-08-24T14:15:22Z'
+                      modified: '2019-08-24T14:15:22Z'
+      description: ユーザーが存在すればユーザー情報を更新する
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                loginId:
+                  type: string
+                  example: saitou
+                  description: ログインID
+                password:
+                  type: string
+                  format: password
+                  description: ログインパスワード
+                roleName:
+                  type: string
+                  enum:
+                    - admin
+                    - editor
+                    - viewer
+                  default: viewer
+                  example: viewer
+                  description: ロール名
+                firstName:
+                  type: string
+                  example: 斉藤
+                  description: 姓
+                lastName:
+                  type: string
+                  example: 太郎
+                  description: 名
+              required:
+                - loginId
+                - password
+                - roleName
+                - firstName
+                - lastName
+            examples:
+              example:
+                value:
+                  loginId: saitou
+                  password: pa$$word
+                  roleName: viewer
+                  firstName: 斉藤
+                  lastName: 太郎
+        description: ユーザー情報を更新する
+      tags:
+        - User
+    delete:
+      summary: ユーザー削除
+      operationId: delete-users-userId
+      responses:
+        '200':
+          description: OK
+      description: ユーザーが存在すればユーザー情報を削除する
+      tags:
+        - User
+  /users:
+    post:
+      summary: ユーザー新規作成
+      operationId: post-user
+      responses:
+        '200':
+          description: 作成後のユーザー情報
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/User'
+              examples:
+                example:
+                  value:
+                    data:
+                      id: 1
+                      loginId: saitou
+                      roleName: viewer
+                      firstName: 斉藤
+                      lastName: 太郎
+                      created: '2019-08-24T14:15:22Z'
+                      modified: '2019-08-24T14:15:22Z'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                loginId:
+                  type: string
+                  example: saitou
+                  description: ログインID
+                password:
+                  type: string
+                  format: password
+                  description: ログインパスワード
+                roleName:
+                  type: string
+                  enum:
+                    - admin
+                    - editor
+                    - viewer
+                  default: viewer
+                  example: viewer
+                  description: ロール名
+                firstName:
+                  type: string
+                  example: 斉藤
+                  description: 姓
+                lastName:
+                  type: string
+                  example: 太郎
+                  description: 名
+              required:
+                - loginId
+                - password
+                - roleName
+                - firstName
+                - lastName
+            examples:
+              example:
+                value:
+                  loginId: saitou
+                  password: pa$$word
+                  roleName: viewer
+                  firstName: 斉藤
+                  lastName: 太郎
+        description: APIに必要なフィールドを設定し、新しいユーザーを作成する
+      description: ユーザーを新規作成する
+      tags:
+        - User
+    parameters: []
+    get:
+      summary: ユーザー一覧
+      operationId: get-users
+      responses:
+        '200':
+          description: 全てのユーザー情報の一覧
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+              examples:
+                example:
+                  value:
+                    data:
+                      - id: 1
+                        loginId: saitou
+                        roleName: viewer
+                        firstName: 斉藤
+                        lastName: 太郎
+                        created: '2019-08-24T14:15:22Z'
+                        modified: '2019-08-24T14:15:22Z'
+      description: ユーザー情報の一覧を返却する
+      tags:
+        - User
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ユーザー情報
+      x-examples:
+        example:
+          id: 1
+          loginId: saitou
+          roleName: viewer
+          firstName: 斉藤
+          lastName: 太郎
+          created: '2019-08-24T14:15:22Z'
+          modified: '2019-08-24T14:15:22Z'
+      properties:
+        id:
+          type: integer
+          description: ユーザーID
+          example: 1
+        loginId:
+          type: string
+          description: ログインID
+          example: saitou
+        roleName:
+          type: string
+          enum:
+            - admin
+            - editor
+            - viewer
+          default: viewer
+          description: ロール名
+          example: viewer
+        firstName:
+          type: string
+          description: 姓
+          example: 斉藤
+        lastName:
+          type: string
+          description: 名
+          example: 太郎
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+      required:
+        - id
+        - loginId
+        - roleName
+        - firstName
+        - lastName
+        - created
+        - modified
+tags:
+  - name: User
