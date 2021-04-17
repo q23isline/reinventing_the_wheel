@@ -91,3 +91,18 @@ phpdbg -qrr ./vendor/bin/phpunit --coverage-html webroot/coverage
 
 - カバレッジ確認URL
   - <http://localhost/coverage/index.html>
+
+## APIドキュメント
+
+- `docs\api\src\reference`以下の`.yaml`ファイルにて定義
+  - [Stoplight Studio](https://stoplight.io/studio/)ソフトに読み込ませることでメンテナンス可能
+- APIドキュメントHTML化手順
+  - nodejsインストール[ダウンロードリンク](https://nodejs.org/ja/download/)
+  - 以下のコマンド実行
+
+```bash
+# HTML変換用ライブラリインストール（一回のみ実行）
+npm install -g redoc-cli
+# `yaml`ファイルをHTMLへ変換する
+redoc-cli bundle xxxxxx.yaml
+```
