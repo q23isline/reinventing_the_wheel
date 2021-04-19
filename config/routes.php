@@ -96,7 +96,7 @@ $routes->scope('/', function (RouteBuilder $builder) {
  * });
  * ```
  */
-$routes->scope('/api', ['prefix' => 'Api'], function (RouteBuilder $builder) {
+$routes->scope('/api/v1', ['prefix' => 'Api/V1'], function (RouteBuilder $builder) {
     $builder->setExtensions(['json']);
 
     $builder->connect('/users', ['controller' => 'Users', 'action' => 'index'])->setMethods(['GET']);
