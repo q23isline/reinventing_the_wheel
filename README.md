@@ -106,3 +106,13 @@ npm install -g redoc-cli
 # `yaml`ファイルをHTMLへ変換する
 redoc-cli bundle xxxxxx.yaml
 ```
+
+## PostmanによるAPIの動作確認
+
+- GETの場合
+  - Headersに以下を設定
+
+| KEY          | VALUE                                                    | 補足                    |
+|--------------|----------------------------------------------------------|-----------------------|
+| Cookie       | PHPSESSID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx               | Cookie内のPHPSESSIDキーの値 |
+| X-CSRF-Token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | Cookie内のcsrfTokenキーの値 |
