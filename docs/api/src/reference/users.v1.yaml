@@ -6,7 +6,7 @@ info:
   contact:
     name: rowpure
 servers:
-  - url: 'http://localhost:3000/api/v1'
+  - url: 'http://localhost/api/v1'
 paths:
   '/users/{userId}':
     parameters:
