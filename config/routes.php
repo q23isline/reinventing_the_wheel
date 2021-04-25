@@ -100,5 +100,6 @@ $routes->scope('/api/v1', ['prefix' => 'Api/V1'], function (RouteBuilder $builde
     $builder->setExtensions(['json']);
 
     $builder->connect('/users', ['controller' => 'Users', 'action' => 'index'])->setMethods(['GET']);
+    $builder->connect('/users', ['controller' => 'Users', 'action' => 'add'])->setMethods(['POST']);
     $builder->connect('/users/:userId', ['controller' => 'Users', 'action' => 'view'])->setMethods(['GET']);
 });
