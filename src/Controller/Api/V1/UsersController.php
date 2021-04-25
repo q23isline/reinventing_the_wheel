@@ -195,4 +195,20 @@ class UsersController extends AppController
         $this->viewBuilder()->setClassName('Json')
             ->setOption('serialize', ['data']);
     }
+
+    /**
+     * Delete method
+     *
+     * @return void
+     */
+    public function delete()
+    {
+        $userId = $this->request->getParam('userId');
+
+        // TODO: モックAPIを修正する
+
+        // .jsonなしでもOKとする
+        $this->viewBuilder()->setClassName('Json')
+            ->setOption('serialize', []);
+    }
 }
