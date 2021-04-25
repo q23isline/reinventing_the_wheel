@@ -32,9 +32,9 @@ class UsersController extends AppController
             ],
         ];
 
-        // .jsonなしでもOKとする
-        $this->viewBuilder()->setClassName('Json');
         $this->set($data);
-        $this->viewBuilder()->setOption('serialize', ['data']);
+        // .jsonなしでもOKとする
+        $this->viewBuilder()->setClassName('Json')
+            ->setOption('serialize', ['data']);
     }
 }
