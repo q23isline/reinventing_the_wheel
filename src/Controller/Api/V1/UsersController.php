@@ -13,9 +13,9 @@ class UsersController extends AppController
     /**
      * Index method
      *
-     * @return \Cake\Http\Response|null|void Renders json
+     * @return void
      */
-    public function index()
+    public function index(): void
     {
         // TODO: モックAPIを修正する
         $data = [
@@ -41,9 +41,9 @@ class UsersController extends AppController
     /**
      * View method
      *
-     * @return \Cake\Http\Response|null|void Renders json
+     * @return void
      */
-    public function view()
+    public function view(): void
     {
         $userId = $this->request->getParam('userId');
 
@@ -69,9 +69,9 @@ class UsersController extends AppController
     /**
      * Add method
      *
-     * @return \Cake\Http\Response|null|void Renders json
+     * @return void
      */
-    public function add()
+    public function add(): void
     {
         $jsonData = $this->request->input('json_decode');
 
@@ -133,9 +133,9 @@ class UsersController extends AppController
     /**
      * Edit method
      *
-     * @return \Cake\Http\Response|null|void Renders json
+     * @return void
      */
-    public function edit()
+    public function edit(): void
     {
         $userId = $this->request->getParam('userId');
 
@@ -201,7 +201,7 @@ class UsersController extends AppController
      *
      * @return void
      */
-    public function delete()
+    public function delete(): void
     {
         $userId = $this->request->getParam('userId');
 
