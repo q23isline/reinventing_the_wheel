@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Domain\Models\User\Type;
+namespace App\Domain\Shared;
 
 /**
- * class Data
+ * class AuditDate
  */
-final class Data
+final class AuditDate
 {
     /**
      * @var string
