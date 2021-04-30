@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace App\Domain\Models\User;
 
-use App\Domain\Models\User\Type\Data;
 use App\Domain\Models\User\Type\FirstName;
 use App\Domain\Models\User\Type\LastName;
 use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\UserId;
+use App\Domain\Shared\AuditDate;
 
 /**
  * class User
@@ -41,14 +41,14 @@ final class User
     private LastName $lastName;
 
     /**
-     * @var Data|null
+     * @var AuditDate|null
      */
-    private ?Data $created;
+    private ?AuditDate $created;
 
     /**
-     * @var Data|null
+     * @var AuditDate|null
      */
-    private ?Data $modified;
+    private ?AuditDate $modified;
 
     /**
      * constructor
@@ -58,8 +58,8 @@ final class User
      * @param RoleName $roleName roleName
      * @param FirstName $firstName firstName
      * @param LastName $lastName lastName
-     * @param Data|null $created created
-     * @param Data|null $modified modified
+     * @param AuditDate|null $created created
+     * @param AuditDate|null $modified modified
      */
     public function __construct(
         ?UserId $id = null,
@@ -67,8 +67,8 @@ final class User
         RoleName $roleName,
         FirstName $firstName,
         LastName $lastName,
-        ?Data $created = null,
-        ?Data $modified = null
+        ?AuditDate $created = null,
+        ?AuditDate $modified = null
     ) {
         $this->id = $id;
         $this->loginId = $loginId;
@@ -188,9 +188,9 @@ final class User
     /**
      * Get the value of created
      *
-     * @return Data|null
+     * @return AuditDate|null
      */
-    public function getCreated(): ?Data
+    public function getCreated(): ?AuditDate
     {
         return $this->created;
     }
@@ -198,9 +198,9 @@ final class User
     /**
      * Get the value of modified
      *
-     * @return Data|null
+     * @return AuditDate|null
      */
-    public function getModified(): ?Data
+    public function getModified(): ?AuditDate
     {
         return $this->modified;
     }

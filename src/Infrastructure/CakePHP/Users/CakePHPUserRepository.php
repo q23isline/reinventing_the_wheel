@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Infrastructure\CakePHP\Users;
 
 use App\Domain\Models\User\IUserRepository;
-use App\Domain\Models\User\Type\Data;
 use App\Domain\Models\User\Type\FirstName;
 use App\Domain\Models\User\Type\LastName;
 use App\Domain\Models\User\Type\LoginId;
@@ -12,6 +11,7 @@ use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\UserId;
 use App\Domain\Models\User\User;
 use App\Domain\Models\User\UserCollection;
+use App\Domain\Shared\AuditDate;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -36,8 +36,8 @@ final class CakePHPUserRepository implements IUserRepository
                     new RoleName($record->role),
                     new FirstName($record->first_name),
                     new LastName($record->last_name),
-                    new Data((string)$record->created),
-                    new Data((string)$record->modified)
+                    new AuditDate((string)$record->created),
+                    new AuditDate((string)$record->modified)
                 )
             );
         }
