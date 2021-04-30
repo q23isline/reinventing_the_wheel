@@ -11,6 +11,7 @@ use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\UserId;
 use App\Domain\Models\User\User;
+use App\Domain\Models\User\UserCollection;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -21,21 +22,23 @@ final class CakePHPUserRepository implements IUserRepository
     /**
      * @inheritdoc
      */
-    public function findAll(): array
+    public function findAll(): UserCollection
     {
         $model = TableRegistry::getTableLocator()->get('Users');
         $records = $model->find()->all();
 
-        $data = [];
+        $data = new UserCollection();
         foreach ($records as $record) {
-            $data[] = new User(
-                new UserId($record->id),
-                new LoginId($record->username),
-                new RoleName($record->role),
-                new FirstName($record->first_name),
-                new LastName($record->last_name),
-                new Data((string)$record->created),
-                new Data((string)$record->modified)
+            $data->add(
+                new User(
+                    new UserId($record->id),
+                    new LoginId($record->username),
+                    new RoleName($record->role),
+                    new FirstName($record->first_name),
+                    new LastName($record->last_name),
+                    new Data((string)$record->created),
+                    new Data((string)$record->modified)
+                )
             );
         }
 

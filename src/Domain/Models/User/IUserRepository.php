@@ -11,7 +11,7 @@ interface IUserRepository
     /**
      * すべて取得
      *
-     * @return User[]
+     * @return UserCollection
      */
-    public function findAll(): array;
+    public function findAll(): UserCollection;
 }
