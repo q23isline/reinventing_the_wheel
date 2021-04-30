@@ -14,15 +14,36 @@ use App\UseCase\Users\UserListUseCaseService;
 class UsersController extends AppController
 {
     /**
+     * @var CakePHPUserRepository
+     */
+    private CakePHPUserRepository $userRepository;
+
+    /**
+     * @var UserListUseCaseService
+     */
+    private UserListUseCaseService $userListUseCaseService;
+
+    /**
+     * initialize
+     *
+     * @return void
+     */
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        $this->userRepository = new CakePHPUserRepository();
+        $this->userListUseCaseService = new UserListUseCaseService($this->userRepository);
+    }
+
+    /**
      * Index method
      *
      * @return void
      */
     public function index(): void
     {
-        $userRepository = new CakePHPUserRepository();
-        $userListUseCaseService = new UserListUseCaseService($userRepository);
-        $userData = $userListUseCaseService->handle();
+        $userData = $this->userListUseCaseService->handle();
         $userListResult = new UserListResult($userData);
         $data = $userListResult->format();
 
