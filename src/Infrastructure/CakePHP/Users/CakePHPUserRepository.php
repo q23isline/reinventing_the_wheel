@@ -61,6 +61,7 @@ final class CakePHPUserRepository implements IUserRepository
                 new User(
                     new UserId($record->id),
                     new LoginId($record->username),
+                    null,
                     new RoleName($record->role),
                     new FirstName($record->first_name),
                     new LastName($record->last_name),
