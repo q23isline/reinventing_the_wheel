@@ -3,20 +3,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Models\User\Type;
 
-use App\Domain\Shared\Exception\ExceptionItem;
-use App\Domain\Shared\Exception\ValidateException;
-
 /**
- * class RoleName
+ * class Password
  */
-final class RoleName
+final class Password
 {
-    private const ARROW_ROLE_NAMES = [
-        'admin',
-        'editor',
-        'viewer',
-    ];
-
     /**
      * @var string
      */
@@ -29,9 +20,9 @@ final class RoleName
      */
     public function __construct(string $value)
     {
-        if (!in_array($value, self::ARROW_ROLE_NAMES, true)) {
-            throw new ValidateException([new ExceptionItem('roleName', 'ロール名は admin, editor, viewer のいずれかです。')]);
-        }
+        // パスワードのハッシュ化は CakePHP のモデルで実施しているため
+        // DBから取得時はハッシュ化状態、登録時は入力値の生パスワード状態となる
+        // src/Model/Entity/User.php
 
         $this->value = $value;
     }

@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Models\User\Type;
 
-use LengthException;
+use App\Domain\Shared\Exception\ExceptionItem;
+use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class LoginId
@@ -23,11 +24,11 @@ final class LoginId
     public function __construct(string $value)
     {
         if (iconv_strlen($value) < 3) {
-            throw new LengthException('ログインIDは3文字以上です。');
+            throw new ValidateException([new ExceptionItem('loginId', 'ログインIDは3文字以上です。')]);
         }
 
         if (iconv_strlen($value) > 20) {
-            throw new LengthException('ログインIDは20文字以下です。');
+            throw new ValidateException([new ExceptionItem('loginId', 'ログインIDは20文字以下です。')]);
         }
 
         $this->value = $value;

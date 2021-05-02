@@ -4,9 +4,15 @@ declare(strict_types=1);
 namespace App\Controller\Api\V1;
 
 use App\Controller\AppController;
+use App\Domain\Services\UserService;
+use App\Domain\Shared\Exception\ValidateException;
 use App\Infrastructure\CakePHP\Users\CakePHPUserRepository;
+use App\UseCase\Users\UserAddCommand;
+use App\UseCase\Users\UserAddUseCaseService;
+use App\UseCase\Users\UserGetResult;
 use App\UseCase\Users\UserListResult;
 use App\UseCase\Users\UserListUseCaseService;
+use Exception;
 
 /**
  * Users Controller
@@ -24,6 +30,16 @@ class UsersController extends AppController
     private UserListUseCaseService $userListUseCaseService;
 
     /**
+     * @var UserService
+     */
+    private UserService $userService;
+
+    /**
+     * @var UserAddUseCaseService
+     */
+    private UserAddUseCaseService $userAddUseCaseService;
+
+    /**
      * initialize
      *
      * @return void
@@ -34,6 +50,8 @@ class UsersController extends AppController
 
         $this->userRepository = new CakePHPUserRepository();
         $this->userListUseCaseService = new UserListUseCaseService($this->userRepository);
+        $this->userService = new UserService($this->userRepository);
+        $this->userAddUseCaseService = new UserAddUseCaseService($this->userRepository, $this->userService);
     }
 
     /**
@@ -88,6 +106,7 @@ class UsersController extends AppController
      */
     public function add(): void
     {
+        // スマートに JSON から値を取り出せないため、長いけど…
         $jsonData = $this->request->input('json_decode');
 
         $loginId = null;
@@ -118,31 +137,31 @@ class UsersController extends AppController
             }
         }
 
-        $dataParams = [
-            'loginId' => $loginId,
-            'password' => $password,
-            'roleName' => $roleName,
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-        ];
+        try {
+            $command = new UserAddCommand(
+                $loginId,
+                $password,
+                $roleName,
+                $firstName,
+                $lastName
+            );
 
-        // TODO: モックAPIを修正する
-        $data = [
-            'data' => [
-                'id' => 1,
-                'loginId' => 'saitou',
-                'roleName' => 'viewer',
-                'firstName' => '斉藤',
-                'lastName' => '太郎',
-                'created' => '2019-08-24T14:15:22Z',
-                'modified' => '2019-08-24T14:15:22Z',
-            ],
-        ];
+            $userData = $this->userAddUseCaseService->handle($command);
+            $userGetResult = new UserGetResult($userData);
+            $data = $userGetResult->format();
 
-        $this->set($data);
-        // .jsonなしでもOKとする
-        $this->viewBuilder()->setClassName('Json')
-            ->setOption('serialize', ['data']);
+            $this->set($data);
+            // .jsonなしでもOKとする
+            $this->viewBuilder()->setClassName('Json')
+                ->setOption('serialize', ['data']);
+        } catch (ValidateException $e) {
+            $data = $e->format();
+
+            $this->response = $this->response->withStatus(400);
+            $this->set($data);
+            $this->viewBuilder()->setClassName('Json')
+                ->setOption('serialize', ['error']);
+        }
     }
 
     /**

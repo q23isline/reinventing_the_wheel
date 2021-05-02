@@ -22,6 +22,34 @@ final class CakePHPUserRepository implements IUserRepository
     /**
      * @inheritdoc
      */
+    public function findByLoginId(LoginId $loginId): ?User
+    {
+        $model = TableRegistry::getTableLocator()->get('Users');
+        $record = $model->find()
+            ->where([
+                'username' => $loginId->getValue(),
+            ])
+            ->first();
+
+        if (is_null($record)) {
+            return null;
+        }
+
+        return new User(
+            new UserId($record->id),
+            new LoginId($record->username),
+            null,
+            new RoleName($record->role),
+            new FirstName($record->first_name),
+            new LastName($record->last_name),
+            new AuditDate((string)$record->created),
+            new AuditDate((string)$record->modified)
+        );
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function findAll(): UserCollection
     {
         $model = TableRegistry::getTableLocator()->get('Users');
@@ -43,5 +71,38 @@ final class CakePHPUserRepository implements IUserRepository
         }
 
         return $data;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function save(User $user): User
+    {
+        $model = TableRegistry::getTableLocator()->get('Users');
+
+        $saveData = [
+            'Users' => [
+                'username' => $user->getLoginId()->getValue(),
+                'password' => $user->getPassword()->getValue(),
+                'role' => $user->getRoleName()->getValue(),
+                'first_name' => $user->getFirstName()->getValue(),
+                'last_name' => $user->getLastName()->getValue(),
+            ],
+        ];
+
+        $entity = $model->newEmptyEntity();
+        $entity = $model->patchEntity($entity, $saveData);
+        $saved = $model->saveOrFail($entity);
+
+        return new User(
+            new UserId($saved->id),
+            new LoginId($saved->username),
+            null,
+            new RoleName($saved->role),
+            new FirstName($saved->first_name),
+            new LastName($saved->last_name),
+            new AuditDate((string)$saved->created),
+            new AuditDate((string)$saved->modified)
+        );
     }
 }

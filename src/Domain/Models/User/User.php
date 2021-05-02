@@ -6,6 +6,7 @@ namespace App\Domain\Models\User;
 use App\Domain\Models\User\Type\FirstName;
 use App\Domain\Models\User\Type\LastName;
 use App\Domain\Models\User\Type\LoginId;
+use App\Domain\Models\User\Type\Password;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\UserId;
 use App\Domain\Shared\AuditDate;
@@ -24,6 +25,11 @@ final class User
      * @var LoginId
      */
     private LoginId $loginId;
+
+    /**
+     * @var Password|null
+     */
+    private ?Password $password;
 
     /**
      * @var RoleName
@@ -55,6 +61,7 @@ final class User
      *
      * @param UserId|null $id id
      * @param LoginId $loginId loginId
+     * @param Password|null $password password 参照では不要なため null を許可
      * @param RoleName $roleName roleName
      * @param FirstName $firstName firstName
      * @param LastName $lastName lastName
@@ -64,6 +71,7 @@ final class User
     public function __construct(
         ?UserId $id = null,
         LoginId $loginId,
+        ?Password $password = null,
         RoleName $roleName,
         FirstName $firstName,
         LastName $lastName,
@@ -72,6 +80,7 @@ final class User
     ) {
         $this->id = $id;
         $this->loginId = $loginId;
+        $this->password = $password;
         $this->roleName = $roleName;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
@@ -109,6 +118,30 @@ final class User
     public function setLoginId(LoginId $loginId): LoginId
     {
         $this->loginId = $loginId;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     *
+     * @return Password
+     */
+    public function getPassword(): Password
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @param Password $password password
+     *
+     * @return self
+     */
+    public function setPassword(Password $password): Password
+    {
+        $this->password = $password;
 
         return $this;
     }
