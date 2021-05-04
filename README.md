@@ -92,6 +92,11 @@ phpdbg -qrr ./vendor/bin/phpunit --coverage-html webroot/coverage
 - カバレッジ確認URL
   - <http://localhost/coverage/index.html>
 
+## ユースケース図
+
+- `docs/diagrams/src`以下の`.pu`ファイルにて定義
+  - [VS Code | Marketplace | PlantUML](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
+
 ## APIドキュメント
 
 - `docs\api\src\reference`以下の`.yaml`ファイルにて定義

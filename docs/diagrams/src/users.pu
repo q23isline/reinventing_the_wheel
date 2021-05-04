@@ -1,0 +1,21 @@
+@startuml users
+
+left to right direction
+
+:admin:
+
+package ユーザー管理 {
+    (登録する) as uc1
+    (一覧表示する) as uc2
+    (更新する) as uc3
+    (詳細表示する) as uc4
+    (削除する) as uc5
+}
+
+admin-->uc1
+admin-->uc2
+admin-->uc3
+admin-->uc4
+admin-->uc5
+
+@enduml
