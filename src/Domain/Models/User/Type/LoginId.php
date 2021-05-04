@@ -11,6 +11,9 @@ use App\Domain\Shared\Exception\ValidateException;
  */
 final class LoginId
 {
+    private const MIN_LENGTH = 3;
+    private const MAX_LENGTH = 20;
+
     /**
      * @var string
      */
@@ -23,12 +26,12 @@ final class LoginId
      */
     public function __construct(string $value)
     {
-        if (iconv_strlen($value) < 3) {
-            throw new ValidateException([new ExceptionItem('loginId', 'ログインIDは3文字以上です。')]);
+        if (iconv_strlen($value) < self::MIN_LENGTH) {
+            throw new ValidateException([new ExceptionItem('loginId', sprintf('ログインIDは%d文字以上です。', self::MIN_LENGTH))]);
         }
 
-        if (iconv_strlen($value) > 20) {
-            throw new ValidateException([new ExceptionItem('loginId', 'ログインIDは20文字以下です。')]);
+        if (iconv_strlen($value) > self::MAX_LENGTH) {
+            throw new ValidateException([new ExceptionItem('loginId', sprintf('ログインIDは%d文字以下です。', self::MAX_LENGTH))]);
         }
 
         $this->value = $value;
