@@ -12,6 +12,7 @@ use App\UseCase\Users\UserAddUseCaseService;
 use App\UseCase\Users\UserGetResult;
 use App\UseCase\Users\UserListResult;
 use App\UseCase\Users\UserListUseCaseService;
+use App\UseCase\Users\UserSavedResult;
 use Exception;
 
 /**
@@ -146,14 +147,14 @@ class UsersController extends AppController
                 $lastName
             );
 
-            $userData = $this->userAddUseCaseService->handle($command);
-            $userGetResult = new UserGetResult($userData);
-            $data = $userGetResult->format();
+            $userId = $this->userAddUseCaseService->handle($command);
+            $userSavedResult = new UserSavedResult($userId);
+            $data = $userSavedResult->format();
 
             $this->set($data);
             // .jsonなしでもOKとする
             $this->viewBuilder()->setClassName('Json')
-                ->setOption('serialize', ['data']);
+                ->setOption('serialize', ['userId']);
         } catch (ValidateException $e) {
             $data = $e->format();
 
@@ -213,21 +214,13 @@ class UsersController extends AppController
 
         // TODO: モックAPIを修正する
         $data = [
-            'data' => [
-                'id' => 1,
-                'loginId' => 'saitou',
-                'roleName' => 'viewer',
-                'firstName' => '斉藤',
-                'lastName' => '太郎',
-                'created' => '2019-08-24T14:15:22Z',
-                'modified' => '2019-08-24T14:15:22Z',
-            ],
+            'userId' => 1,
         ];
 
         $this->set($data);
         // .jsonなしでもOKとする
         $this->viewBuilder()->setClassName('Json')
-            ->setOption('serialize', ['data']);
+            ->setOption('serialize', ['userId']);
     }
 
     /**

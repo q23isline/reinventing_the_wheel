@@ -77,7 +77,7 @@ final class CakePHPUserRepository implements IUserRepository
     /**
      * @inheritdoc
      */
-    public function save(User $user): User
+    public function save(User $user): UserId
     {
         $model = TableRegistry::getTableLocator()->get('Users');
 
@@ -95,15 +95,6 @@ final class CakePHPUserRepository implements IUserRepository
         $entity = $model->patchEntity($entity, $saveData);
         $saved = $model->saveOrFail($entity);
 
-        return new User(
-            new UserId($saved->id),
-            new LoginId($saved->username),
-            null,
-            new RoleName($saved->role),
-            new FirstName($saved->first_name),
-            new LastName($saved->last_name),
-            new AuditDate((string)$saved->created),
-            new AuditDate((string)$saved->modified)
-        );
+        return new UserId($saved->id);
     }
 }

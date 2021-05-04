@@ -9,6 +9,7 @@ use App\Domain\Models\User\Type\LastName;
 use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\Password;
 use App\Domain\Models\User\Type\RoleName;
+use App\Domain\Models\User\Type\UserId;
 use App\Domain\Models\User\User;
 use App\Domain\Services\UserService;
 use App\Domain\Shared\Exception\ExceptionItem;
@@ -46,9 +47,9 @@ final class UserAddUseCaseService
      * ユーザーを新規追加する
      *
      * @param UserAddCommand $command command
-     * @return UserData
+     * @return UserId
      */
-    public function handle(UserAddCommand $command): UserData
+    public function handle(UserAddCommand $command): UserId
     {
         // TODO: 新規登録には不要な ID などを null で初期化する必要があるのを何とかしたい
         $data = new User(
@@ -66,8 +67,6 @@ final class UserAddUseCaseService
             throw new ValidateException([new ExceptionItem('loginId', 'ログインIDは既に存在しています。')]);
         }
 
-        $user = $this->userRepository->save($data);
-
-        return new UserData($user);
+        return $this->userRepository->save($data);
     }
 }

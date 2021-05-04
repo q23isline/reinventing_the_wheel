@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Domain\Models\User;
 
 use App\Domain\Models\User\Type\LoginId;
+use App\Domain\Models\User\Type\UserId;
 
 /**
  * interface IUserRepository
@@ -29,7 +30,7 @@ interface IUserRepository
      * 保存
      *
      * @param User $user user
-     * @return User
+     * @return UserId
      */
-    public function save(User $user): User;
+    public function save(User $user): UserId;
 }
