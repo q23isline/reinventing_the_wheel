@@ -48,25 +48,34 @@ paths:
       operationId: patch-users-userId
       responses:
         '200':
-          description: 更新後のユーザー情報
+          description: 更新後のユーザーID
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  data:
-                    $ref: '#/components/schemas/User'
+                  userId:
+                    type: integer
+                    description: ユーザーID
+                    example: 1
               examples:
                 example:
                   value:
-                    data:
-                      id: 1
-                      loginId: saitou
-                      roleName: viewer
-                      firstName: 斉藤
-                      lastName: 太郎
-                      created: '2019-08-24T14:15:22Z'
-                      modified: '2019-08-24T14:15:22Z'
+                    userId: 1
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+              examples:
+                example:
+                  value:
+                    error:
+                      message: Bad Request
+                      errors:
+                        - field: loginId
+                          reason: ログインIDは既に存在しています。
       description: ユーザーが存在すればユーザー情報を更新する
       requestBody:
         content:
@@ -131,25 +140,34 @@ paths:
       operationId: post-user
       responses:
         '200':
-          description: 作成後のユーザー情報
+          description: 作成後のユーザーID
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  data:
-                    $ref: '#/components/schemas/User'
+                  userId:
+                    type: integer
+                    description: ユーザーID
+                    example: 1
               examples:
                 example:
                   value:
-                    data:
-                      id: 1
-                      loginId: saitou
-                      roleName: viewer
-                      firstName: 斉藤
-                      lastName: 太郎
-                      created: '2019-08-24T14:15:22Z'
-                      modified: '2019-08-24T14:15:22Z'
+                    userId: 1
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error400'
+              examples:
+                example:
+                  value:
+                    error:
+                      message: Bad Request
+                      errors:
+                        - field: loginId
+                          reason: ログインIDは既に存在しています。
       requestBody:
         content:
           application/json:
@@ -284,5 +302,35 @@ components:
         - lastName
         - created
         - modified
+    Error400:
+      title: Error400
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: エラーメッセージ
+              example: Bad Request
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                    description: エラーの項目名
+                  reason:
+                    type: string
+                    description: エラーの理由
+      x-examples:
+        example:
+          error:
+            message: Bad Request
+            errors:
+              - field: string
+                reason: string
+      description: 400エラー
 tags:
   - name: User
