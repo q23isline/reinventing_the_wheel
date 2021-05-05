@@ -62,8 +62,8 @@ class UsersController extends AppController
     public function index(): void
     {
         $userData = $this->userListUseCaseService->handle();
-        $userListResult = new UserListResult($userData);
-        $data = $userListResult->format();
+        $result = new UserListResult($userData);
+        $data = $result->format();
 
         $this->set($data);
         // .jsonなしでもOKとする
@@ -147,8 +147,8 @@ class UsersController extends AppController
             );
 
             $userId = $this->userAddUseCaseService->handle($command);
-            $userSavedResult = new UserSavedResult($userId);
-            $data = $userSavedResult->format();
+            $result = new UserSavedResult($userId);
+            $data = $result->format();
 
             $this->set($data);
             // .jsonなしでもOKとする
