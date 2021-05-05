@@ -14,7 +14,7 @@ use App\UseCase\Users\UserGetCommand;
 use App\UseCase\Users\UserGetResult;
 use App\UseCase\Users\UserGetUseCaseService;
 use App\UseCase\Users\UserListResult;
-use App\UseCase\Users\UserListUseCaseService;
+use App\UseCase\Users\UserListUseCase;
 use App\UseCase\Users\UserSavedResult;
 
 /**
@@ -28,9 +28,9 @@ class UsersController extends AppController
     private CakePHPUserRepository $userRepository;
 
     /**
-     * @var \App\UseCase\Users\UserListUseCaseService
+     * @var \App\UseCase\Users\UserListUseCase
      */
-    private UserListUseCaseService $userListUseCaseService;
+    private UserListUseCase $userListUseCase;
 
     /**
      * @var \App\Domain\Services\UserService
@@ -57,7 +57,7 @@ class UsersController extends AppController
         parent::initialize();
 
         $this->userRepository = new CakePHPUserRepository();
-        $this->userListUseCaseService = new UserListUseCaseService($this->userRepository);
+        $this->userListUseCase = new UserListUseCase($this->userRepository);
         $this->userService = new UserService($this->userRepository);
         $this->userAddUseCaseService = new UserAddUseCaseService($this->userRepository, $this->userService);
         $this->userGetUseCaseService = new UserGetUseCaseService($this->userRepository);
@@ -70,7 +70,7 @@ class UsersController extends AppController
      */
     public function index(): void
     {
-        $userData = $this->userListUseCaseService->handle();
+        $userData = $this->userListUseCase->handle();
         $result = new UserListResult($userData);
         $data = $result->format();
 
