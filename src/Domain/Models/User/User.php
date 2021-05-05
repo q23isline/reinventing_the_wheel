@@ -17,56 +17,56 @@ use App\Domain\Shared\AuditDate;
 final class User
 {
     /**
-     * @var UserId|null
+     * @var \App\Domain\Models\User\Type\UserId|null
      */
     private ?UserId $id;
 
     /**
-     * @var LoginId
+     * @var \App\Domain\Models\User\Type\LoginId
      */
     private LoginId $loginId;
 
     /**
-     * @var Password|null
+     * @var \App\Domain\Models\User\Type\Password|null
      */
     private ?Password $password;
 
     /**
-     * @var RoleName
+     * @var \App\Domain\Models\User\Type\RoleName
      */
     private RoleName $roleName;
 
     /**
-     * @var FirstName
+     * @var \App\Domain\Models\User\Type\FirstName
      */
     private FirstName $firstName;
 
     /**
-     * @var LastName
+     * @var \App\Domain\Models\User\Type\LastName
      */
     private LastName $lastName;
 
     /**
-     * @var AuditDate|null
+     * @var \App\Domain\Shared\AuditDate|null
      */
     private ?AuditDate $created;
 
     /**
-     * @var AuditDate|null
+     * @var \App\Domain\Shared\AuditDate|null
      */
     private ?AuditDate $modified;
 
     /**
      * constructor
      *
-     * @param UserId|null $id id
-     * @param LoginId $loginId loginId
-     * @param Password|null $password password 参照では不要なため null を許可
-     * @param RoleName $roleName roleName
-     * @param FirstName $firstName firstName
-     * @param LastName $lastName lastName
-     * @param AuditDate|null $created created
-     * @param AuditDate|null $modified modified
+     * @param \App\Domain\Models\User\Type\UserId|null $id id
+     * @param \App\Domain\Models\User\Type\LoginId $loginId loginId
+     * @param \App\Domain\Models\User\Type\Password|null $password password 参照では不要なため null を許可
+     * @param \App\Domain\Models\User\Type\RoleName $roleName roleName
+     * @param \App\Domain\Models\User\Type\FirstName $firstName firstName
+     * @param \App\Domain\Models\User\Type\LastName $lastName lastName
+     * @param \App\Domain\Shared\AuditDate|null $created created
+     * @param \App\Domain\Shared\AuditDate|null $modified modified
      */
     public function __construct(
         ?UserId $id = null,
@@ -91,7 +91,7 @@ final class User
     /**
      * Get the value of id
      *
-     * @return UserId|null
+     * @return \App\Domain\Models\User\Type\UserId|null
      */
     public function getId(): ?UserId
     {
@@ -101,7 +101,7 @@ final class User
     /**
      * Get the value of loginId
      *
-     * @return LoginId
+     * @return \App\Domain\Models\User\Type\LoginId
      */
     public function getLoginId(): LoginId
     {
@@ -111,8 +111,7 @@ final class User
     /**
      * Set the value of loginId
      *
-     * @param LoginId $loginId loginId
-     *
+     * @param \App\Domain\Models\User\Type\LoginId $loginId loginId
      * @return self
      */
     public function setLoginId(LoginId $loginId): LoginId
@@ -125,7 +124,7 @@ final class User
     /**
      * Get the value of password
      *
-     * @return Password
+     * @return \App\Domain\Models\User\Type\Password
      */
     public function getPassword(): Password
     {
@@ -135,8 +134,7 @@ final class User
     /**
      * Set the value of password
      *
-     * @param Password $password password
-     *
+     * @param \App\Domain\Models\User\Type\Password $password password
      * @return self
      */
     public function setPassword(Password $password): Password
@@ -149,7 +147,7 @@ final class User
     /**
      * Get the value of roleName
      *
-     * @return RoleName
+     * @return \App\Domain\Models\User\Type\RoleName
      */
     public function getRoleName(): RoleName
     {
@@ -159,8 +157,7 @@ final class User
     /**
      * Set the value of roleName
      *
-     * @param RoleName $roleName roleName
-     *
+     * @param \App\Domain\Models\User\Type\RoleName $roleName roleName
      * @return self
      */
     public function setRoleName(RoleName $roleName): RoleName
@@ -173,7 +170,7 @@ final class User
     /**
      * Get the value of firstName
      *
-     * @return FirstName
+     * @return \App\Domain\Models\User\Type\FirstName
      */
     public function getFirstName(): FirstName
     {
@@ -183,8 +180,7 @@ final class User
     /**
      * Set the value of firstName
      *
-     * @param FirstName $firstName firstName
-     *
+     * @param \App\Domain\Models\User\Type\FirstName $firstName firstName
      * @return self
      */
     public function setFirstName(FirstName $firstName): FirstName
@@ -197,7 +193,7 @@ final class User
     /**
      * Get the value of lastName
      *
-     * @return LastName
+     * @return \App\Domain\Models\User\Type\LastName
      */
     public function getLastName(): LastName
     {
@@ -207,8 +203,7 @@ final class User
     /**
      * Set the value of lastName
      *
-     * @param LastName $lastName lastName
-     *
+     * @param \App\Domain\Models\User\Type\LastName $lastName lastName
      * @return self
      */
     public function setLastName(LastName $lastName): LastName
@@ -221,7 +216,7 @@ final class User
     /**
      * Get the value of created
      *
-     * @return AuditDate|null
+     * @return \App\Domain\Shared\AuditDate|null
      */
     public function getCreated(): ?AuditDate
     {
@@ -231,7 +226,7 @@ final class User
     /**
      * Get the value of modified
      *
-     * @return AuditDate|null
+     * @return \App\Domain\Shared\AuditDate|null
      */
     public function getModified(): ?AuditDate
     {

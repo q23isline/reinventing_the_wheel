@@ -13,7 +13,6 @@ use App\UseCase\Users\UserGetResult;
 use App\UseCase\Users\UserListResult;
 use App\UseCase\Users\UserListUseCaseService;
 use App\UseCase\Users\UserSavedResult;
-use Exception;
 
 /**
  * Users Controller
@@ -21,22 +20,22 @@ use Exception;
 class UsersController extends AppController
 {
     /**
-     * @var CakePHPUserRepository
+     * @var \App\Infrastructure\CakePHP\Users\CakePHPUserRepository
      */
     private CakePHPUserRepository $userRepository;
 
     /**
-     * @var UserListUseCaseService
+     * @var \App\UseCase\Users\UserListUseCaseService
      */
     private UserListUseCaseService $userListUseCaseService;
 
     /**
-     * @var UserService
+     * @var \App\Domain\Services\UserService
      */
     private UserService $userService;
 
     /**
-     * @var UserAddUseCaseService
+     * @var \App\UseCase\Users\UserAddUseCaseService
      */
     private UserAddUseCaseService $userAddUseCaseService;
 

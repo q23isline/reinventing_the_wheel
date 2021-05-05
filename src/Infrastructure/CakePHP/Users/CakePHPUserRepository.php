@@ -20,7 +20,7 @@ use Cake\ORM\TableRegistry;
 final class CakePHPUserRepository implements IUserRepository
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function findByLoginId(LoginId $loginId): ?User
     {
@@ -48,7 +48,7 @@ final class CakePHPUserRepository implements IUserRepository
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function findAll(): UserCollection
     {
@@ -75,7 +75,7 @@ final class CakePHPUserRepository implements IUserRepository
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function save(User $user): UserId
     {

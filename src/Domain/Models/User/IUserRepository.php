@@ -14,23 +14,23 @@ interface IUserRepository
     /**
      * ログインIDで検索
      *
-     * @param LoginId $loginId loginId
-     * @return User|null
+     * @param \App\Domain\Models\User\Type\LoginId $loginId loginId
+     * @return \App\Domain\Models\User\User|null
      */
     public function findByLoginId(LoginId $loginId): ?User;
 
     /**
      * すべて取得
      *
-     * @return UserCollection
+     * @return \App\Domain\Models\User\UserCollection
      */
     public function findAll(): UserCollection;
 
     /**
      * 保存
      *
-     * @param User $user user
-     * @return UserId
+     * @param \App\Domain\Models\User\User $user user
+     * @return \App\Domain\Models\User\Type\UserId
      */
     public function save(User $user): UserId;
 }

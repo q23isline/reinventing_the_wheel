@@ -11,15 +11,15 @@ use Exception;
 final class ValidateException extends Exception
 {
     /**
-     * @var ExceptionItem[]
+     * @var \App\Domain\Shared\Exception\ExceptionItem[]
      */
     protected array $errors;
 
     /**
      * constructor
      *
-     * @param ExceptionItem[] $errors errors
-     * @param Exception|null $previous previous
+     * @param \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
+     * @param \Exception|null $previous previous
      */
     public function __construct(array $errors = [], ?Exception $previous = null)
     {
@@ -35,7 +35,7 @@ final class ValidateException extends Exception
     /**
      * Get the value of errors
      *
-     * @return ExceptionItem[]
+     * @return \App\Domain\Shared\Exception\ExceptionItem[]
      */
     public function getErrors(): array
     {

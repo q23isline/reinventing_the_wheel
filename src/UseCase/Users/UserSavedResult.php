@@ -8,14 +8,14 @@ use App\Domain\Models\User\Type\UserId;
 final class UserSavedResult
 {
     /**
-     * @var UserId
+     * @var \App\Domain\Models\User\Type\UserId
      */
     private UserId $userId;
 
     /**
      * constructor
      *
-     * @param UserId $userId userId
+     * @param \App\Domain\Models\User\Type\UserId $userId userId
      */
     public function __construct(UserId $userId)
     {

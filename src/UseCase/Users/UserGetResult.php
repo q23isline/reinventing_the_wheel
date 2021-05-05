@@ -6,14 +6,14 @@ namespace App\UseCase\Users;
 final class UserGetResult
 {
     /**
-     * @var UserData
+     * @var \App\UseCase\Users\UserData
      */
     private UserData $userData;
 
     /**
      * constructor
      *
-     * @param UserData $userData userData
+     * @param \App\UseCase\Users\UserData $userData userData
      */
     public function __construct(UserData $userData)
     {

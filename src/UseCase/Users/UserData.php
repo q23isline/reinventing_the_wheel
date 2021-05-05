@@ -48,7 +48,7 @@ final class UserData
     /**
      * constructor
      *
-     * @param User $source source
+     * @param \App\Domain\Models\User\User $source source
      */
     public function __construct(User $source)
     {

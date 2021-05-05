@@ -14,7 +14,6 @@ use App\Domain\Models\User\User;
 use App\Domain\Services\UserService;
 use App\Domain\Shared\Exception\ExceptionItem;
 use App\Domain\Shared\Exception\ValidateException;
-use Exception;
 
 /**
  * class UserAddUseCaseService
@@ -22,20 +21,20 @@ use Exception;
 final class UserAddUseCaseService
 {
     /**
-     * @var IUserRepository
+     * @var \App\Domain\Models\User\IUserRepository
      */
     private IUserRepository $userRepository;
 
     /**
-     * @var UserService
+     * @var \App\Domain\Services\UserService
      */
     private UserService $userService;
 
     /**
      * constructor
      *
-     * @param IUserRepository $userRepository userRepository
-     * @param UserService $userService userService
+     * @param \App\Domain\Models\User\IUserRepository $userRepository userRepository
+     * @param \App\Domain\Services\UserService $userService userService
      */
     public function __construct(IUserRepository $userRepository, UserService $userService)
     {
@@ -46,8 +45,8 @@ final class UserAddUseCaseService
     /**
      * ユーザーを新規追加する
      *
-     * @param UserAddCommand $command command
-     * @return UserId
+     * @param \App\UseCase\Users\UserAddCommand $command command
+     * @return \App\Domain\Models\User\Type\UserId
      */
     public function handle(UserAddCommand $command): UserId
     {

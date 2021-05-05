@@ -29,7 +29,7 @@ final class UserCollection implements IteratorAggregate
     /**
      * add
      *
-     * @param User $user user
+     * @param \App\Domain\Models\User\User $user user
      * @return void
      */
     public function add(User $user): void
@@ -40,7 +40,7 @@ final class UserCollection implements IteratorAggregate
     /**
      * getIterator
      *
-     * @return ArrayIterator
+     * @return \ArrayIterator
      */
     public function getIterator(): ArrayIterator
     {

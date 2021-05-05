@@ -11,14 +11,14 @@ use App\Domain\Models\User\IUserRepository;
 final class UserListUseCaseService
 {
     /**
-     * @var IUserRepository
+     * @var \App\Domain\Models\User\IUserRepository
      */
     private IUserRepository $userRepository;
 
     /**
      * constructor
      *
-     * @param IUserRepository $userRepository userRepository
+     * @param \App\Domain\Models\User\IUserRepository $userRepository userRepository
      */
     public function __construct(IUserRepository $userRepository)
     {
@@ -28,7 +28,7 @@ final class UserListUseCaseService
     /**
      * ユーザー一覧を取得する
      *
-     * @return UserData[]
+     * @return \App\UseCase\Users\UserData[]
      */
     public function handle(): array
     {

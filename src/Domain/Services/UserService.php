@@ -12,14 +12,14 @@ use App\Domain\Models\User\User;
 final class UserService
 {
     /**
-     * @var IUserRepository
+     * @var \App\Domain\Models\User\IUserRepository
      */
     private IUserRepository $userRepository;
 
     /**
      * constructor
      *
-     * @param IUserRepository $userRepository userRepository
+     * @param \App\Domain\Models\User\IUserRepository $userRepository userRepository
      */
     public function __construct(IUserRepository $userRepository)
     {
@@ -29,7 +29,7 @@ final class UserService
     /**
      * 存在チェック
      *
-     * @param User $user user
+     * @param \App\Domain\Models\User\User $user user
      * @return bool
      */
     public function isExists(User $user): bool
