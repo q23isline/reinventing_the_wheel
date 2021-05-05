@@ -9,7 +9,7 @@ use App\Domain\Shared\Exception\NotFoundException;
 use App\Domain\Shared\Exception\ValidateException;
 use App\Infrastructure\CakePHP\Users\CakePHPUserRepository;
 use App\UseCase\Users\UserAddCommand;
-use App\UseCase\Users\UserAddUseCaseService;
+use App\UseCase\Users\UserAddUseCase;
 use App\UseCase\Users\UserGetCommand;
 use App\UseCase\Users\UserGetResult;
 use App\UseCase\Users\UserGetUseCaseService;
@@ -38,9 +38,9 @@ class UsersController extends AppController
     private UserService $userService;
 
     /**
-     * @var \App\UseCase\Users\UserAddUseCaseService
+     * @var \App\UseCase\Users\UserAddUseCase
      */
-    private UserAddUseCaseService $userAddUseCaseService;
+    private UserAddUseCase $userAddUseCase;
 
     /**
      * @var \App\UseCase\Users\UserGetUseCaseService
@@ -59,7 +59,7 @@ class UsersController extends AppController
         $this->userRepository = new CakePHPUserRepository();
         $this->userListUseCase = new UserListUseCase($this->userRepository);
         $this->userService = new UserService($this->userRepository);
-        $this->userAddUseCaseService = new UserAddUseCaseService($this->userRepository, $this->userService);
+        $this->userAddUseCase = new UserAddUseCase($this->userRepository, $this->userService);
         $this->userGetUseCaseService = new UserGetUseCaseService($this->userRepository);
     }
 
@@ -157,7 +157,7 @@ class UsersController extends AppController
                 $lastName
             );
 
-            $userId = $this->userAddUseCaseService->handle($command);
+            $userId = $this->userAddUseCase->handle($command);
             $result = new UserSavedResult($userId);
             $data = $result->format();
 
