@@ -12,7 +12,7 @@ use App\UseCase\Users\UserAddCommand;
 use App\UseCase\Users\UserAddUseCase;
 use App\UseCase\Users\UserGetCommand;
 use App\UseCase\Users\UserGetResult;
-use App\UseCase\Users\UserGetUseCaseService;
+use App\UseCase\Users\UserGetUseCase;
 use App\UseCase\Users\UserListResult;
 use App\UseCase\Users\UserListUseCase;
 use App\UseCase\Users\UserSavedResult;
@@ -43,9 +43,9 @@ class UsersController extends AppController
     private UserAddUseCase $userAddUseCase;
 
     /**
-     * @var \App\UseCase\Users\UserGetUseCaseService
+     * @var \App\UseCase\Users\UserGetUseCase
      */
-    private UserGetUseCaseService $userGetUseCaseService;
+    private UserGetUseCase $userGetUseCase;
 
     /**
      * initialize
@@ -60,7 +60,7 @@ class UsersController extends AppController
         $this->userListUseCase = new UserListUseCase($this->userRepository);
         $this->userService = new UserService($this->userRepository);
         $this->userAddUseCase = new UserAddUseCase($this->userRepository, $this->userService);
-        $this->userGetUseCaseService = new UserGetUseCaseService($this->userRepository);
+        $this->userGetUseCase = new UserGetUseCase($this->userRepository);
     }
 
     /**
@@ -92,7 +92,7 @@ class UsersController extends AppController
         try {
             $command = new UserGetCommand($userId);
 
-            $userData = $this->userGetUseCaseService->handle($command);
+            $userData = $this->userGetUseCase->handle($command);
             $result = new UserGetResult($userData);
             $data = $result->format();
 
