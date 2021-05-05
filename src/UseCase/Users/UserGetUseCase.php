@@ -9,9 +9,9 @@ use App\Domain\Shared\Exception\ExceptionItem;
 use App\Domain\Shared\Exception\NotFoundException;
 
 /**
- * class UserGetUseCaseService
+ * class UserGetUseCase
  */
-final class UserGetUseCaseService
+final class UserGetUseCase
 {
     /**
      * @var \App\Domain\Models\User\IUserRepository
