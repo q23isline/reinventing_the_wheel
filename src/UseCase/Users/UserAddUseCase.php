@@ -16,9 +16,9 @@ use App\Domain\Shared\Exception\ExceptionItem;
 use App\Domain\Shared\Exception\ValidateException;
 
 /**
- * class UserAddUseCaseService
+ * class UserAddUseCase
  */
-final class UserAddUseCaseService
+final class UserAddUseCase
 {
     /**
      * @var \App\Domain\Models\User\IUserRepository
