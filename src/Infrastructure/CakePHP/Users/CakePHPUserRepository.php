@@ -49,11 +49,7 @@ final class CakePHPUserRepository implements IUserRepository
     public function findByLoginId(LoginId $loginId): ?User
     {
         $model = TableRegistry::getTableLocator()->get('Users');
-        $record = $model->find()
-            ->where([
-                'username' => $loginId->getValue(),
-            ])
-            ->first();
+        $record = $model->findByUsername($loginId->getValue())->first();
 
         if (is_null($record)) {
             return null;
