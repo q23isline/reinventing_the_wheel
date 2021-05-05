@@ -6,9 +6,9 @@ namespace App\UseCase\Users;
 use App\Domain\Models\User\IUserRepository;
 
 /**
- * class UserListUseCaseService
+ * class UserListUseCase
  */
-final class UserListUseCaseService
+final class UserListUseCase
 {
     /**
      * @var \App\Domain\Models\User\IUserRepository
