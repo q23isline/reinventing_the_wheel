@@ -53,11 +53,11 @@ final class UserAddCommand
         ?string $lastName
     ) {
         if (
-            is_null($loginId) ||
-            is_null($password) ||
-            is_null($roleName) ||
-            is_null($firstName) ||
-            is_null($lastName)
+            empty($loginId) ||
+            empty($password) ||
+            empty($roleName) ||
+            empty($firstName) ||
+            empty($lastName)
         ) {
             // TODO: field を個別のエラーにする
             throw new ValidateException([new ExceptionItem('field', '必須項目が不足しています。')]);
