@@ -12,6 +12,14 @@ use App\Domain\Models\User\Type\UserId;
 interface IUserRepository
 {
     /**
+     * IDで検索
+     *
+     * @param \App\Domain\Models\User\Type\UserId $userId userId
+     * @return \App\Domain\Models\User\User|null
+     */
+    public function findById(UserId $userId): ?User;
+
+    /**
      * ログインIDで検索
      *
      * @param \App\Domain\Models\User\Type\LoginId $loginId loginId

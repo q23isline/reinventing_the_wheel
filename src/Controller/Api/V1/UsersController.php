@@ -5,11 +5,14 @@ namespace App\Controller\Api\V1;
 
 use App\Controller\AppController;
 use App\Domain\Services\UserService;
+use App\Domain\Shared\Exception\NotFoundException;
 use App\Domain\Shared\Exception\ValidateException;
 use App\Infrastructure\CakePHP\Users\CakePHPUserRepository;
 use App\UseCase\Users\UserAddCommand;
 use App\UseCase\Users\UserAddUseCaseService;
+use App\UseCase\Users\UserGetCommand;
 use App\UseCase\Users\UserGetResult;
+use App\UseCase\Users\UserGetUseCaseService;
 use App\UseCase\Users\UserListResult;
 use App\UseCase\Users\UserListUseCaseService;
 use App\UseCase\Users\UserSavedResult;
@@ -40,6 +43,11 @@ class UsersController extends AppController
     private UserAddUseCaseService $userAddUseCaseService;
 
     /**
+     * @var \App\UseCase\Users\UserGetUseCaseService
+     */
+    private UserGetUseCaseService $userGetUseCaseService;
+
+    /**
      * initialize
      *
      * @return void
@@ -52,6 +60,7 @@ class UsersController extends AppController
         $this->userListUseCaseService = new UserListUseCaseService($this->userRepository);
         $this->userService = new UserService($this->userRepository);
         $this->userAddUseCaseService = new UserAddUseCaseService($this->userRepository, $this->userService);
+        $this->userGetUseCaseService = new UserGetUseCaseService($this->userRepository);
     }
 
     /**
@@ -78,25 +87,27 @@ class UsersController extends AppController
      */
     public function view(): void
     {
-        $userId = $this->request->getParam('userId');
+        $userId = (int)$this->request->getParam('userId');
 
-        // TODO: モックAPIを修正する
-        $data = [
-            'data' => [
-                'id' => 1,
-                'loginId' => 'saitou',
-                'roleName' => 'viewer',
-                'firstName' => '斉藤',
-                'lastName' => '太郎',
-                'created' => '2019-08-24T14:15:22Z',
-                'modified' => '2019-08-24T14:15:22Z',
-            ],
-        ];
+        try {
+            $command = new UserGetCommand($userId);
 
-        $this->set($data);
-        // .jsonなしでもOKとする
-        $this->viewBuilder()->setClassName('Json')
-            ->setOption('serialize', ['data']);
+            $userData = $this->userGetUseCaseService->handle($command);
+            $result = new UserGetResult($userData);
+            $data = $result->format();
+
+            $this->set($data);
+            // .jsonなしでもOKとする
+            $this->viewBuilder()->setClassName('Json')
+                ->setOption('serialize', ['data']);
+        } catch (NotFoundException $e) {
+            $data = $e->format();
+
+            $this->response = $this->response->withStatus(404);
+            $this->set($data);
+            $this->viewBuilder()->setClassName('Json')
+                ->setOption('serialize', ['error']);
+        }
     }
 
     /**

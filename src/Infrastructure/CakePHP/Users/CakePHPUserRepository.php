@@ -22,6 +22,30 @@ final class CakePHPUserRepository implements IUserRepository
     /**
      * @inheritDoc
      */
+    public function findById(UserId $userId): ?User
+    {
+        $model = TableRegistry::getTableLocator()->get('Users');
+        $record = $model->findById($userId->getValue())->first();
+
+        if (is_null($record)) {
+            return null;
+        }
+
+        return new User(
+            new UserId($record->id),
+            new LoginId($record->username),
+            null,
+            new RoleName($record->role),
+            new FirstName($record->first_name),
+            new LastName($record->last_name),
+            new AuditDate((string)$record->created),
+            new AuditDate((string)$record->modified)
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function findByLoginId(LoginId $loginId): ?User
     {
         $model = TableRegistry::getTableLocator()->get('Users');
