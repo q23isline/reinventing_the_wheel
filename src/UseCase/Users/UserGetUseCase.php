@@ -5,8 +5,6 @@ namespace App\UseCase\Users;
 
 use App\Domain\Models\User\IUserRepository;
 use App\Domain\Models\User\Type\UserId;
-use App\Domain\Shared\Exception\ExceptionItem;
-use App\Domain\Shared\Exception\NotFoundException;
 
 /**
  * class UserGetUseCase
@@ -37,12 +35,7 @@ final class UserGetUseCase
     public function handle(UserGetCommand $command): UserData
     {
         $userId = new UserId($command->getUserId());
-
-        $user = $this->userRepository->findById($userId);
-
-        if (is_null($user)) {
-            throw new NotFoundException([new ExceptionItem('userId', 'ユーザーは存在しません。')]);
-        }
+        $user = $this->userRepository->getById($userId);
 
         return new UserData($user);
     }

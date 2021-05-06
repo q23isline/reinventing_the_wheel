@@ -15,9 +15,9 @@ interface IUserRepository
      * IDで検索
      *
      * @param \App\Domain\Models\User\Type\UserId $userId userId
-     * @return \App\Domain\Models\User\User|null
+     * @return \App\Domain\Models\User\User
      */
-    public function findById(UserId $userId): ?User;
+    public function getById(UserId $userId): User;
 
     /**
      * ログインIDで検索

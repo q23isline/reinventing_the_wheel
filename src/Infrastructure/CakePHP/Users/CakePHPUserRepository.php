@@ -22,14 +22,10 @@ final class CakePHPUserRepository implements IUserRepository
     /**
      * @inheritDoc
      */
-    public function findById(UserId $userId): ?User
+    public function getById(UserId $userId): User
     {
         $model = TableRegistry::getTableLocator()->get('Users');
-        $record = $model->findById($userId->getValue())->first();
-
-        if (is_null($record)) {
-            return null;
-        }
+        $record = $model->get($userId->getValue());
 
         return new User(
             new UserId($record->id),

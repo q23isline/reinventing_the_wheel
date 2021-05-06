@@ -5,6 +5,7 @@ namespace App\Controller\Api\V1;
 
 use App\Controller\AppController;
 use App\Domain\Services\UserService;
+use App\Domain\Shared\Exception\ExceptionItem;
 use App\Domain\Shared\Exception\NotFoundException;
 use App\Domain\Shared\Exception\ValidateException;
 use App\Infrastructure\CakePHP\Users\CakePHPUserRepository;
@@ -16,6 +17,7 @@ use App\UseCase\Users\UserGetUseCase;
 use App\UseCase\Users\UserListResult;
 use App\UseCase\Users\UserListUseCase;
 use App\UseCase\Users\UserSavedResult;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Users Controller
@@ -100,8 +102,9 @@ class UsersController extends AppController
             // .jsonなしでもOKとする
             $this->viewBuilder()->setClassName('Json')
                 ->setOption('serialize', ['data']);
-        } catch (NotFoundException $e) {
-            $data = $e->format();
+        } catch (RecordNotFoundException $e) {
+            $error = new NotFoundException([new ExceptionItem('userId', 'ユーザーは存在しません。')]);
+            $data = $error->format();
 
             $this->response = $this->response->withStatus(404);
             $this->set($data);
