@@ -22,9 +22,9 @@ final class User
     private ?UserId $id;
 
     /**
-     * @var \App\Domain\Models\User\Type\LoginId
+     * @var \App\Domain\Models\User\Type\LoginId|null
      */
-    private LoginId $loginId;
+    private ?LoginId $loginId;
 
     /**
      * @var \App\Domain\Models\User\Type\Password|null
@@ -32,19 +32,19 @@ final class User
     private ?Password $password;
 
     /**
-     * @var \App\Domain\Models\User\Type\RoleName
+     * @var \App\Domain\Models\User\Type\RoleName|null
      */
-    private RoleName $roleName;
+    private ?RoleName $roleName;
 
     /**
-     * @var \App\Domain\Models\User\Type\FirstName
+     * @var \App\Domain\Models\User\Type\FirstName|null
      */
-    private FirstName $firstName;
+    private ?FirstName $firstName;
 
     /**
-     * @var \App\Domain\Models\User\Type\LastName
+     * @var \App\Domain\Models\User\Type\LastName|null
      */
-    private LastName $lastName;
+    private ?LastName $lastName;
 
     /**
      * @var \App\Domain\Shared\AuditDate|null
@@ -58,23 +58,24 @@ final class User
 
     /**
      * constructor
+     * 更新・参照では不要な項目となるケースがあるため null を許可
      *
      * @param \App\Domain\Models\User\Type\UserId|null $id id
-     * @param \App\Domain\Models\User\Type\LoginId $loginId loginId
-     * @param \App\Domain\Models\User\Type\Password|null $password password 参照では不要なため null を許可
-     * @param \App\Domain\Models\User\Type\RoleName $roleName roleName
-     * @param \App\Domain\Models\User\Type\FirstName $firstName firstName
-     * @param \App\Domain\Models\User\Type\LastName $lastName lastName
+     * @param \App\Domain\Models\User\Type\LoginId|null $loginId loginId
+     * @param \App\Domain\Models\User\Type\Password|null $password password
+     * @param \App\Domain\Models\User\Type\RoleName|null $roleName roleName
+     * @param \App\Domain\Models\User\Type\FirstName|null $firstName firstName
+     * @param \App\Domain\Models\User\Type\LastName|null $lastName lastName
      * @param \App\Domain\Shared\AuditDate|null $created created
      * @param \App\Domain\Shared\AuditDate|null $modified modified
      */
     public function __construct(
         ?UserId $id = null,
-        LoginId $loginId,
+        ?LoginId $loginId = null,
         ?Password $password = null,
-        RoleName $roleName,
-        FirstName $firstName,
-        LastName $lastName,
+        ?RoleName $roleName = null,
+        ?FirstName $firstName = null,
+        ?LastName $lastName = null,
         ?AuditDate $created = null,
         ?AuditDate $modified = null
     ) {
@@ -86,6 +87,26 @@ final class User
         $this->lastName = $lastName;
         $this->created = $created;
         $this->modified = $modified;
+    }
+
+    /**
+     * equals
+     *
+     * @param \App\Domain\Models\User\User $other other
+     * @return bool
+     */
+    public function equals(User $other): bool
+    {
+        if ($this === $other) {
+            // 同じクラスの同じインスタンスであれば true
+            return true;
+        }
+
+        if (is_null($this->id) || is_null($other->getId())) {
+            return false;
+        }
+
+        return $this->id->getValue() === $other->getId()->getValue();
     }
 
     /**
@@ -101,9 +122,9 @@ final class User
     /**
      * Get the value of loginId
      *
-     * @return \App\Domain\Models\User\Type\LoginId
+     * @return \App\Domain\Models\User\Type\LoginId|null
      */
-    public function getLoginId(): LoginId
+    public function getLoginId(): ?LoginId
     {
         return $this->loginId;
     }
@@ -124,9 +145,9 @@ final class User
     /**
      * Get the value of password
      *
-     * @return \App\Domain\Models\User\Type\Password
+     * @return \App\Domain\Models\User\Type\Password|null
      */
-    public function getPassword(): Password
+    public function getPassword(): ?Password
     {
         return $this->password;
     }
@@ -147,9 +168,9 @@ final class User
     /**
      * Get the value of roleName
      *
-     * @return \App\Domain\Models\User\Type\RoleName
+     * @return \App\Domain\Models\User\Type\RoleName|null
      */
-    public function getRoleName(): RoleName
+    public function getRoleName(): ?RoleName
     {
         return $this->roleName;
     }
@@ -170,9 +191,9 @@ final class User
     /**
      * Get the value of firstName
      *
-     * @return \App\Domain\Models\User\Type\FirstName
+     * @return \App\Domain\Models\User\Type\FirstName|null
      */
-    public function getFirstName(): FirstName
+    public function getFirstName(): ?FirstName
     {
         return $this->firstName;
     }
@@ -193,9 +214,9 @@ final class User
     /**
      * Get the value of lastName
      *
-     * @return \App\Domain\Models\User\Type\LastName
+     * @return \App\Domain\Models\User\Type\LastName|null
      */
-    public function getLastName(): LastName
+    public function getLastName(): ?LastName
     {
         return $this->lastName;
     }

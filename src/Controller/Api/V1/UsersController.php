@@ -17,6 +17,8 @@ use App\UseCase\Users\UserGetUseCase;
 use App\UseCase\Users\UserListResult;
 use App\UseCase\Users\UserListUseCase;
 use App\UseCase\Users\UserSavedResult;
+use App\UseCase\Users\UserUpdateCommand;
+use App\UseCase\Users\UserUpdateUseCase;
 use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
@@ -50,6 +52,11 @@ class UsersController extends AppController
     private UserGetUseCase $userGetUseCase;
 
     /**
+     * @var \App\UseCase\Users\UserUpdateUseCase
+     */
+    private UserUpdateUseCase $userUpdateUseCase;
+
+    /**
      * initialize
      *
      * @return void
@@ -63,6 +70,7 @@ class UsersController extends AppController
         $this->userService = new UserService($this->userRepository);
         $this->userAddUseCase = new UserAddUseCase($this->userRepository, $this->userService);
         $this->userGetUseCase = new UserGetUseCase($this->userRepository);
+        $this->userUpdateUseCase = new UserUpdateUseCase($this->userRepository, $this->userService);
     }
 
     /**
@@ -185,7 +193,7 @@ class UsersController extends AppController
      */
     public function edit(): void
     {
-        $userId = $this->request->getParam('userId');
+        $userId = (int)$this->request->getParam('userId');
 
         $jsonData = $this->request->input('json_decode');
 
@@ -217,23 +225,40 @@ class UsersController extends AppController
             }
         }
 
-        $dataParams = [
-            'loginId' => $loginId,
-            'password' => $password,
-            'roleName' => $roleName,
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-        ];
+        try {
+            $command = new UserUpdateCommand(
+                $userId,
+                $loginId,
+                $password,
+                $roleName,
+                $firstName,
+                $lastName
+            );
 
-        // TODO: モックAPIを修正する
-        $data = [
-            'userId' => 1,
-        ];
+            $userId = $this->userUpdateUseCase->handle($command);
+            $result = new UserSavedResult($userId);
+            $data = $result->format();
 
-        $this->set($data);
-        // .jsonなしでもOKとする
-        $this->viewBuilder()->setClassName('Json')
-            ->setOption('serialize', ['userId']);
+            $this->set($data);
+            // .jsonなしでもOKとする
+            $this->viewBuilder()->setClassName('Json')
+                ->setOption('serialize', ['userId']);
+        } catch (RecordNotFoundException $e) {
+            $error = new NotFoundException([new ExceptionItem('userId', 'ユーザーは存在しません。')]);
+            $data = $error->format();
+
+            $this->response = $this->response->withStatus(404);
+            $this->set($data);
+            $this->viewBuilder()->setClassName('Json')
+                ->setOption('serialize', ['error']);
+        } catch (ValidateException $e) {
+            $data = $e->format();
+
+            $this->response = $this->response->withStatus(400);
+            $this->set($data);
+            $this->viewBuilder()->setClassName('Json')
+                ->setOption('serialize', ['error']);
+        }
     }
 
     /**

@@ -41,4 +41,12 @@ interface IUserRepository
      * @return \App\Domain\Models\User\Type\UserId
      */
     public function save(User $user): UserId;
+
+    /**
+     * 更新
+     *
+     * @param \App\Domain\Models\User\User $user user
+     * @return \App\Domain\Models\User\Type\UserId
+     */
+    public function update(User $user): UserId;
 }
