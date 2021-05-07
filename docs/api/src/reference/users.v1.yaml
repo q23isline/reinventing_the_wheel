@@ -41,6 +41,20 @@ paths:
                       lastName: 太郎
                       created: '2019-08-24T14:15:22Z'
                       modified: '2019-08-24T14:15:22Z'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+              examples:
+                example:
+                  value:
+                    error:
+                      message: Not Found
+                      errors:
+                        - field: userId
+                          reason: ユーザーは存在しません。
       operationId: get-users-userId
       description: ユーザーIDと一致するユーザー情報を返却する
     patch:
@@ -76,6 +90,20 @@ paths:
                       errors:
                         - field: loginId
                           reason: ログインIDは既に存在しています。
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+              examples:
+                example:
+                  value:
+                    error:
+                      message: Not Found
+                      errors:
+                        - field: userId
+                          reason: ユーザーは存在しません。
       description: ユーザーが存在すればユーザー情報を更新する
       requestBody:
         content:
@@ -131,6 +159,20 @@ paths:
       responses:
         '200':
           description: OK
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error404'
+              examples:
+                example:
+                  value:
+                    error:
+                      message: Not Found
+                      errors:
+                        - field: userId
+                          reason: ユーザーは存在しません。
       description: ユーザーが存在すればユーザー情報を削除する
       tags:
         - User
@@ -332,5 +374,35 @@ components:
               - field: string
                 reason: string
       description: 400エラー
+    Error404:
+      title: Error404
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+              description: エラーメッセージ
+              example: Not Found
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                    description: エラーの項目名
+                  reason:
+                    type: string
+                    description: エラーの理由
+      x-examples:
+        example:
+          error:
+            message: Not Found
+            errors:
+              - field: string
+                reason: string
+      description: 404エラー
 tags:
   - name: User
