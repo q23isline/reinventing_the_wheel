@@ -120,3 +120,51 @@ redoc-cli bundle xxxxxx.yaml
 |--------------|----------------------------------------------------------|-----------------------|
 | Cookie       | PHPSESSID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx               | Cookie内のPHPSESSIDキーの値 |
 | X-CSRF-Token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | Cookie内のcsrfTokenキーの値 |
+
+## ディレクトリ構成
+
+- オニオンアーキテクチャ
+
+```text
+reinventing_the_wheel
+├src
+│├Controller ：ユーザーインターフェイス（プレゼンテーション）層［MVCのC］
+││└Api
+││　└{version}
+││　　└{functionName}Controller.php
+│├Domain
+││├Models ：ドメインモデル層
+│││└{functionName}
+│││　├Type
+│││　│└{columnName}.php
+│││　├I{functionName}Repository.php ：依存関係逆転の原則用
+│││　├{functionName}.php
+│││　└{functionName}Collection.php
+││├Services ：ドメインサービス層
+│││└{functionName}Service.php
+││└Shared
+││　└Exception
+││　　├ExceptionItem.php
+││　　└ValidateException.php
+│├Infrastructure ：インフラ層
+││├CakePHP ：MVCのMを呼び出す
+│││└{functionName}
+│││　└CakePHP{functionName}Repository.php
+││└InMemory ：テスト用
+││　└{functionName}
+││　　└InMemory{functionName}Repository.php
+│└UseCase ：アプリケーションサービス（ユースケース）層
+│　└{functionName}
+│　　├{functionName}{actionName}Command.php ：ファサード用
+│　　├{functionName}{actionName}UseCase.php
+│　　├{functionName}Data.php ：DTO用
+│　　└{functionName}{actionName}Result.php ：出力整形用
+└docs
+　├api ：APIドキュメント
+　│└src
+　│　└reference
+　│　　└{functionName}.{version}.yaml
+　└diagrams ：ユースケース図
+　　└src
+　　　└{functionName}.pu
+```
