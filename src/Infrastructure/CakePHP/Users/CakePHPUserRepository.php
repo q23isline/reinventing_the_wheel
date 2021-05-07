@@ -151,4 +151,14 @@ final class CakePHPUserRepository implements IUserRepository
 
         return new UserId($saved->id);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function delete(UserId $userId): void
+    {
+        $model = TableRegistry::getTableLocator()->get('Users');
+        $entity = $model->get($userId->getValue());
+        $model->deleteOrFail($entity);
+    }
 }

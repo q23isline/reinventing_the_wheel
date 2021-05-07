@@ -11,6 +11,8 @@ use App\Domain\Shared\Exception\ValidateException;
 use App\Infrastructure\CakePHP\Users\CakePHPUserRepository;
 use App\UseCase\Users\UserAddCommand;
 use App\UseCase\Users\UserAddUseCase;
+use App\UseCase\Users\UserDeleteCommand;
+use App\UseCase\Users\UserDeleteUseCase;
 use App\UseCase\Users\UserGetCommand;
 use App\UseCase\Users\UserGetResult;
 use App\UseCase\Users\UserGetUseCase;
@@ -57,6 +59,11 @@ class UsersController extends AppController
     private UserUpdateUseCase $userUpdateUseCase;
 
     /**
+     * @var \App\UseCase\Users\UserDeleteUseCase
+     */
+    private UserDeleteUseCase $userDeleteUseCase;
+
+    /**
      * initialize
      *
      * @return void
@@ -71,6 +78,7 @@ class UsersController extends AppController
         $this->userAddUseCase = new UserAddUseCase($this->userRepository, $this->userService);
         $this->userGetUseCase = new UserGetUseCase($this->userRepository);
         $this->userUpdateUseCase = new UserUpdateUseCase($this->userRepository, $this->userService);
+        $this->userDeleteUseCase = new UserDeleteUseCase($this->userRepository);
     }
 
     /**
@@ -268,12 +276,23 @@ class UsersController extends AppController
      */
     public function delete(): void
     {
-        $userId = $this->request->getParam('userId');
+        $userId = (int)$this->request->getParam('userId');
 
-        // TODO: モックAPIを修正する
+        try {
+            $command = new UserDeleteCommand($userId);
+            $this->userDeleteUseCase->handle($command);
 
-        // .jsonなしでもOKとする
-        $this->viewBuilder()->setClassName('Json')
-            ->setOption('serialize', []);
+            // .jsonなしでもOKとする
+            $this->viewBuilder()->setClassName('Json')
+                ->setOption('serialize', []);
+        } catch (RecordNotFoundException $e) {
+            $error = new NotFoundException([new ExceptionItem('userId', 'ユーザーは存在しません。')]);
+            $data = $error->format();
+
+            $this->response = $this->response->withStatus(404);
+            $this->set($data);
+            $this->viewBuilder()->setClassName('Json')
+                ->setOption('serialize', ['error']);
+        }
     }
 }

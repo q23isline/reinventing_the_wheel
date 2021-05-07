@@ -49,4 +49,12 @@ interface IUserRepository
      * @return \App\Domain\Models\User\Type\UserId
      */
     public function update(User $user): UserId;
+
+    /**
+     * 削除
+     *
+     * @param \App\Domain\Models\User\Type\UserId $userId userId
+     * @return void
+     */
+    public function delete(UserId $userId): void;
 }
