@@ -36,7 +36,7 @@ final class UserService
     {
         $duplicatedUser = $this->userRepository->findByLoginId($user->getLoginId());
 
-        if (is_null($duplicatedUser) || $duplicatedUser->equals($user)) {
+        if (is_null($duplicatedUser) || $duplicatedUser->isMyself($user)) {
             return false;
         }
 

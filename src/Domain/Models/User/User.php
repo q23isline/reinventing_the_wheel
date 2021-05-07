@@ -90,12 +90,12 @@ final class User
     }
 
     /**
-     * equals
+     * isMyself
      *
      * @param \App\Domain\Models\User\User $other other
      * @return bool
      */
-    public function equals(User $other): bool
+    public function isMyself(User $other): bool
     {
         if ($this === $other) {
             // 同じクラスの同じインスタンスであれば true
