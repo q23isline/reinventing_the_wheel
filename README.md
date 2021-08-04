@@ -121,6 +121,30 @@ redoc-cli bundle xxxxxx.yaml
 | Cookie       | PHPSESSID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx               | Cookie内のPHPSESSIDキーの値 |
 | X-CSRF-Token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | Cookie内のcsrfTokenキーの値 |
 
+## デバッグ実行
+
+### VS Codeの初期設定
+
+- VS Codeの拡張機能PHP Debugをインストールする
+- VS CodeにXDebug用の構成ファイル（launch.json）を追加する
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "hostname": "0.0.0.0",
+            "pathMappings": {
+                "/var/www/html/": "${workspaceRoot}"
+            }
+        }
+    ]
+}
+```
+
 ## ディレクトリ構成
 
 - オニオンアーキテクチャ

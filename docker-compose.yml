@@ -29,6 +29,7 @@ services:
     container_name: app
     volumes:
       - ./:/var/www/html
+      - ./docker/local/php-fpm/php.ini:/usr/local/etc/php/php.ini
     networks:
       - backend
     depends_on:
