@@ -133,13 +133,11 @@ final class User
      * Set the value of loginId
      *
      * @param \App\Domain\Models\User\Type\LoginId $loginId loginId
-     * @return self
+     * @return void
      */
-    public function setLoginId(LoginId $loginId): LoginId
+    public function setLoginId(LoginId $loginId): void
     {
         $this->loginId = $loginId;
-
-        return $this;
     }
 
     /**
@@ -156,13 +154,11 @@ final class User
      * Set the value of password
      *
      * @param \App\Domain\Models\User\Type\Password $password password
-     * @return self
+     * @return void
      */
-    public function setPassword(Password $password): Password
+    public function setPassword(Password $password): void
     {
         $this->password = $password;
-
-        return $this;
     }
 
     /**
@@ -179,13 +175,11 @@ final class User
      * Set the value of roleName
      *
      * @param \App\Domain\Models\User\Type\RoleName $roleName roleName
-     * @return self
+     * @return void
      */
-    public function setRoleName(RoleName $roleName): RoleName
+    public function setRoleName(RoleName $roleName): void
     {
         $this->roleName = $roleName;
-
-        return $this;
     }
 
     /**
@@ -202,13 +196,11 @@ final class User
      * Set the value of firstName
      *
      * @param \App\Domain\Models\User\Type\FirstName $firstName firstName
-     * @return self
+     * @return void
      */
-    public function setFirstName(FirstName $firstName): FirstName
+    public function setFirstName(FirstName $firstName): void
     {
         $this->firstName = $firstName;
-
-        return $this;
     }
 
     /**
@@ -225,13 +217,11 @@ final class User
      * Set the value of lastName
      *
      * @param \App\Domain\Models\User\Type\LastName $lastName lastName
-     * @return self
+     * @return void
      */
-    public function setLastName(LastName $lastName): LastName
+    public function setLastName(LastName $lastName): void
     {
         $this->lastName = $lastName;
-
-        return $this;
     }
 
     /**
