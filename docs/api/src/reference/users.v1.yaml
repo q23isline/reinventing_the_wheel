@@ -57,9 +57,9 @@ paths:
                           reason: ユーザーは存在しません。
       operationId: get-users-userId
       description: ユーザーIDと一致するユーザー情報を返却する
-    patch:
+    put:
       summary: ユーザー更新
-      operationId: patch-users-userId
+      operationId: put-users-userId
       responses:
         '200':
           description: 更新後のユーザーID
