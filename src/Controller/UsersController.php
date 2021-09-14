@@ -16,7 +16,7 @@ class UsersController extends AppController
     /**
      * 事前処理
      *
-     * @param EventInterface $event イベント
+     * @param \Cake\Event\EventInterface $event イベント
      * @return void
      */
     public function beforeFilter(EventInterface $event)
@@ -121,7 +121,7 @@ class UsersController extends AppController
     /**
      * ログインする
      *
-     * @return redirect
+     * @return \App\Controller\redirect
      */
     public function login()
     {
@@ -139,7 +139,7 @@ class UsersController extends AppController
     /**
      * ログアウトする
      *
-     * @return redirect
+     * @return \App\Controller\redirect
      */
     public function logout()
     {
@@ -149,10 +149,10 @@ class UsersController extends AppController
     /**
      * 操作権限があるかどうか
      *
-     * @param object $user usersモデル
+     * @param array $user usersモデル
      * @return bool 操作権限があればtrue、それ以外はfalse
      */
-    public function isAuthorized($user)
+    public function isAuthorized(array $user): bool
     {
         // 一覧、詳細はeditor、viewer操作可能
         if (in_array($this->request->getParam('action'), ['index', 'view'], true)) {

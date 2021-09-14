@@ -78,10 +78,10 @@ class AppController extends Controller
     /**
      * 操作権限があるかどうか
      *
-     * @param object $user usersモデル
+     * @param array $user usersモデル
      * @return bool adminであればtrue、それ以外はfalse
      */
-    public function isAuthorized($user)
+    public function isAuthorized(array $user): bool
     {
         // 管理者はすべての操作にアクセス可能
         if (isset($user['role']) && $user['role'] === 'admin') {
