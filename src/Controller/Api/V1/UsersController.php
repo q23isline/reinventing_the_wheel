@@ -136,36 +136,13 @@ class UsersController extends AppController
      */
     public function add(): void
     {
-        // スマートに JSON から値を取り出せないため、長いけど…
-        $jsonData = $this->request->input('json_decode');
+        $jsonData = $this->request->getData();
 
-        $loginId = null;
-        $password = null;
-        $roleName = null;
-        $firstName = null;
-        $lastName = null;
-
-        if (!is_null($jsonData)) {
-            if (property_exists($jsonData, 'loginId')) {
-                $loginId = $jsonData->loginId;
-            }
-
-            if (property_exists($jsonData, 'password')) {
-                $password = $jsonData->password;
-            }
-
-            if (property_exists($jsonData, 'roleName')) {
-                $roleName = $jsonData->roleName;
-            }
-
-            if (property_exists($jsonData, 'firstName')) {
-                $firstName = $jsonData->firstName;
-            }
-
-            if (property_exists($jsonData, 'lastName')) {
-                $lastName = $jsonData->lastName;
-            }
-        }
+        $loginId = $jsonData['loginId'] ?? null;
+        $password = $jsonData['password'] ?? null;
+        $roleName = $jsonData['roleName'] ?? null;
+        $firstName = $jsonData['firstName'] ?? null;
+        $lastName = $jsonData['lastName'] ?? null;
 
         try {
             $command = new UserAddCommand(
@@ -203,35 +180,13 @@ class UsersController extends AppController
     {
         $userId = (int)$this->request->getParam('userId');
 
-        $jsonData = $this->request->input('json_decode');
+        $jsonData = $this->request->getData();
 
-        $loginId = null;
-        $password = null;
-        $roleName = null;
-        $firstName = null;
-        $lastName = null;
-
-        if (!is_null($jsonData)) {
-            if (property_exists($jsonData, 'loginId')) {
-                $loginId = $jsonData->loginId;
-            }
-
-            if (property_exists($jsonData, 'password')) {
-                $password = $jsonData->password;
-            }
-
-            if (property_exists($jsonData, 'roleName')) {
-                $roleName = $jsonData->roleName;
-            }
-
-            if (property_exists($jsonData, 'firstName')) {
-                $firstName = $jsonData->firstName;
-            }
-
-            if (property_exists($jsonData, 'lastName')) {
-                $lastName = $jsonData->lastName;
-            }
-        }
+        $loginId = $jsonData['loginId'] ?? null;
+        $password = $jsonData['password'] ?? null;
+        $roleName = $jsonData['roleName'] ?? null;
+        $firstName = $jsonData['firstName'] ?? null;
+        $lastName = $jsonData['lastName'] ?? null;
 
         try {
             $command = new UserUpdateCommand(
