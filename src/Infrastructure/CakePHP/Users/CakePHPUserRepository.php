@@ -12,6 +12,7 @@ use App\Domain\Models\User\Type\UserId;
 use App\Domain\Models\User\User;
 use App\Domain\Models\User\UserCollection;
 use App\Domain\Shared\AuditDate;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -25,17 +26,17 @@ final class CakePHPUserRepository implements IUserRepository
     public function getById(UserId $userId): User
     {
         $model = TableRegistry::getTableLocator()->get('Users');
-        $record = $model->get($userId->getValue());
+        $record = $model->get($userId->getValue())->toArray();
 
         return new User(
-            new UserId($record->id),
-            new LoginId($record->username),
+            new UserId($record['id']),
+            new LoginId($record['username']),
             null,
-            new RoleName($record->role),
-            new FirstName($record->first_name),
-            new LastName($record->last_name),
-            new AuditDate((string)$record->created),
-            new AuditDate((string)$record->modified)
+            new RoleName($record['role']),
+            new FirstName($record['first_name']),
+            new LastName($record['last_name']),
+            new AuditDate((string)$record['created']),
+            new AuditDate((string)$record['modified'])
         );
     }
 
@@ -45,21 +46,23 @@ final class CakePHPUserRepository implements IUserRepository
     public function findByLoginId(LoginId $loginId): ?User
     {
         $model = TableRegistry::getTableLocator()->get('Users');
-        $record = $model->findByUsername($loginId->getValue())->first();
+        $record = $model->find()
+            ->where(['username' => $loginId->getValue()])
+            ->first();
 
         if (is_null($record)) {
             return null;
         }
 
         return new User(
-            new UserId($record->id),
-            new LoginId($record->username),
+            new UserId($record['id']),
+            new LoginId($record['username']),
             null,
-            new RoleName($record->role),
-            new FirstName($record->first_name),
-            new LastName($record->last_name),
-            new AuditDate((string)$record->created),
-            new AuditDate((string)$record->modified)
+            new RoleName($record['role']),
+            new FirstName($record['first_name']),
+            new LastName($record['last_name']),
+            new AuditDate((string)$record['created']),
+            new AuditDate((string)$record['modified'])
         );
     }
 
@@ -99,11 +102,11 @@ final class CakePHPUserRepository implements IUserRepository
 
         $saveData = [
             'Users' => [
-                'username' => $user->getLoginId()->getValue(),
-                'password' => $user->getPassword()->getValue(),
-                'role' => $user->getRoleName()->getValue(),
-                'first_name' => $user->getFirstName()->getValue(),
-                'last_name' => $user->getLastName()->getValue(),
+                'username' => is_null($user->getLoginId()) ? null : $user->getLoginId()->getValue(),
+                'password' => is_null($user->getPassword()) ? null : $user->getPassword()->getValue(),
+                'role' => is_null($user->getRoleName()) ? null : $user->getRoleName()->getValue(),
+                'first_name' => is_null($user->getFirstName()) ? null : $user->getFirstName()->getValue(),
+                'last_name' => is_null($user->getLastName()) ? null : $user->getLastName()->getValue(),
             ],
         ];
 
@@ -143,6 +146,10 @@ final class CakePHPUserRepository implements IUserRepository
 
         if (!is_null($user->getLastName())) {
             $saveData['Users']['last_name'] = $user->getLastName()->getValue();
+        }
+
+        if (is_null($user->getId())) {
+            throw new RecordNotFoundException();
         }
 
         $entity = $model->get($user->getId()->getValue());

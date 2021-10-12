@@ -78,7 +78,7 @@ class AppController extends Controller
     /**
      * 操作権限があるかどうか
      *
-     * @param array $user usersモデル
+     * @param array<string,string> $user usersモデル
      * @return bool adminであればtrue、それ以外はfalse
      */
     public function isAuthorized(array $user): bool

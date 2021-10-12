@@ -25,7 +25,7 @@ final class UserSavedResult
     /**
      * 整形する
      *
-     * @return array
+     * @return array<string,int>
      */
     public function format(): array
     {

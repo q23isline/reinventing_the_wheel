@@ -1,0 +1,7 @@
+parameters:
+  level: max
+  paths:
+    - src
+  excludes_analyse:
+    - src/Console/Installer.php
+    - src/Controller/PagesController.php

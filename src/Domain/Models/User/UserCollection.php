@@ -8,18 +8,20 @@ use IteratorAggregate;
 
 /**
  * class UserCollection
+ *
+ * @implements \IteratorAggregate<\App\Domain\Models\User\User>
  */
 final class UserCollection implements IteratorAggregate
 {
     /**
-     * @var array
+     * @var array<int,\App\Domain\Models\User\User>
      */
     private array $attributes;
 
     /**
      * constructor
      *
-     * @param array $attributes attributes
+     * @param array<int,\App\Domain\Models\User\User> $attributes attributes
      */
     public function __construct(array $attributes = [])
     {
@@ -40,7 +42,7 @@ final class UserCollection implements IteratorAggregate
     /**
      * getIterator
      *
-     * @return \ArrayIterator
+     * @return \ArrayIterator<int,\App\Domain\Models\User\User>
      */
     public function getIterator(): ArrayIterator
     {

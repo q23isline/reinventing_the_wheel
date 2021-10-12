@@ -23,7 +23,7 @@ final class UserListResult
     /**
      * 整形する
      *
-     * @return array
+     * @return array<string,array>
      */
     public function format(): array
     {

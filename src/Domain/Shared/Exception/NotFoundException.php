@@ -45,7 +45,7 @@ final class NotFoundException extends Exception
     /**
      * 整形する
      *
-     * @return array
+     * @return array<string,array>
      */
     public function format(): array
     {

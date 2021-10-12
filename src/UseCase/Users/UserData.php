@@ -52,13 +52,13 @@ final class UserData
      */
     public function __construct(User $source)
     {
-        $this->id = $source->getId()->getValue();
-        $this->loginId = $source->getLoginId()->getValue();
-        $this->roleName = $source->getRoleName()->getValue();
-        $this->firstName = $source->getFirstName()->getValue();
-        $this->lastName = $source->getLastName()->getValue();
-        $this->created = $source->getCreated()->getValue();
-        $this->modified = $source->getModified()->getValue();
+        $this->id = is_null($source->getId()) ? 0 : $source->getId()->getValue();
+        $this->loginId = is_null($source->getLoginId()) ? '' : $source->getLoginId()->getValue();
+        $this->roleName = is_null($source->getRoleName()) ? '' : $source->getRoleName()->getValue();
+        $this->firstName = is_null($source->getFirstName()) ? '' : $source->getFirstName()->getValue();
+        $this->lastName = is_null($source->getLastName()) ? '' : $source->getLastName()->getValue();
+        $this->created = is_null($source->getCreated()) ? '' : $source->getCreated()->getValue();
+        $this->modified = is_null($source->getModified()) ? '' : $source->getModified()->getValue();
     }
 
     /**

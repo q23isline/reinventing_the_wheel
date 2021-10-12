@@ -121,7 +121,7 @@ class UsersController extends AppController
     /**
      * ログインする
      *
-     * @return \App\Controller\redirect
+     * @return \Cake\Http\Response|null|void
      */
     public function login()
     {
@@ -139,7 +139,7 @@ class UsersController extends AppController
     /**
      * ログアウトする
      *
-     * @return \App\Controller\redirect
+     * @return \Cake\Http\Response|null
      */
     public function logout()
     {
@@ -149,7 +149,7 @@ class UsersController extends AppController
     /**
      * 操作権限があるかどうか
      *
-     * @param array $user usersモデル
+     * @param array<string,string> $user usersモデル
      * @return bool 操作権限があればtrue、それ以外はfalse
      */
     public function isAuthorized(array $user): bool

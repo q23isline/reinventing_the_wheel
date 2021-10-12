@@ -50,11 +50,11 @@ final class UserUpdateUseCase
      */
     public function handle(UserUpdateCommand $command): UserId
     {
-        $loginId = $command->getLoginId() ? new LoginId($command->getLoginId()) : null;
-        $password = $command->getPassword() ? new Password($command->getPassword()) : null;
-        $roleName = $command->getRoleName() ? new RoleName($command->getRoleName()) : null;
-        $firstName = $command->getFirstName() ? new FirstName($command->getFirstName()) : null;
-        $lastName = $command->getLastName() ? new LastName($command->getLastName()) : null;
+        $loginId = is_null($command->getLoginId()) ? null : new LoginId($command->getLoginId());
+        $password = is_null($command->getPassword()) ? null : new Password($command->getPassword());
+        $roleName = is_null($command->getRoleName()) ? null : new RoleName($command->getRoleName());
+        $firstName = is_null($command->getFirstName()) ? null : new FirstName($command->getFirstName());
+        $lastName = is_null($command->getLastName()) ? null : new LastName($command->getLastName());
 
         $data = new User(
             new UserId($command->getUserId()),

@@ -27,7 +27,7 @@ class User extends Entity
      * be mass assigned. For security purposes, it is advised to set '*' to false
      * (or remove it), and explicitly make individual fields accessible as needed.
      *
-     * @var array
+     * @var array<string,bool>
      */
     protected $_accessible = [
         'username' => true,
@@ -42,7 +42,7 @@ class User extends Entity
     /**
      * Fields that are excluded from JSON versions of the entity.
      *
-     * @var array
+     * @var array<int,string>
      */
     protected $_hidden = [
         'password',
@@ -52,7 +52,7 @@ class User extends Entity
      * パスワードを生成する
      *
      * @param string $password パスワード
-     * @return string ハッシュ化されたパスワード
+     * @return string|false|void ハッシュ化されたパスワード
      */
     protected function _setPassword($password)
     {
