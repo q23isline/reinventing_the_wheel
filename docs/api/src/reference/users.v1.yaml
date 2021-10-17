@@ -11,7 +11,10 @@ paths:
   '/users/{userId}':
     parameters:
       - schema:
-          type: integer
+          type: string
+          format: uuid
+          example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
         name: userId
         in: path
         required: true
@@ -34,13 +37,17 @@ paths:
                 example:
                   value:
                     data:
-                      id: 1
+                      id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
                       loginId: saitou
                       roleName: viewer
-                      firstName: 斉藤
-                      lastName: 太郎
-                      created: '2019-08-24T14:15:22Z'
-                      modified: '2019-08-24T14:15:22Z'
+                      firstName: 太郎
+                      lastName: 斉藤
+                      firstNameKana: タロウ
+                      lastNameKana: サイトウ
+                      mailAddress: saito@example.com
+                      sex: '1'
+                      birthDay: '1990-01-01'
+                      cellPhoneNumber: '09012345678'
         '404':
           description: Not Found
           content:
@@ -69,13 +76,15 @@ paths:
                 type: object
                 properties:
                   userId:
-                    type: integer
+                    type: string
                     description: ユーザーID
-                    example: 1
+                    example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                    pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+                    format: uuid
               examples:
                 example:
                   value:
-                    userId: 1
+                    userId: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
         '400':
           description: Bad Request
           content:
@@ -115,10 +124,12 @@ paths:
                   type: string
                   example: saitou
                   description: ログインID
+                  maxLength: 50
                 password:
                   type: string
                   format: password
                   description: ログインパスワード
+                  maxLength: 255
                 roleName:
                   type: string
                   enum:
@@ -128,28 +139,82 @@ paths:
                   default: viewer
                   example: viewer
                   description: ロール名
+                  maxLength: 20
                 firstName:
                   type: string
-                  example: 斉藤
-                  description: 姓
+                  description: 名
+                  example: 太郎
+                  maxLength: 50
                 lastName:
                   type: string
-                  example: 太郎
-                  description: 名
+                  description: 姓
+                  example: 斉藤
+                  maxLength: 50
+                firstNameKana:
+                  type: string
+                  description: 名（カナ）
+                  example: タロウ
+                  maxLength: 50
+                lastNameKana:
+                  type: string
+                  description: 姓（カナ）
+                  example: サイトウ
+                  maxLength: 50
+                mailAddress:
+                  type: string
+                  description: メールアドレス
+                  maxLength: 255
+                  format: email
+                  example: saito@example.com
+                  pattern: '^([\w])+([\w._-])*@([\w_-])+([\w._-]+)+$'
+                sex:
+                  type: string
+                  description: 性別
+                  maxLength: 1
+                  minLength: 1
+                  example: '1'
+                  default: '0'
+                  enum:
+                    - '0'
+                    - '1'
+                    - '2'
+                    - '9'
+                birthDay:
+                  type: string
+                  description: 誕生日
+                  format: date
+                  example: '1990-01-01'
+                  pattern: '^[\d]{4}\-((0[1-9]|1[0-2])|(\d{1}))\-((0[1-9]|[12][\d]|3[01])|(\d{1}))$'
+                cellPhoneNumber:
+                  type: string
+                  description: 携帯電話番号
+                  maxLength: 11
+                  example: '09012345678'
+                  pattern: '^\d{11}$'
               required:
                 - loginId
                 - password
                 - roleName
                 - firstName
                 - lastName
+                - firstNameKana
+                - lastNameKana
+                - mailAddress
+                - sex
             examples:
               example:
                 value:
                   loginId: saitou
                   password: pa$$word
                   roleName: viewer
-                  firstName: 斉藤
-                  lastName: 太郎
+                  firstName: 太郎
+                  lastName: 斉藤
+                  firstNameKana: タロウ
+                  lastNameKana: サイトウ
+                  mailAddress: saito@example.com
+                  sex: '0'
+                  birthDay: '1990-01-01'
+                  cellPhoneNumber: '09012345678'
         description: ユーザー情報を更新する
       tags:
         - User
@@ -189,13 +254,15 @@ paths:
                 type: object
                 properties:
                   userId:
-                    type: integer
+                    type: string
                     description: ユーザーID
-                    example: 1
+                    example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                    format: uuid
+                    pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
               examples:
                 example:
                   value:
-                    userId: 1
+                    userId: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
         '400':
           description: Bad Request
           content:
@@ -220,10 +287,12 @@ paths:
                   type: string
                   example: saitou
                   description: ログインID
+                  maxLength: 50
                 password:
                   type: string
                   format: password
                   description: ログインパスワード
+                  maxLength: 255
                 roleName:
                   type: string
                   enum:
@@ -233,28 +302,82 @@ paths:
                   default: viewer
                   example: viewer
                   description: ロール名
+                  maxLength: 20
                 firstName:
                   type: string
-                  example: 斉藤
-                  description: 姓
+                  description: 名
+                  example: 太郎
+                  maxLength: 50
                 lastName:
                   type: string
-                  example: 太郎
-                  description: 名
+                  description: 姓
+                  example: 斉藤
+                  maxLength: 50
+                firstNameKana:
+                  type: string
+                  description: 名（カナ）
+                  example: タロウ
+                  maxLength: 50
+                lastNameKana:
+                  type: string
+                  description: 姓（カナ）
+                  example: サイトウ
+                  maxLength: 50
+                mailAddress:
+                  type: string
+                  description: メールアドレス
+                  maxLength: 255
+                  format: email
+                  example: saito@example.com
+                  pattern: '^([\w])+([\w._-])*@([\w_-])+([\w._-]+)+$'
+                sex:
+                  type: string
+                  description: 性別
+                  maxLength: 1
+                  minLength: 1
+                  example: '1'
+                  default: '0'
+                  enum:
+                    - '0'
+                    - '1'
+                    - '2'
+                    - '9'
+                birthDay:
+                  type: string
+                  description: 誕生日
+                  format: date
+                  example: '1990-01-01'
+                  pattern: '^[\d]{4}\-((0[1-9]|1[0-2])|(\d{1}))\-((0[1-9]|[12][\d]|3[01])|(\d{1}))$'
+                cellPhoneNumber:
+                  type: string
+                  description: 携帯電話番号
+                  maxLength: 11
+                  example: '09012345678'
+                  pattern: '^\d{11}$'
               required:
                 - loginId
                 - password
                 - roleName
                 - firstName
                 - lastName
+                - firstNameKana
+                - lastNameKana
+                - mailAddress
+                - sex
             examples:
               example:
                 value:
                   loginId: saitou
                   password: pa$$word
                   roleName: viewer
-                  firstName: 斉藤
-                  lastName: 太郎
+                  firstName: 太郎
+                  lastName: 斉藤
+                  firstNameKana: タロウ
+                  lastNameKana: サイトウ
+                  mailAddress: saito@example.com
+                  sex: '0'
+                  birthDay: '1990-01-01'
+                  cellPhoneNumber: '09012345678'
         description: APIに必要なフィールドを設定し、新しいユーザーを作成する
       description: ユーザーを新規作成する
       tags:
@@ -279,13 +402,17 @@ paths:
                 example:
                   value:
                     data:
-                      - id: 1
+                      - id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
                         loginId: saitou
                         roleName: viewer
-                        firstName: 斉藤
-                        lastName: 太郎
-                        created: '2019-08-24T14:15:22Z'
-                        modified: '2019-08-24T14:15:22Z'
+                        firstName: 太郎
+                        lastName: 斉藤
+                        firstNameKana: タロウ
+                        lastNameKana: サイトウ
+                        mailAddress: saito@example.com
+                        sex: '1'
+                        birthDay: '1990-01-01'
+                        cellPhoneNumber: '09012345678'
       description: ユーザー情報の一覧を返却する
       tags:
         - User
@@ -297,22 +424,29 @@ components:
       description: ユーザー情報
       x-examples:
         example:
-          id: 1
+          id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
           loginId: saitou
           roleName: viewer
-          firstName: 斉藤
-          lastName: 太郎
-          created: '2019-08-24T14:15:22Z'
-          modified: '2019-08-24T14:15:22Z'
+          firstName: 太郎
+          lastName: 斉藤
+          firstNameKana: タロウ
+          lastNameKana: サイトウ
+          mailAddress: saito@example.com
+          sex: '0'
+          birthDay: '1990-01-01'
+          cellPhoneNumber: '09012345678'
       properties:
         id:
-          type: integer
+          type: string
           description: ユーザーID
-          example: 1
+          example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+          format: uuid
+          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
         loginId:
           type: string
           description: ログインID
           example: saitou
+          maxLength: 50
         roleName:
           type: string
           enum:
@@ -322,28 +456,68 @@ components:
           default: viewer
           description: ロール名
           example: viewer
+          maxLength: 20
         firstName:
-          type: string
-          description: 姓
-          example: 斉藤
-        lastName:
           type: string
           description: 名
           example: 太郎
-        created:
+          maxLength: 50
+        lastName:
           type: string
-          format: date-time
-        modified:
+          description: 姓
+          example: 斉藤
+          maxLength: 50
+        firstNameKana:
           type: string
-          format: date-time
+          example: タロウ
+          description: 名（カナ）
+          maxLength: 50
+        lastNameKana:
+          type: string
+          example: サイトウ
+          description: 姓（カナ）
+          maxLength: 50
+        mailAddress:
+          type: string
+          description: メールアドレス
+          format: email
+          example: saito@example.com
+          maxLength: 255
+          pattern: '^([\w])+([\w._-])*@([\w_-])+([\w._-]+)+$'
+        sex:
+          type: string
+          description: 性別
+          maxLength: 1
+          example: '1'
+          default: '0'
+          enum:
+            - '0'
+            - '1'
+            - '2'
+            - '9'
+          minLength: 1
+        birthDay:
+          type: string
+          description: 誕生日
+          format: date
+          example: '1990-01-01'
+          pattern: '^[\d]{4}\-((0[1-9]|1[0-2])|(\d{1}))\-((0[1-9]|[12][\d]|3[01])|(\d{1}))$'
+        cellPhoneNumber:
+          type: string
+          description: 携帯電話番号
+          maxLength: 11
+          pattern: '^\d{11}$'
+          example: '09012345678'
       required:
         - id
         - loginId
         - roleName
         - firstName
         - lastName
-        - created
-        - modified
+        - firstNameKana
+        - lastNameKana
+        - mailAddress
+        - sex
     Error400:
       title: Error400
       type: object
