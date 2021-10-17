@@ -35,8 +35,12 @@ final class UserListResult
                 'roleName' => $source->getRoleName(),
                 'firstName' => $source->getFirstName(),
                 'lastName' => $source->getLastName(),
-                'created' => $source->getCreated(),
-                'modified' => $source->getModified(),
+                'firstNameKana' => $source->getFirstNameKana(),
+                'lastNameKana' => $source->getLastNameKana(),
+                'mailAddress' => $source->getMailAddress(),
+                'sex' => $source->getSex(),
+                'birthDay' => $source->getBirthDay(),
+                'cellPhoneNumber' => $source->getCellPhoneNumber(),
             ];
         }
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace App\Domain\Models\User\Type;
 
 /**
- * class UserId
+ * class FirstNameKana
  */
-final class UserId
+final class FirstNameKana
 {
     /**
      * @var string

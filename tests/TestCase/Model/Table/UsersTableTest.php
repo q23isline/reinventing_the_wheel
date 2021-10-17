@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\UsersTable;
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
@@ -36,8 +35,8 @@ class UsersTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
-        $this->Users = TableRegistry::getTableLocator()->get('Users', $config);
+        $config = $this->getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
+        $this->Users = $this->getTableLocator()->get('Users', $config);
     }
 
     /**
@@ -56,6 +55,7 @@ class UsersTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
+     * @uses \App\Model\Table\UsersTable::validationDefault()
      */
     public function testValidationDefault(): void
     {
@@ -66,6 +66,7 @@ class UsersTableTest extends TestCase
      * Test buildRules method
      *
      * @return void
+     * @uses \App\Model\Table\UsersTable::buildRules()
      */
     public function testBuildRules(): void
     {

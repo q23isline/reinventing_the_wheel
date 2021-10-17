@@ -34,8 +34,12 @@ final class UserGetResult
                 'roleName' => $this->userData->getRoleName(),
                 'firstName' => $this->userData->getFirstName(),
                 'lastName' => $this->userData->getLastName(),
-                'created' => $this->userData->getCreated(),
-                'modified' => $this->userData->getModified(),
+                'firstNameKana' => $this->userData->getFirstNameKana(),
+                'lastNameKana' => $this->userData->getLastNameKana(),
+                'mailAddress' => $this->userData->getMailAddress(),
+                'sex' => $this->userData->getSex(),
+                'birthDay' => $this->userData->getBirthDay(),
+                'cellPhoneNumber' => $this->userData->getCellPhoneNumber(),
             ],
         ];
     }

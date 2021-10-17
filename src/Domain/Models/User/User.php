@@ -3,13 +3,18 @@ declare(strict_types=1);
 
 namespace App\Domain\Models\User;
 
+use App\Domain\Models\User\Type\BirthDay;
+use App\Domain\Models\User\Type\CellPhoneNumber;
 use App\Domain\Models\User\Type\FirstName;
+use App\Domain\Models\User\Type\FirstNameKana;
 use App\Domain\Models\User\Type\LastName;
+use App\Domain\Models\User\Type\LastNameKana;
 use App\Domain\Models\User\Type\LoginId;
+use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
 use App\Domain\Models\User\Type\RoleName;
+use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
-use App\Domain\Shared\AuditDate;
 
 /**
  * class User
@@ -17,76 +22,73 @@ use App\Domain\Shared\AuditDate;
 final class User
 {
     /**
-     * @var \App\Domain\Models\User\Type\UserId|null
+     * @var \App\Domain\Models\User\Type\UserId
      */
-    private ?UserId $id;
+    private UserId $id;
 
     /**
-     * @var \App\Domain\Models\User\Type\LoginId|null
+     * @var \App\Domain\Models\User\Type\LoginId
      */
-    private ?LoginId $loginId;
+    private LoginId $loginId;
 
     /**
-     * @var \App\Domain\Models\User\Type\Password|null
+     * @var \App\Domain\Models\User\Type\Password
      */
-    private ?Password $password;
+    private Password $password;
 
     /**
-     * @var \App\Domain\Models\User\Type\RoleName|null
+     * @var \App\Domain\Models\User\Type\RoleName
      */
-    private ?RoleName $roleName;
+    private RoleName $roleName;
 
     /**
-     * @var \App\Domain\Models\User\Type\FirstName|null
+     * @var \App\Domain\Models\User\Type\FirstName
      */
-    private ?FirstName $firstName;
+    private FirstName $firstName;
 
     /**
-     * @var \App\Domain\Models\User\Type\LastName|null
+     * @var \App\Domain\Models\User\Type\LastName
      */
-    private ?LastName $lastName;
+    private LastName $lastName;
 
     /**
-     * @var \App\Domain\Shared\AuditDate|null
+     * @var \App\Domain\Models\User\Type\FirstNameKana
      */
-    private ?AuditDate $created;
+    private FirstNameKana $firstNameKana;
 
     /**
-     * @var \App\Domain\Shared\AuditDate|null
+     * @var \App\Domain\Models\User\Type\LastNameKana
      */
-    private ?AuditDate $modified;
+    private LastNameKana $lastNameKana;
+
+    /**
+     * @var \App\Domain\Models\User\Type\MailAddress
+     */
+    private MailAddress $mailAddress;
+
+    /**
+     * @var \App\Domain\Models\User\Type\Sex
+     */
+    private Sex $sex;
+
+    /**
+     * @var \App\Domain\Models\User\Type\BirthDay|null
+     */
+    private ?BirthDay $birthDay = null;
+
+    /**
+     * @var \App\Domain\Models\User\Type\CellPhoneNumber|null
+     */
+    private ?CellPhoneNumber $cellPhoneNumber = null;
 
     /**
      * constructor
-     * 更新・参照では不要な項目となるケースがあるため null を許可
      *
-     * @param \App\Domain\Models\User\Type\UserId|null $id id
-     * @param \App\Domain\Models\User\Type\LoginId|null $loginId loginId
-     * @param \App\Domain\Models\User\Type\Password|null $password password
-     * @param \App\Domain\Models\User\Type\RoleName|null $roleName roleName
-     * @param \App\Domain\Models\User\Type\FirstName|null $firstName firstName
-     * @param \App\Domain\Models\User\Type\LastName|null $lastName lastName
-     * @param \App\Domain\Shared\AuditDate|null $created created
-     * @param \App\Domain\Shared\AuditDate|null $modified modified
+     * @param \App\Domain\Models\User\Type\UserId $id id
      */
-    public function __construct(
-        ?UserId $id = null,
-        ?LoginId $loginId = null,
-        ?Password $password = null,
-        ?RoleName $roleName = null,
-        ?FirstName $firstName = null,
-        ?LastName $lastName = null,
-        ?AuditDate $created = null,
-        ?AuditDate $modified = null
-    ) {
+    public function __construct(UserId $id)
+    {
         $this->id = $id;
-        $this->loginId = $loginId;
-        $this->password = $password;
-        $this->roleName = $roleName;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->created = $created;
-        $this->modified = $modified;
     }
 
     /**
@@ -102,19 +104,15 @@ final class User
             return true;
         }
 
-        if (is_null($this->id) || is_null($other->getId())) {
-            return false;
-        }
-
         return $this->id->getValue() === $other->getId()->getValue();
     }
 
     /**
      * Get the value of id
      *
-     * @return \App\Domain\Models\User\Type\UserId|null
+     * @return \App\Domain\Models\User\Type\UserId
      */
-    public function getId(): ?UserId
+    public function getId(): UserId
     {
         return $this->id;
     }
@@ -122,9 +120,9 @@ final class User
     /**
      * Get the value of loginId
      *
-     * @return \App\Domain\Models\User\Type\LoginId|null
+     * @return \App\Domain\Models\User\Type\LoginId
      */
-    public function getLoginId(): ?LoginId
+    public function getLoginId(): LoginId
     {
         return $this->loginId;
     }
@@ -143,9 +141,9 @@ final class User
     /**
      * Get the value of password
      *
-     * @return \App\Domain\Models\User\Type\Password|null
+     * @return \App\Domain\Models\User\Type\Password
      */
-    public function getPassword(): ?Password
+    public function getPassword(): Password
     {
         return $this->password;
     }
@@ -164,9 +162,9 @@ final class User
     /**
      * Get the value of roleName
      *
-     * @return \App\Domain\Models\User\Type\RoleName|null
+     * @return \App\Domain\Models\User\Type\RoleName
      */
-    public function getRoleName(): ?RoleName
+    public function getRoleName(): RoleName
     {
         return $this->roleName;
     }
@@ -185,9 +183,9 @@ final class User
     /**
      * Get the value of firstName
      *
-     * @return \App\Domain\Models\User\Type\FirstName|null
+     * @return \App\Domain\Models\User\Type\FirstName
      */
-    public function getFirstName(): ?FirstName
+    public function getFirstName(): FirstName
     {
         return $this->firstName;
     }
@@ -206,9 +204,9 @@ final class User
     /**
      * Get the value of lastName
      *
-     * @return \App\Domain\Models\User\Type\LastName|null
+     * @return \App\Domain\Models\User\Type\LastName
      */
-    public function getLastName(): ?LastName
+    public function getLastName(): LastName
     {
         return $this->lastName;
     }
@@ -225,22 +223,128 @@ final class User
     }
 
     /**
-     * Get the value of created
+     * Get the value of firstNameKana
      *
-     * @return \App\Domain\Shared\AuditDate|null
+     * @return \App\Domain\Models\User\Type\FirstNameKana
      */
-    public function getCreated(): ?AuditDate
+    public function getFirstNameKana(): FirstNameKana
     {
-        return $this->created;
+        return $this->firstNameKana;
     }
 
     /**
-     * Get the value of modified
+     * Set the value of firstNameKana
      *
-     * @return \App\Domain\Shared\AuditDate|null
+     * @param \App\Domain\Models\User\Type\FirstNameKana $firstNameKana firstNameKana
+     * @return void
      */
-    public function getModified(): ?AuditDate
+    public function setFirstNameKana(FirstNameKana $firstNameKana): void
     {
-        return $this->modified;
+        $this->firstNameKana = $firstNameKana;
+    }
+
+    /**
+     * Get the value of lastNameKana
+     *
+     * @return \App\Domain\Models\User\Type\LastNameKana
+     */
+    public function getLastNameKana(): LastNameKana
+    {
+        return $this->lastNameKana;
+    }
+
+    /**
+     * Set the value of lastNameKana
+     *
+     * @param \App\Domain\Models\User\Type\LastNameKana $lastNameKana lastNameKana
+     * @return void
+     */
+    public function setLastNameKana(LastNameKana $lastNameKana): void
+    {
+        $this->lastNameKana = $lastNameKana;
+    }
+
+    /**
+     * Get the value of mailAddress
+     *
+     * @return \App\Domain\Models\User\Type\MailAddress
+     */
+    public function getMailAddress(): MailAddress
+    {
+        return $this->mailAddress;
+    }
+
+    /**
+     * Set the value of mailAddress
+     *
+     * @param \App\Domain\Models\User\Type\MailAddress $mailAddress mailAddress
+     * @return void
+     */
+    public function setMailAddress(MailAddress $mailAddress): void
+    {
+        $this->mailAddress = $mailAddress;
+    }
+
+    /**
+     * Get the value of sex
+     *
+     * @return \App\Domain\Models\User\Type\Sex
+     */
+    public function getSex(): Sex
+    {
+        return $this->sex;
+    }
+
+    /**
+     * Set the value of sex
+     *
+     * @param \App\Domain\Models\User\Type\Sex $sex sex
+     * @return void
+     */
+    public function setSex(Sex $sex): void
+    {
+        $this->sex = $sex;
+    }
+
+    /**
+     * Get the value of birthDay
+     *
+     * @return \App\Domain\Models\User\Type\BirthDay|null
+     */
+    public function getBirthDay(): ?BirthDay
+    {
+        return $this->birthDay;
+    }
+
+    /**
+     * Set the value of birthDay
+     *
+     * @param \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
+     * @return void
+     */
+    public function setBirthDay(?BirthDay $birthDay): void
+    {
+        $this->birthDay = $birthDay;
+    }
+
+    /**
+     * Get the value of cellPhoneNumber
+     *
+     * @return \App\Domain\Models\User\Type\CellPhoneNumber|null
+     */
+    public function getCellPhoneNumber(): ?CellPhoneNumber
+    {
+        return $this->cellPhoneNumber;
+    }
+
+    /**
+     * Set the value of cellPhoneNumber
+     *
+     * @param \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
+     * @return void
+     */
+    public function setCellPhoneNumber(?CellPhoneNumber $cellPhoneNumber): void
+    {
+        $this->cellPhoneNumber = $cellPhoneNumber;
     }
 }

@@ -34,10 +34,6 @@ final class UserService
      */
     public function isExists(User $user): bool
     {
-        if (is_null($user->getLoginId())) {
-            return false;
-        }
-
         $duplicatedUser = $this->userRepository->findByLoginId($user->getLoginId());
 
         if (is_null($duplicatedUser) || $duplicatedUser->isMyself($user)) {

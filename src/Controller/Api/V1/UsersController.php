@@ -93,7 +93,6 @@ class UsersController extends AppController
         $data = $result->format();
 
         $this->set($data);
-        // .jsonなしでもOKとする
         $this->viewBuilder()->setClassName('Json')
             ->setOption('serialize', ['data']);
     }
@@ -105,7 +104,7 @@ class UsersController extends AppController
      */
     public function view(): void
     {
-        $userId = (int)$this->request->getParam('userId');
+        $userId = $this->request->getParam('userId');
 
         try {
             $command = new UserGetCommand($userId);
@@ -115,7 +114,6 @@ class UsersController extends AppController
             $data = $result->format();
 
             $this->set($data);
-            // .jsonなしでもOKとする
             $this->viewBuilder()->setClassName('Json')
                 ->setOption('serialize', ['data']);
         } catch (RecordNotFoundException $e) {
@@ -143,6 +141,12 @@ class UsersController extends AppController
         $roleName = $jsonData['roleName'] ?? null;
         $firstName = $jsonData['firstName'] ?? null;
         $lastName = $jsonData['lastName'] ?? null;
+        $firstNameKana = $jsonData['firstNameKana'] ?? null;
+        $lastNameKana = $jsonData['lastNameKana'] ?? null;
+        $mailAddress = $jsonData['mailAddress'] ?? null;
+        $sex = $jsonData['sex'] ?? null;
+        $birthDay = $jsonData['birthDay'] ?? null;
+        $cellPhoneNumber = $jsonData['cellPhoneNumber'] ?? null;
 
         try {
             $command = new UserAddCommand(
@@ -150,7 +154,13 @@ class UsersController extends AppController
                 $password,
                 $roleName,
                 $firstName,
-                $lastName
+                $lastName,
+                $firstNameKana,
+                $lastNameKana,
+                $mailAddress,
+                $sex,
+                $birthDay,
+                $cellPhoneNumber
             );
 
             $userId = $this->userAddUseCase->handle($command);
@@ -158,7 +168,6 @@ class UsersController extends AppController
             $data = $result->format();
 
             $this->set($data);
-            // .jsonなしでもOKとする
             $this->viewBuilder()->setClassName('Json')
                 ->setOption('serialize', ['userId']);
         } catch (ValidateException $e) {
@@ -178,7 +187,7 @@ class UsersController extends AppController
      */
     public function edit(): void
     {
-        $userId = (int)$this->request->getParam('userId');
+        $userId = $this->request->getParam('userId');
 
         $jsonData = $this->request->getData();
 
@@ -187,6 +196,12 @@ class UsersController extends AppController
         $roleName = $jsonData['roleName'] ?? null;
         $firstName = $jsonData['firstName'] ?? null;
         $lastName = $jsonData['lastName'] ?? null;
+        $firstNameKana = $jsonData['firstNameKana'] ?? null;
+        $lastNameKana = $jsonData['lastNameKana'] ?? null;
+        $mailAddress = $jsonData['mailAddress'] ?? null;
+        $sex = $jsonData['sex'] ?? null;
+        $birthDay = $jsonData['birthDay'] ?? null;
+        $cellPhoneNumber = $jsonData['cellPhoneNumber'] ?? null;
 
         try {
             $command = new UserUpdateCommand(
@@ -195,7 +210,13 @@ class UsersController extends AppController
                 $password,
                 $roleName,
                 $firstName,
-                $lastName
+                $lastName,
+                $firstNameKana,
+                $lastNameKana,
+                $mailAddress,
+                $sex,
+                $birthDay,
+                $cellPhoneNumber
             );
 
             $userId = $this->userUpdateUseCase->handle($command);
@@ -203,7 +224,6 @@ class UsersController extends AppController
             $data = $result->format();
 
             $this->set($data);
-            // .jsonなしでもOKとする
             $this->viewBuilder()->setClassName('Json')
                 ->setOption('serialize', ['userId']);
         } catch (RecordNotFoundException $e) {
@@ -231,13 +251,12 @@ class UsersController extends AppController
      */
     public function delete(): void
     {
-        $userId = (int)$this->request->getParam('userId');
+        $userId = $this->request->getParam('userId');
 
         try {
             $command = new UserDeleteCommand($userId);
             $this->userDeleteUseCase->handle($command);
 
-            // .jsonなしでもOKとする
             $this->viewBuilder()->setClassName('Json')
                 ->setOption('serialize', []);
         } catch (RecordNotFoundException $e) {

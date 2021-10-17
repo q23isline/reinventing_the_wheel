@@ -11,9 +11,9 @@ use App\Domain\Models\User\User;
 final class UserData
 {
     /**
-     * @var int
+     * @var string
      */
-    private int $id;
+    private string $id;
 
     /**
      * @var string
@@ -38,12 +38,32 @@ final class UserData
     /**
      * @var string
      */
-    private string $created;
+    private string $firstNameKana;
 
     /**
      * @var string
      */
-    private string $modified;
+    private string $lastNameKana;
+
+    /**
+     * @var string
+     */
+    private string $mailAddress;
+
+    /**
+     * @var string
+     */
+    private string $sex;
+
+    /**
+     * @var string
+     */
+    private string $birthDay;
+
+    /**
+     * @var string
+     */
+    private string $cellPhoneNumber;
 
     /**
      * constructor
@@ -52,21 +72,26 @@ final class UserData
      */
     public function __construct(User $source)
     {
-        $this->id = is_null($source->getId()) ? 0 : $source->getId()->getValue();
-        $this->loginId = is_null($source->getLoginId()) ? '' : $source->getLoginId()->getValue();
-        $this->roleName = is_null($source->getRoleName()) ? '' : $source->getRoleName()->getValue();
-        $this->firstName = is_null($source->getFirstName()) ? '' : $source->getFirstName()->getValue();
-        $this->lastName = is_null($source->getLastName()) ? '' : $source->getLastName()->getValue();
-        $this->created = is_null($source->getCreated()) ? '' : $source->getCreated()->getValue();
-        $this->modified = is_null($source->getModified()) ? '' : $source->getModified()->getValue();
+        $this->id = $source->getId()->getValue();
+        $this->loginId = $source->getLoginId()->getValue();
+        $this->roleName = $source->getRoleName()->getValue();
+        $this->firstName = $source->getFirstName()->getValue();
+        $this->lastName = $source->getLastName()->getValue();
+        $this->firstNameKana = $source->getFirstNameKana()->getValue();
+        $this->lastNameKana = $source->getLastNameKana()->getValue();
+        $this->mailAddress = $source->getMailAddress()->getValue();
+        $this->sex = $source->getSex()->getValue();
+        $this->birthDay = is_null($source->getBirthDay()) ? '' : $source->getBirthDay()->getValue();
+        $this->cellPhoneNumber =
+            is_null($source->getCellPhoneNumber()) ? '' : $source->getCellPhoneNumber()->getValue();
     }
 
     /**
      * Get the value of id
      *
-     * @return int
+     * @return string
      */
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }
@@ -112,22 +137,62 @@ final class UserData
     }
 
     /**
-     * Get the value of created
+     * Get the value of firstNameKana
      *
      * @return string
      */
-    public function getCreated(): string
+    public function getFirstNameKana(): string
     {
-        return $this->created;
+        return $this->firstNameKana;
     }
 
     /**
-     * Get the value of modified
+     * Get the value of lastNameKana
      *
      * @return string
      */
-    public function getModified(): string
+    public function getLastNameKana(): string
     {
-        return $this->modified;
+        return $this->lastNameKana;
+    }
+
+    /**
+     * Get the value of mailAddress
+     *
+     * @return string
+     */
+    public function getMailAddress(): string
+    {
+        return $this->mailAddress;
+    }
+
+    /**
+     * Get the value of sex
+     *
+     * @return string
+     */
+    public function getSex(): string
+    {
+        return $this->sex;
+    }
+
+    /**
+     * Get the value of birthDay
+     *
+     * @return string
+     */
+    public function getBirthDay(): string
+    {
+        return $this->birthDay;
+    }
+
+    /**
+     * Get the value of cellPhoneNumber
+     *
+     * @return string
+     */
+    public function getCellPhoneNumber(): string
+    {
+        return $this->cellPhoneNumber;
     }
 }

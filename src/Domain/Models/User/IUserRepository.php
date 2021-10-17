@@ -12,6 +12,13 @@ use App\Domain\Models\User\Type\UserId;
 interface IUserRepository
 {
     /**
+     * 採番を取得
+     *
+     * @return \App\Domain\Models\User\Type\UserId
+     */
+    public function assignId(): UserId;
+
+    /**
      * IDで検索
      *
      * @param \App\Domain\Models\User\Type\UserId $userId userId

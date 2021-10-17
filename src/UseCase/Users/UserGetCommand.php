@@ -9,16 +9,16 @@ namespace App\UseCase\Users;
 final class UserGetCommand
 {
     /**
-     * @var int
+     * @var string
      */
-    private int $userId;
+    private string $userId;
 
     /**
      * constructor
      *
-     * @param int $userId userId
+     * @param string $userId userId
      */
-    public function __construct(int $userId)
+    public function __construct(string $userId)
     {
         $this->userId = $userId;
     }
@@ -26,9 +26,9 @@ final class UserGetCommand
     /**
      * Get the value of userId
      *
-     * @return int
+     * @return string
      */
-    public function getUserId(): int
+    public function getUserId(): string
     {
         return $this->userId;
     }

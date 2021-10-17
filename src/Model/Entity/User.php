@@ -9,14 +9,20 @@ use Cake\ORM\Entity;
 /**
  * User Entity
  *
- * @property int $id
+ * @property string $id
  * @property string $username
  * @property string $password
  * @property string $role
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
  * @property string $first_name
  * @property string $last_name
+ * @property string $first_name_kana
+ * @property string $last_name_kana
+ * @property string $mail_address
+ * @property string $sex
+ * @property \Cake\I18n\FrozenDate|null $birth_day
+ * @property string|null $cell_phone_number
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  */
 class User extends Entity
 {
@@ -33,10 +39,16 @@ class User extends Entity
         'username' => true,
         'password' => true,
         'role' => true,
-        'created' => true,
-        'modified' => true,
         'first_name' => true,
         'last_name' => true,
+        'first_name_kana' => true,
+        'last_name_kana' => true,
+        'mail_address' => true,
+        'sex' => true,
+        'birth_day' => true,
+        'cell_phone_number' => true,
+        'created' => true,
+        'modified' => true,
     ];
 
     /**
