@@ -86,7 +86,7 @@ custom styles.
 # テスト実行
 docker exec -it app php ./vendor/bin/phpunit
 # カバレッジ生成
-docker exec -it app phpdbg -qrr ./vendor/bin/phpunit --coverage-html webroot/coverage
+docker exec -it app ./vendor/bin/phpunit --coverage-html webroot/coverage
 ```
 
 - カバレッジ確認URL
