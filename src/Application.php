@@ -17,13 +17,17 @@ declare(strict_types=1);
 namespace App;
 
 use Cake\Core\Configure;
-use Cake\Core\Exception\MissingPluginException;
+use Cake\Core\ContainerInterface;
+use Cake\Datasource\FactoryLocator;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Http\Middleware\BodyParserMiddleware;
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Http\MiddlewareQueue;
+use Cake\ORM\Locator\TableLocator;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use Cake\Routing\RouteBuilder;
 
 /**
  * Application setup class.
@@ -45,6 +49,11 @@ class Application extends BaseApplication
 
         if (PHP_SAPI === 'cli') {
             $this->bootstrapCli();
+        } else {
+            FactoryLocator::add(
+                'Table',
+                (new TableLocator())->allowFallbackClass(false)
+            );
         }
 
         /*
@@ -84,16 +93,33 @@ class Application extends BaseApplication
             // `new RoutingMiddleware($this, '_cake_routes_')`
             ->add(new RoutingMiddleware($this))
 
-            // アプリケーションが JSON、XML、またはその他のエンコードされたリクエストボディを受け入れる場合、
-            // それらのリクエストを配列にデコードする。
-            // デフォルトでは json ボディのみがパースされる。
-            ->add(new BodyParserMiddleware());
+            // Parse various types of encoded request bodies so that they are
+            // available as array through $request->getData()
+            // https://book.cakephp.org/4/en/controllers/middleware.html#body-parser-middleware
+            ->add(new BodyParserMiddleware())
+
+            // Cross Site Request Forgery (CSRF) Protection Middleware
+            // https://book.cakephp.org/4/en/controllers/middleware.html#cross-site-request-forgery-csrf-middleware
+            ->add(new CsrfProtectionMiddleware([
+                'httponly' => true,
+            ]));
 
         return $middlewareQueue;
     }
 
     /**
-     * Bootrapping for CLI application.
+     * Register application container services.
+     *
+     * @param \Cake\Core\ContainerInterface $container The Container to update.
+     * @return void
+     * @link https://book.cakephp.org/4/en/development/dependency-injection.html#dependency-injection
+     */
+    public function services(ContainerInterface $container): void
+    {
+    }
+
+    /**
+     * Bootstrapping for CLI application.
      *
      * That is when running commands.
      *
@@ -101,11 +127,8 @@ class Application extends BaseApplication
      */
     protected function bootstrapCli(): void
     {
-        try {
-            $this->addPlugin('Bake');
-        } catch (MissingPluginException $e) {
-            // Do not halt if the plugin is missing
-        }
+        $this->addOptionalPlugin('Cake/Repl');
+        $this->addOptionalPlugin('Bake');
 
         $this->addPlugin('Migrations');
 

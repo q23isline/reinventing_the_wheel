@@ -1,6 +1,6 @@
 # CakePHP Application Skeleton
 
-[![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
+![Build Status](https://github.com/cakephp/app/actions/workflows/ci.yml/badge.svg?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%207-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
 
@@ -84,9 +84,9 @@ custom styles.
 
 ```bash
 # テスト実行
-php ./vendor/bin/phpunit
+docker exec -it app php ./vendor/bin/phpunit
 # カバレッジ生成
-phpdbg -qrr ./vendor/bin/phpunit --coverage-html webroot/coverage
+docker exec -it app phpdbg -qrr ./vendor/bin/phpunit --coverage-html webroot/coverage
 ```
 
 - カバレッジ確認URL
@@ -116,10 +116,19 @@ redoc-cli bundle xxxxxx.yaml
 
 - Headersに以下を設定
 
-| KEY          | VALUE                                                    | 補足                    |
-|--------------|----------------------------------------------------------|-----------------------|
-| Cookie       | PHPSESSID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx               | Cookie内のPHPSESSIDキーの値 |
-| X-CSRF-Token | xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx | Cookie内のcsrfTokenキーの値 |
+| KEY          | VALUE                                            |
+|--------------|--------------------------------------------------|
+| Cookie       | PHPSESSID=xxxxxx; csrfToken=xxxxxx               |
+
+- 【GET以外の場合】BodyのrawにJSONで以下を設定
+
+```JSONC
+{
+    // 画面の HTML を表示し、input タグの name が _csrfToken の value
+    "_csrfToken": "xxxxxxxxx",
+    // .....
+}
+```
 
 ## デバッグ実行
 

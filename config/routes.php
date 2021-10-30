@@ -21,93 +21,87 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 
-/*
- * The default class to use for all routes
- *
- * The following route classes are supplied with CakePHP and are appropriate
- * to set as the default:
- *
- * - Route
- * - InflectedRoute
- * - DashedRoute
- *
- * If no call is made to `Router::defaultRouteClass()`, the class used is
- * `Route` (`Cake\Routing\Route\Route`)
- *
- * Note that `Route` does not do any inflections on URLs which will result in
- * inconsistently cased URLs when used with `:plugin`, `:controller` and
- * `:action` markers.
- */
-/** @var \Cake\Routing\RouteBuilder $routes */
-$routes->setRouteClass(DashedRoute::class);
-
-$routes->scope('/', function (RouteBuilder $builder) {
-    // Register scoped middleware for in scopes.
-    $builder->registerMiddleware('csrf', new CsrfProtectionMiddleware([
-        'httponly' => true,
-    ]));
-
+return static function (RouteBuilder $routes) {
     /*
-     * Apply a middleware to the current route scope.
-     * Requires middleware to be registered through `Application::routes()` with `registerMiddleware()`
-     */
-    $builder->applyMiddleware('csrf');
-
-    /*
-     * Here, we are connecting '/' (base path) to a controller called 'Pages',
-     * its action called 'display', and we pass a param to select the view file
-     * to use (in this case, templates/Pages/home.php)...
-     */
-    $builder->connect('/', ['controller' => 'Users', 'action' => 'login']);
-
-    /*
-     * ...and connect the rest of 'Pages' controller's URLs.
-     */
-    $builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-
-    /*
-     * Connect catchall routes for all controllers.
+     * The default class to use for all routes
      *
-     * The `fallbacks` method is a shortcut for
+     * The following route classes are supplied with CakePHP and are appropriate
+     * to set as the default:
+     *
+     * - Route
+     * - InflectedRoute
+     * - DashedRoute
+     *
+     * If no call is made to `Router::defaultRouteClass()`, the class used is
+     * `Route` (`Cake\Routing\Route\Route`)
+     *
+     * Note that `Route` does not do any inflections on URLs which will result in
+     * inconsistently cased URLs when used with `:plugin`, `:controller` and
+     * `:action` markers.
+     */
+    $routes->setRouteClass(DashedRoute::class);
+
+    $routes->scope('/', function (RouteBuilder $builder) {
+        /*
+         * Here, we are connecting '/' (base path) to a controller called 'Pages',
+         * its action called 'display', and we pass a param to select the view file
+         * to use (in this case, templates/Pages/home.php)...
+         */
+        // $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+        $builder->connect('/', ['controller' => 'Users', 'action' => 'login']);
+
+        /*
+         * ...and connect the rest of 'Pages' controller's URLs.
+         */
+        $builder->connect('/pages/*', 'Pages::display');
+
+        /*
+         * Connect catchall routes for all controllers.
+         *
+         * The `fallbacks` method is a shortcut for
+         *
+         * ```
+         * $builder->connect('/:controller', ['action' => 'index']);
+         * $builder->connect('/:controller/:action/*', []);
+         * ```
+         *
+         * You can remove these routes once you've connected the
+         * routes you want in your application.
+         */
+        $builder->fallbacks();
+    });
+
+    /*
+     * If you need a different set of middleware or none at all,
+     * open new scope and define routes there.
      *
      * ```
-     * $builder->connect('/:controller', ['action' => 'index']);
-     * $builder->connect('/:controller/:action/*', []);
-     * ```
+     * $routes->scope('/api', function (RouteBuilder $builder) {
+     *     // No $builder->applyMiddleware() here.
      *
-     * You can remove these routes once you've connected the
-     * routes you want in your application.
+     *     // Parse specified extensions from URLs
+     *     // $builder->setExtensions(['json', 'xml']);
+     *
+     *     // Connect API actions here.
+     * });
+     * ```
      */
-    $builder->fallbacks();
-});
+    $routes->scope('/api/v1', ['prefix' => 'Api/V1'], function (RouteBuilder $builder) {
+        $builder->setExtensions(['json']);
 
-/*
- * If you need a different set of middleware or none at all,
- * open new scope and define routes there.
- *
- * ```
- * $routes->scope('/api', function (RouteBuilder $builder) {
- *     // No $builder->applyMiddleware() here.
- *     // Connect API actions here.
- * });
- * ```
- */
-$routes->scope('/api/v1', ['prefix' => 'Api/V1'], function (RouteBuilder $builder) {
-    $builder->setExtensions(['json']);
-
-    $builder->connect('/users', ['controller' => 'Users', 'action' => 'index'])->setMethods(['GET']);
-    $builder->connect('/users', ['controller' => 'Users', 'action' => 'add'])->setMethods(['POST']);
-    $builder->connect('/users/:userId', ['controller' => 'Users', 'action' => 'view'])->setMethods(['GET'])
-        ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
-        ->setPass(['userId']);
-    $builder->connect('/users/:userId', ['controller' => 'Users', 'action' => 'edit'])->setMethods(['PUT'])
-        ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
-        ->setPass(['userId']);
-    $builder->connect('/users/:userId', ['controller' => 'Users', 'action' => 'delete'])->setMethods(['DELETE'])
-        ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
-        ->setPass(['userId']);
-});
+        $builder->connect('/users', ['controller' => 'Users', 'action' => 'index'])->setMethods(['GET']);
+        $builder->connect('/users', ['controller' => 'Users', 'action' => 'add'])->setMethods(['POST']);
+        $builder->connect('/users/:userId', ['controller' => 'Users', 'action' => 'view'])->setMethods(['GET'])
+            ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
+            ->setPass(['userId']);
+        $builder->connect('/users/:userId', ['controller' => 'Users', 'action' => 'edit'])->setMethods(['PUT'])
+            ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
+            ->setPass(['userId']);
+        $builder->connect('/users/:userId', ['controller' => 'Users', 'action' => 'delete'])->setMethods(['DELETE'])
+            ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
+            ->setPass(['userId']);
+    });
+};

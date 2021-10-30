@@ -49,16 +49,15 @@ return [
             'username' => 'root',
             // 'password' => 'secret',
             'password' => 'root',
-
             // 'database' => 'my_app',
             'database' => 'reinventing_the_wheel',
-            /**
+            /*
              * If not using the default 'public' schema with the PostgreSQL driver
              * set it here.
              */
             //'schema' => 'myapp',
 
-            /**
+            /*
              * You can use a DSN string to set the entire configuration
              */
             'url' => env('DATABASE_URL', null),
@@ -81,6 +80,7 @@ return [
             // 'database' => 'test_myapp',
             'database' => 'reinventing_the_wheel_test',
             //'schema' => 'myapp',
+            'url' => env('DATABASE_TEST_URL', 'sqlite://127.0.0.1/tests.sqlite'),
 
             // SQLをログに出力
             'log' => true,
