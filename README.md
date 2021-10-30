@@ -80,7 +80,13 @@ custom styles.
 - Password
   - admin00
 
-## ユニットテスト
+## コード性的解析＆ユニットテスト
+
+```bash
+docker exec -it app php composer.phar check
+```
+
+### ユニットテスト単体実行
 
 ```bash
 # テスト実行
