@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\UsersController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -58,6 +57,12 @@ class UsersControllerTest extends TestCase
             'role' => 'admin',
             'first_name' => 'admin',
             'last_name' => '管理者',
+            'first_name_kana' => 'アドミン',
+            'last_name_kana' => 'カンリシャ',
+            'mail_address' => 'admin@example.com',
+            'sex' => '1',
+            'birth_day' => '2021-10-14',
+            'cell_phone_number' => '09012345678',
             'created' => '2020-01-01 00:00:00',
             'modified' => '2020-01-02 00:00:00',
         ];
