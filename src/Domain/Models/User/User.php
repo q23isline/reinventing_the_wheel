@@ -85,10 +85,182 @@ final class User
      * constructor
      *
      * @param \App\Domain\Models\User\Type\UserId $id id
+     * @param \App\Domain\Models\User\Type\LoginId $loginId loginId
+     * @param \App\Domain\Models\User\Type\Password $password password
+     * @param \App\Domain\Models\User\Type\RoleName $roleName roleName
+     * @param \App\Domain\Models\User\Type\FirstName $firstName firstName
+     * @param \App\Domain\Models\User\Type\LastName $lastName lastName
+     * @param \App\Domain\Models\User\Type\FirstNameKana $firstNameKana firstNameKana
+     * @param \App\Domain\Models\User\Type\LastNameKana $lastNameKana lastNameKana
+     * @param \App\Domain\Models\User\Type\MailAddress $mailAddress mailAddress
+     * @param \App\Domain\Models\User\Type\Sex $sex sex
+     * @param \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
+     * @param \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
+     * @return void
      */
-    public function __construct(UserId $id)
-    {
+    private function __construct(
+        UserId $id,
+        LoginId $loginId,
+        Password $password,
+        RoleName $roleName,
+        FirstName $firstName,
+        LastName $lastName,
+        FirstNameKana $firstNameKana,
+        LastNameKana $lastNameKana,
+        MailAddress $mailAddress,
+        Sex $sex,
+        ?BirthDay $birthDay,
+        ?CellPhoneNumber $cellPhoneNumber,
+    ) {
         $this->id = $id;
+        $this->loginId = $loginId;
+        $this->password = $password;
+        $this->roleName = $roleName;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->firstNameKana = $firstNameKana;
+        $this->lastNameKana = $lastNameKana;
+        $this->mailAddress = $mailAddress;
+        $this->sex = $sex;
+        $this->birthDay = $birthDay;
+        $this->cellPhoneNumber = $cellPhoneNumber;
+    }
+
+    /**
+     * 新規作成
+     * TODO: UserId を引数からなくしたい
+     *
+     * @param \App\Domain\Models\User\Type\UserId $id id
+     * @param \App\Domain\Models\User\Type\LoginId $loginId loginId
+     * @param \App\Domain\Models\User\Type\Password $password password
+     * @param \App\Domain\Models\User\Type\RoleName $roleName roleName
+     * @param \App\Domain\Models\User\Type\FirstName $firstName firstName
+     * @param \App\Domain\Models\User\Type\LastName $lastName lastName
+     * @param \App\Domain\Models\User\Type\FirstNameKana $firstNameKana firstNameKana
+     * @param \App\Domain\Models\User\Type\LastNameKana $lastNameKana lastNameKana
+     * @param \App\Domain\Models\User\Type\MailAddress $mailAddress mailAddress
+     * @param \App\Domain\Models\User\Type\Sex $sex sex
+     * @param \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
+     * @param \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
+     * @return self
+     */
+    public static function create(
+        UserId $id,
+        LoginId $loginId,
+        Password $password,
+        RoleName $roleName,
+        FirstName $firstName,
+        LastName $lastName,
+        FirstNameKana $firstNameKana,
+        LastNameKana $lastNameKana,
+        MailAddress $mailAddress,
+        Sex $sex,
+        ?BirthDay $birthDay,
+        ?CellPhoneNumber $cellPhoneNumber,
+    ): self {
+        return new self(
+            id: $id,
+            loginId: $loginId,
+            password: $password,
+            roleName: $roleName,
+            firstName: $firstName,
+            lastName: $lastName,
+            firstNameKana: $firstNameKana,
+            lastNameKana: $lastNameKana,
+            mailAddress: $mailAddress,
+            sex: $sex,
+            birthDay: $birthDay,
+            cellPhoneNumber: $cellPhoneNumber,
+        );
+    }
+
+    /**
+     * 再構成
+     *
+     * @param \App\Domain\Models\User\Type\UserId $id id
+     * @param \App\Domain\Models\User\Type\LoginId $loginId loginId
+     * @param \App\Domain\Models\User\Type\Password $password password
+     * @param \App\Domain\Models\User\Type\RoleName $roleName roleName
+     * @param \App\Domain\Models\User\Type\FirstName $firstName firstName
+     * @param \App\Domain\Models\User\Type\LastName $lastName lastName
+     * @param \App\Domain\Models\User\Type\FirstNameKana $firstNameKana firstNameKana
+     * @param \App\Domain\Models\User\Type\LastNameKana $lastNameKana lastNameKana
+     * @param \App\Domain\Models\User\Type\MailAddress $mailAddress mailAddress
+     * @param \App\Domain\Models\User\Type\Sex $sex sex
+     * @param \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
+     * @param \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
+     * @return self
+     */
+    public static function reconstruct(
+        UserId $id,
+        LoginId $loginId,
+        Password $password,
+        RoleName $roleName,
+        FirstName $firstName,
+        LastName $lastName,
+        FirstNameKana $firstNameKana,
+        LastNameKana $lastNameKana,
+        MailAddress $mailAddress,
+        Sex $sex,
+        ?BirthDay $birthDay,
+        ?CellPhoneNumber $cellPhoneNumber,
+    ): self {
+        return new self(
+            id: $id,
+            loginId: $loginId,
+            password: $password,
+            roleName: $roleName,
+            firstName: $firstName,
+            lastName: $lastName,
+            firstNameKana: $firstNameKana,
+            lastNameKana: $lastNameKana,
+            mailAddress: $mailAddress,
+            sex: $sex,
+            birthDay: $birthDay,
+            cellPhoneNumber: $cellPhoneNumber,
+        );
+    }
+
+    /**
+     * 更新
+     *
+     * @param \App\Domain\Models\User\Type\LoginId $loginId loginId
+     * @param \App\Domain\Models\User\Type\Password $password password
+     * @param \App\Domain\Models\User\Type\RoleName $roleName roleName
+     * @param \App\Domain\Models\User\Type\FirstName $firstName firstName
+     * @param \App\Domain\Models\User\Type\LastName $lastName lastName
+     * @param \App\Domain\Models\User\Type\FirstNameKana $firstNameKana firstNameKana
+     * @param \App\Domain\Models\User\Type\LastNameKana $lastNameKana lastNameKana
+     * @param \App\Domain\Models\User\Type\MailAddress $mailAddress mailAddress
+     * @param \App\Domain\Models\User\Type\Sex $sex sex
+     * @param \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
+     * @param \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
+     * @return void
+     */
+    public function update(
+        LoginId $loginId,
+        Password $password,
+        RoleName $roleName,
+        FirstName $firstName,
+        LastName $lastName,
+        FirstNameKana $firstNameKana,
+        LastNameKana $lastNameKana,
+        MailAddress $mailAddress,
+        Sex $sex,
+        ?BirthDay $birthDay,
+        ?CellPhoneNumber $cellPhoneNumber,
+    ): void {
+        $this->loginId = $loginId;
+        $this->password = $password;
+        $this->roleName = $roleName;
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->firstNameKana = $firstNameKana;
+        $this->lastNameKana = $lastNameKana;
+        $this->mailAddress = $mailAddress;
+        $this->sex = $sex;
+        $this->birthDay = $birthDay;
+        $this->cellPhoneNumber = $cellPhoneNumber;
     }
 
     /**
@@ -128,17 +300,6 @@ final class User
     }
 
     /**
-     * Set the value of loginId
-     *
-     * @param \App\Domain\Models\User\Type\LoginId $loginId loginId
-     * @return void
-     */
-    public function setLoginId(LoginId $loginId): void
-    {
-        $this->loginId = $loginId;
-    }
-
-    /**
      * Get the value of password
      *
      * @return \App\Domain\Models\User\Type\Password
@@ -146,17 +307,6 @@ final class User
     public function getPassword(): Password
     {
         return $this->password;
-    }
-
-    /**
-     * Set the value of password
-     *
-     * @param \App\Domain\Models\User\Type\Password $password password
-     * @return void
-     */
-    public function setPassword(Password $password): void
-    {
-        $this->password = $password;
     }
 
     /**
@@ -170,17 +320,6 @@ final class User
     }
 
     /**
-     * Set the value of roleName
-     *
-     * @param \App\Domain\Models\User\Type\RoleName $roleName roleName
-     * @return void
-     */
-    public function setRoleName(RoleName $roleName): void
-    {
-        $this->roleName = $roleName;
-    }
-
-    /**
      * Get the value of firstName
      *
      * @return \App\Domain\Models\User\Type\FirstName
@@ -188,17 +327,6 @@ final class User
     public function getFirstName(): FirstName
     {
         return $this->firstName;
-    }
-
-    /**
-     * Set the value of firstName
-     *
-     * @param \App\Domain\Models\User\Type\FirstName $firstName firstName
-     * @return void
-     */
-    public function setFirstName(FirstName $firstName): void
-    {
-        $this->firstName = $firstName;
     }
 
     /**
@@ -212,17 +340,6 @@ final class User
     }
 
     /**
-     * Set the value of lastName
-     *
-     * @param \App\Domain\Models\User\Type\LastName $lastName lastName
-     * @return void
-     */
-    public function setLastName(LastName $lastName): void
-    {
-        $this->lastName = $lastName;
-    }
-
-    /**
      * Get the value of firstNameKana
      *
      * @return \App\Domain\Models\User\Type\FirstNameKana
@@ -230,17 +347,6 @@ final class User
     public function getFirstNameKana(): FirstNameKana
     {
         return $this->firstNameKana;
-    }
-
-    /**
-     * Set the value of firstNameKana
-     *
-     * @param \App\Domain\Models\User\Type\FirstNameKana $firstNameKana firstNameKana
-     * @return void
-     */
-    public function setFirstNameKana(FirstNameKana $firstNameKana): void
-    {
-        $this->firstNameKana = $firstNameKana;
     }
 
     /**
@@ -254,17 +360,6 @@ final class User
     }
 
     /**
-     * Set the value of lastNameKana
-     *
-     * @param \App\Domain\Models\User\Type\LastNameKana $lastNameKana lastNameKana
-     * @return void
-     */
-    public function setLastNameKana(LastNameKana $lastNameKana): void
-    {
-        $this->lastNameKana = $lastNameKana;
-    }
-
-    /**
      * Get the value of mailAddress
      *
      * @return \App\Domain\Models\User\Type\MailAddress
@@ -272,17 +367,6 @@ final class User
     public function getMailAddress(): MailAddress
     {
         return $this->mailAddress;
-    }
-
-    /**
-     * Set the value of mailAddress
-     *
-     * @param \App\Domain\Models\User\Type\MailAddress $mailAddress mailAddress
-     * @return void
-     */
-    public function setMailAddress(MailAddress $mailAddress): void
-    {
-        $this->mailAddress = $mailAddress;
     }
 
     /**
@@ -296,17 +380,6 @@ final class User
     }
 
     /**
-     * Set the value of sex
-     *
-     * @param \App\Domain\Models\User\Type\Sex $sex sex
-     * @return void
-     */
-    public function setSex(Sex $sex): void
-    {
-        $this->sex = $sex;
-    }
-
-    /**
      * Get the value of birthDay
      *
      * @return \App\Domain\Models\User\Type\BirthDay|null
@@ -317,17 +390,6 @@ final class User
     }
 
     /**
-     * Set the value of birthDay
-     *
-     * @param \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
-     * @return void
-     */
-    public function setBirthDay(?BirthDay $birthDay): void
-    {
-        $this->birthDay = $birthDay;
-    }
-
-    /**
      * Get the value of cellPhoneNumber
      *
      * @return \App\Domain\Models\User\Type\CellPhoneNumber|null
@@ -335,16 +397,5 @@ final class User
     public function getCellPhoneNumber(): ?CellPhoneNumber
     {
         return $this->cellPhoneNumber;
-    }
-
-    /**
-     * Set the value of cellPhoneNumber
-     *
-     * @param \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
-     * @return void
-     */
-    public function setCellPhoneNumber(?CellPhoneNumber $cellPhoneNumber): void
-    {
-        $this->cellPhoneNumber = $cellPhoneNumber;
     }
 }

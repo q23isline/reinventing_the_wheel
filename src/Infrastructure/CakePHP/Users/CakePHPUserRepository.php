@@ -162,26 +162,29 @@ final class CakePHPUserRepository implements IUserRepository
      */
     private function buildEntity(array $record): User
     {
-        $user = new User(new UserId($record['id']));
-
-        $user->setLoginId(new LoginId($record['username']));
-        $user->setPassword(new Password($record['password']));
-        $user->setRoleName(new RoleName($record['role']));
-        $user->setFirstName(new FirstName($record['first_name']));
-        $user->setLastName(new LastName($record['last_name']));
-        $user->setFirstNameKana(new FirstNameKana($record['first_name_kana']));
-        $user->setLastNameKana(new LastNameKana($record['last_name_kana']));
-        $user->setMailAddress(new MailAddress($record['mail_address']));
-        $user->setSex(new Sex($record['sex']));
-
+        $birthDay = null;
         if (!empty($record['birth_day'])) {
-            $user->setBirthDay(new BirthDay($record['birth_day']->format('Y-m-d')));
+            $birthDay = new BirthDay($record['birth_day']->format('Y-m-d'));
         }
 
+        $cellPhoneNumber = null;
         if (!empty($record['cell_phone_number'])) {
-            $user->setCellPhoneNumber(new CellPhoneNumber($record['cell_phone_number']));
+            $cellPhoneNumber = new CellPhoneNumber($record['cell_phone_number']);
         }
 
-        return $user;
+        return User::reconstruct(
+            new UserId($record['id']),
+            new LoginId($record['username']),
+            new Password($record['password']),
+            new RoleName($record['role']),
+            new FirstName($record['first_name']),
+            new LastName($record['last_name']),
+            new FirstNameKana($record['first_name_kana']),
+            new LastNameKana($record['last_name_kana']),
+            new MailAddress($record['mail_address']),
+            new Sex($record['sex']),
+            $birthDay,
+            $cellPhoneNumber,
+        );
     }
 }

@@ -56,25 +56,31 @@ final class UserAddUseCase
      */
     public function handle(UserAddCommand $command): UserId
     {
-        $data = new User($this->userRepository->assignId());
-
-        $data->setLoginId(new LoginId($command->getLoginId()));
-        $data->setPassword(new Password($command->getPassword()));
-        $data->setRoleName(new RoleName($command->getRoleName()));
-        $data->setFirstName(new FirstName($command->getFirstName()));
-        $data->setLastName(new LastName($command->getLastName()));
-        $data->setFirstNameKana(new FirstNameKana($command->getFirstNameKana()));
-        $data->setLastNameKana(new LastNameKana($command->getLastNameKana()));
-        $data->setMailAddress(new MailAddress($command->getMailAddress()));
-        $data->setSex(new Sex($command->getSex()));
-
+        $birthDay = null;
         if (!empty($command->getBirthDay())) {
-            $data->setBirthDay(new BirthDay($command->getBirthDay()));
+            $birthDay = new BirthDay($command->getBirthDay());
         }
 
+        $cellPhoneNumber = null;
         if (!empty($command->getCellPhoneNumber())) {
-            $data->setCellPhoneNumber(new CellPhoneNumber($command->getCellPhoneNumber()));
+            $cellPhoneNumber = new CellPhoneNumber($command->getCellPhoneNumber());
         }
+
+        $data = User::create(
+            // TODO: 採番処理を UserId ドメインの中でやりたい
+            $this->userRepository->assignId(),
+            new LoginId($command->getLoginId()),
+            new Password($command->getPassword()),
+            new RoleName($command->getRoleName()),
+            new FirstName($command->getFirstName()),
+            new LastName($command->getLastName()),
+            new FirstNameKana($command->getFirstNameKana()),
+            new LastNameKana($command->getLastNameKana()),
+            new MailAddress($command->getMailAddress()),
+            new Sex($command->getSex()),
+            $birthDay,
+            $cellPhoneNumber,
+        );
 
         if ($this->userService->isExists($data)) {
             throw new ValidateException([new ExceptionItem('loginId', 'ログインIDは既に存在しています。')]);
