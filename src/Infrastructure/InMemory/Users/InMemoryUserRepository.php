@@ -97,6 +97,8 @@ class InMemoryUserRepository implements IUserRepository
     {
         if (array_key_exists($userId->getValue(), $this->store)) {
             unset($this->store[$userId->getValue()]);
+        } else {
+            throw new RecordNotFoundException();
         }
     }
 
