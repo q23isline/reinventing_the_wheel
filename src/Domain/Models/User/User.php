@@ -110,7 +110,7 @@ final class User
         MailAddress $mailAddress,
         Sex $sex,
         ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber,
+        ?CellPhoneNumber $cellPhoneNumber
     ) {
         $this->id = $id;
         $this->loginId = $loginId;
@@ -156,21 +156,21 @@ final class User
         MailAddress $mailAddress,
         Sex $sex,
         ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber,
+        ?CellPhoneNumber $cellPhoneNumber
     ): self {
         return new self(
-            id: $id,
-            loginId: $loginId,
-            password: $password,
-            roleName: $roleName,
-            firstName: $firstName,
-            lastName: $lastName,
-            firstNameKana: $firstNameKana,
-            lastNameKana: $lastNameKana,
-            mailAddress: $mailAddress,
-            sex: $sex,
-            birthDay: $birthDay,
-            cellPhoneNumber: $cellPhoneNumber,
+            $id,
+            $loginId,
+            $password,
+            $roleName,
+            $firstName,
+            $lastName,
+            $firstNameKana,
+            $lastNameKana,
+            $mailAddress,
+            $sex,
+            $birthDay,
+            $cellPhoneNumber,
         );
     }
 
@@ -203,21 +203,21 @@ final class User
         MailAddress $mailAddress,
         Sex $sex,
         ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber,
+        ?CellPhoneNumber $cellPhoneNumber
     ): self {
         return new self(
-            id: $id,
-            loginId: $loginId,
-            password: $password,
-            roleName: $roleName,
-            firstName: $firstName,
-            lastName: $lastName,
-            firstNameKana: $firstNameKana,
-            lastNameKana: $lastNameKana,
-            mailAddress: $mailAddress,
-            sex: $sex,
-            birthDay: $birthDay,
-            cellPhoneNumber: $cellPhoneNumber,
+            $id,
+            $loginId,
+            $password,
+            $roleName,
+            $firstName,
+            $lastName,
+            $firstNameKana,
+            $lastNameKana,
+            $mailAddress,
+            $sex,
+            $birthDay,
+            $cellPhoneNumber,
         );
     }
 
@@ -248,7 +248,7 @@ final class User
         MailAddress $mailAddress,
         Sex $sex,
         ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber,
+        ?CellPhoneNumber $cellPhoneNumber
     ): void {
         $this->loginId = $loginId;
         $this->password = $password;
