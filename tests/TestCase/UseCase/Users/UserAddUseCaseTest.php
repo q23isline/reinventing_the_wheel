@@ -23,7 +23,7 @@ class UserAddUseCaseTest extends TestCase
      *
      * @return void
      */
-    public function test_ユーザが登録されること(): void
+    public function test_ユーザーが登録されること(): void
     {
         // Arrange
         $userRepository = new InMemoryUserRepository();
@@ -49,7 +49,7 @@ class UserAddUseCaseTest extends TestCase
         $userAddUseCase->handle($inputData);
 
         // Assert
-        // ユーザが正しく保存されているか
+        // ユーザーが正しく保存されているか
         $createdLoginId = new LoginId($loginId);
         $createdUser = $userRepository->findByLoginId($createdLoginId);
         $this->assertNotNull($createdUser);
@@ -60,7 +60,7 @@ class UserAddUseCaseTest extends TestCase
      *
      * @return void
      */
-    public function test_ユーザが登録できないこと：登録済ログインID(): void
+    public function test_ユーザーが登録できないこと：登録済ログインID(): void
     {
         // Arrange
         $userRepository = new InMemoryUserRepository();
@@ -85,7 +85,7 @@ class UserAddUseCaseTest extends TestCase
         );
 
         // Assert
-        // ユーザの登録に失敗するか
+        // ユーザーの登録に失敗するか
         $this->expectException(ValidateException::class);
 
         // Act
