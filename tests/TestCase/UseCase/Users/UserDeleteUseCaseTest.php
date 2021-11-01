@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Test\TestCase\UseCase\Users;
 
 use App\Domain\Models\User\Type\LoginId;
-use App\Domain\Services\UserService;
 use App\Infrastructure\InMemory\Users\InMemoryUserRepository;
 use App\UseCase\Users\UserDeleteCommand;
 use App\UseCase\Users\UserDeleteUseCase;
@@ -27,8 +26,7 @@ class UserDeleteUseCaseTest extends TestCase
     {
         // Arrange
         $userRepository = new InMemoryUserRepository();
-        $userService = new UserService($userRepository);
-        $userDeleteUseCase = new UserDeleteUseCase($userRepository, $userService);
+        $userDeleteUseCase = new UserDeleteUseCase($userRepository);
 
         $userId = '01509588-3882-42dd-9ab2-485e8e579a8e';
         $loginId = 'test';
@@ -58,8 +56,7 @@ class UserDeleteUseCaseTest extends TestCase
     {
         // Arrange
         $userRepository = new InMemoryUserRepository();
-        $userService = new UserService($userRepository);
-        $userDeleteUseCase = new UserDeleteUseCase($userRepository, $userService);
+        $userDeleteUseCase = new UserDeleteUseCase($userRepository);
 
         $inputData = new UserDeleteCommand('01509588-3882-42dd-9ab2-485e8e579a8e');
 
