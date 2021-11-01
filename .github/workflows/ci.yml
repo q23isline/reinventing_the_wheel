@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.2', '7.4', '8.0', '8.1']
+        php-version: ['8.0']
     name: PHP ${{ matrix.php-version }}
 
     steps:
@@ -41,6 +41,7 @@ jobs:
     - name: Run PHPUnit
       run: |
         cp config/app_local.example.php config/app_local.php
+        cp config/.env.example config/.env
         vendor/bin/phpunit
       env:
         DATABASE_TEST_URL: sqlite://./testdb.sqlite
@@ -55,7 +56,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.2'
+        php-version: ${{ matrix.php-version }}
         extensions: mbstring, intl
         coverage: none
 
@@ -75,7 +76,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '7.2'
+        php-version: ${{ matrix.php-version }}
         extensions: mbstring, intl
         coverage: none
 
