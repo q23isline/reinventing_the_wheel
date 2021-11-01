@@ -90,7 +90,7 @@ docker exec -it app php composer.phar check
 
 ```bash
 # テスト実行
-docker exec -it app php ./vendor/bin/phpunit
+docker exec -it app ./vendor/bin/phpunit
 # カバレッジ生成
 docker exec -it app ./vendor/bin/phpunit --coverage-html webroot/coverage
 ```
