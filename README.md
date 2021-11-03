@@ -83,7 +83,7 @@ custom styles.
 ## コード静的解析＆ユニットテスト
 
 ```bash
-docker exec -it app php composer.phar check
+docker exec -it --env XDEBUG_MODE=coverage app php composer.phar check
 ```
 
 ### ユニットテスト単体実行
