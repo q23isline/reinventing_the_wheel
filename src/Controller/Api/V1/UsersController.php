@@ -72,13 +72,15 @@ class UsersController extends AppController
     {
         parent::initialize();
 
-        $this->userRepository = new CakePHPUserRepository();
-        $this->userListUseCase = new UserListUseCase($this->userRepository);
-        $this->userService = new UserService($this->userRepository);
-        $this->userAddUseCase = new UserAddUseCase($this->userRepository, $this->userService);
-        $this->userGetUseCase = new UserGetUseCase($this->userRepository);
-        $this->userUpdateUseCase = new UserUpdateUseCase($this->userRepository, $this->userService);
-        $this->userDeleteUseCase = new UserDeleteUseCase($this->userRepository);
+        // テスト時のモック用にプロパティのチェック
+        $this->userRepository = $this->userRepository ?? new CakePHPUserRepository();
+        $this->userListUseCase = $this->userListUseCase ?? new UserListUseCase($this->userRepository);
+        $this->userService = $this->userService ?? new UserService($this->userRepository);
+        $this->userAddUseCase = $this->userAddUseCase ?? new UserAddUseCase($this->userRepository, $this->userService);
+        $this->userGetUseCase = $this->userGetUseCase ?? new UserGetUseCase($this->userRepository);
+        $this->userUpdateUseCase =
+            $this->userUpdateUseCase ?? new UserUpdateUseCase($this->userRepository, $this->userService);
+        $this->userDeleteUseCase = $this->userDeleteUseCase ?? new UserDeleteUseCase($this->userRepository);
     }
 
     /**
