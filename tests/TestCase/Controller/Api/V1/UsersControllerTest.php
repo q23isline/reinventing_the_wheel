@@ -18,6 +18,7 @@ use App\Domain\Models\User\Type\UserId;
 use App\Domain\Models\User\User;
 use App\UseCase\Users\UserAddUseCase;
 use App\UseCase\Users\UserData;
+use App\UseCase\Users\UserDeleteUseCase;
 use App\UseCase\Users\UserGetUseCase;
 use App\UseCase\Users\UserListUseCase;
 use App\UseCase\Users\UserUpdateUseCase;
@@ -527,6 +528,72 @@ class UsersControllerTest extends TestCase
         // Assert
         // 400エラーになること
         $this->assertResponseCode(400);
+        // エラー情報を返却すること
+        $this->assertEquals($expected, (string)$this->_response->getBody());
+    }
+
+    /**
+     * Test delete method
+     *
+     * @return void
+     */
+    public function test_ユーザー削除でエラーにならないこと(): void
+    {
+        // Arrange
+        $id = '00676011-5447-4eb1-bde1-001880663af3';
+        $mockUserDeleteUseCase = $this->createMock(UserDeleteUseCase::class);
+        $mockUserDeleteUseCase->expects($this->once())
+            ->method('handle')
+            ->will($this->returnValue(new UserId($id)));
+
+        $this->overridePrivatePropertyWithMock('userDeleteUseCase', $mockUserDeleteUseCase);
+
+        // Act
+        $this->delete("/api/v1/users/${id}");
+
+        // Assert
+        // 正常にアクセスできること
+        $this->assertResponseCode(200);
+        // ユーザー情報を返却すること
+        $this->assertEquals('null', (string)$this->_response->getBody());
+    }
+
+    /**
+     * Test delete method
+     *
+     * @return void
+     */
+    public function test_ユーザー削除でユーザーが存在しないエラーを返すこと(): void
+    {
+        // Arrange
+        $id = '00676011-5447-4eb1-bde1-001880663af3';
+        $mockUserDeleteUseCase = $this->createMock(UserDeleteUseCase::class);
+        $mockUserDeleteUseCase->expects($this->once())
+            ->method('handle')
+            ->will($this->throwException(new RecordNotFoundException()));
+
+        $this->overridePrivatePropertyWithMock('userDeleteUseCase', $mockUserDeleteUseCase);
+
+        $expected = [
+            'error' => [
+                'message' => 'Not Found',
+                'errors' => [
+                    [
+                        'field' => 'userId',
+                        'reason' => 'ユーザーは存在しません。',
+                    ],
+                ],
+            ],
+        ];
+
+        $expected = json_encode($expected, JSON_PRETTY_PRINT);
+
+        // Act
+        $this->delete("/api/v1/users/${id}");
+
+        // Assert
+        // 404エラーになること
+        $this->assertResponseCode(404);
         // エラー情報を返却すること
         $this->assertEquals($expected, (string)$this->_response->getBody());
     }
