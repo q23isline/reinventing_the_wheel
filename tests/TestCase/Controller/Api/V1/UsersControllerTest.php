@@ -16,6 +16,7 @@ use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
 use App\Domain\Models\User\User;
+use App\UseCase\Users\UserAddUseCase;
 use App\UseCase\Users\UserData;
 use App\UseCase\Users\UserGetUseCase;
 use App\UseCase\Users\UserListUseCase;
@@ -42,6 +43,10 @@ class UsersControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+
+        // CSRF コンポーネントのトークンミスマッチによるテスト失敗を防ぐ
+        // <https://book.cakephp.org/4/ja/development/testing.html#csrfcomponent-securitycomponent>
+        $this->enableCsrfToken();
 
         // 管理者でログイン
         $this->session([
@@ -250,6 +255,114 @@ class UsersControllerTest extends TestCase
         // Assert
         // 404エラーになること
         $this->assertResponseCode(404);
+        // エラー情報を返却すること
+        $this->assertEquals($expected, (string)$this->_response->getBody());
+    }
+
+    /**
+     * Test add method
+     *
+     * @return void
+     */
+    public function test_ユーザー追加で追加したユーザーをレスポンスすること(): void
+    {
+        // Arrange
+        $requestData = [
+            'loginId' => 'test1018',
+            'password' => 'password',
+            'roleName' => 'viewer',
+            'firstName' => '斉藤',
+            'lastName' => '太郎',
+            'firstNameKana' => 'サイトウ',
+            'lastNameKana' => 'タロウ',
+            'mailAddress' => 'saito6@example.com',
+            'sex' => '1',
+            'birthDay' => '1990-01-01',
+            'cellPhoneNumber' => '09011111116',
+        ];
+
+        $id = '00676011-5447-4eb1-bde1-001880663af3';
+        $mockUserAddUseCase = $this->createMock(UserAddUseCase::class);
+        $mockUserAddUseCase->expects($this->once())
+            ->method('handle')
+            ->will($this->returnValue(new UserId($id)));
+
+        $this->overridePrivatePropertyWithMock('userAddUseCase', $mockUserAddUseCase);
+
+        $expected = ['userId' => $id];
+        $expected = json_encode($expected, JSON_PRETTY_PRINT);
+
+        // Act
+        $this->post('/api/v1/users', $requestData);
+
+        // Assert
+        // 正常にアクセスできること
+        $this->assertResponseCode(200);
+        // ユーザー情報を返却すること
+        $this->assertEquals($expected, (string)$this->_response->getBody());
+    }
+
+    /**
+     * Test add method
+     *
+     * @return void
+     */
+    public function test_ユーザー追加でバリデーションエラーをレスポンスすること(): void
+    {
+        // Arrange
+        $requestData = [];
+        $expected = [
+            'error' => [
+                'message' => 'Bad Request',
+                'errors' => [
+                    [
+                        'field' => 'loginId',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'password',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'roleName',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'firstName',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'lastName',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'firstNameKana',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'lastNameKana',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'mailAddress',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'sex',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                ],
+            ],
+        ];
+
+        $expected = json_encode($expected, JSON_PRETTY_PRINT);
+
+        // Act
+        $this->post('/api/v1/users', $requestData);
+
+        // Assert
+        // 400エラーになること
+        $this->assertResponseCode(400);
         // エラー情報を返却すること
         $this->assertEquals($expected, (string)$this->_response->getBody());
     }
