@@ -44,3 +44,6 @@ nbproject/*
 .sass-cache/
 # PHP coverage
 /webroot/coverage/*
+
+# テスト実行時に利用する DB
+tests.sqlite
