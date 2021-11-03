@@ -94,13 +94,13 @@ return static function (RouteBuilder $routes) {
 
         $builder->connect('/users', ['controller' => 'Users', 'action' => 'index'])->setMethods(['GET']);
         $builder->connect('/users', ['controller' => 'Users', 'action' => 'add'])->setMethods(['POST']);
-        $builder->connect('/users/:userId', ['controller' => 'Users', 'action' => 'view'])->setMethods(['GET'])
+        $builder->connect('/users/{userId}', ['controller' => 'Users', 'action' => 'view'])->setMethods(['GET'])
             ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
             ->setPass(['userId']);
-        $builder->connect('/users/:userId', ['controller' => 'Users', 'action' => 'edit'])->setMethods(['PUT'])
+        $builder->connect('/users/{userId}', ['controller' => 'Users', 'action' => 'edit'])->setMethods(['PUT'])
             ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
             ->setPass(['userId']);
-        $builder->connect('/users/:userId', ['controller' => 'Users', 'action' => 'delete'])->setMethods(['DELETE'])
+        $builder->connect('/users/{userId}', ['controller' => 'Users', 'action' => 'delete'])->setMethods(['DELETE'])
             ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
             ->setPass(['userId']);
     });
