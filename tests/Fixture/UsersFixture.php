@@ -67,6 +67,22 @@ class UsersFixture extends TestFixture
                 'created' => '2020-01-01 00:00:00',
                 'modified' => '2020-01-02 00:00:00',
             ],
+            [
+                'id' => '99999999-5447-4eb1-bde1-001880663af3',
+                'username' => 'test1018',
+                'password' => 'password',
+                'role' => 'viewer',
+                'first_name' => '斉藤',
+                'last_name' => '太郎',
+                'first_name_kana' => 'サイトウ',
+                'last_name_kana' => 'タロウ',
+                'mail_address' => 'saito6@example.com',
+                'sex' => '1',
+                'birth_day' => '1990-01-01',
+                'cell_phone_number' => '09011111116',
+                'created' => '2020-01-03 00:00:00',
+                'modified' => '2020-01-04 00:00:00',
+            ],
         ];
         parent::init();
     }
