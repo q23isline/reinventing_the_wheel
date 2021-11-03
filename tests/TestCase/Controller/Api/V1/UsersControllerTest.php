@@ -248,9 +248,9 @@ class UsersControllerTest extends TestCase
         $this->get("/api/v1/users/${id}");
 
         // Assert
-        // 正常にアクセスできること
+        // 404エラーになること
         $this->assertResponseCode(404);
-        // ユーザー情報を返却すること
+        // エラー情報を返却すること
         $this->assertEquals($expected, (string)$this->_response->getBody());
     }
 
@@ -258,7 +258,7 @@ class UsersControllerTest extends TestCase
      * プライベートプロパティをモックで上書きする
      *
      * @param string $propertyName propertyName
-     * @param \App\UseCase\Users\UserListUseCase&\PHPUnit\Framework\MockObject\MockObject $mockObject mockObject
+     * @param \PHPUnit\Framework\MockObject\MockObject $mockObject mockObject
      * @return void
      */
     private function overridePrivatePropertyWithMock(string $propertyName, MockObject $mockObject): void
