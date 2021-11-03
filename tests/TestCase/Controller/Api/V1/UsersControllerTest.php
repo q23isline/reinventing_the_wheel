@@ -17,6 +17,7 @@ use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
 use App\Domain\Models\User\User;
 use App\UseCase\Users\UserData;
+use App\UseCase\Users\UserGetUseCase;
 use App\UseCase\Users\UserListUseCase;
 use Cake\Event\EventInterface;
 use Cake\Event\EventManager;
@@ -142,6 +143,67 @@ class UsersControllerTest extends TestCase
 
         // Act
         $this->get('/api/v1/users');
+
+        // Assert
+        // 正常にアクセスできること
+        $this->assertResponseCode(200);
+        // ユーザー情報を返却すること
+        $this->assertEquals($expected, (string)$this->_response->getBody());
+    }
+
+    /**
+     * Test view method
+     *
+     * @return void
+     */
+    public function test_ユーザー詳細をレスポンスすること(): void
+    {
+        // Arrange
+        $id = '00676011-5447-4eb1-bde1-001880663af3';
+        $userDtos = new UserData(
+            User::reconstruct(
+                new UserId($id),
+                new LoginId('test1018'),
+                new Password('password'),
+                new RoleName('viewer'),
+                new FirstName('斉藤'),
+                new LastName('太郎'),
+                new FirstNameKana('サイトウ'),
+                new LastNameKana('タロウ'),
+                new MailAddress('saito6@example.com'),
+                new Sex('1'),
+                new BirthDay('1990-01-01'),
+                new CellPhoneNumber('09011111116'),
+            )
+        );
+
+        $mockUserGetUseCase = $this->createMock(UserGetUseCase::class);
+        $mockUserGetUseCase->expects($this->once())
+            ->method('handle')
+            ->will($this->returnValue($userDtos));
+
+        $this->overridePrivatePropertyWithMock('userGetUseCase', $mockUserGetUseCase);
+
+        $expected = [
+            'data' => [
+                'id' => $id,
+                'loginId' => 'test1018',
+                'roleName' => 'viewer',
+                'firstName' => '斉藤',
+                'lastName' => '太郎',
+                'firstNameKana' => 'サイトウ',
+                'lastNameKana' => 'タロウ',
+                'mailAddress' => 'saito6@example.com',
+                'sex' => '1',
+                'birthDay' => '1990-01-01',
+                'cellPhoneNumber' => '09011111116',
+            ],
+        ];
+
+        $expected = json_encode($expected, JSON_PRETTY_PRINT);
+
+        // Act
+        $this->get("/api/v1/users/${id}");
 
         // Assert
         // 正常にアクセスできること
