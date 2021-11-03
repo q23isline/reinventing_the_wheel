@@ -110,6 +110,8 @@ final class CakePHPUserRepository implements IUserRepository
 
         $entity = $model->newEmptyEntity();
         $entity = $model->patchEntity($entity, $saveData);
+        // $saveData に id を設定しても patchEntity() 時に id が消え去るため、明示的に設定
+        $entity->id = $user->getId()->getValue();
         $saved = $model->saveOrFail($entity);
 
         return new UserId($saved->id);
