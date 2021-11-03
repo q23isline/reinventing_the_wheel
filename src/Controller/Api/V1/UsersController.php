@@ -138,31 +138,19 @@ class UsersController extends AppController
     {
         $jsonData = $this->request->getData();
 
-        $loginId = $jsonData['loginId'] ?? null;
-        $password = $jsonData['password'] ?? null;
-        $roleName = $jsonData['roleName'] ?? null;
-        $firstName = $jsonData['firstName'] ?? null;
-        $lastName = $jsonData['lastName'] ?? null;
-        $firstNameKana = $jsonData['firstNameKana'] ?? null;
-        $lastNameKana = $jsonData['lastNameKana'] ?? null;
-        $mailAddress = $jsonData['mailAddress'] ?? null;
-        $sex = $jsonData['sex'] ?? null;
-        $birthDay = $jsonData['birthDay'] ?? null;
-        $cellPhoneNumber = $jsonData['cellPhoneNumber'] ?? null;
-
         try {
             $command = new UserAddCommand(
-                $loginId,
-                $password,
-                $roleName,
-                $firstName,
-                $lastName,
-                $firstNameKana,
-                $lastNameKana,
-                $mailAddress,
-                $sex,
-                $birthDay,
-                $cellPhoneNumber
+                $jsonData['loginId'] ?? null,
+                $jsonData['password'] ?? null,
+                $jsonData['roleName'] ?? null,
+                $jsonData['firstName'] ?? null,
+                $jsonData['lastName'] ?? null,
+                $jsonData['firstNameKana'] ?? null,
+                $jsonData['lastNameKana'] ?? null,
+                $jsonData['mailAddress'] ?? null,
+                $jsonData['sex'] ?? null,
+                $jsonData['birthDay'] ?? null,
+                $jsonData['cellPhoneNumber'] ?? null,
             );
 
             $userId = $this->userAddUseCase->handle($command);
@@ -190,35 +178,22 @@ class UsersController extends AppController
     public function edit(): void
     {
         $userId = $this->request->getParam('userId');
-
         $jsonData = $this->request->getData();
-
-        $loginId = $jsonData['loginId'] ?? null;
-        $password = $jsonData['password'] ?? null;
-        $roleName = $jsonData['roleName'] ?? null;
-        $firstName = $jsonData['firstName'] ?? null;
-        $lastName = $jsonData['lastName'] ?? null;
-        $firstNameKana = $jsonData['firstNameKana'] ?? null;
-        $lastNameKana = $jsonData['lastNameKana'] ?? null;
-        $mailAddress = $jsonData['mailAddress'] ?? null;
-        $sex = $jsonData['sex'] ?? null;
-        $birthDay = $jsonData['birthDay'] ?? null;
-        $cellPhoneNumber = $jsonData['cellPhoneNumber'] ?? null;
 
         try {
             $command = new UserUpdateCommand(
                 $userId,
-                $loginId,
-                $password,
-                $roleName,
-                $firstName,
-                $lastName,
-                $firstNameKana,
-                $lastNameKana,
-                $mailAddress,
-                $sex,
-                $birthDay,
-                $cellPhoneNumber
+                $jsonData['loginId'] ?? null,
+                $jsonData['password'] ?? null,
+                $jsonData['roleName'] ?? null,
+                $jsonData['firstName'] ?? null,
+                $jsonData['lastName'] ?? null,
+                $jsonData['firstNameKana'] ?? null,
+                $jsonData['lastNameKana'] ?? null,
+                $jsonData['mailAddress'] ?? null,
+                $jsonData['sex'] ?? null,
+                $jsonData['birthDay'] ?? null,
+                $jsonData['cellPhoneNumber'] ?? null,
             );
 
             $userId = $this->userUpdateUseCase->handle($command);
