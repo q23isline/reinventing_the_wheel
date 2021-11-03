@@ -23,7 +23,7 @@ use App\Domain\Shared\Exception\ValidateException;
 /**
  * class UserUpdateUseCase
  */
-final class UserUpdateUseCase
+class UserUpdateUseCase
 {
     /**
      * @var \App\Domain\Models\User\IUserRepository

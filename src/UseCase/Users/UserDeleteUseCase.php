@@ -9,7 +9,7 @@ use App\Domain\Models\User\Type\UserId;
 /**
  * class UserDeleteUseCase
  */
-final class UserDeleteUseCase
+class UserDeleteUseCase
 {
     /**
      * @var \App\Domain\Models\User\IUserRepository

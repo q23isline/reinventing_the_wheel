@@ -24,7 +24,7 @@ use App\Domain\Shared\Exception\ValidateException;
 /**
  * class UserAddUseCase
  */
-final class UserAddUseCase
+class UserAddUseCase
 {
     /**
      * @var \App\Domain\Models\User\IUserRepository

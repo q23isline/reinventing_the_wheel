@@ -8,7 +8,7 @@ use App\Domain\Models\User\IUserRepository;
 /**
  * class UserListUseCase
  */
-final class UserListUseCase
+class UserListUseCase
 {
     /**
      * @var \App\Domain\Models\User\IUserRepository
