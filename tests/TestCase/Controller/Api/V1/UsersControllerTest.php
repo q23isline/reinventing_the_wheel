@@ -20,6 +20,7 @@ use App\UseCase\Users\UserAddUseCase;
 use App\UseCase\Users\UserData;
 use App\UseCase\Users\UserGetUseCase;
 use App\UseCase\Users\UserListUseCase;
+use App\UseCase\Users\UserUpdateUseCase;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\EventInterface;
 use Cake\Event\EventManager;
@@ -359,6 +360,169 @@ class UsersControllerTest extends TestCase
 
         // Act
         $this->post('/api/v1/users', $requestData);
+
+        // Assert
+        // 400エラーになること
+        $this->assertResponseCode(400);
+        // エラー情報を返却すること
+        $this->assertEquals($expected, (string)$this->_response->getBody());
+    }
+
+    /**
+     * Test edit method
+     *
+     * @return void
+     */
+    public function test_ユーザー編集で編集したユーザーをレスポンスすること(): void
+    {
+        // Arrange
+        $id = '00676011-5447-4eb1-bde1-001880663af3';
+        $requestData = [
+            'loginId' => 'test1018',
+            'password' => 'password',
+            'roleName' => 'viewer',
+            'firstName' => '斉藤',
+            'lastName' => '太郎',
+            'firstNameKana' => 'サイトウ',
+            'lastNameKana' => 'タロウ',
+            'mailAddress' => 'saito6@example.com',
+            'sex' => '1',
+            'birthDay' => '1990-01-01',
+            'cellPhoneNumber' => '09011111116',
+        ];
+
+        $mockUserUpdateUseCase = $this->createMock(UserUpdateUseCase::class);
+        $mockUserUpdateUseCase->expects($this->once())
+            ->method('handle')
+            ->will($this->returnValue(new UserId($id)));
+
+        $this->overridePrivatePropertyWithMock('userUpdateUseCase', $mockUserUpdateUseCase);
+
+        $expected = ['userId' => $id];
+        $expected = json_encode($expected, JSON_PRETTY_PRINT);
+
+        // Act
+        $this->put("/api/v1/users/${id}", $requestData);
+
+        // Assert
+        // 正常にアクセスできること
+        $this->assertResponseCode(200);
+        // ユーザー情報を返却すること
+        $this->assertEquals($expected, (string)$this->_response->getBody());
+    }
+
+    /**
+     * Test edit method
+     *
+     * @return void
+     */
+    public function test_ユーザー編集でユーザーが存在しないエラーを返すこと(): void
+    {
+        // Arrange
+        $id = '00676011-5447-4eb1-bde1-001880663af3';
+        $requestData = [
+            'loginId' => 'test1018',
+            'password' => 'password',
+            'roleName' => 'viewer',
+            'firstName' => '斉藤',
+            'lastName' => '太郎',
+            'firstNameKana' => 'サイトウ',
+            'lastNameKana' => 'タロウ',
+            'mailAddress' => 'saito6@example.com',
+            'sex' => '1',
+            'birthDay' => '1990-01-01',
+            'cellPhoneNumber' => '09011111116',
+        ];
+
+        $mockUserUpdateUseCase = $this->createMock(UserUpdateUseCase::class);
+        $mockUserUpdateUseCase->expects($this->once())
+            ->method('handle')
+            ->will($this->throwException(new RecordNotFoundException()));
+
+        $this->overridePrivatePropertyWithMock('userUpdateUseCase', $mockUserUpdateUseCase);
+
+        $expected = [
+            'error' => [
+                'message' => 'Not Found',
+                'errors' => [
+                    [
+                        'field' => 'userId',
+                        'reason' => 'ユーザーは存在しません。',
+                    ],
+                ],
+            ],
+        ];
+
+        $expected = json_encode($expected, JSON_PRETTY_PRINT);
+
+        // Act
+        $this->put("/api/v1/users/${id}", $requestData);
+
+        // Assert
+        // 404エラーになること
+        $this->assertResponseCode(404);
+        // エラー情報を返却すること
+        $this->assertEquals($expected, (string)$this->_response->getBody());
+    }
+
+    /**
+     * Test edit method
+     *
+     * @return void
+     */
+    public function test_ユーザー編集でバリデーションエラーをレスポンスすること(): void
+    {
+        // Arrange
+        $id = '00676011-5447-4eb1-bde1-001880663af3';
+        $requestData = [];
+        $expected = [
+            'error' => [
+                'message' => 'Bad Request',
+                'errors' => [
+                    [
+                        'field' => 'loginId',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'password',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'roleName',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'firstName',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'lastName',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'firstNameKana',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'lastNameKana',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'mailAddress',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                    [
+                        'field' => 'sex',
+                        'reason' => '必須項目が不足しています。',
+                    ],
+                ],
+            ],
+        ];
+
+        $expected = json_encode($expected, JSON_PRETTY_PRINT);
+
+        // Act
+        $this->put("/api/v1/users/${id}", $requestData);
 
         // Assert
         // 400エラーになること
