@@ -23,16 +23,8 @@
                     <td><?= h($user->username) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Password') ?></th>
-                    <td><?= h($user->password) ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Role') ?></th>
                     <td><?= h($user->role) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($user->id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('LastName') ?></th>
@@ -43,12 +35,28 @@
                     <td><?= h($user->first_name) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($user->created) ?></td>
+                    <th><?= __('LastNameKana') ?></th>
+                    <td><?= h($user->last_name_kana) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($user->modified) ?></td>
+                    <th><?= __('FirstNameKana') ?></th>
+                    <td><?= h($user->first_name_kana) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('MailAddress') ?></th>
+                    <td><?= h($user->mail_address) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Sex') ?></th>
+                    <td><?= h($user->sex) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('BirthDay') ?></th>
+                    <td><?= h($user->birth_day) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('CellPhoneNumber') ?></th>
+                    <td><?= h($user->cell_phone_number) ?></td>
                 </tr>
             </table>
         </div>
