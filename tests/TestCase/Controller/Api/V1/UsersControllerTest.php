@@ -554,7 +554,7 @@ class UsersControllerTest extends TestCase
         // Assert
         // 正常にアクセスできること
         $this->assertResponseCode(200);
-        // ユーザー情報を返却すること
+        // null を返却すること
         $this->assertEquals('null', (string)$this->_response->getBody());
     }
 
