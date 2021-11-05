@@ -543,8 +543,7 @@ class UsersControllerTest extends TestCase
         $id = '00676011-5447-4eb1-bde1-001880663af3';
         $mockUserDeleteUseCase = $this->createMock(UserDeleteUseCase::class);
         $mockUserDeleteUseCase->expects($this->once())
-            ->method('handle')
-            ->will($this->returnValue(new UserId($id)));
+            ->method('handle');
 
         $this->overridePrivatePropertyWithMock('userDeleteUseCase', $mockUserDeleteUseCase);
 
