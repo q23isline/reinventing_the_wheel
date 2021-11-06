@@ -8,15 +8,13 @@ use App\Domain\Shared\Exception\ValidateException;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Test\TestCase\Domain\Models\User\Type\LoginIdTest Test Case
+ * App\Domain\Models\User\Type\LoginId Test Case
  *
- * @uses \App\Test\TestCase\Domain\Models\User\Type\LoginIdTest
+ * @uses \App\Domain\Models\User\Type\LoginId
  */
 class LoginIdTest extends TestCase
 {
     /**
-     * Test handle method
-     *
      * @return void
      */
     public function test_2文字以下の値を渡すと例外が発生すること(): void
@@ -32,8 +30,6 @@ class LoginIdTest extends TestCase
     }
 
     /**
-     * Test handle method
-     *
      * @return void
      */
     public function test_3文字の値を渡すと正しくインスタンスが作成されること(): void
@@ -49,8 +45,6 @@ class LoginIdTest extends TestCase
     }
 
     /**
-     * Test handle method
-     *
      * @return void
      */
     public function test_20文字の値を渡すと正しくインスタンスが作成されること(): void
@@ -66,8 +60,6 @@ class LoginIdTest extends TestCase
     }
 
     /**
-     * Test handle method
-     *
      * @return void
      */
     public function test_21文字以下の値を渡すと例外が発生すること(): void

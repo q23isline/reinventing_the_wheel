@@ -19,15 +19,13 @@ use App\Domain\Models\User\User;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Test\TestCase\Domain\Models\User\UserTest Test Case
+ * App\Domain\Models\User\User Test Case
  *
- * @uses \App\Test\TestCase\Domain\Models\User\UserTest
+ * @uses \App\Domain\Models\User\User
  */
 class UserTest extends TestCase
 {
     /**
-     * Test handle method
-     *
      * @return void
      */
     public function test_ユーザーインスタンスが作成されること(): void
@@ -78,8 +76,6 @@ class UserTest extends TestCase
     }
 
     /**
-     * Test handle method
-     *
      * @return void
      */
     public function test_ユーザーインスタンスが再構成されること(): void
@@ -130,8 +126,6 @@ class UserTest extends TestCase
     }
 
     /**
-     * Test handle method
-     *
      * @return void
      */
     public function test_ユーザーインスタンスが更新されること(): void
@@ -192,80 +186,5 @@ class UserTest extends TestCase
         $this->assertEquals($sex, $user->getSex());
         $this->assertEquals($birthDay, $user->getBirthDay());
         $this->assertEquals($cellPhoneNumber, $user->getCellPhoneNumber());
-    }
-
-    /**
-     * Test handle method
-     *
-     * @return void
-     */
-    public function test_ユーザーインスタンスが自分自身であること(): void
-    {
-        // Arrange
-        $user = User::create(
-            new UserId('01509588-3882-42dd-9ab2-485e8e579a8e'),
-            new LoginId('test'),
-            new Password('p@ssw0rd'),
-            new RoleName('viewer'),
-            new FirstName('test1'),
-            new LastName('test2'),
-            new FirstNameKana('テストイチ'),
-            new LastNameKana('テストニ'),
-            new MailAddress('test@example.com'),
-            new Sex('1'),
-            new BirthDay('1980-01-01'),
-            new CellPhoneNumber('09012345678'),
-        );
-        $userOther = $user;
-
-        // Act
-        $isMyself = $user->isMyself($userOther);
-
-        // Assert
-        $this->assertTrue($isMyself);
-    }
-
-    /**
-     * Test handle method
-     *
-     * @return void
-     */
-    public function test_ユーザーインスタンスが自分自身でないこと(): void
-    {
-        // Arrange
-        $user = User::create(
-            new UserId('01509588-3882-42dd-9ab2-485e8e579a8e'),
-            new LoginId('test'),
-            new Password('p@ssw0rd'),
-            new RoleName('viewer'),
-            new FirstName('test1'),
-            new LastName('test2'),
-            new FirstNameKana('テストイチ'),
-            new LastNameKana('テストニ'),
-            new MailAddress('test@example.com'),
-            new Sex('1'),
-            new BirthDay('1980-01-01'),
-            new CellPhoneNumber('09012345678'),
-        );
-        $userOther = User::create(
-            new UserId('99999999-3882-42dd-9ab2-485e8e579a8e'),
-            new LoginId('test1'),
-            new Password('p@ssw0rd'),
-            new RoleName('viewer'),
-            new FirstName('test1'),
-            new LastName('test2'),
-            new FirstNameKana('テストイチ'),
-            new LastNameKana('テストニ'),
-            new MailAddress('test1@example.com'),
-            new Sex('1'),
-            new BirthDay('1980-01-01'),
-            new CellPhoneNumber('09012345679'),
-        );
-
-        // Act
-        $isMyself = $user->isMyself($userOther);
-
-        // Assert
-        $this->assertFalse($isMyself);
     }
 }

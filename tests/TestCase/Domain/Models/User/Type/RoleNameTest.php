@@ -8,15 +8,13 @@ use App\Domain\Shared\Exception\ValidateException;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Test\TestCase\Domain\Models\User\Type\RoleNameTest Test Case
+ * App\Domain\Models\User\Type\RoleName Test Case
  *
- * @uses \App\Test\TestCase\Domain\Models\User\Type\RoleNameTest
+ * @uses \App\Domain\Models\User\Type\RoleName
  */
 class RoleNameTest extends TestCase
 {
     /**
-     * Test handle method
-     *
      * @return void
      */
     public function test_admin、editor、viewer以外の値を渡すと例外が発生すること(): void
@@ -32,8 +30,6 @@ class RoleNameTest extends TestCase
     }
 
     /**
-     * Test handle method
-     *
      * @return void
      */
     public function test_adminの値を渡すと正しくインスタンスが作成されること(): void
