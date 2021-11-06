@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Test\TestCase\Domain\Models\User\Services;
+namespace App\Test\TestCase\Domain\Services;
 
 use App\Domain\Models\User\Type\BirthDay;
 use App\Domain\Models\User\Type\CellPhoneNumber;
