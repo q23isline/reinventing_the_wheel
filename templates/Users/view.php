@@ -58,6 +58,10 @@
                     <th><?= __('CellPhoneNumber') ?></th>
                     <td><?= h($user->cell_phone_number) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Remarks') ?></th>
+                    <td><?= h($user->remarks) ?></td>
+                </tr>
             </table>
         </div>
     </div>

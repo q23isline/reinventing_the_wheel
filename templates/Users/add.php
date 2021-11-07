@@ -41,6 +41,7 @@
                     ]);
                     echo $this->Form->control('birth_day');
                     echo $this->Form->control('cell_phone_number');
+                    echo $this->Form->control('remarks');
                     ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
