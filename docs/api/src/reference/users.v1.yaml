@@ -48,6 +48,7 @@ paths:
                       sex: '1'
                       birthDay: '1990-01-01'
                       cellPhoneNumber: '09012345678'
+                      remarks: メモ
         '404':
           description: Not Found
           content:
@@ -191,6 +192,10 @@ paths:
                   maxLength: 11
                   example: '09012345678'
                   pattern: '^\d{11}$'
+                remarks:
+                  type: string
+                  example: メモ
+                  description: メモ
               required:
                 - loginId
                 - password
@@ -215,6 +220,7 @@ paths:
                   sex: '0'
                   birthDay: '1990-01-01'
                   cellPhoneNumber: '09012345678'
+                  remarks: メモ
         description: ユーザー情報を更新する
       tags:
         - User
@@ -354,6 +360,10 @@ paths:
                   maxLength: 11
                   example: '09012345678'
                   pattern: '^\d{11}$'
+                remarks:
+                  type: string
+                  example: メモ
+                  description: メモ
               required:
                 - loginId
                 - password
@@ -378,6 +388,7 @@ paths:
                   sex: '0'
                   birthDay: '1990-01-01'
                   cellPhoneNumber: '09012345678'
+                  remarks: メモ
         description: APIに必要なフィールドを設定し、新しいユーザーを作成する
       description: ユーザーを新規作成する
       tags:
@@ -413,6 +424,7 @@ paths:
                         sex: '1'
                         birthDay: '1990-01-01'
                         cellPhoneNumber: '09012345678'
+                        remarks: メモ
       description: ユーザー情報の一覧を返却する
       tags:
         - User
@@ -435,6 +447,7 @@ components:
           sex: '0'
           birthDay: '1990-01-01'
           cellPhoneNumber: '09012345678'
+          remarks: メモ
       properties:
         id:
           type: string
@@ -508,6 +521,10 @@ components:
           maxLength: 11
           pattern: '^\d{11}$'
           example: '09012345678'
+        remarks:
+          type: string
+          example: メモ
+          description: メモ
       required:
         - id
         - loginId
