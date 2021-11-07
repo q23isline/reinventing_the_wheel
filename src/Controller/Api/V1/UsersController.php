@@ -16,6 +16,7 @@ use App\UseCase\Users\UserDeleteUseCase;
 use App\UseCase\Users\UserGetCommand;
 use App\UseCase\Users\UserGetResult;
 use App\UseCase\Users\UserGetUseCase;
+use App\UseCase\Users\UserListCommand;
 use App\UseCase\Users\UserListResult;
 use App\UseCase\Users\UserListUseCase;
 use App\UseCase\Users\UserSavedResult;
@@ -90,7 +91,11 @@ class UsersController extends AppController
      */
     public function index(): void
     {
-        $userData = $this->userListUseCase->handle();
+        $params = $this->request->getQueryParams();
+        $keyword = $params['q'] ?? null;
+        $command = new UserListCommand($keyword);
+
+        $userData = $this->userListUseCase->handle($command);
         $result = new UserListResult($userData);
         $data = $result->format();
 

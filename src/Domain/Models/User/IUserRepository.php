@@ -37,9 +37,10 @@ interface IUserRepository
     /**
      * すべて取得
      *
+     * @param string|null $searchKeyword searchKeyword
      * @return \App\Domain\Models\User\UserCollection
      */
-    public function findAll(): UserCollection;
+    public function findAll(?string $searchKeyword = null): UserCollection;
 
     /**
      * 保存

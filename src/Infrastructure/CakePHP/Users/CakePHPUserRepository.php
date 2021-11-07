@@ -71,10 +71,26 @@ final class CakePHPUserRepository implements IUserRepository
     /**
      * @inheritDoc
      */
-    public function findAll(): UserCollection
+    public function findAll(?string $searchKeyword = null): UserCollection
     {
         $model = TableRegistry::getTableLocator()->get('Users');
-        $records = $model->find()->all()->toArray();
+        $query = $model->find();
+
+        if (!empty($searchKeyword)) {
+            $query = $query->where([
+                'OR' => [
+                    'last_name LIKE :searchKeywordForLike',
+                    'first_name LIKE :searchKeywordForLike',
+                    'last_name_kana LIKE :searchKeywordForLike',
+                    'first_name_kana LIKE :searchKeywordForLike',
+                    'mail_address LIKE :searchKeywordForLike',
+                    'MATCH (remarks) AGAINST (:searchKeywordForFulltext IN BOOLEAN MODE)',
+                ],
+            ])->bind(':searchKeywordForLike', '%' . $searchKeyword . '%', 'string')
+            ->bind(':searchKeywordForFulltext', $searchKeyword, 'string');
+        }
+
+        $records = $query->all()->toArray();
 
         $data = new UserCollection();
         foreach ($records as $record) {

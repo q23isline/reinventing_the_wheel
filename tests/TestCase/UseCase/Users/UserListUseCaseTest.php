@@ -5,6 +5,7 @@ namespace App\Test\TestCase\UseCase\Users;
 
 use App\Infrastructure\InMemory\Users\InMemoryUserRepository;
 use App\UseCase\Users\UserData;
+use App\UseCase\Users\UserListCommand;
 use App\UseCase\Users\UserListUseCase;
 use Cake\TestSuite\TestCase;
 
@@ -34,8 +35,12 @@ class UserListUseCaseTest extends TestCase
         $user2 = (new TestUserFactory())->create(userId: $userId2);
         $userRepository->save($user2);
 
+        // テスト実行を sqlite にしているため、FULLTEXT INDEX のテストができない
+        // 検索条件なしのテストのみを行う
+        $command = new UserListCommand(null);
+
         // Act
-        $actualUserDtos = $userListUseCase->handle();
+        $actualUserDtos = $userListUseCase->handle($command);
 
         // Assert
         // ユーザー一覧が正しく参照できるか

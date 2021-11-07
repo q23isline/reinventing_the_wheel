@@ -59,7 +59,7 @@ class InMemoryUserRepository implements IUserRepository
     /**
      * @inheritDoc
      */
-    public function findAll(): UserCollection
+    public function findAll(?string $searchKeyword = null): UserCollection
     {
         $data = new UserCollection();
         foreach ($this->store as $elem) {
