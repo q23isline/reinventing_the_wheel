@@ -109,7 +109,12 @@ class CreateUsers extends AbstractMigration
         $table->addIndex(['username'], ['unique' => true, 'name' => 'users_IDX1']);
         $table->addIndex(['mail_address'], ['unique' => true, 'name' => 'users_IDX2']);
         $table->addIndex(['cell_phone_number'], ['unique' => true, 'name' => 'users_IDX3']);
-        $table->addIndex(['remarks'], ['type' => 'fulltext', 'name' => 'users_FTIDX1']);
         $table->create();
+
+        if ($table->getAdapter()->getAdapterType() === 'mysql') {
+            // マイグレーションで ngram 設定できないため、SQL 直接実行する
+            // FULLTEXT INDEX は MySQL のみで実行させる（テスト実行時は sqlite のため、エラー防止）
+            $this->execute('ALTER TABLE users ADD FULLTEXT users_FTIDX1 (remarks) WITH PARSER ngram');
+        }
     }
 }
