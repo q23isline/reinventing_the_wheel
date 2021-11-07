@@ -428,6 +428,14 @@ paths:
       description: ユーザー情報の一覧を返却する
       tags:
         - User
+      parameters:
+        - schema:
+            type: string
+            example: メモ
+          in: query
+          name: q
+          description: 検索キーワード
+          allowEmptyValue: true
 components:
   schemas:
     User:
