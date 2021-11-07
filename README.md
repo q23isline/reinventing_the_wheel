@@ -54,18 +54,32 @@ custom styles.
 
 ## はじめにやること
 
-1. `git clone 'https://github.com/q23isline/reinventing_the_wheel.git'`コマンド実行
+1. ソースダウンロード
+
+    ```bash
+    git clone 'https://github.com/q23isline/reinventing_the_wheel.git'
+    ```
+
 2. `config/.env.example`をコピーし、`config/.env`として貼り付ける
     - `SECURITY_SALT`の値は適当に書き換える
 3. `config/app_local.example.php`をコピーし、`config/app_local.php`として貼り付ける
-4. `docker-compose build`コマンド実行
-5. `docker-compose up -d`コマンド実行
-6. `docker exec -it app php composer.phar install`コマンド実行
-7. `docker exec -it app bin/cake migrations migrate`コマンド実行
-   - `exec: \"./bin/cake\": permission denied": unknown`が表示された場合  
-     （windowsのUbuntuディストリビューションとかで）
-       - `chmod -v 744 bin/cake*`コマンド実行
-8. `docker exec -it app bin/cake migrations seed`コマンド実行
+4. アプリ立ち上げ
+
+    ```bash
+    docker-compose build
+    docker-compose up -d
+    docker exec -it app php composer.phar install
+    docker exec -it app bin/cake migrations migrate
+    docker exec -it app bin/cake migrations seed
+    ```
+
+- `exec: \"./bin/cake\": permission denied": unknown`が表示された場合  
+  （windowsのUbuntuディストリビューションとかで）
+  - 権限付与コマンド実行
+
+    ```bash
+    chmod +x bin/cake
+    ```
 
 ## 動作確認
 
@@ -140,7 +154,7 @@ redoc-cli bundle xxxxxx.yaml
 
 ### VS Codeの初期設定
 
-- VS Codeの拡張機能PHP Debugをインストールする
+- [VS Code | Marketplace | PHP Debug](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug)をインストールする
 - VS CodeにXDebug用の構成ファイル（launch.json）を追加する
 
 ```json
