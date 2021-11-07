@@ -151,6 +151,7 @@ class UsersController extends AppController
                 $jsonData['sex'] ?? null,
                 $jsonData['birthDay'] ?? null,
                 $jsonData['cellPhoneNumber'] ?? null,
+                $jsonData['remarks'] ?? null,
             );
 
             $userId = $this->userAddUseCase->handle($command);
@@ -194,6 +195,7 @@ class UsersController extends AppController
                 $jsonData['sex'] ?? null,
                 $jsonData['birthDay'] ?? null,
                 $jsonData['cellPhoneNumber'] ?? null,
+                $jsonData['remarks'] ?? null,
             );
 
             $userId = $this->userUpdateUseCase->handle($command);

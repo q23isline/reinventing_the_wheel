@@ -40,6 +40,7 @@ final class UserGetResult
                 'sex' => $this->userData->getSex(),
                 'birthDay' => $this->userData->getBirthDay(),
                 'cellPhoneNumber' => $this->userData->getCellPhoneNumber(),
+                'remarks' => $this->userData->getRemarks(),
             ],
         ];
     }

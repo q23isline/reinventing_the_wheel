@@ -43,6 +43,7 @@ class UserUpdateUseCaseTest extends TestCase
         $sex = '2';
         $birthDay = '1980-01-02';
         $cellPhoneNumber = '09012345679';
+        $remarks = 'テストメモ';
         $user = (new TestUserFactory())->create(
             userId: $userId,
             loginId: 'test',
@@ -56,6 +57,7 @@ class UserUpdateUseCaseTest extends TestCase
             sex: '1',
             birthDay: '1980-01-01',
             cellPhoneNumber: '09012345678',
+            remarks: 'テストメモ',
         );
         $userRepository->save($user);
         $inputData = new UserUpdateCommand(
@@ -71,6 +73,7 @@ class UserUpdateUseCaseTest extends TestCase
             sex: $sex,
             birthDay: $birthDay,
             cellPhoneNumber: $cellPhoneNumber,
+            remarks: $remarks,
         );
 
         // Act
@@ -92,6 +95,7 @@ class UserUpdateUseCaseTest extends TestCase
         $this->assertEquals($sex, $updatedUser->getSex()->getValue());
         $this->assertEquals($birthDay, $updatedUser->getBirthDay()->getValue());
         $this->assertEquals($cellPhoneNumber, $updatedUser->getCellPhoneNumber()->getValue());
+        $this->assertEquals($remarks, $updatedUser->getRemarks()->getValue());
     }
 
     /**
@@ -119,6 +123,7 @@ class UserUpdateUseCaseTest extends TestCase
             sex: '2',
             birthDay: '1980-01-02',
             cellPhoneNumber: '09012345679',
+            remarks: 'テストメモ',
         );
 
         // Assert
@@ -166,6 +171,7 @@ class UserUpdateUseCaseTest extends TestCase
             sex: '2',
             birthDay: '1980-01-02',
             cellPhoneNumber: '09012345679',
+            remarks: 'テストメモ',
         );
 
         // Assert

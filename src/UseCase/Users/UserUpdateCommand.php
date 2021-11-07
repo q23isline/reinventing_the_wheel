@@ -72,6 +72,11 @@ final class UserUpdateCommand
     private ?string $cellPhoneNumber;
 
     /**
+     * @var string
+     */
+    private ?string $remarks;
+
+    /**
      * constructor
      *
      * @param string $userId userId
@@ -86,6 +91,7 @@ final class UserUpdateCommand
      * @param string|null $sex sex
      * @param string|null $birthDay birthDay
      * @param string|null $cellPhoneNumber cellPhoneNumber
+     * @param string|null $remarks remarks
      */
     public function __construct(
         string $userId,
@@ -99,7 +105,8 @@ final class UserUpdateCommand
         ?string $mailAddress,
         ?string $sex,
         ?string $birthDay,
-        ?string $cellPhoneNumber
+        ?string $cellPhoneNumber,
+        ?string $remarks
     ) {
         $errors = [];
 
@@ -119,6 +126,7 @@ final class UserUpdateCommand
 
         $this->birthDay = $birthDay;
         $this->cellPhoneNumber = $cellPhoneNumber;
+        $this->remarks = $remarks;
         $this->userId = $userId;
     }
 
@@ -240,6 +248,16 @@ final class UserUpdateCommand
     public function getCellPhoneNumber(): ?string
     {
         return $this->cellPhoneNumber;
+    }
+
+    /**
+     * Get the value of remarks
+     *
+     * @return string
+     */
+    public function getRemarks(): ?string
+    {
+        return $this->remarks;
     }
 
     /**

@@ -13,6 +13,7 @@ use App\Domain\Models\User\Type\LastNameKana;
 use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
+use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
@@ -105,6 +106,7 @@ final class CakePHPUserRepository implements IUserRepository
                 'birth_day' => is_null($user->getBirthDay()) ? null : $user->getBirthDay()->getValue(),
                 'cell_phone_number' =>
                     is_null($user->getCellPhoneNumber()) ? null : $user->getCellPhoneNumber()->getValue(),
+                'remarks' => is_null($user->getRemarks()) ? null : $user->getRemarks()->getValue(),
             ],
         ];
 
@@ -138,6 +140,7 @@ final class CakePHPUserRepository implements IUserRepository
                 'birth_day' => is_null($user->getBirthDay()) ? null : $user->getBirthDay()->getValue(),
                 'cell_phone_number' =>
                     is_null($user->getCellPhoneNumber()) ? null : $user->getCellPhoneNumber()->getValue(),
+                'remarks' => is_null($user->getRemarks()) ? null : $user->getRemarks()->getValue(),
             ],
         ];
 
@@ -174,6 +177,11 @@ final class CakePHPUserRepository implements IUserRepository
             $cellPhoneNumber = new CellPhoneNumber($record['cell_phone_number']);
         }
 
+        $remarks = null;
+        if (!empty($record['remarks'])) {
+            $remarks = new Remarks($record['remarks']);
+        }
+
         return User::reconstruct(
             new UserId($record['id']),
             new LoginId($record['username']),
@@ -187,6 +195,7 @@ final class CakePHPUserRepository implements IUserRepository
             new Sex($record['sex']),
             $birthDay,
             $cellPhoneNumber,
+            $remarks,
         );
     }
 }

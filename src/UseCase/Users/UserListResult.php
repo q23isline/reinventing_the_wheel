@@ -41,6 +41,7 @@ final class UserListResult
                 'sex' => $source->getSex(),
                 'birthDay' => $source->getBirthDay(),
                 'cellPhoneNumber' => $source->getCellPhoneNumber(),
+                'remarks' => $source->getRemarks(),
             ];
         }
 

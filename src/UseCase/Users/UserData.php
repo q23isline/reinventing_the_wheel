@@ -66,6 +66,11 @@ final class UserData
     private string $cellPhoneNumber;
 
     /**
+     * @var string
+     */
+    private string $remarks;
+
+    /**
      * constructor
      *
      * @param \App\Domain\Models\User\User $source source
@@ -84,6 +89,7 @@ final class UserData
         $this->birthDay = is_null($source->getBirthDay()) ? '' : $source->getBirthDay()->getValue();
         $this->cellPhoneNumber =
             is_null($source->getCellPhoneNumber()) ? '' : $source->getCellPhoneNumber()->getValue();
+        $this->remarks = is_null($source->getRemarks()) ? '' : $source->getRemarks()->getValue();
     }
 
     /**
@@ -194,5 +200,15 @@ final class UserData
     public function getCellPhoneNumber(): string
     {
         return $this->cellPhoneNumber;
+    }
+
+    /**
+     * Get the value of remarks
+     *
+     * @return string
+     */
+    public function getRemarks(): string
+    {
+        return $this->remarks;
     }
 }

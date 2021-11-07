@@ -13,6 +13,7 @@ use App\Domain\Models\User\Type\LastNameKana;
 use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
+use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
@@ -67,6 +68,11 @@ class UserUpdateUseCase
             $cellPhoneNumber = new CellPhoneNumber($command->getCellPhoneNumber());
         }
 
+        $remarks = null;
+        if (!empty($command->getRemarks())) {
+            $remarks = new Remarks($command->getRemarks());
+        }
+
         $data->update(
             new LoginId($command->getLoginId()),
             new Password($command->getPassword()),
@@ -79,6 +85,7 @@ class UserUpdateUseCase
             new Sex($command->getSex()),
             $birthDay,
             $cellPhoneNumber,
+            $remarks,
         );
 
         if ($this->userService->isExists($data)) {

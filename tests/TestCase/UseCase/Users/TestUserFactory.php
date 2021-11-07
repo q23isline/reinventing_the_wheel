@@ -12,6 +12,7 @@ use App\Domain\Models\User\Type\LastNameKana;
 use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
+use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
@@ -35,6 +36,7 @@ class TestUserFactory
      * @param string $sex sex
      * @param string|null $birthDay birthDay
      * @param string|null $cellPhoneNumber cellPhoneNumber
+     * @param string|null $remarks remarks
      * @return User
      */
     public function create(
@@ -50,6 +52,7 @@ class TestUserFactory
         string $sex = '1',
         ?string $birthDay = null,
         ?string $cellPhoneNumber = null,
+        ?string $remarks = null,
     ): User {
         if (!is_null($birthDay)) {
             $birthDay = new BirthDay($birthDay);
@@ -57,6 +60,10 @@ class TestUserFactory
 
         if (!is_null($cellPhoneNumber)) {
             $cellPhoneNumber = new CellPhoneNumber($cellPhoneNumber);
+        }
+
+        if (!is_null($remarks)) {
+            $remarks = new Remarks($remarks);
         }
 
         return User::reconstruct(
@@ -72,6 +79,7 @@ class TestUserFactory
             new Sex($sex),
             $birthDay,
             $cellPhoneNumber,
+            $remarks,
         );
     }
 }

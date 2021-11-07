@@ -12,6 +12,7 @@ use App\Domain\Models\User\Type\LastNameKana;
 use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
+use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
@@ -43,6 +44,7 @@ class UserTest extends TestCase
         $sex = new Sex('1');
         $birthDay = new BirthDay('1980-01-01');
         $cellPhoneNumber = new CellPhoneNumber('09012345678');
+        $remarks = new Remarks('テストメモ');
 
         // Act
         $user = User::create(
@@ -58,6 +60,7 @@ class UserTest extends TestCase
             $sex,
             $birthDay,
             $cellPhoneNumber,
+            $remarks,
         );
 
         // Assert
@@ -73,6 +76,7 @@ class UserTest extends TestCase
         $this->assertEquals($sex, $user->getSex());
         $this->assertEquals($birthDay, $user->getBirthDay());
         $this->assertEquals($cellPhoneNumber, $user->getCellPhoneNumber());
+        $this->assertEquals($remarks, $user->getRemarks());
     }
 
     /**
@@ -93,6 +97,7 @@ class UserTest extends TestCase
         $sex = new Sex('1');
         $birthDay = new BirthDay('1980-01-01');
         $cellPhoneNumber = new CellPhoneNumber('09012345678');
+        $remarks = new Remarks('テストメモ');
 
         // Act
         $user = User::reconstruct(
@@ -108,6 +113,7 @@ class UserTest extends TestCase
             $sex,
             $birthDay,
             $cellPhoneNumber,
+            $remarks,
         );
 
         // Assert
@@ -123,6 +129,7 @@ class UserTest extends TestCase
         $this->assertEquals($sex, $user->getSex());
         $this->assertEquals($birthDay, $user->getBirthDay());
         $this->assertEquals($cellPhoneNumber, $user->getCellPhoneNumber());
+        $this->assertEquals($remarks, $user->getRemarks());
     }
 
     /**
@@ -143,6 +150,7 @@ class UserTest extends TestCase
         $sex = new Sex('2');
         $birthDay = new BirthDay('1980-01-02');
         $cellPhoneNumber = new CellPhoneNumber('09012345679');
+        $remarks = new Remarks('テストメモ');
         $user = User::create(
             $id,
             new LoginId('test'),
@@ -156,6 +164,7 @@ class UserTest extends TestCase
             new Sex('1'),
             new BirthDay('1980-01-01'),
             new CellPhoneNumber('09012345678'),
+            new Remarks('テストメモ1'),
         );
 
         // Act
@@ -171,6 +180,7 @@ class UserTest extends TestCase
             $sex,
             $birthDay,
             $cellPhoneNumber,
+            $remarks,
         );
 
         // Assert
@@ -186,5 +196,6 @@ class UserTest extends TestCase
         $this->assertEquals($sex, $user->getSex());
         $this->assertEquals($birthDay, $user->getBirthDay());
         $this->assertEquals($cellPhoneNumber, $user->getCellPhoneNumber());
+        $this->assertEquals($remarks, $user->getRemarks());
     }
 }

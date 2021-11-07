@@ -43,6 +43,7 @@ class UserAddUseCaseTest extends TestCase
             sex: '1',
             birthDay: '1980-01-01',
             cellPhoneNumber: '09012345678',
+            remarks: 'テストメモ',
         );
 
         // Act
@@ -82,6 +83,7 @@ class UserAddUseCaseTest extends TestCase
             sex: '1',
             birthDay: '1980-01-01',
             cellPhoneNumber: '09012345678',
+            remarks: 'テストメモ',
         );
 
         // Assert

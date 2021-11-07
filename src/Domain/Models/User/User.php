@@ -12,6 +12,7 @@ use App\Domain\Models\User\Type\LastNameKana;
 use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
+use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
@@ -82,6 +83,11 @@ final class User
     private ?CellPhoneNumber $cellPhoneNumber = null;
 
     /**
+     * @var \App\Domain\Models\User\Type\Remarks|null
+     */
+    private ?Remarks $remarks = null;
+
+    /**
      * constructor
      *
      * @param \App\Domain\Models\User\Type\UserId $id id
@@ -96,6 +102,7 @@ final class User
      * @param \App\Domain\Models\User\Type\Sex $sex sex
      * @param \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
      * @param \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
+     * @param \App\Domain\Models\User\Type\Remarks|null $remarks remarks
      * @return void
      */
     private function __construct(
@@ -110,7 +117,8 @@ final class User
         MailAddress $mailAddress,
         Sex $sex,
         ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber
+        ?CellPhoneNumber $cellPhoneNumber,
+        ?Remarks $remarks
     ) {
         $this->id = $id;
         $this->loginId = $loginId;
@@ -124,6 +132,7 @@ final class User
         $this->sex = $sex;
         $this->birthDay = $birthDay;
         $this->cellPhoneNumber = $cellPhoneNumber;
+        $this->remarks = $remarks;
     }
 
     /**
@@ -142,6 +151,7 @@ final class User
      * @param \App\Domain\Models\User\Type\Sex $sex sex
      * @param \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
      * @param \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
+     * @param \App\Domain\Models\User\Type\Remarks|null $remarks remarks
      * @return self
      */
     public static function create(
@@ -156,7 +166,8 @@ final class User
         MailAddress $mailAddress,
         Sex $sex,
         ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber
+        ?CellPhoneNumber $cellPhoneNumber,
+        ?Remarks $remarks
     ): self {
         return new self(
             $id,
@@ -171,6 +182,7 @@ final class User
             $sex,
             $birthDay,
             $cellPhoneNumber,
+            $remarks,
         );
     }
 
@@ -189,6 +201,7 @@ final class User
      * @param \App\Domain\Models\User\Type\Sex $sex sex
      * @param \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
      * @param \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
+     * @param \App\Domain\Models\User\Type\Remarks|null $remarks remarks
      * @return self
      */
     public static function reconstruct(
@@ -203,7 +216,8 @@ final class User
         MailAddress $mailAddress,
         Sex $sex,
         ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber
+        ?CellPhoneNumber $cellPhoneNumber,
+        ?Remarks $remarks
     ): self {
         return new self(
             $id,
@@ -218,6 +232,7 @@ final class User
             $sex,
             $birthDay,
             $cellPhoneNumber,
+            $remarks,
         );
     }
 
@@ -235,6 +250,7 @@ final class User
      * @param \App\Domain\Models\User\Type\Sex $sex sex
      * @param \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
      * @param \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
+     * @param \App\Domain\Models\User\Type\Remarks|null $remarks remarks
      * @return void
      */
     public function update(
@@ -248,7 +264,8 @@ final class User
         MailAddress $mailAddress,
         Sex $sex,
         ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber
+        ?CellPhoneNumber $cellPhoneNumber,
+        ?Remarks $remarks
     ): void {
         $this->loginId = $loginId;
         $this->password = $password;
@@ -261,6 +278,7 @@ final class User
         $this->sex = $sex;
         $this->birthDay = $birthDay;
         $this->cellPhoneNumber = $cellPhoneNumber;
+        $this->remarks = $remarks;
     }
 
     /**
@@ -397,5 +415,15 @@ final class User
     public function getCellPhoneNumber(): ?CellPhoneNumber
     {
         return $this->cellPhoneNumber;
+    }
+
+    /**
+     * Get the value of remarks
+     *
+     * @return \App\Domain\Models\User\Type\Remarks|null
+     */
+    public function getRemarks(): ?Remarks
+    {
+        return $this->remarks;
     }
 }

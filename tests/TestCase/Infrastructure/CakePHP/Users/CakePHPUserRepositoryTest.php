@@ -12,6 +12,7 @@ use App\Domain\Models\User\Type\LastNameKana;
 use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
+use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
@@ -76,6 +77,7 @@ class CakePHPUserRepositoryTest extends TestCase
             new Sex('1'),
             new BirthDay('2021-10-14'),
             new CellPhoneNumber('09012345678'),
+            new Remarks('管理者メモ'),
         );
 
         // Act
@@ -106,6 +108,7 @@ class CakePHPUserRepositoryTest extends TestCase
             new Sex('1'),
             new BirthDay('2021-10-14'),
             new CellPhoneNumber('09012345678'),
+            new Remarks('管理者メモ'),
         );
 
         // Act
@@ -150,6 +153,7 @@ class CakePHPUserRepositoryTest extends TestCase
                 new Sex('1'),
                 new BirthDay('2021-10-14'),
                 new CellPhoneNumber('09012345678'),
+                new Remarks('管理者メモ'),
             ),
             User::reconstruct(
                 new UserId('99999999-5447-4eb1-bde1-001880663af3'),
@@ -164,6 +168,7 @@ class CakePHPUserRepositoryTest extends TestCase
                 new Sex('1'),
                 new BirthDay('1990-01-01'),
                 new CellPhoneNumber('09011111116'),
+                new Remarks('斉藤メモ'),
             ),
         ]);
 
@@ -194,6 +199,7 @@ class CakePHPUserRepositoryTest extends TestCase
             new Sex('2'),
             new BirthDay('1980-01-02'),
             new CellPhoneNumber('09012345679'),
+            new Remarks('テストメモ'),
         );
 
         // Act
@@ -223,6 +229,7 @@ class CakePHPUserRepositoryTest extends TestCase
             new Sex('2'),
             new BirthDay('1980-01-02'),
             new CellPhoneNumber('09012345679'),
+            new Remarks('テストメモ'),
         );
 
         // Act

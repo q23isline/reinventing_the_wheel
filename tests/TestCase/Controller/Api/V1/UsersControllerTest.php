@@ -12,6 +12,7 @@ use App\Domain\Models\User\Type\LastNameKana;
 use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
+use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
@@ -89,6 +90,7 @@ class UsersControllerTest extends TestCase
                     new Sex('1'),
                     new BirthDay('1990-01-01'),
                     new CellPhoneNumber('09011111116'),
+                    new Remarks('斉藤メモ'),
                 )
             ),
             new UserData(
@@ -103,6 +105,7 @@ class UsersControllerTest extends TestCase
                     new LastNameKana('テスト'),
                     new MailAddress('test80@example.com'),
                     new Sex('0'),
+                    null,
                     null,
                     null,
                 )
@@ -130,6 +133,7 @@ class UsersControllerTest extends TestCase
                     'sex' => '1',
                     'birthDay' => '1990-01-01',
                     'cellPhoneNumber' => '09011111116',
+                    'remarks' => '斉藤メモ',
                 ],
                 [
                     'id' => '01522f07-609a-415c-9f66-023e981a5523',
@@ -143,6 +147,7 @@ class UsersControllerTest extends TestCase
                     'sex' => '0',
                     'birthDay' => '',
                     'cellPhoneNumber' => '',
+                    'remarks' => '',
                 ],
             ],
         ];
@@ -182,6 +187,7 @@ class UsersControllerTest extends TestCase
                 new Sex('1'),
                 new BirthDay('1990-01-01'),
                 new CellPhoneNumber('09011111116'),
+                new Remarks('斉藤メモ'),
             )
         );
 
@@ -205,6 +211,7 @@ class UsersControllerTest extends TestCase
                 'sex' => '1',
                 'birthDay' => '1990-01-01',
                 'cellPhoneNumber' => '09011111116',
+                'remarks' => '斉藤メモ',
             ],
         ];
 
@@ -281,6 +288,7 @@ class UsersControllerTest extends TestCase
             'sex' => '1',
             'birthDay' => '1990-01-01',
             'cellPhoneNumber' => '09011111116',
+            'remarks' => '斉藤メモ',
         ];
 
         $id = '00676011-5447-4eb1-bde1-001880663af3';
@@ -390,6 +398,7 @@ class UsersControllerTest extends TestCase
             'sex' => '1',
             'birthDay' => '1990-01-01',
             'cellPhoneNumber' => '09011111116',
+            'remarks' => '斉藤メモ',
         ];
 
         $mockUserUpdateUseCase = $this->createMock(UserUpdateUseCase::class);
@@ -433,6 +442,7 @@ class UsersControllerTest extends TestCase
             'sex' => '1',
             'birthDay' => '1990-01-01',
             'cellPhoneNumber' => '09011111116',
+            'remarks' => '斉藤メモ',
         ];
 
         $mockUserUpdateUseCase = $this->createMock(UserUpdateUseCase::class);

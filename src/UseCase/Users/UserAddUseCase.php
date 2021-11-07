@@ -13,6 +13,7 @@ use App\Domain\Models\User\Type\LastNameKana;
 use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
+use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
@@ -66,6 +67,11 @@ class UserAddUseCase
             $cellPhoneNumber = new CellPhoneNumber($command->getCellPhoneNumber());
         }
 
+        $remarks = null;
+        if (!empty($command->getRemarks())) {
+            $remarks = new Remarks($command->getRemarks());
+        }
+
         $data = User::create(
             // TODO: 採番処理を UserId ドメインの中でやりたい
             $this->userRepository->assignId(),
@@ -80,6 +86,7 @@ class UserAddUseCase
             new Sex($command->getSex()),
             $birthDay,
             $cellPhoneNumber,
+            $remarks,
         );
 
         if ($this->userService->isExists($data)) {

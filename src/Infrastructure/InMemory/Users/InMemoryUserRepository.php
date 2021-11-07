@@ -118,6 +118,11 @@ class InMemoryUserRepository implements IUserRepository
             $cellPhoneNumber = $user->getCellPhoneNumber();
         }
 
+        $remarks = null;
+        if (!empty($user->getRemarks())) {
+            $remarks = $user->getRemarks();
+        }
+
         return User::reconstruct(
             $user->getId(),
             $user->getLoginId(),
@@ -131,6 +136,7 @@ class InMemoryUserRepository implements IUserRepository
             $user->getSex(),
             $birthDay,
             $cellPhoneNumber,
+            $remarks,
         );
     }
 }

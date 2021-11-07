@@ -12,6 +12,7 @@ use App\Domain\Models\User\Type\LastNameKana;
 use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
+use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
 use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
@@ -44,6 +45,7 @@ class UserServiceTest extends TestCase
             new Sex('1'),
             new BirthDay('1980-01-01'),
             new CellPhoneNumber('09012345678'),
+            new Remarks('テストメモ'),
         );
         $userOther = $user;
 
@@ -73,6 +75,7 @@ class UserServiceTest extends TestCase
             new Sex('1'),
             new BirthDay('1980-01-01'),
             new CellPhoneNumber('09012345678'),
+            new Remarks('テストメモ'),
         );
         $userOther = User::create(
             new UserId('99999999-3882-42dd-9ab2-485e8e579a8e'),
@@ -87,6 +90,7 @@ class UserServiceTest extends TestCase
             new Sex('1'),
             new BirthDay('1980-01-01'),
             new CellPhoneNumber('09012345679'),
+            new Remarks('テストメモ'),
         );
 
         // Act
