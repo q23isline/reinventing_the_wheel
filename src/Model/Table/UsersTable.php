@@ -140,6 +140,10 @@ class UsersTable extends Table
             ->allowEmptyString('cell_phone_number')
             ->add('cell_phone_number', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
+        $validator
+            ->scalar('remarks')
+            ->allowEmptyString('remarks');
+
         return $validator;
     }
 
@@ -154,7 +158,13 @@ class UsersTable extends Table
     {
         $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
         $rules->add($rules->isUnique(['mail_address']), ['errorField' => 'mail_address']);
-        $rules->add($rules->isUnique(['cell_phone_number']), ['errorField' => 'cell_phone_number']);
+        $rules->add(
+            $rules->isUnique(
+                ['cell_phone_number'],
+                ['allowMultipleNulls' => true]
+            ),
+            ['errorField' => 'cell_phone_number']
+        );
 
         return $rules;
     }

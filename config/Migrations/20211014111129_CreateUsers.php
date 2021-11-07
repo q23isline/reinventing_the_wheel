@@ -88,6 +88,11 @@ class CreateUsers extends AbstractMigration
             'null' => true,
             'comment' => '携帯電話番号',
         ]);
+        $table->addColumn('remarks', 'text', [
+            'default' => null,
+            'null' => true,
+            'comment' => 'メモ',
+        ]);
         $table->addColumn('created', 'datetime', [
             'default' => null,
             'null' => false,
@@ -104,6 +109,7 @@ class CreateUsers extends AbstractMigration
         $table->addIndex(['username'], ['unique' => true, 'name' => 'users_IDX1']);
         $table->addIndex(['mail_address'], ['unique' => true, 'name' => 'users_IDX2']);
         $table->addIndex(['cell_phone_number'], ['unique' => true, 'name' => 'users_IDX3']);
+        $table->addIndex(['remarks'], ['type' => 'fulltext', 'name' => 'users_FTIDX1']);
         $table->create();
     }
 }
