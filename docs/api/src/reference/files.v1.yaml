@@ -1,0 +1,91 @@
+swagger: '2.0'
+info:
+  title: files
+  version: '1.0'
+  description: ファイル情報を管理する
+  contact:
+    name: rowpure
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  /files:
+    post:
+      summary: ファイルアップロード
+      operationId: post-files
+      responses:
+        '200':
+          description: 作成後のファイルID
+          schema:
+            type: object
+            properties:
+              fileId:
+                type: string
+                description: ファイルID
+                format: uuid
+                pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+                example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+          examples:
+            example:
+              value:
+                fileId: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error400'
+          examples:
+            example:
+              value:
+                error:
+                  message: Bad Request
+                  errors:
+                    - field: string
+                      reason: string
+      parameters:
+        - in: formData
+          type: file
+          name: file
+          description: ファイル
+          required: true
+      description: ファイルをアップロードする
+      tags:
+        - File
+definitions:
+  Error400:
+    title: Error400
+    type: object
+    description: 400エラー
+    properties:
+      error:
+        type: object
+        properties:
+          message:
+            type: string
+            description: エラーメッセージ
+            example: Bad Request
+          errors:
+            type: array
+            items:
+              type: object
+              properties:
+                field:
+                  type: string
+                  description: エラーの項目名
+                reason:
+                  type: string
+                  description: エラーの理由
+    x-examples:
+      example:
+        error:
+          message: Bad Request
+          errors:
+            - field: string
+              reason: string
+tags:
+  - name: File
+securityDefinitions: {}
+basePath: /api/v1
+host: localhost
