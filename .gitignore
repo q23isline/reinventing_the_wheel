@@ -47,3 +47,7 @@ nbproject/*
 
 # テスト実行時に利用する DB
 tests.sqlite
+
+# ファイル保存時に配置するファイル実態
+/webroot/uploadFiles/Users/*
+!/webroot/uploadFiles/Users/.gitkeep
