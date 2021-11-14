@@ -103,5 +103,7 @@ return static function (RouteBuilder $routes) {
         $builder->connect('/users/{userId}', ['controller' => 'Users', 'action' => 'delete'])->setMethods(['DELETE'])
             ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
             ->setPass(['userId']);
+
+        $builder->connect('/files', ['controller' => 'Files', 'action' => 'upload'])->setMethods(['POST']);
     });
 };
