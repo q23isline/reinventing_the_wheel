@@ -17,7 +17,7 @@
         "cakephp/debug_kit": "^4.5",
         "cakephp/repl": "^0.1",
         "josegonzalez/dotenv": "^3.2",
-        "phpstan/phpstan": "^0.12.99",
+        "phpstan/phpstan": "^1.1.2",
         "phpunit/phpunit": "~8.5.0 || ^9.3"
     },
     "suggest": {
