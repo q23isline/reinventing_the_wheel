@@ -171,16 +171,16 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "3.2.0",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "3da702e619880ade5a50313f9dcf65c968b65363"
+                "reference": "e0ee5fb22f21ee18f85d2fc554a22c3a5d119dea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/3da702e619880ade5a50313f9dcf65c968b65363",
-                "reference": "3da702e619880ade5a50313f9dcf65c968b65363",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/e0ee5fb22f21ee18f85d2fc554a22c3a5d119dea",
+                "reference": "e0ee5fb22f21ee18f85d2fc554a22c3a5d119dea",
                 "shasum": ""
             },
             "require": {
@@ -190,10 +190,10 @@
                 "robmorgan/phinx": "^0.12"
             },
             "require-dev": {
-                "cakephp/bake": "^2.5.0",
+                "cakephp/bake": "^2.6.0",
                 "cakephp/cakephp": "^4.3.0",
-                "cakephp/cakephp-codesniffer": "~4.1",
-                "phpunit/phpunit": "~8.5.0"
+                "cakephp/cakephp-codesniffer": "^4.1",
+                "phpunit/phpunit": "^8.5.0 || ^9.5.0"
             },
             "suggest": {
                 "cakephp/bake": "If you want to generate migrations.",
@@ -227,7 +227,7 @@
                 "issues": "https://github.com/cakephp/migrations/issues",
                 "source": "https://github.com/cakephp/migrations"
             },
-            "time": "2021-10-24T01:49:12+00:00"
+            "time": "2021-10-30T03:48:47+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -732,20 +732,20 @@
         },
         {
             "name": "psr/container",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "2ae37329ee82f91efadc282cc2d527fd6065a5ef"
+                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/2ae37329ee82f91efadc282cc2d527fd6065a5ef",
-                "reference": "2ae37329ee82f91efadc282cc2d527fd6065a5ef",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/c71ecc56dfe541dbd90c5360474fbc405f8d5963",
+                "reference": "c71ecc56dfe541dbd90c5360474fbc405f8d5963",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.0"
+                "php": ">=7.4.0"
             },
             "type": "library",
             "extra": {
@@ -779,9 +779,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/2.0.1"
+                "source": "https://github.com/php-fig/container/tree/2.0.2"
             },
-            "time": "2021-03-24T13:40:57+00:00"
+            "time": "2021-11-05T16:47:00+00:00"
         },
         {
             "name": "psr/http-client",
@@ -2267,16 +2267,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "2.1.10",
+            "version": "2.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "ea5f64d1a15c66942979b804c9fb3686be852ca0"
+                "reference": "6e3c2b122e0ec41a7e885fcaf19fa15e2e0819a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/ea5f64d1a15c66942979b804c9fb3686be852ca0",
-                "reference": "ea5f64d1a15c66942979b804c9fb3686be852ca0",
+                "url": "https://api.github.com/repos/composer/composer/zipball/6e3c2b122e0ec41a7e885fcaf19fa15e2e0819a0",
+                "reference": "6e3c2b122e0ec41a7e885fcaf19fa15e2e0819a0",
                 "shasum": ""
             },
             "require": {
@@ -2345,7 +2345,7 @@
             "support": {
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/composer/issues",
-                "source": "https://github.com/composer/composer/tree/2.1.10"
+                "source": "https://github.com/composer/composer/tree/2.1.12"
             },
             "funding": [
                 {
@@ -2361,7 +2361,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-29T20:34:57+00:00"
+            "time": "2021-11-09T15:02:04+00:00"
         },
         {
             "name": "composer/metadata-minifier",
@@ -3669,23 +3669,23 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.7",
+            "version": "9.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "d4c798ed8d51506800b441f7a13ecb0f76f12218"
+                "reference": "cf04e88a2e3c56fc1a65488afd493325b4c1bc3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/d4c798ed8d51506800b441f7a13ecb0f76f12218",
-                "reference": "d4c798ed8d51506800b441f7a13ecb0f76f12218",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/cf04e88a2e3c56fc1a65488afd493325b4c1bc3e",
+                "reference": "cf04e88a2e3c56fc1a65488afd493325b4c1bc3e",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
                 "ext-xmlwriter": "*",
-                "nikic/php-parser": "^4.12.0",
+                "nikic/php-parser": "^4.13.0",
                 "php": ">=7.3",
                 "phpunit/php-file-iterator": "^3.0.3",
                 "phpunit/php-text-template": "^2.0.2",
@@ -3734,7 +3734,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.7"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.8"
             },
             "funding": [
                 {
@@ -3742,7 +3742,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-17T05:39:03+00:00"
+            "time": "2021-10-30T08:01:38+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -4642,16 +4642,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "d89cc98761b8cb5a1a235a6b703ae50d34080e65"
+                "reference": "65e8b7db476c5dd267e65eea9cab77584d3cfff9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/d89cc98761b8cb5a1a235a6b703ae50d34080e65",
-                "reference": "d89cc98761b8cb5a1a235a6b703ae50d34080e65",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/65e8b7db476c5dd267e65eea9cab77584d3cfff9",
+                "reference": "65e8b7db476c5dd267e65eea9cab77584d3cfff9",
                 "shasum": ""
             },
             "require": {
@@ -4700,14 +4700,14 @@
                 }
             ],
             "description": "Provides the functionality to export PHP variables for visualization",
-            "homepage": "http://www.github.com/sebastianbergmann/exporter",
+            "homepage": "https://www.github.com/sebastianbergmann/exporter",
             "keywords": [
                 "export",
                 "exporter"
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/exporter/issues",
-                "source": "https://github.com/sebastianbergmann/exporter/tree/4.0.3"
+                "source": "https://github.com/sebastianbergmann/exporter/tree/4.0.4"
             },
             "funding": [
                 {
@@ -4715,7 +4715,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-28T05:24:23+00:00"
+            "time": "2021-11-11T14:18:36+00:00"
         },
         {
             "name": "sebastian/global-state",
