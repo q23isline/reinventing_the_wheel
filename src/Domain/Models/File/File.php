@@ -90,6 +90,32 @@ final class File
     }
 
     /**
+     * 再構成
+     *
+     * @param \App\Domain\Models\File\Type\FileId $id id
+     * @param \App\Domain\Models\File\Type\FileName $fileName fileName
+     * @param \App\Domain\Models\File\Type\FileSize $filesize filesize
+     * @param \App\Domain\Models\File\Type\ContentType $contentType contentType
+     * @param \App\Domain\Models\File\Type\FileDirectory $fileDirectory fileDirectory
+     * @return self
+     */
+    public static function reconstruct(
+        FileId $id,
+        FileName $fileName,
+        FileSize $filesize,
+        ContentType $contentType,
+        FileDirectory $fileDirectory
+    ): self {
+        return new self(
+            $id,
+            $fileName,
+            $filesize,
+            $contentType,
+            $fileDirectory,
+        );
+    }
+
+    /**
      * Get the value of id
      *
      * @return \App\Domain\Models\File\Type\FileId
