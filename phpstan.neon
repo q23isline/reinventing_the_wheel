@@ -1,11 +1,11 @@
 parameters:
-    level: 7
+    level: 8
     checkMissingIterableValueType: false
     treatPhpDocTypesAsCertain: false
     bootstrapFiles:
         - config/paths.php
     paths:
         - src
-    excludes_analyse:
+    excludePaths:
         - src/Console/Installer.php
         - src/Controller/PagesController.php

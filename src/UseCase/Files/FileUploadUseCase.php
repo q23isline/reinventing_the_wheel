@@ -54,9 +54,9 @@ class FileUploadUseCase
 
         $data = File::create(
             $fileId,
-            new FileName($fileParam->getClientFilename()),
-            new FileSize($fileParam->getSize()),
-            new ContentType($fileParam->getClientMediaType()),
+            new FileName((string)$fileParam->getClientFilename()),
+            new FileSize((int)$fileParam->getSize()),
+            new ContentType((string)$fileParam->getClientMediaType()),
             new FileDirectory($directory),
         );
 
