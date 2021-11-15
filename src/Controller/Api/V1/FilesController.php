@@ -56,6 +56,7 @@ class FilesController extends AppController
         $jsonData = $this->request->getData();
 
         try {
+            // UploadedFile クラスを利用しない実装をしたかったが、tmp 保存パスが private で取得できないため、このまま進める
             $command = new FileUploadCommand(
                 $jsonData['file'] ?? null,
             );
