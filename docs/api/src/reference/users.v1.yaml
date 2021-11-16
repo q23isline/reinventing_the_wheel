@@ -49,6 +49,7 @@ paths:
                       birthDay: '1990-01-01'
                       cellPhoneNumber: '09012345678'
                       remarks: メモ
+                      profileImage: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
         '404':
           description: Not Found
           content:
@@ -196,6 +197,12 @@ paths:
                   type: string
                   example: メモ
                   description: メモ
+                profileImageFileId:
+                  type: string
+                  format: uuid
+                  description: プロフィール画像のファイルID
+                  example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                  pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
               required:
                 - loginId
                 - password
@@ -221,6 +228,7 @@ paths:
                   birthDay: '1990-01-01'
                   cellPhoneNumber: '09012345678'
                   remarks: メモ
+                  profileImageFileId: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
         description: ユーザー情報を更新する
       tags:
         - User
@@ -364,6 +372,12 @@ paths:
                   type: string
                   example: メモ
                   description: メモ
+                profileImageFileId:
+                  type: string
+                  pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+                  format: uuid
+                  example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                  description: プロフィール画像のファイルID
               required:
                 - loginId
                 - password
@@ -389,6 +403,7 @@ paths:
                   birthDay: '1990-01-01'
                   cellPhoneNumber: '09012345678'
                   remarks: メモ
+                  profileImageFileId: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
         description: APIに必要なフィールドを設定し、新しいユーザーを作成する
       description: ユーザーを新規作成する
       tags:
@@ -425,6 +440,7 @@ paths:
                         birthDay: '1990-01-01'
                         cellPhoneNumber: '09012345678'
                         remarks: メモ
+                        profileImage: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
       description: ユーザー情報の一覧を返却する
       tags:
         - User
@@ -456,6 +472,7 @@ components:
           birthDay: '1990-01-01'
           cellPhoneNumber: '09012345678'
           remarks: メモ
+          profileImage: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
       properties:
         id:
           type: string
@@ -533,6 +550,11 @@ components:
           type: string
           example: メモ
           description: メモ
+        profileImage:
+          type: string
+          format: uri
+          description: プロフィール画像
+          example: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
       required:
         - id
         - loginId
