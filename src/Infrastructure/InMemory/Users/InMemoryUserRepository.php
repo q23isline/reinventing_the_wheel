@@ -13,7 +13,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 /**
  * class InMemoryUserRepository
  */
-class InMemoryUserRepository implements IUserRepository
+final class InMemoryUserRepository implements IUserRepository
 {
     /**
      * @var array<string,\App\Domain\Models\User\User>

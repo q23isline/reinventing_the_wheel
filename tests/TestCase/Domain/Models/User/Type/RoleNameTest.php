@@ -12,7 +12,7 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \App\Domain\Models\User\Type\RoleName
  */
-class RoleNameTest extends TestCase
+final class RoleNameTest extends TestCase
 {
     /**
      * @return void

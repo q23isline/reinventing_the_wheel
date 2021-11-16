@@ -12,7 +12,7 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \App\Domain\Models\User\Type\LoginId
  */
-class LoginIdTest extends TestCase
+final class LoginIdTest extends TestCase
 {
     /**
      * @return void

@@ -17,7 +17,7 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \App\UseCase\Users\UserUpdateUseCase
  */
-class UserUpdateUseCaseTest extends TestCase
+final class UserUpdateUseCaseTest extends TestCase
 {
     /**
      * Test handle method

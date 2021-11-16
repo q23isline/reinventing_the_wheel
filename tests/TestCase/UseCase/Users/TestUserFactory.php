@@ -21,7 +21,7 @@ use App\Domain\Models\User\User;
 /**
  * App\Test\TestCase\UseCase\Users\TestUserFactory
  */
-class TestUserFactory
+final class TestUserFactory
 {
     /**
      * @param string $userId userId

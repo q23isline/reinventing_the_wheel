@@ -10,7 +10,7 @@ use Laminas\Diactoros\UploadedFile;
 /**
  * class InMemoryFileStorageRepository
  */
-class InMemoryFileStorageRepository implements IFileStorageRepository
+final class InMemoryFileStorageRepository implements IFileStorageRepository
 {
     /**
      * @inheritDoc

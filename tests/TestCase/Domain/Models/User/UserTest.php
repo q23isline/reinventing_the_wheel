@@ -24,7 +24,7 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \App\Domain\Models\User\User
  */
-class UserTest extends TestCase
+final class UserTest extends TestCase
 {
     /**
      * @return void

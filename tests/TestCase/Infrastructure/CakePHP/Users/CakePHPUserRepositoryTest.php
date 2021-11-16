@@ -28,7 +28,7 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \App\Infrastructure\CakePHP\Users\CakePHPUserRepository
  */
-class CakePHPUserRepositoryTest extends TestCase
+final class CakePHPUserRepositoryTest extends TestCase
 {
     use IntegrationTestTrait;
 

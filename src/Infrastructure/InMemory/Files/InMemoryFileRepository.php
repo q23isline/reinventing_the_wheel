@@ -10,7 +10,7 @@ use App\Domain\Models\File\Type\FileId;
 /**
  * class InMemoryFileRepository
  */
-class InMemoryFileRepository implements IFileRepository
+final class InMemoryFileRepository implements IFileRepository
 {
     /**
      * @var array<string,\App\Domain\Models\File\File>

@@ -15,7 +15,7 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \App\UseCase\Users\UserDeleteUseCase
  */
-class UserDeleteUseCaseTest extends TestCase
+final class UserDeleteUseCaseTest extends TestCase
 {
     /**
      * Test handle method

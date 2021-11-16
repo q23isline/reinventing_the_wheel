@@ -18,7 +18,7 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \App\Infrastructure\CakePHP\Files\CakePHPFileRepository
  */
-class CakePHPFileRepositoryTest extends TestCase
+final class CakePHPFileRepositoryTest extends TestCase
 {
     use IntegrationTestTrait;
 

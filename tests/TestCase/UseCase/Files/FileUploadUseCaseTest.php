@@ -15,7 +15,7 @@ use Laminas\Diactoros\UploadedFile;
  *
  * @uses \App\UseCase\Files\FileUploadUseCase
  */
-class FileUploadUseCaseTest extends TestCase
+final class FileUploadUseCaseTest extends TestCase
 {
     /**
      * Test handle method

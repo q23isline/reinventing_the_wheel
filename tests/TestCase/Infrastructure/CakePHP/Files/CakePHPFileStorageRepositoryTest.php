@@ -12,7 +12,7 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \App\Infrastructure\CakePHP\Files\CakePHPFileStorageRepository
  */
-class CakePHPFileStorageRepositoryTest extends TestCase
+final class CakePHPFileStorageRepositoryTest extends TestCase
 {
     /**
      * @return void

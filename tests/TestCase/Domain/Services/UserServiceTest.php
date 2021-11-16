@@ -24,7 +24,7 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \App\Domain\Services\UserService
  */
-class UserServiceTest extends TestCase
+final class UserServiceTest extends TestCase
 {
     /**
      * @return void

@@ -16,7 +16,7 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \App\Domain\Models\File\File
  */
-class FileTest extends TestCase
+final class FileTest extends TestCase
 {
     /**
      * @return void
