@@ -49,8 +49,8 @@ class FileUploadUseCase
     {
         $fileParam = $command->getFile();
         $fileId = $this->fileRepository->assignId();
-        $directory = $this->fileStorageRepository->getDirectoryForUser();
-        $this->fileStorageRepository->upload($fileParam, $fileId, $directory);
+        $directory = $this->fileStorageRepository->getDirectoryForUser($fileId);
+        $this->fileStorageRepository->upload($fileParam, $directory);
 
         $data = File::create(
             $fileId,

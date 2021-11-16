@@ -14,17 +14,17 @@ interface IFileStorageRepository
     /**
      * ファイル保存ディレクトリを取得する（ユーザー用）
      *
+     * @param \App\Domain\Models\File\Type\FileId $fileId fileId
      * @return string
      */
-    public function getDirectoryForUser(): string;
+    public function getDirectoryForUser(FileId $fileId): string;
 
     /**
      * ファイルをアップロードする
      *
      * @param \Laminas\Diactoros\UploadedFile $file file
-     * @param \App\Domain\Models\File\Type\FileId $fileId fileId
      * @param string $directory directory
      * @return void
      */
-    public function upload(UploadedFile $file, FileId $fileId, string $directory): void;
+    public function upload(UploadedFile $file, string $directory): void;
 }

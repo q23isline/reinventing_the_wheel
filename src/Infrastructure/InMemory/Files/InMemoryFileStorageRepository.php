@@ -15,15 +15,15 @@ class InMemoryFileStorageRepository implements IFileStorageRepository
     /**
      * @inheritDoc
      */
-    public function getDirectoryForUser(): string
+    public function getDirectoryForUser(FileId $fileId): string
     {
-        return 'path';
+        return "path/{$fileId->getValue()}";
     }
 
     /**
      * @inheritDoc
      */
-    public function upload(UploadedFile $file, FileId $fileId, string $directory): void
+    public function upload(UploadedFile $file, string $directory): void
     {
     }
 }

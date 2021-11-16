@@ -15,17 +15,17 @@ final class CakePHPFileStorageRepository implements IFileStorageRepository
     /**
      * @inheritDoc
      */
-    public function getDirectoryForUser(): string
+    public function getDirectoryForUser(FileId $fileId): string
     {
-        return 'uploadFiles/Users';
+        return "uploadFiles/Users/{$fileId->getValue()}";
     }
 
     /**
      * @inheritDoc
      */
-    public function upload(UploadedFile $file, FileId $fileId, string $directory): void
+    public function upload(UploadedFile $file, string $directory): void
     {
-        $targetDirectory = WWW_ROOT . $directory . '/' . $fileId->getValue();
+        $targetDirectory = WWW_ROOT . $directory;
         $targetPath = $targetDirectory . '/' . $file->getClientFilename();
 
         // Folder API にならって 755 権限
