@@ -5,12 +5,11 @@ namespace App\Domain\Models\User\Type;
 
 /**
  * class BirthDay
+ *
+ * @property string $value value
  */
 final class BirthDay
 {
-    /**
-     * @var string
-     */
     private string $value;
 
     /**

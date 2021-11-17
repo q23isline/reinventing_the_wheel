@@ -5,12 +5,11 @@ namespace App\Domain\Models\File\Type;
 
 /**
  * class ContentType
+ *
+ * @property string $value value
  */
 final class ContentType
 {
-    /**
-     * @var string
-     */
     private string $value;
 
     /**

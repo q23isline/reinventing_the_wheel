@@ -9,13 +9,11 @@ use IteratorAggregate;
 /**
  * class UserCollection
  *
+ * @property array<int,\App\Domain\Models\User\User> $attributes attributes
  * @implements \IteratorAggregate<\App\Domain\Models\User\User>
  */
 final class UserCollection implements IteratorAggregate
 {
-    /**
-     * @var array<int,\App\Domain\Models\User\User>
-     */
     private array $attributes;
 
     /**

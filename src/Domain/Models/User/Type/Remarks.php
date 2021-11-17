@@ -5,12 +5,11 @@ namespace App\Domain\Models\User\Type;
 
 /**
  * class Remarks
+ *
+ * @property string $value value
  */
 final class Remarks
 {
-    /**
-     * @var string
-     */
     private string $value;
 
     /**

@@ -7,12 +7,11 @@ use Exception;
 
 /**
  * class ValidateException
+ *
+ * @property \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
  */
 final class ValidateException extends Exception
 {
-    /**
-     * @var \App\Domain\Shared\Exception\ExceptionItem[]
-     */
     protected array $errors;
 
     /**

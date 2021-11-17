@@ -5,11 +5,13 @@ namespace App\UseCase\Users;
 
 use App\Domain\Models\User\Type\UserId;
 
+/**
+ * class UserSavedResult
+ *
+ * @property \App\Domain\Models\User\Type\UserId $userId userId
+ */
 final class UserSavedResult
 {
-    /**
-     * @var \App\Domain\Models\User\Type\UserId
-     */
     private UserId $userId;
 
     /**

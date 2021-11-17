@@ -7,67 +7,33 @@ use App\Domain\Models\User\User;
 
 /**
  * class UserData
+ *
+ * @property string $id id
+ * @property string $loginId loginId
+ * @property string $roleName roleName
+ * @property string $firstName firstName
+ * @property string $lastName lastName
+ * @property string $firstNameKana firstNameKana
+ * @property string $lastNameKana lastNameKana
+ * @property string $mailAddress mailAddress
+ * @property string $sex sex
+ * @property string $birthDay birthDay
+ * @property string $cellPhoneNumber cellPhoneNumber
+ * @property string $remarks remarks
  */
 final class UserData
 {
-    /**
-     * @var string
-     */
     private string $id;
-
-    /**
-     * @var string
-     */
     private string $loginId;
-
-    /**
-     * @var string
-     */
     private string $roleName;
-
-    /**
-     * @var string
-     */
     private string $firstName;
-
-    /**
-     * @var string
-     */
     private string $lastName;
-
-    /**
-     * @var string
-     */
     private string $firstNameKana;
-
-    /**
-     * @var string
-     */
     private string $lastNameKana;
-
-    /**
-     * @var string
-     */
     private string $mailAddress;
-
-    /**
-     * @var string
-     */
     private string $sex;
-
-    /**
-     * @var string
-     */
     private string $birthDay;
-
-    /**
-     * @var string
-     */
     private string $cellPhoneNumber;
-
-    /**
-     * @var string
-     */
     private string $remarks;
 
     /**

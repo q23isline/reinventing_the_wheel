@@ -7,12 +7,11 @@ use Exception;
 
 /**
  * class NotFoundException
+ *
+ * @property \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
  */
 final class NotFoundException extends Exception
 {
-    /**
-     * @var \App\Domain\Shared\Exception\ExceptionItem[]
-     */
     protected array $errors;
 
     /**

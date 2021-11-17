@@ -5,12 +5,11 @@ namespace App\Domain\Models\File\Type;
 
 /**
  * class FileSize
+ *
+ * @property int $value value
  */
 final class FileSize
 {
-    /**
-     * @var int
-     */
     private int $value;
 
     /**

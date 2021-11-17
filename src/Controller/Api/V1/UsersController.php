@@ -26,42 +26,23 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Users Controller
+ *
+ * @property \App\Infrastructure\CakePHP\Users\CakePHPUserRepository $userRepository userRepository
+ * @property \App\UseCase\Users\UserListUseCase $userListUseCase userListUseCase
+ * @property \App\Domain\Services\UserService $userService userService
+ * @property \App\UseCase\Users\UserAddUseCase $userAddUseCase userAddUseCase
+ * @property \App\UseCase\Users\UserGetUseCase $userGetUseCase userGetUseCase
+ * @property \App\UseCase\Users\UserUpdateUseCase $userUpdateUseCase userUpdateUseCase
+ * @property \App\UseCase\Users\UserDeleteUseCase $userDeleteUseCase userDeleteUseCase
  */
 class UsersController extends AppController
 {
-    /**
-     * @var \App\Infrastructure\CakePHP\Users\CakePHPUserRepository
-     */
     private CakePHPUserRepository $userRepository;
-
-    /**
-     * @var \App\UseCase\Users\UserListUseCase
-     */
     private UserListUseCase $userListUseCase;
-
-    /**
-     * @var \App\Domain\Services\UserService
-     */
     private UserService $userService;
-
-    /**
-     * @var \App\UseCase\Users\UserAddUseCase
-     */
     private UserAddUseCase $userAddUseCase;
-
-    /**
-     * @var \App\UseCase\Users\UserGetUseCase
-     */
     private UserGetUseCase $userGetUseCase;
-
-    /**
-     * @var \App\UseCase\Users\UserUpdateUseCase
-     */
     private UserUpdateUseCase $userUpdateUseCase;
-
-    /**
-     * @var \App\UseCase\Users\UserDeleteUseCase
-     */
     private UserDeleteUseCase $userDeleteUseCase;
 
     /**

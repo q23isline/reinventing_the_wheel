@@ -5,12 +5,11 @@ namespace App\UseCase\Users;
 
 /**
  * class UserGetCommand
+ *
+ * @property string $userId userId
  */
 final class UserGetCommand
 {
-    /**
-     * @var string
-     */
     private string $userId;
 
     /**

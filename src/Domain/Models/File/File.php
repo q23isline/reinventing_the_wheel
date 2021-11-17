@@ -11,32 +11,19 @@ use App\Domain\Models\File\Type\FileSize;
 
 /**
  * class File
+ *
+ * @property \App\Domain\Models\File\Type\FileId $id id
+ * @property \App\Domain\Models\File\Type\FileName $fileName fileName
+ * @property \App\Domain\Models\File\Type\FileSize $filesize filesize
+ * @property \App\Domain\Models\File\Type\ContentType $contentType contentType
+ * @property \App\Domain\Models\File\Type\FileDirectory $fileDirectory fileDirectory
  */
 final class File
 {
-    /**
-     * @var \App\Domain\Models\File\Type\FileId
-     */
     private FileId $id;
-
-    /**
-     * @var \App\Domain\Models\File\Type\FileName
-     */
     private FileName $fileName;
-
-    /**
-     * @var \App\Domain\Models\File\Type\FileSize
-     */
     private FileSize $filesize;
-
-    /**
-     * @var \App\Domain\Models\File\Type\ContentType
-     */
     private ContentType $contentType;
-
-    /**
-     * @var \App\Domain\Models\File\Type\FileDirectory
-     */
     private FileDirectory $fileDirectory;
 
     /**

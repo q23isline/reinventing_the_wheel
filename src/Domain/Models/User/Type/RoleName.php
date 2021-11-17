@@ -8,6 +8,8 @@ use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class RoleName
+ *
+ * @property string $value value
  */
 final class RoleName
 {
@@ -17,9 +19,6 @@ final class RoleName
         'viewer',
     ];
 
-    /**
-     * @var string
-     */
     private string $value;
 
     /**

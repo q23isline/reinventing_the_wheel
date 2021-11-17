@@ -3,11 +3,13 @@ declare(strict_types=1);
 
 namespace App\UseCase\Users;
 
+/**
+ * class UserListResult
+ *
+ * @property \App\UseCase\Users\UserData[] $userData userData
+ */
 final class UserListResult
 {
-    /**
-     * @var \App\UseCase\Users\UserData[]
-     */
     private array $userData;
 
     /**

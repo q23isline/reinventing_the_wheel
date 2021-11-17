@@ -3,11 +3,13 @@ declare(strict_types=1);
 
 namespace App\UseCase\Users;
 
+/**
+ * class UserGetResult
+ *
+ * @property \App\UseCase\Users\UserData $userData userData
+ */
 final class UserGetResult
 {
-    /**
-     * @var \App\UseCase\Users\UserData
-     */
     private UserData $userData;
 
     /**

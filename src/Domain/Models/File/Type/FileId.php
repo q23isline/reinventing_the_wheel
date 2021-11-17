@@ -5,12 +5,11 @@ namespace App\Domain\Models\File\Type;
 
 /**
  * class FileId
+ *
+ * @property string $value value
  */
 final class FileId
 {
-    /**
-     * @var string
-     */
     private string $value;
 
     /**

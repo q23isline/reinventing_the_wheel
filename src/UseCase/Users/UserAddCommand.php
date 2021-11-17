@@ -8,67 +8,33 @@ use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class UserAddCommand
+ *
+ * @property string $loginId loginId
+ * @property string $password password
+ * @property string $roleName roleName
+ * @property string $firstName firstName
+ * @property string $lastName lastName
+ * @property string $firstNameKana firstNameKana
+ * @property string $lastNameKana lastNameKana
+ * @property string $mailAddress mailAddress
+ * @property string $sex sex
+ * @property string|null $birthDay birthDay
+ * @property string|null $cellPhoneNumber cellPhoneNumber
+ * @property string|null $remarks remarks
  */
 final class UserAddCommand
 {
-    /**
-     * @var string
-     */
     private string $loginId;
-
-    /**
-     * @var string
-     */
     private string $password;
-
-    /**
-     * @var string
-     */
     private string $roleName;
-
-    /**
-     * @var string
-     */
     private string $firstName;
-
-    /**
-     * @var string
-     */
     private string $lastName;
-
-    /**
-     * @var string
-     */
     private string $firstNameKana;
-
-    /**
-     * @var string
-     */
     private string $lastNameKana;
-
-    /**
-     * @var string
-     */
     private string $mailAddress;
-
-    /**
-     * @var string
-     */
     private string $sex;
-
-    /**
-     * @var string
-     */
     private ?string $birthDay;
-
-    /**
-     * @var string
-     */
     private ?string $cellPhoneNumber;
-
-    /**
-     * @var string
-     */
     private ?string $remarks;
 
     /**

@@ -9,12 +9,11 @@ use Laminas\Diactoros\UploadedFile;
 
 /**
  * class FileUploadCommand
+ *
+ * @property \Laminas\Diactoros\UploadedFile $file file
  */
 final class FileUploadCommand
 {
-    /**
-     * @var \Laminas\Diactoros\UploadedFile
-     */
     private UploadedFile $file;
 
     /**

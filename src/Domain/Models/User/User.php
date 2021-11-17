@@ -19,72 +19,35 @@ use App\Domain\Models\User\Type\UserId;
 
 /**
  * class User
+ *
+ * @property \App\Domain\Models\User\Type\UserId $id id
+ * @property \App\Domain\Models\User\Type\LoginId $loginId loginId
+ * @property \App\Domain\Models\User\Type\Password $password password
+ * @property \App\Domain\Models\User\Type\RoleName $roleName roleName
+ * @property \App\Domain\Models\User\Type\FirstName $firstName firstName
+ * @property \App\Domain\Models\User\Type\LastName $lastName lastName
+ * @property \App\Domain\Models\User\Type\FirstNameKana $firstNameKana firstNameKana
+ * @property \App\Domain\Models\User\Type\LastNameKana $lastNameKana lastNameKana
+ * @property \App\Domain\Models\User\Type\MailAddress $mailAddress mailAddress
+ * @property \App\Domain\Models\User\Type\Sex $sex sex
+ * @property \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
+ * @property \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
+ * @property \App\Domain\Models\User\Type\Remarks|null $remarks remarks
  */
 final class User
 {
-    /**
-     * @var \App\Domain\Models\User\Type\UserId
-     */
     private UserId $id;
-
-    /**
-     * @var \App\Domain\Models\User\Type\LoginId
-     */
     private LoginId $loginId;
-
-    /**
-     * @var \App\Domain\Models\User\Type\Password
-     */
     private Password $password;
-
-    /**
-     * @var \App\Domain\Models\User\Type\RoleName
-     */
     private RoleName $roleName;
-
-    /**
-     * @var \App\Domain\Models\User\Type\FirstName
-     */
     private FirstName $firstName;
-
-    /**
-     * @var \App\Domain\Models\User\Type\LastName
-     */
     private LastName $lastName;
-
-    /**
-     * @var \App\Domain\Models\User\Type\FirstNameKana
-     */
     private FirstNameKana $firstNameKana;
-
-    /**
-     * @var \App\Domain\Models\User\Type\LastNameKana
-     */
     private LastNameKana $lastNameKana;
-
-    /**
-     * @var \App\Domain\Models\User\Type\MailAddress
-     */
     private MailAddress $mailAddress;
-
-    /**
-     * @var \App\Domain\Models\User\Type\Sex
-     */
     private Sex $sex;
-
-    /**
-     * @var \App\Domain\Models\User\Type\BirthDay|null
-     */
     private ?BirthDay $birthDay = null;
-
-    /**
-     * @var \App\Domain\Models\User\Type\CellPhoneNumber|null
-     */
     private ?CellPhoneNumber $cellPhoneNumber = null;
-
-    /**
-     * @var \App\Domain\Models\User\Type\Remarks|null
-     */
     private ?Remarks $remarks = null;
 
     /**

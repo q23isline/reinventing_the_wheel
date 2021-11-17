@@ -5,12 +5,11 @@ namespace App\Domain\Models\User\Type;
 
 /**
  * class UserId
+ *
+ * @property string $value value
  */
 final class UserId
 {
-    /**
-     * @var string
-     */
     private string $value;
 
     /**

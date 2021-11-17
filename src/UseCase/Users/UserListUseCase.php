@@ -7,12 +7,11 @@ use App\Domain\Models\User\IUserRepository;
 
 /**
  * class UserListUseCase
+ *
+ * @property \App\Domain\Models\User\IUserRepository $userRepository userRepository
  */
 class UserListUseCase
 {
-    /**
-     * @var \App\Domain\Models\User\IUserRepository
-     */
     private IUserRepository $userRepository;
 
     /**

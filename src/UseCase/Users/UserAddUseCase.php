@@ -24,17 +24,13 @@ use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class UserAddUseCase
+ *
+ * @property \App\Domain\Models\User\IUserRepository $userRepository userRepository
+ * @property \App\Domain\Services\UserService $userService userService
  */
 class UserAddUseCase
 {
-    /**
-     * @var \App\Domain\Models\User\IUserRepository
-     */
     private IUserRepository $userRepository;
-
-    /**
-     * @var \App\Domain\Services\UserService
-     */
     private UserService $userService;
 
     /**

@@ -5,17 +5,13 @@ namespace App\Domain\Shared\Exception;
 
 /**
  * class ExceptionItem
+ *
+ * @property string $field field
+ * @property string $reason reason
  */
 final class ExceptionItem
 {
-    /**
-     * @var string
-     */
     private string $field;
-
-    /**
-     * @var string
-     */
     private string $reason;
 
     /**

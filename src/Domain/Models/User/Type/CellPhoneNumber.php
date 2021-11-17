@@ -5,12 +5,11 @@ namespace App\Domain\Models\User\Type;
 
 /**
  * class CellPhoneNumber
+ *
+ * @property string $value value
  */
 final class CellPhoneNumber
 {
-    /**
-     * @var string
-     */
     private string $value;
 
     /**

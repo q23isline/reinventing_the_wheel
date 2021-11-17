@@ -9,13 +9,12 @@ use App\Domain\Models\File\Type\FileId;
 
 /**
  * class InMemoryFileRepository
+ *
+ * @property array<string,\App\Domain\Models\File\File> $store store
  */
 final class InMemoryFileRepository implements IFileRepository
 {
-    /**
-     * @var array<string,\App\Domain\Models\File\File>
-     */
-    public $store = [];
+    public array $store = [];
 
     /**
      * @inheritDoc

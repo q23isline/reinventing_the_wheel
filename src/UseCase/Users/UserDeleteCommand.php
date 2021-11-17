@@ -5,12 +5,11 @@ namespace App\UseCase\Users;
 
 /**
  * class UserDeleteCommand
+ *
+ * @property string $userId userId
  */
 final class UserDeleteCommand
 {
-    /**
-     * @var string
-     */
     private string $userId;
 
     /**

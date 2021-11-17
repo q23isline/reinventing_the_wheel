@@ -5,12 +5,11 @@ namespace App\Domain\Models\User\Type;
 
 /**
  * class FirstNameKana
+ *
+ * @property string $value value
  */
 final class FirstNameKana
 {
-    /**
-     * @var string
-     */
     private string $value;
 
     /**

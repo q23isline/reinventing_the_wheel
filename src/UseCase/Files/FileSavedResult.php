@@ -5,11 +5,13 @@ namespace App\UseCase\Files;
 
 use App\Domain\Models\File\Type\FileId;
 
+/**
+ * class FileSavedResult
+ *
+ *  @property \App\Domain\Models\File\Type\FileId $fileId fileId
+ */
 final class FileSavedResult
 {
-    /**
-     * @var \App\Domain\Models\File\Type\FileId
-     */
     private FileId $fileId;
 
     /**

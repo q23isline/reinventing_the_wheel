@@ -5,12 +5,11 @@ namespace App\UseCase\Users;
 
 /**
  * class UserListCommand
+ *
+ * @property string|null $keyword keyword
  */
 final class UserListCommand
 {
-    /**
-     * @var string|null
-     */
     private ?string $keyword;
 
     /**

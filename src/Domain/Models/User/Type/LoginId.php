@@ -8,15 +8,14 @@ use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class LoginId
+ *
+ * @property string $value value
  */
 final class LoginId
 {
     private const MIN_LENGTH = 3;
     private const MAX_LENGTH = 20;
 
-    /**
-     * @var string
-     */
     private string $value;
 
     /**

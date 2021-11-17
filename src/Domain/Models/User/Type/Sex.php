@@ -5,12 +5,11 @@ namespace App\Domain\Models\User\Type;
 
 /**
  * class Sex
+ *
+ * @property string $value value
  */
 final class Sex
 {
-    /**
-     * @var string
-     */
     private string $value;
 
     /**

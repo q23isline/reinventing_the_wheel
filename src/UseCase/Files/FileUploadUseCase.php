@@ -14,17 +14,13 @@ use App\Domain\Models\File\Type\FileSize;
 
 /**
  * class FileUploadUseCase
+ *
+ * @property \App\Domain\Models\File\IFileRepository $fileRepository fileRepository
+ * @property \App\Domain\Models\File\IFileStorageRepository $fileStorageRepository fileStorageRepository
  */
 class FileUploadUseCase
 {
-    /**
-     * @var \App\Domain\Models\File\IFileRepository
-     */
     private IFileRepository $fileRepository;
-
-    /**
-     * @var \App\Domain\Models\File\IFileStorageRepository
-     */
     private IFileStorageRepository $fileStorageRepository;
 
     /**
