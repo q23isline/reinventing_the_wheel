@@ -9,18 +9,18 @@ use App\Domain\Shared\Exception\ValidateException;
 /**
  * class UserAddCommand
  *
- * @property string $loginId loginId
- * @property string $password password
- * @property string $roleName roleName
- * @property string $firstName firstName
- * @property string $lastName lastName
- * @property string $firstNameKana firstNameKana
- * @property string $lastNameKana lastNameKana
- * @property string $mailAddress mailAddress
- * @property string $sex sex
- * @property string|null $birthDay birthDay
- * @property string|null $cellPhoneNumber cellPhoneNumber
- * @property string|null $remarks remarks
+ * @property-read string $loginId loginId
+ * @property-read string $password password
+ * @property-read string $roleName roleName
+ * @property-read string $firstName firstName
+ * @property-read string $lastName lastName
+ * @property-read string $firstNameKana firstNameKana
+ * @property-read string $lastNameKana lastNameKana
+ * @property-read string $mailAddress mailAddress
+ * @property-read string $sex sex
+ * @property-read string|null $birthDay birthDay
+ * @property-read string|null $cellPhoneNumber cellPhoneNumber
+ * @property-read string|null $remarks remarks
  */
 final class UserAddCommand
 {

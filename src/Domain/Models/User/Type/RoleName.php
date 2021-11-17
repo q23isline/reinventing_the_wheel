@@ -9,7 +9,7 @@ use App\Domain\Shared\Exception\ValidateException;
 /**
  * class RoleName
  *
- * @property string $value value
+ * @property-read string $value value
  */
 final class RoleName
 {

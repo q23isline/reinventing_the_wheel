@@ -9,7 +9,7 @@ use IteratorAggregate;
 /**
  * class UserCollection
  *
- * @property \App\Domain\Models\User\User[] $attributes attributes
+ * @property-read \App\Domain\Models\User\User[] $attributes attributes
  * @implements \IteratorAggregate<\App\Domain\Models\User\User>
  */
 final class UserCollection implements IteratorAggregate

@@ -8,18 +8,18 @@ use App\Domain\Models\User\User;
 /**
  * class UserData
  *
- * @property string $id id
- * @property string $loginId loginId
- * @property string $roleName roleName
- * @property string $firstName firstName
- * @property string $lastName lastName
- * @property string $firstNameKana firstNameKana
- * @property string $lastNameKana lastNameKana
- * @property string $mailAddress mailAddress
- * @property string $sex sex
- * @property string $birthDay birthDay
- * @property string $cellPhoneNumber cellPhoneNumber
- * @property string $remarks remarks
+ * @property-read string $id id
+ * @property-read string $loginId loginId
+ * @property-read string $roleName roleName
+ * @property-read string $firstName firstName
+ * @property-read string $lastName lastName
+ * @property-read string $firstNameKana firstNameKana
+ * @property-read string $lastNameKana lastNameKana
+ * @property-read string $mailAddress mailAddress
+ * @property-read string $sex sex
+ * @property-read string $birthDay birthDay
+ * @property-read string $cellPhoneNumber cellPhoneNumber
+ * @property-read string $remarks remarks
  */
 final class UserData
 {

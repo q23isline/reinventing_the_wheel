@@ -10,7 +10,7 @@ use Laminas\Diactoros\UploadedFile;
 /**
  * class FileUploadCommand
  *
- * @property \Laminas\Diactoros\UploadedFile $file file
+ * @property-read \Laminas\Diactoros\UploadedFile $file file
  */
 final class FileUploadCommand
 {

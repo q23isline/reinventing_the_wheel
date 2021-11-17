@@ -6,7 +6,7 @@ namespace App\Domain\Models\File\Type;
 /**
  * class FileSize
  *
- * @property int $value value
+ * @property-read int $value value
  */
 final class FileSize
 {

@@ -9,7 +9,7 @@ use App\Domain\Models\User\Type\UserId;
 /**
  * class UserGetUseCase
  *
- * @property \App\Domain\Models\User\IUserRepository $userRepository userRepository
+ * @property-read \App\Domain\Models\User\IUserRepository $userRepository userRepository
  */
 class UserGetUseCase
 {

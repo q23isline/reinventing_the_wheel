@@ -14,9 +14,9 @@ use App\UseCase\Files\FileUploadUseCase;
 /**
  * Files Controller
  *
- * @property \App\Infrastructure\CakePHP\Files\CakePHPFileRepository $fileRepository fileRepository
- * @property \App\Infrastructure\CakePHP\Files\CakePHPFileStorageRepository $fileStorageRepository fileStorageRepository
- * @property \App\UseCase\Files\FileUploadUseCase $fileUploadUseCase fileUploadUseCase
+ * @property-read \App\Infrastructure\CakePHP\Files\CakePHPFileRepository $fileRepository fileRepository
+ * @property-read \App\Infrastructure\CakePHP\Files\CakePHPFileStorageRepository $fileStorageRepository fileStorageRepository
+ * @property-read \App\UseCase\Files\FileUploadUseCase $fileUploadUseCase fileUploadUseCase
  */
 class FilesController extends AppController
 {

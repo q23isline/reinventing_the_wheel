@@ -6,7 +6,7 @@ namespace App\Domain\Models\File\Type;
 /**
  * class FileName
  *
- * @property string $value value
+ * @property-read string $value value
  */
 final class FileName
 {

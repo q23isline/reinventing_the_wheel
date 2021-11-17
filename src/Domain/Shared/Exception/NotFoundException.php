@@ -8,7 +8,7 @@ use Exception;
 /**
  * class NotFoundException
  *
- * @property \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
+ * @property-read \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
  */
 final class NotFoundException extends Exception
 {

@@ -6,7 +6,7 @@ namespace App\Domain\Models\User\Type;
 /**
  * class LastNameKana
  *
- * @property string $value value
+ * @property-read string $value value
  */
 final class LastNameKana
 {

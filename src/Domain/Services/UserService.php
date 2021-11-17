@@ -9,7 +9,7 @@ use App\Domain\Models\User\User;
 /**
  * class UserService
  *
- * @property \App\Domain\Models\User\IUserRepository $userRepository userRepository
+ * @property-read \App\Domain\Models\User\IUserRepository $userRepository userRepository
  */
 final class UserService
 {

@@ -6,7 +6,7 @@ namespace App\Domain\Models\User\Type;
 /**
  * class MailAddress
  *
- * @property string $value value
+ * @property-read string $value value
  */
 final class MailAddress
 {
