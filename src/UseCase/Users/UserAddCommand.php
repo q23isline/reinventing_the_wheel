@@ -52,6 +52,7 @@ final class UserAddCommand
      * @param string|null $birthDay birthDay
      * @param string|null $cellPhoneNumber cellPhoneNumber
      * @param string|null $remarks remarks
+     * @throws \App\Domain\Shared\Exception\ValidateException
      */
     public function __construct(
         ?string $loginId,

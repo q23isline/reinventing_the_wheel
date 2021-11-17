@@ -49,6 +49,7 @@ class UserUpdateUseCase
      *
      * @param \App\UseCase\Users\UserUpdateCommand $command command
      * @return \App\Domain\Models\User\Type\UserId
+     * @throws \App\Domain\Shared\Exception\ValidateException
      */
     public function handle(UserUpdateCommand $command): UserId
     {

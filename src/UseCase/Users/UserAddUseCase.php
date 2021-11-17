@@ -50,6 +50,7 @@ class UserAddUseCase
      *
      * @param \App\UseCase\Users\UserAddCommand $command command
      * @return \App\Domain\Models\User\Type\UserId
+     * @throws \App\Domain\Shared\Exception\ValidateException
      */
     public function handle(UserAddCommand $command): UserId
     {

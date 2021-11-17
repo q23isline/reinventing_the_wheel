@@ -25,6 +25,7 @@ final class RoleName
      * constructor
      *
      * @param string $value value
+     * @throws \App\Domain\Shared\Exception\ValidateException
      */
     public function __construct(string $value)
     {

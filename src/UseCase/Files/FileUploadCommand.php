@@ -20,6 +20,7 @@ final class FileUploadCommand
      * constructor
      *
      * @param \Laminas\Diactoros\UploadedFile|null $file file
+     * @throws \App\Domain\Shared\Exception\ValidateException
      */
     public function __construct(
         ?UploadedFile $file
