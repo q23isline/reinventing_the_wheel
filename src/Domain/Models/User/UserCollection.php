@@ -9,7 +9,7 @@ use IteratorAggregate;
 /**
  * class UserCollection
  *
- * @property array<int,\App\Domain\Models\User\User> $attributes attributes
+ * @property \App\Domain\Models\User\User[] $attributes attributes
  * @implements \IteratorAggregate<\App\Domain\Models\User\User>
  */
 final class UserCollection implements IteratorAggregate
@@ -19,7 +19,7 @@ final class UserCollection implements IteratorAggregate
     /**
      * constructor
      *
-     * @param array<int,\App\Domain\Models\User\User> $attributes attributes
+     * @param \App\Domain\Models\User\User[] $attributes attributes
      */
     public function __construct(array $attributes = [])
     {

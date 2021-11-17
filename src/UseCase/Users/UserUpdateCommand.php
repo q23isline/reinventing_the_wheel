@@ -228,7 +228,7 @@ final class UserUpdateCommand
      *
      * @param string $propertyName propertyName
      * @param mixed $value value
-     * @param array<int,\App\Domain\Shared\Exception\ExceptionItem> $errors errors
+     * @param \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
      * @return void
      */
     private function setProperty(string $propertyName, $value, array &$errors): void
