@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Cake\Auth\DefaultPasswordHasher;
+use Cake\Datasource\ConnectionManager;
 use Cake\Utility\Text;
 use Migrations\AbstractSeed;
 
@@ -95,11 +96,17 @@ class UsersSeed extends AbstractSeed
             $data[] = $user;
         }
 
+        // 外部キー制約を一時的に OFF
+        $connection = ConnectionManager::get('default');
+        $connection->execute('SET FOREIGN_KEY_CHECKS = 0');
+
         $table = $this->table('users');
 
         // delete insert
         $table->truncate();
         $table->insert($data)->save();
+
+        $connection->execute('SET FOREIGN_KEY_CHECKS = 1');
     }
 
     /**
