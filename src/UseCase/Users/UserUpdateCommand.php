@@ -8,20 +8,6 @@ use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class UserUpdateCommand
- *
- * @property-read string $userId userId
- * @property-read string $loginId loginId
- * @property-read string $password password
- * @property-read string $roleName roleName
- * @property-read string $firstName firstName
- * @property-read string $lastName lastName
- * @property-read string $firstNameKana firstNameKana
- * @property-read string $lastNameKana lastNameKana
- * @property-read string $mailAddress mailAddress
- * @property-read string $sex sex
- * @property-read string|null $birthDay birthDay
- * @property-read string|null $cellPhoneNumber cellPhoneNumber
- * @property-read string|null $remarks remarks
  */
 final class UserUpdateCommand
 {

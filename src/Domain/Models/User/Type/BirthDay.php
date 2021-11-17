@@ -5,8 +5,6 @@ namespace App\Domain\Models\User\Type;
 
 /**
  * class BirthDay
- *
- * @property-read string $value value
  */
 final class BirthDay
 {

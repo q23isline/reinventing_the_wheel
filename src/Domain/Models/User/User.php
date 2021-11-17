@@ -19,20 +19,6 @@ use App\Domain\Models\User\Type\UserId;
 
 /**
  * class User
- *
- * @property-read \App\Domain\Models\User\Type\UserId $id id
- * @property-read \App\Domain\Models\User\Type\LoginId $loginId loginId
- * @property-read \App\Domain\Models\User\Type\Password $password password
- * @property-read \App\Domain\Models\User\Type\RoleName $roleName roleName
- * @property-read \App\Domain\Models\User\Type\FirstName $firstName firstName
- * @property-read \App\Domain\Models\User\Type\LastName $lastName lastName
- * @property-read \App\Domain\Models\User\Type\FirstNameKana $firstNameKana firstNameKana
- * @property-read \App\Domain\Models\User\Type\LastNameKana $lastNameKana lastNameKana
- * @property-read \App\Domain\Models\User\Type\MailAddress $mailAddress mailAddress
- * @property-read \App\Domain\Models\User\Type\Sex $sex sex
- * @property-read \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
- * @property-read \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
- * @property-read \App\Domain\Models\User\Type\Remarks|null $remarks remarks
  */
 final class User
 {

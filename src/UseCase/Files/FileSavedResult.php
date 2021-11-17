@@ -7,8 +7,6 @@ use App\Domain\Models\File\Type\FileId;
 
 /**
  * class FileSavedResult
- *
- *  @property-read \App\Domain\Models\File\Type\FileId $fileId fileId
  */
 final class FileSavedResult
 {

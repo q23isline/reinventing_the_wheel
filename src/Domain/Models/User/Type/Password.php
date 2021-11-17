@@ -5,8 +5,6 @@ namespace App\Domain\Models\User\Type;
 
 /**
  * class Password
- *
- * @property-read string $value value
  */
 final class Password
 {

@@ -8,8 +8,6 @@ use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class LoginId
- *
- * @property-read string $value value
  */
 final class LoginId
 {

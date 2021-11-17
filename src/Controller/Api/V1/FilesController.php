@@ -13,10 +13,6 @@ use App\UseCase\Files\FileUploadUseCase;
 
 /**
  * Files Controller
- *
- * @property-read \App\Infrastructure\CakePHP\Files\CakePHPFileRepository $fileRepository fileRepository
- * @property-read \App\Infrastructure\CakePHP\Files\CakePHPFileStorageRepository $fileStorageRepository fileStorageRepository
- * @property-read \App\UseCase\Files\FileUploadUseCase $fileUploadUseCase fileUploadUseCase
  */
 class FilesController extends AppController
 {

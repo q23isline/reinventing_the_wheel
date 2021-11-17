@@ -5,8 +5,6 @@ namespace App\UseCase\Users;
 
 /**
  * class UserGetCommand
- *
- * @property-read string $userId userId
  */
 final class UserGetCommand
 {

@@ -24,9 +24,6 @@ use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class UserAddUseCase
- *
- * @property-read \App\Domain\Models\User\IUserRepository $userRepository userRepository
- * @property-read \App\Domain\Services\UserService $userService userService
  */
 class UserAddUseCase
 {

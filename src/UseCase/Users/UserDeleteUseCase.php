@@ -8,8 +8,6 @@ use App\Domain\Models\User\Type\UserId;
 
 /**
  * class UserDeleteUseCase
- *
- * @property-read \App\Domain\Models\User\IUserRepository $userRepository userRepository
  */
 class UserDeleteUseCase
 {

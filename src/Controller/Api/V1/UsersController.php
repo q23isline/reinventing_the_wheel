@@ -26,14 +26,6 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Users Controller
- *
- * @property-read \App\Infrastructure\CakePHP\Users\CakePHPUserRepository $userRepository userRepository
- * @property-read \App\UseCase\Users\UserListUseCase $userListUseCase userListUseCase
- * @property-read \App\Domain\Services\UserService $userService userService
- * @property-read \App\UseCase\Users\UserAddUseCase $userAddUseCase userAddUseCase
- * @property-read \App\UseCase\Users\UserGetUseCase $userGetUseCase userGetUseCase
- * @property-read \App\UseCase\Users\UserUpdateUseCase $userUpdateUseCase userUpdateUseCase
- * @property-read \App\UseCase\Users\UserDeleteUseCase $userDeleteUseCase userDeleteUseCase
  */
 class UsersController extends AppController
 {

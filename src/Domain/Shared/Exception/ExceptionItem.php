@@ -5,9 +5,6 @@ namespace App\Domain\Shared\Exception;
 
 /**
  * class ExceptionItem
- *
- * @property-read string $field field
- * @property-read string $reason reason
  */
 final class ExceptionItem
 {

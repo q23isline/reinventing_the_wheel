@@ -5,8 +5,6 @@ namespace App\Domain\Models\File\Type;
 
 /**
  * class FileDirectory
- *
- * @property-read string $value value
  */
 final class FileDirectory
 {

@@ -5,8 +5,6 @@ namespace App\Domain\Models\User\Type;
 
 /**
  * class Sex
- *
- * @property-read string $value value
  */
 final class Sex
 {

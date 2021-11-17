@@ -23,9 +23,6 @@ use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class UserUpdateUseCase
- *
- * @property-read \App\Domain\Models\User\IUserRepository $userRepository userRepository
- * @property-read \App\Domain\Services\UserService $userService userService
  */
 class UserUpdateUseCase
 {

@@ -7,8 +7,6 @@ use App\Domain\Models\User\IUserRepository;
 
 /**
  * class UserListUseCase
- *
- * @property-read \App\Domain\Models\User\IUserRepository $userRepository userRepository
  */
 class UserListUseCase
 {

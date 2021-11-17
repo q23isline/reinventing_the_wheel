@@ -5,8 +5,6 @@ namespace App\UseCase\Users;
 
 /**
  * class UserGetResult
- *
- * @property-read \App\UseCase\Users\UserData $userData userData
  */
 final class UserGetResult
 {

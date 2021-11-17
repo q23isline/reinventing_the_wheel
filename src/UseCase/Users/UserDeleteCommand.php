@@ -5,8 +5,6 @@ namespace App\UseCase\Users;
 
 /**
  * class UserDeleteCommand
- *
- * @property-read string $userId userId
  */
 final class UserDeleteCommand
 {

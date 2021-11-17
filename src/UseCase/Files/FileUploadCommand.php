@@ -9,8 +9,6 @@ use Laminas\Diactoros\UploadedFile;
 
 /**
  * class FileUploadCommand
- *
- * @property-read \Laminas\Diactoros\UploadedFile $file file
  */
 final class FileUploadCommand
 {

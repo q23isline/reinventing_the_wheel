@@ -5,8 +5,6 @@ namespace App\UseCase\Users;
 
 /**
  * class UserListCommand
- *
- * @property-read string|null $keyword keyword
  */
 final class UserListCommand
 {

@@ -11,12 +11,6 @@ use App\Domain\Models\File\Type\FileSize;
 
 /**
  * class File
- *
- * @property-read \App\Domain\Models\File\Type\FileId $id id
- * @property-read \App\Domain\Models\File\Type\FileName $fileName fileName
- * @property-read \App\Domain\Models\File\Type\FileSize $filesize filesize
- * @property-read \App\Domain\Models\File\Type\ContentType $contentType contentType
- * @property-read \App\Domain\Models\File\Type\FileDirectory $fileDirectory fileDirectory
  */
 final class File
 {

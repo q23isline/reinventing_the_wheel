@@ -7,8 +7,6 @@ use Exception;
 
 /**
  * class ValidateException
- *
- * @property-read \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
  */
 final class ValidateException extends Exception
 {

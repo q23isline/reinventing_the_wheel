@@ -14,9 +14,6 @@ use App\Domain\Models\File\Type\FileSize;
 
 /**
  * class FileUploadUseCase
- *
- * @property-read \App\Domain\Models\File\IFileRepository $fileRepository fileRepository
- * @property-read \App\Domain\Models\File\IFileStorageRepository $fileStorageRepository fileStorageRepository
  */
 class FileUploadUseCase
 {

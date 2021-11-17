@@ -5,8 +5,6 @@ namespace App\UseCase\Users;
 
 /**
  * class UserListResult
- *
- * @property-read \App\UseCase\Users\UserData[] $userData userData
  */
 final class UserListResult
 {

@@ -5,8 +5,6 @@ namespace App\Domain\Models\User\Type;
 
 /**
  * class UserId
- *
- * @property-read string $value value
  */
 final class UserId
 {
