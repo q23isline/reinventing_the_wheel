@@ -107,20 +107,9 @@ final class InMemoryUserRepository implements IUserRepository
      */
     private function clone(User $user): User
     {
-        $birthDay = null;
-        if (!empty($user->getBirthDay())) {
-            $birthDay = $user->getBirthDay();
-        }
-
-        $cellPhoneNumber = null;
-        if (!empty($user->getCellPhoneNumber())) {
-            $cellPhoneNumber = $user->getCellPhoneNumber();
-        }
-
-        $remarks = null;
-        if (!empty($user->getRemarks())) {
-            $remarks = $user->getRemarks();
-        }
+        $birthDay = $user->getBirthDay();
+        $cellPhoneNumber = $user->getCellPhoneNumber();
+        $remarks = $user->getRemarks();
 
         return User::reconstruct(
             $user->getId(),
@@ -133,9 +122,9 @@ final class InMemoryUserRepository implements IUserRepository
             $user->getLastNameKana(),
             $user->getMailAddress(),
             $user->getSex(),
-            $birthDay,
-            $cellPhoneNumber,
-            $remarks,
+            empty($birthDay) ? null : $birthDay,
+            empty($cellPhoneNumber) ? null : $cellPhoneNumber,
+            empty($remarks) ? null : $remarks,
         );
     }
 }

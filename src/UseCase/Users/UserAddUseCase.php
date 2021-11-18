@@ -51,20 +51,9 @@ class UserAddUseCase
      */
     public function handle(UserAddCommand $command): UserId
     {
-        $birthDay = null;
-        if (!empty($command->getBirthDay())) {
-            $birthDay = new BirthDay($command->getBirthDay());
-        }
-
-        $cellPhoneNumber = null;
-        if (!empty($command->getCellPhoneNumber())) {
-            $cellPhoneNumber = new CellPhoneNumber($command->getCellPhoneNumber());
-        }
-
-        $remarks = null;
-        if (!empty($command->getRemarks())) {
-            $remarks = new Remarks($command->getRemarks());
-        }
+        $birthDay = $command->getBirthDay();
+        $cellPhoneNumber = $command->getCellPhoneNumber();
+        $remarks = $command->getRemarks();
 
         $data = User::create(
             // TODO: 採番処理を UserId ドメインの中でやりたい
@@ -78,9 +67,9 @@ class UserAddUseCase
             new LastNameKana($command->getLastNameKana()),
             new MailAddress($command->getMailAddress()),
             new Sex($command->getSex()),
-            $birthDay,
-            $cellPhoneNumber,
-            $remarks,
+            empty($birthDay) ? null : new BirthDay($birthDay),
+            empty($cellPhoneNumber) ? null : new CellPhoneNumber($cellPhoneNumber),
+            empty($remarks) ? null : new Remarks($remarks),
         );
 
         if ($this->userService->isExists($data)) {

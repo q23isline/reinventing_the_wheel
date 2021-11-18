@@ -183,20 +183,9 @@ final class CakePHPUserRepository implements IUserRepository
      */
     private function buildEntity(array $record): User
     {
-        $birthDay = null;
-        if (!empty($record['birth_day'])) {
-            $birthDay = new BirthDay($record['birth_day']->format('Y-m-d'));
-        }
-
-        $cellPhoneNumber = null;
-        if (!empty($record['cell_phone_number'])) {
-            $cellPhoneNumber = new CellPhoneNumber($record['cell_phone_number']);
-        }
-
-        $remarks = null;
-        if (!empty($record['remarks'])) {
-            $remarks = new Remarks($record['remarks']);
-        }
+        $birthDay = $record['birth_day'];
+        $cellPhoneNumber = $record['cell_phone_number'];
+        $remarks = $record['remarks'];
 
         return User::reconstruct(
             new UserId($record['id']),
@@ -209,9 +198,9 @@ final class CakePHPUserRepository implements IUserRepository
             new LastNameKana($record['last_name_kana']),
             new MailAddress($record['mail_address']),
             new Sex($record['sex']),
-            $birthDay,
-            $cellPhoneNumber,
-            $remarks,
+            empty($birthDay) ? null : new BirthDay($birthDay->format('Y-m-d')),
+            empty($cellPhoneNumber) ? null : new CellPhoneNumber($cellPhoneNumber),
+            empty($remarks) ? null : new Remarks($remarks),
         );
     }
 }
