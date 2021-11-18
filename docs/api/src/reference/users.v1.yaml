@@ -49,7 +49,9 @@ paths:
                       birthDay: '1990-01-01'
                       cellPhoneNumber: '09012345678'
                       remarks: メモ
-                      profileImage: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
+                      profileImage:
+                        id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                        url: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
         '404':
           description: Not Found
           content:
@@ -440,7 +442,9 @@ paths:
                         birthDay: '1990-01-01'
                         cellPhoneNumber: '09012345678'
                         remarks: メモ
-                        profileImage: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
+                        profileImage:
+                          id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                          url: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
       description: ユーザー情報の一覧を返却する
       tags:
         - User
@@ -472,7 +476,9 @@ components:
           birthDay: '1990-01-01'
           cellPhoneNumber: '09012345678'
           remarks: メモ
-          profileImage: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
+          profileImage:
+            id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+            url: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
       properties:
         id:
           type: string
@@ -551,10 +557,19 @@ components:
           example: メモ
           description: メモ
         profileImage:
-          type: string
-          format: uri
+          type: object
           description: プロフィール画像
-          example: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
+          properties:
+            id:
+              type: string
+              example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+              format: uuid
+              description: ファイルID
+            url:
+              type: string
+              example: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
+              format: uri
+              pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
       required:
         - id
         - loginId
