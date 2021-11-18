@@ -18,6 +18,14 @@ interface IFileRepository
     public function assignId(): FileId;
 
     /**
+     * IDで検索
+     *
+     * @param \App\Domain\Models\File\Type\FileId $fileId fileId
+     * @return \App\Domain\Models\File\File
+     */
+    public function getById(FileId $fileId): File;
+
+    /**
      * 保存
      *
      * @param \App\Domain\Models\File\File $file file

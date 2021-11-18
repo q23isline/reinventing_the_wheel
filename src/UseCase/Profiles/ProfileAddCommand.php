@@ -18,6 +18,7 @@ use App\Domain\Shared\Exception\ValidateException;
  * @property-read string|null $birthDay birthDay
  * @property-read string|null $cellPhoneNumber cellPhoneNumber
  * @property-read string|null $remarks remarks
+ * @property-read string|null $profileImageFileId profileImageFileId
  */
 final class ProfileAddCommand
 {
@@ -30,6 +31,7 @@ final class ProfileAddCommand
     public readonly ?string $birthDay;
     public readonly ?string $cellPhoneNumber;
     public readonly ?string $remarks;
+    public readonly ?string $profileImageFileId;
 
     /**
      * constructor
@@ -43,6 +45,7 @@ final class ProfileAddCommand
      * @param string|null $birthDay birthDay
      * @param string|null $cellPhoneNumber cellPhoneNumber
      * @param string|null $remarks remarks
+     * @param string|null $profileImageFileId profileImageFileId
      * @throws \App\Domain\Shared\Exception\ValidateException
      */
     public function __construct(
@@ -54,7 +57,8 @@ final class ProfileAddCommand
         ?string $sex,
         ?string $birthDay,
         ?string $cellPhoneNumber,
-        ?string $remarks
+        ?string $remarks,
+        ?string $profileImageFileId
     ) {
         $errors = [];
         $this->userId = $userId;
@@ -96,5 +100,6 @@ final class ProfileAddCommand
         $this->birthDay = $birthDay;
         $this->cellPhoneNumber = $cellPhoneNumber;
         $this->remarks = $remarks;
+        $this->profileImageFileId = $profileImageFileId;
     }
 }

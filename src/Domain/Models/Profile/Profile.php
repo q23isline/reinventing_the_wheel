@@ -10,6 +10,7 @@ use App\Domain\Models\Profile\Type\FirstNameKana;
 use App\Domain\Models\Profile\Type\LastName;
 use App\Domain\Models\Profile\Type\LastNameKana;
 use App\Domain\Models\Profile\Type\ProfileId;
+use App\Domain\Models\Profile\Type\ProfileImage;
 use App\Domain\Models\Profile\Type\Remarks;
 use App\Domain\Models\Profile\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
@@ -27,6 +28,7 @@ use App\Domain\Models\User\Type\UserId;
  * @property-read \App\Domain\Models\Profile\Type\BirthDay|null $birthDay birthDay
  * @property-read \App\Domain\Models\Profile\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
  * @property-read \App\Domain\Models\Profile\Type\Remarks|null $remarks remarks
+ * @property-read \App\Domain\Models\Profile\Type\ProfileImage|null $profileImage profileImage
  */
 final class Profile
 {
@@ -43,6 +45,7 @@ final class Profile
      * @param \App\Domain\Models\Profile\Type\BirthDay|null $birthDay birthDay
      * @param \App\Domain\Models\Profile\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
      * @param \App\Domain\Models\Profile\Type\Remarks|null $remarks remarks
+     * @param \App\Domain\Models\Profile\Type\ProfileImage|null $profileImage profileImage
      * @return void
      */
     private function __construct(
@@ -55,7 +58,8 @@ final class Profile
         public readonly Sex $sex,
         public readonly ?BirthDay $birthDay,
         public readonly ?CellPhoneNumber $cellPhoneNumber,
-        public readonly ?Remarks $remarks
+        public readonly ?Remarks $remarks,
+        public readonly ?ProfileImage $profileImage
     ) {
     }
 
@@ -73,6 +77,7 @@ final class Profile
      * @param \App\Domain\Models\Profile\Type\BirthDay|null $birthDay birthDay
      * @param \App\Domain\Models\Profile\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
      * @param \App\Domain\Models\Profile\Type\Remarks|null $remarks remarks
+     * @param \App\Domain\Models\Profile\Type\ProfileImage|null $profileImage profileImage
      * @return self
      */
     public static function create(
@@ -85,7 +90,8 @@ final class Profile
         Sex $sex,
         ?BirthDay $birthDay = null,
         ?CellPhoneNumber $cellPhoneNumber = null,
-        ?Remarks $remarks = null
+        ?Remarks $remarks = null,
+        ?ProfileImage $profileImage = null
     ): self {
         return new self(
             $id,
@@ -98,6 +104,7 @@ final class Profile
             $birthDay,
             $cellPhoneNumber,
             $remarks,
+            $profileImage,
         );
     }
 
@@ -114,6 +121,7 @@ final class Profile
      * @param \App\Domain\Models\Profile\Type\BirthDay|null $birthDay birthDay
      * @param \App\Domain\Models\Profile\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
      * @param \App\Domain\Models\Profile\Type\Remarks|null $remarks remarks
+     * @param \App\Domain\Models\Profile\Type\ProfileImage|null $profileImage profileImage
      * @return self
      */
     public static function reconstruct(
@@ -126,7 +134,8 @@ final class Profile
         Sex $sex,
         ?BirthDay $birthDay = null,
         ?CellPhoneNumber $cellPhoneNumber = null,
-        ?Remarks $remarks = null
+        ?Remarks $remarks = null,
+        ?ProfileImage $profileImage = null
     ): self {
         return new self(
             $id,
@@ -139,6 +148,7 @@ final class Profile
             $birthDay,
             $cellPhoneNumber,
             $remarks,
+            $profileImage,
         );
     }
 
@@ -156,6 +166,7 @@ final class Profile
      * @param \App\Domain\Models\Profile\Type\BirthDay|null $birthDay birthDay
      * @param \App\Domain\Models\Profile\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
      * @param \App\Domain\Models\Profile\Type\Remarks|null $remarks remarks
+     * @param \App\Domain\Models\Profile\Type\ProfileImage|null $profileImage profileImage
      * @return self
      */
     public function update(
@@ -166,7 +177,8 @@ final class Profile
         Sex $sex,
         ?BirthDay $birthDay = null,
         ?CellPhoneNumber $cellPhoneNumber = null,
-        ?Remarks $remarks = null
+        ?Remarks $remarks = null,
+        ?ProfileImage $profileImage = null
     ): self {
         return new self(
             $this->id,
@@ -179,6 +191,7 @@ final class Profile
             $birthDay,
             $cellPhoneNumber,
             $remarks,
+            $profileImage,
         );
     }
 }

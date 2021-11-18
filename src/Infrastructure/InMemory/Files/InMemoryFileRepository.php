@@ -6,6 +6,7 @@ namespace App\Infrastructure\InMemory\Files;
 use App\Domain\Models\File\File;
 use App\Domain\Models\File\IFileRepository;
 use App\Domain\Models\File\Type\FileId;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * class InMemoryFileRepository
@@ -24,6 +25,18 @@ final class InMemoryFileRepository implements IFileRepository
         $uuid = (string)mt_rand(0, 99999999) . '-3882-42dd-9ab2-485e8e579a8e';
 
         return new FileId($uuid);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getById(FileId $fileId): File
+    {
+        if (array_key_exists($fileId->value, $this->store)) {
+            return $this->clone($this->store[$fileId->value]);
+        } else {
+            throw new RecordNotFoundException();
+        }
     }
 
     /**

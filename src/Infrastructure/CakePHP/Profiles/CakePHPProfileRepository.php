@@ -111,6 +111,24 @@ final class CakePHPProfileRepository implements IProfileRepository
         $entity->id = $profile->id->value;
         $saved = $model->saveOrFail($entity);
 
+        // プロフィール画像がなければ終了
+        if (is_null($profile->profileImage)) {
+            return new ProfileId($saved->id);
+        }
+
+        $profileFilesModel = TableRegistry::getTableLocator()->get('ProfileFiles');
+
+        $profileFilesSaveData = [
+            'UserFiles' => [
+                'user_id' => $profile->id->value,
+                'file_id' => $profile->profileImage->id->value,
+            ],
+        ];
+
+        $profileFileEntity = $profileFilesModel->newEmptyEntity();
+        $profileFileEntity = $profileFilesModel->patchEntity($profileFileEntity, $profileFilesSaveData);
+        $profileFilesModel->saveOrFail($profileFileEntity);
+
         return new ProfileId($saved->id);
     }
 

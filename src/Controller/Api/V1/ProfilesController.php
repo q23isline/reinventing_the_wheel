@@ -7,6 +7,8 @@ use App\Controller\AppController;
 use App\Domain\Shared\Exception\ExceptionItem;
 use App\Domain\Shared\Exception\NotFoundException;
 use App\Domain\Shared\Exception\ValidateException;
+use App\Infrastructure\CakePHP\Files\CakePHPFileRepository;
+use App\Infrastructure\CakePHP\Files\CakePHPFileStorageRepository;
 use App\Infrastructure\CakePHP\Profiles\CakePHPProfileRepository;
 use App\UseCase\Profiles\ProfileAddCommand;
 use App\UseCase\Profiles\ProfileAddUseCase;
@@ -29,6 +31,8 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 class ProfilesController extends AppController
 {
     private CakePHPProfileRepository $profileRepository;
+    private CakePHPFileRepository $fileRepository;
+    private CakePHPFileStorageRepository $fileStorageRepository;
     private ProfileListUseCase $profileListUseCase;
     private ProfileAddUseCase $profileAddUseCase;
     private ProfileGetUseCase $profileGetUseCase;
@@ -46,8 +50,15 @@ class ProfilesController extends AppController
 
         // テスト時のモック用にプロパティのチェック
         $this->profileRepository = $this->profileRepository ?? new CakePHPProfileRepository();
+        $this->fileRepository = $this->fileRepository ?? new CakePHPFileRepository();
+        $this->fileStorageRepository = $this->fileStorageRepository ?? new CakePHPFileStorageRepository();
         $this->profileListUseCase = $this->profileListUseCase ?? new ProfileListUseCase($this->profileRepository);
-        $this->profileAddUseCase = $this->profileAddUseCase ?? new ProfileAddUseCase($this->profileRepository);
+        $this->profileAddUseCase =
+            $this->profileAddUseCase ?? new ProfileAddUseCase(
+                $this->profileRepository,
+                $this->fileRepository,
+                $this->fileStorageRepository,
+            );
         $this->profileGetUseCase = $this->profileGetUseCase ?? new ProfileGetUseCase($this->profileRepository);
         $this->profileUpdateUseCase = $this->profileUpdateUseCase ?? new ProfileUpdateUseCase($this->profileRepository);
         $this->profileDeleteUseCase = $this->profileDeleteUseCase ?? new ProfileDeleteUseCase($this->profileRepository);
@@ -124,6 +135,7 @@ class ProfilesController extends AppController
                 $jsonData['birthDay'] ?? null,
                 $jsonData['cellPhoneNumber'] ?? null,
                 $jsonData['remarks'] ?? null,
+                $jsonData['profileImageFileId'] ?? null,
             );
 
             // TODO: userId の存在チェック＆プロフィール未登録チェックをする

@@ -4,7 +4,10 @@ declare(strict_types=1);
 namespace App\Infrastructure\CakePHP\Files;
 
 use App\Domain\Models\File\IFileStorageRepository;
+use App\Domain\Models\File\Type\FileDirectory;
 use App\Domain\Models\File\Type\FileId;
+use App\Domain\Models\File\Type\FileName;
+use App\Domain\Models\File\Type\FileUrl;
 use Laminas\Diactoros\UploadedFile;
 
 /**
@@ -12,6 +15,16 @@ use Laminas\Diactoros\UploadedFile;
  */
 final class CakePHPFileStorageRepository implements IFileStorageRepository
 {
+    /**
+     * @inheritDoc
+     */
+    public function getUrl(FileDirectory $fileDirectory, FileId $fileId, FileName $fileName): FileUrl
+    {
+        $url = "{$_SERVER['SERVER_NAME']}/{$fileDirectory->value}/{$fileId->value}/{$fileName->value}";
+
+        return new FileUrl($url);
+    }
+
     /**
      * @inheritDoc
      */
