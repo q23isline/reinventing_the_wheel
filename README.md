@@ -196,7 +196,8 @@ redoc-cli bundle xxxxxx.yaml
 
 ## ディレクトリ構成
 
-- オニオンアーキテクチャ
+<details>
+<summary>オニオンアーキテクチャ</summary>
 
 ```text
 reinventing_the_wheel
@@ -237,7 +238,9 @@ reinventing_the_wheel
 　│└src
 　│　└reference
 　│　　└{functionName}.{version}.yaml
-　└diagrams ：ユースケース図
+　└diagrams ：sudoモデリングの図
 　　└src
-　　　└{functionName}.pu
+　　　└reinventing_the_wheel.drawio.xml
 ```
+
+</details>
