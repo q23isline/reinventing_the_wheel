@@ -118,22 +118,22 @@ docker exec -it --env XDEBUG_MODE=coverage app ./vendor/bin/phpunit --coverage-h
   - [diagrams.net](https://www.diagrams.net/)
 
 <details>
-<summary>システム関連図<summary>
+<summary>システム関連図</summary>
 <img src="docs/diagrams/src/システム関連図.png" width="600px">
 </details>
 
 <details>
-<summary>ユースケース図<summary>
+<summary>ユースケース図</summary>
 <img src="docs/diagrams/src/ユースケース図.png" width="600px">
 </details>
 
 <details>
-<summary>ドメインモデル図<summary>
+<summary>ドメインモデル図</summary>
 <img src="docs/diagrams/src/ドメインモデル図.png" width="800px">
 </details>
 
 <details>
-<summary>オブジェクト図<summary>
+<summary>オブジェクト図</summary>
 <img src="docs/diagrams/src/オブジェクト図.png" width="600px">
 </details>
 
