@@ -42,7 +42,7 @@ automated upgrades, so you have to do any updates manually.
 
 ## Configuration
 
-Read and edit the environment specific `config/app_local.php` and setup the 
+Read and edit the environment specific `config/app_local.php` and setup the
 `'Datasources'` and any other configuration relevant for your application.
 Other environment agnostic settings can be changed in `config/app.php`.
 
@@ -112,10 +112,38 @@ docker exec -it --env XDEBUG_MODE=coverage app ./vendor/bin/phpunit --coverage-h
 - カバレッジ確認URL
   - <http://localhost/coverage/index.html>
 
-## ユースケース図
+## sudoモデリング
 
-- `docs/diagrams/src`以下の`.pu`ファイルにて定義
-  - [VS Code | Marketplace | PlantUML](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
+- `docs/diagrams/src`配下の`.xml`ファイルにて定義
+  - [diagrams.net](https://www.diagrams.net/)
+
+<details>
+    <summary>システム関連図<summary>
+    <div>
+        <img src="docs/diagrams/src/システム関連図.png" width="600px">
+    </div>
+</details>
+
+<details>
+    <summary>ユースケース図<summary>
+    <div>
+        <img src="docs/diagrams/src/ユースケース図.png" width="600px">
+    </div>
+</details>
+
+<details>
+    <summary>ドメインモデル図<summary>
+    <div>
+        <img src="docs/diagrams/src/ドメインモデル図.png" width="800px">
+    </div>
+</details>
+
+<details>
+    <summary>オブジェクト図<summary>
+    <div>
+        <img src="docs/diagrams/src/オブジェクト図.png" width="600px">
+    </div>
+</details>
 
 ## APIドキュメント
 
