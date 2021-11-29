@@ -49,9 +49,7 @@ paths:
                       birthDay: '1990-01-01'
                       cellPhoneNumber: '09012345678'
                       remarks: メモ
-                      profileImage:
-                        id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-                        url: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
+                      profileImageURL: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
         '404':
           description: Not Found
           content:
@@ -199,12 +197,11 @@ paths:
                   type: string
                   example: メモ
                   description: メモ
-                profileImageFileId:
+                profileImageURL:
                   type: string
-                  format: uuid
-                  description: プロフィール画像のファイルID
-                  example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-                  pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+                  format: uri
+                  description: プロフィール画像URL
+                  example: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
               required:
                 - loginId
                 - password
@@ -230,7 +227,7 @@ paths:
                   birthDay: '1990-01-01'
                   cellPhoneNumber: '09012345678'
                   remarks: メモ
-                  profileImageFileId: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                  profileImageURL: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
         description: ユーザー情報を更新する
       tags:
         - User
@@ -374,12 +371,11 @@ paths:
                   type: string
                   example: メモ
                   description: メモ
-                profileImageFileId:
+                profileImageURL:
                   type: string
-                  pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-                  format: uuid
-                  example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-                  description: プロフィール画像のファイルID
+                  format: uri
+                  example: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
+                  description: プロフィール画像URL
               required:
                 - loginId
                 - password
@@ -405,7 +401,7 @@ paths:
                   birthDay: '1990-01-01'
                   cellPhoneNumber: '09012345678'
                   remarks: メモ
-                  profileImageFileId: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                  profileImageURL: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
         description: APIに必要なフィールドを設定し、新しいユーザーを作成する
       description: ユーザーを新規作成する
       tags:
@@ -442,9 +438,7 @@ paths:
                         birthDay: '1990-01-01'
                         cellPhoneNumber: '09012345678'
                         remarks: メモ
-                        profileImage:
-                          id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-                          url: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
+                        profileImageURL: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
       description: ユーザー情報の一覧を返却する
       tags:
         - User
@@ -476,9 +470,7 @@ components:
           birthDay: '1990-01-01'
           cellPhoneNumber: '09012345678'
           remarks: メモ
-          profileImage:
-            id: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-            url: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
+          profileImageURL: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
       properties:
         id:
           type: string
@@ -556,20 +548,11 @@ components:
           type: string
           example: メモ
           description: メモ
-        profileImage:
-          type: object
-          description: プロフィール画像
-          properties:
-            id:
-              type: string
-              example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-              format: uuid
-              description: ファイルID
-            url:
-              type: string
-              example: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
-              format: uri
-              pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
+        profileImageURL:
+          type: string
+          description: プロフィール画像URL
+          example: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
+          format: uri
       required:
         - id
         - loginId

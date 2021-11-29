@@ -18,20 +18,19 @@ paths:
       operationId: post-files
       responses:
         '200':
-          description: 作成後のファイルID
+          description: 作成後のファイルURL
           schema:
             type: object
             properties:
-              fileId:
+              url:
                 type: string
-                description: ファイルID
-                format: uuid
-                pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
-                example: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                description: ファイルURL
+                format: uri
+                example: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
           examples:
             example:
               value:
-                fileId: aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+                url: 'http://localhost/uploadFiles/Users/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/example.png'
         '400':
           description: Bad Request
           schema:
