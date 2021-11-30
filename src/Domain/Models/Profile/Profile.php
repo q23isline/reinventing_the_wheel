@@ -121,7 +121,6 @@ final class Profile
      * @param \App\Domain\Models\Profile\Type\BirthDay|null $birthDay birthDay
      * @param \App\Domain\Models\Profile\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
      * @param \App\Domain\Models\Profile\Type\Remarks|null $remarks remarks
-     * @param \App\Domain\Models\Profile\Type\ProfileImage|null $profileImage profileImage
      * @return self
      */
     public static function reconstruct(
@@ -134,8 +133,7 @@ final class Profile
         Sex $sex,
         ?BirthDay $birthDay = null,
         ?CellPhoneNumber $cellPhoneNumber = null,
-        ?Remarks $remarks = null,
-        ?ProfileImage $profileImage = null
+        ?Remarks $remarks = null
     ): self {
         return new self(
             $id,
@@ -148,7 +146,7 @@ final class Profile
             $birthDay,
             $cellPhoneNumber,
             $remarks,
-            $profileImage,
+            null // TODO: 暫定対応：引数でプロフィール画像を受け取る
         );
     }
 
@@ -166,7 +164,6 @@ final class Profile
      * @param \App\Domain\Models\Profile\Type\BirthDay|null $birthDay birthDay
      * @param \App\Domain\Models\Profile\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
      * @param \App\Domain\Models\Profile\Type\Remarks|null $remarks remarks
-     * @param \App\Domain\Models\Profile\Type\ProfileImage|null $profileImage profileImage
      * @return self
      */
     public function update(
@@ -178,7 +175,6 @@ final class Profile
         ?BirthDay $birthDay = null,
         ?CellPhoneNumber $cellPhoneNumber = null,
         ?Remarks $remarks = null,
-        ?ProfileImage $profileImage = null
     ): self {
         return new self(
             $this->id,
@@ -191,7 +187,7 @@ final class Profile
             $birthDay,
             $cellPhoneNumber,
             $remarks,
-            $profileImage,
+            null // TODO: 暫定対応：引数でプロフィール画像を受け取る
         );
     }
 }
