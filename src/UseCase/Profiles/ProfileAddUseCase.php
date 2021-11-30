@@ -53,14 +53,18 @@ class ProfileAddUseCase
 
         $profileImage = null;
         if (!empty($command->profileImageFileId)) {
-            $fileId = new FileId($command->profileImageFileId);
-            $file = $this->fileRepository->getById($fileId);
-            $url = $this->fileStorageRepository->getUrl(
-                $file->fileDirectory,
-                $file->id,
-                $file->fileName,
+            $file = $this->fileRepository->getById(
+                new FileId($command->profileImageFileId)
             );
-            $profileImage = new ProfileImage($file->id, $url);
+
+            $profileImage = new ProfileImage(
+                $file->id,
+                $this->fileStorageRepository->getUrl(
+                    $file->fileDirectory,
+                    $file->id,
+                    $file->fileName,
+                )
+            );
         }
 
         $data = Profile::create(

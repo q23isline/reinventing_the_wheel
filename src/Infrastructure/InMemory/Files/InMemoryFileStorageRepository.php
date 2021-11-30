@@ -20,9 +20,9 @@ final class InMemoryFileStorageRepository implements IFileStorageRepository
      */
     public function getUrl(FileDirectory $fileDirectory, FileId $fileId, FileName $fileName): FileUrl
     {
-        $url = "{$_SERVER['SERVER_NAME']}/{$fileDirectory->value}/{$fileId->value}/{$fileName->value}";
-
-        return new FileUrl($url);
+        return new FileUrl(
+            "{$_SERVER['SERVER_NAME']}/{$fileDirectory->value}/{$fileId->value}/{$fileName->value}"
+        );
     }
 
     /**
