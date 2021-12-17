@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.0']
+        php-version: ['8.1']
     name: PHP ${{ matrix.php-version }}
 
     steps:
@@ -56,7 +56,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0'
+        php-version: '8.1'
         extensions: mbstring, intl
         coverage: none
 
@@ -76,7 +76,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0'
+        php-version: '8.1'
         extensions: mbstring, intl
         coverage: none
 
