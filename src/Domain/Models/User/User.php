@@ -65,9 +65,9 @@ final class User
         public readonly LastNameKana $lastNameKana,
         public readonly MailAddress $mailAddress,
         public readonly Sex $sex,
-        public readonly ?BirthDay $birthDay = null,
-        public readonly ?CellPhoneNumber $cellPhoneNumber = null,
-        public readonly ?Remarks $remarks = null
+        public readonly ?BirthDay $birthDay,
+        public readonly ?CellPhoneNumber $cellPhoneNumber,
+        public readonly ?Remarks $remarks
     ) {
     }
 
@@ -101,9 +101,9 @@ final class User
         LastNameKana $lastNameKana,
         MailAddress $mailAddress,
         Sex $sex,
-        ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber,
-        ?Remarks $remarks
+        ?BirthDay $birthDay = null,
+        ?CellPhoneNumber $cellPhoneNumber = null,
+        ?Remarks $remarks = null
     ): self {
         return new self(
             $id,
@@ -151,9 +151,9 @@ final class User
         LastNameKana $lastNameKana,
         MailAddress $mailAddress,
         Sex $sex,
-        ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber,
-        ?Remarks $remarks
+        ?BirthDay $birthDay = null,
+        ?CellPhoneNumber $cellPhoneNumber = null,
+        ?Remarks $remarks = null
     ): self {
         return new self(
             $id,
@@ -202,9 +202,9 @@ final class User
         LastNameKana $lastNameKana,
         MailAddress $mailAddress,
         Sex $sex,
-        ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber,
-        ?Remarks $remarks
+        ?BirthDay $birthDay = null,
+        ?CellPhoneNumber $cellPhoneNumber = null,
+        ?Remarks $remarks = null
     ): self {
         return new self(
             $this->id,
