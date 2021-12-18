@@ -119,9 +119,9 @@ final class CakePHPUserRepository implements IUserRepository
                 'last_name_kana' => $user->lastNameKana->value,
                 'mail_address' => $user->mailAddress->value,
                 'sex' => $user->sex->value,
-                'birth_day' => is_null($user->birthDay) ? null : $user->birthDay->value,
-                'cell_phone_number' => is_null($user->cellPhoneNumber) ? null : $user->cellPhoneNumber->value,
-                'remarks' => is_null($user->remarks) ? null : $user->remarks->value,
+                'birth_day' => $user->birthDay?->value,
+                'cell_phone_number' => $user->cellPhoneNumber?->value,
+                'remarks' => $user->remarks?->value,
             ],
         ];
 
@@ -152,9 +152,9 @@ final class CakePHPUserRepository implements IUserRepository
                 'last_name_kana' => $user->lastNameKana->value,
                 'mail_address' => $user->mailAddress->value,
                 'sex' => $user->sex->value,
-                'birth_day' => is_null($user->birthDay) ? null : $user->birthDay->value,
-                'cell_phone_number' => is_null($user->cellPhoneNumber) ? null : $user->cellPhoneNumber->value,
-                'remarks' => is_null($user->remarks) ? null : $user->remarks->value,
+                'birth_day' => $user->birthDay?->value,
+                'cell_phone_number' => $user->cellPhoneNumber?->value,
+                'remarks' => $user->remarks?->value,
             ],
         ];
 
