@@ -10,16 +10,16 @@ use Exception;
  */
 final class ValidateException extends Exception
 {
-    protected array $errors;
-
     /**
      * constructor
      *
      * @param \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
      * @param \Exception|null $previous previous
      */
-    public function __construct(array $errors = [], ?Exception $previous = null)
-    {
+    public function __construct(
+        protected array $errors = [],
+        ?Exception $previous = null
+    ) {
         $this->errors = $errors;
 
         // 親 Exception クラスでプロパティ定義済
@@ -49,8 +49,8 @@ final class ValidateException extends Exception
         $errors = [];
         foreach ($this->getErrors() as $error) {
             $errors[] = [
-                'field' => $error->getField(),
-                'reason' => $error->getReason(),
+                'field' => $error->field,
+                'reason' => $error->reason,
             ];
         }
 

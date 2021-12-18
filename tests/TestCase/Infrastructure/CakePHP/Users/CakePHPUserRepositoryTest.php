@@ -53,7 +53,7 @@ final class CakePHPUserRepositoryTest extends TestCase
         $userId = (new CakePHPUserRepository())->assignId();
 
         // Assert
-        $this->assertMatchesRegularExpression($expectUserIdPattern, $userId->getValue());
+        $this->assertMatchesRegularExpression($expectUserIdPattern, $userId->value);
     }
 
     /**

@@ -8,13 +8,15 @@ use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class LoginId
+ *
+ * @property-read string $value value
  */
 final class LoginId
 {
     private const MIN_LENGTH = 3;
     private const MAX_LENGTH = 20;
 
-    private string $value;
+    public readonly string $value;
 
     /**
      * constructor
@@ -33,15 +35,5 @@ final class LoginId
         }
 
         $this->value = $value;
-    }
-
-    /**
-     * Get the value of value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->value;
     }
 }

@@ -41,6 +41,6 @@ final class RoleNameTest extends TestCase
         $actualRoleName = new RoleName($roleName);
 
         // Assert
-        $this->assertEquals($roleName, $actualRoleName->getValue());
+        $this->assertEquals($roleName, $actualRoleName->value);
     }
 }

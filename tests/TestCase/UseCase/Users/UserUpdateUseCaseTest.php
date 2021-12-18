@@ -83,19 +83,19 @@ final class UserUpdateUseCaseTest extends TestCase
         // ユーザーが正しく保存されているか
         $updatedUserId = new UserId($userId);
         $updatedUser = $userRepository->getById($updatedUserId);
-        $this->assertEquals($userId, $updatedUser->getId()->getValue());
-        $this->assertEquals($loginId, $updatedUser->getLoginId()->getValue());
-        $this->assertEquals($password, $updatedUser->getPassword()->getValue());
-        $this->assertEquals($roleName, $updatedUser->getRoleName()->getValue());
-        $this->assertEquals($firstName, $updatedUser->getFirstName()->getValue());
-        $this->assertEquals($lastName, $updatedUser->getLastName()->getValue());
-        $this->assertEquals($firstNameKana, $updatedUser->getFirstNameKana()->getValue());
-        $this->assertEquals($lastNameKana, $updatedUser->getLastNameKana()->getValue());
-        $this->assertEquals($mailAddress, $updatedUser->getMailAddress()->getValue());
-        $this->assertEquals($sex, $updatedUser->getSex()->getValue());
-        $this->assertEquals($birthDay, $updatedUser->getBirthDay()->getValue());
-        $this->assertEquals($cellPhoneNumber, $updatedUser->getCellPhoneNumber()->getValue());
-        $this->assertEquals($remarks, $updatedUser->getRemarks()->getValue());
+        $this->assertEquals($userId, $updatedUser->id->value);
+        $this->assertEquals($loginId, $updatedUser->loginId->value);
+        $this->assertEquals($password, $updatedUser->password->value);
+        $this->assertEquals($roleName, $updatedUser->roleName->value);
+        $this->assertEquals($firstName, $updatedUser->firstName->value);
+        $this->assertEquals($lastName, $updatedUser->lastName->value);
+        $this->assertEquals($firstNameKana, $updatedUser->firstNameKana->value);
+        $this->assertEquals($lastNameKana, $updatedUser->lastNameKana->value);
+        $this->assertEquals($mailAddress, $updatedUser->mailAddress->value);
+        $this->assertEquals($sex, $updatedUser->sex->value);
+        $this->assertEquals($birthDay, $updatedUser->birthDay->value);
+        $this->assertEquals($cellPhoneNumber, $updatedUser->cellPhoneNumber->value);
+        $this->assertEquals($remarks, $updatedUser->remarks->value);
     }
 
     /**

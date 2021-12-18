@@ -11,16 +11,14 @@ use App\Domain\Models\User\User;
  */
 final class UserService
 {
-    private IUserRepository $userRepository;
-
     /**
      * constructor
      *
      * @param \App\Domain\Models\User\IUserRepository $userRepository userRepository
      */
-    public function __construct(IUserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
+    public function __construct(
+        private IUserRepository $userRepository
+    ) {
     }
 
     /**
@@ -31,7 +29,7 @@ final class UserService
      */
     public function isExists(User $user): bool
     {
-        $duplicatedUser = $this->userRepository->findByLoginId($user->getLoginId());
+        $duplicatedUser = $this->userRepository->findByLoginId($user->loginId);
 
         if (is_null($duplicatedUser) || $duplicatedUser->isMyself($user)) {
             return false;

@@ -17,7 +17,7 @@ final class CakePHPFileStorageRepository implements IFileStorageRepository
      */
     public function getDirectoryForUser(FileId $fileId): string
     {
-        return "uploadFiles/Users/{$fileId->getValue()}";
+        return "uploadFiles/Users/{$fileId->value}";
     }
 
     /**

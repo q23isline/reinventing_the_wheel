@@ -31,9 +31,9 @@ final class InMemoryFileRepository implements IFileRepository
      */
     public function save(File $file): FileId
     {
-        $this->store[$file->getId()->getValue()] = $this->clone($file);
+        $this->store[$file->id->value] = $this->clone($file);
 
-        return $file->getId();
+        return $file->id;
     }
 
     /**
@@ -43,11 +43,11 @@ final class InMemoryFileRepository implements IFileRepository
     private function clone(File $file): File
     {
         return File::reconstruct(
-            $file->getId(),
-            $file->getFileName(),
-            $file->getFileSize(),
-            $file->getContentType(),
-            $file->getFileDirectory(),
+            $file->id,
+            $file->fileName,
+            $file->fileSize,
+            $file->contentType,
+            $file->fileDirectory,
         );
     }
 }

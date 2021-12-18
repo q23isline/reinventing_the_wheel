@@ -64,19 +64,19 @@ final class UserTest extends TestCase
         );
 
         // Assert
-        $this->assertEquals($id, $user->getId());
-        $this->assertEquals($loginId, $user->getLoginId());
-        $this->assertEquals($password, $user->getPassword());
-        $this->assertEquals($roleName, $user->getRoleName());
-        $this->assertEquals($firstName, $user->getFirstName());
-        $this->assertEquals($lastName, $user->getLastName());
-        $this->assertEquals($firstNameKana, $user->getFirstNameKana());
-        $this->assertEquals($lastNameKana, $user->getLastNameKana());
-        $this->assertEquals($mailAddress, $user->getMailAddress());
-        $this->assertEquals($sex, $user->getSex());
-        $this->assertEquals($birthDay, $user->getBirthDay());
-        $this->assertEquals($cellPhoneNumber, $user->getCellPhoneNumber());
-        $this->assertEquals($remarks, $user->getRemarks());
+        $this->assertEquals($id, $user->id);
+        $this->assertEquals($loginId, $user->loginId);
+        $this->assertEquals($password, $user->password);
+        $this->assertEquals($roleName, $user->roleName);
+        $this->assertEquals($firstName, $user->firstName);
+        $this->assertEquals($lastName, $user->lastName);
+        $this->assertEquals($firstNameKana, $user->firstNameKana);
+        $this->assertEquals($lastNameKana, $user->lastNameKana);
+        $this->assertEquals($mailAddress, $user->mailAddress);
+        $this->assertEquals($sex, $user->sex);
+        $this->assertEquals($birthDay, $user->birthDay);
+        $this->assertEquals($cellPhoneNumber, $user->cellPhoneNumber);
+        $this->assertEquals($remarks, $user->remarks);
     }
 
     /**
@@ -117,25 +117,25 @@ final class UserTest extends TestCase
         );
 
         // Assert
-        $this->assertEquals($id, $user->getId());
-        $this->assertEquals($loginId, $user->getLoginId());
-        $this->assertEquals($password, $user->getPassword());
-        $this->assertEquals($roleName, $user->getRoleName());
-        $this->assertEquals($firstName, $user->getFirstName());
-        $this->assertEquals($lastName, $user->getLastName());
-        $this->assertEquals($firstNameKana, $user->getFirstNameKana());
-        $this->assertEquals($lastNameKana, $user->getLastNameKana());
-        $this->assertEquals($mailAddress, $user->getMailAddress());
-        $this->assertEquals($sex, $user->getSex());
-        $this->assertEquals($birthDay, $user->getBirthDay());
-        $this->assertEquals($cellPhoneNumber, $user->getCellPhoneNumber());
-        $this->assertEquals($remarks, $user->getRemarks());
+        $this->assertEquals($id, $user->id);
+        $this->assertEquals($loginId, $user->loginId);
+        $this->assertEquals($password, $user->password);
+        $this->assertEquals($roleName, $user->roleName);
+        $this->assertEquals($firstName, $user->firstName);
+        $this->assertEquals($lastName, $user->lastName);
+        $this->assertEquals($firstNameKana, $user->firstNameKana);
+        $this->assertEquals($lastNameKana, $user->lastNameKana);
+        $this->assertEquals($mailAddress, $user->mailAddress);
+        $this->assertEquals($sex, $user->sex);
+        $this->assertEquals($birthDay, $user->birthDay);
+        $this->assertEquals($cellPhoneNumber, $user->cellPhoneNumber);
+        $this->assertEquals($remarks, $user->remarks);
     }
 
     /**
      * @return void
      */
-    public function test_ユーザーインスタンスが更新されること(): void
+    public function test_ユーザーインスタンスが更新（再作成）されること(): void
     {
         // Arrange
         $id = new UserId('01509588-3882-42dd-9ab2-485e8e579a8e');
@@ -168,7 +168,7 @@ final class UserTest extends TestCase
         );
 
         // Act
-        $user->update(
+        $user = $user->update(
             $loginId,
             $password,
             $roleName,
@@ -184,18 +184,18 @@ final class UserTest extends TestCase
         );
 
         // Assert
-        $this->assertEquals($id, $user->getId());
-        $this->assertEquals($loginId, $user->getLoginId());
-        $this->assertEquals($password, $user->getPassword());
-        $this->assertEquals($roleName, $user->getRoleName());
-        $this->assertEquals($firstName, $user->getFirstName());
-        $this->assertEquals($lastName, $user->getLastName());
-        $this->assertEquals($firstNameKana, $user->getFirstNameKana());
-        $this->assertEquals($lastNameKana, $user->getLastNameKana());
-        $this->assertEquals($mailAddress, $user->getMailAddress());
-        $this->assertEquals($sex, $user->getSex());
-        $this->assertEquals($birthDay, $user->getBirthDay());
-        $this->assertEquals($cellPhoneNumber, $user->getCellPhoneNumber());
-        $this->assertEquals($remarks, $user->getRemarks());
+        $this->assertEquals($id, $user->id);
+        $this->assertEquals($loginId, $user->loginId);
+        $this->assertEquals($password, $user->password);
+        $this->assertEquals($roleName, $user->roleName);
+        $this->assertEquals($firstName, $user->firstName);
+        $this->assertEquals($lastName, $user->lastName);
+        $this->assertEquals($firstNameKana, $user->firstNameKana);
+        $this->assertEquals($lastNameKana, $user->lastNameKana);
+        $this->assertEquals($mailAddress, $user->mailAddress);
+        $this->assertEquals($sex, $user->sex);
+        $this->assertEquals($birthDay, $user->birthDay);
+        $this->assertEquals($cellPhoneNumber, $user->cellPhoneNumber);
+        $this->assertEquals($remarks, $user->remarks);
     }
 }

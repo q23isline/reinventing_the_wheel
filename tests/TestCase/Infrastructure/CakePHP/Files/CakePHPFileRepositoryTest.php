@@ -43,7 +43,7 @@ final class CakePHPFileRepositoryTest extends TestCase
         $fileId = (new CakePHPFileRepository())->assignId();
 
         // Assert
-        $this->assertMatchesRegularExpression($expectFileIdPattern, $fileId->getValue());
+        $this->assertMatchesRegularExpression($expectFileIdPattern, $fileId->value);
     }
 
     /**

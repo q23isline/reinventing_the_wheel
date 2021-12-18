@@ -17,7 +17,7 @@ final class InMemoryFileStorageRepository implements IFileStorageRepository
      */
     public function getDirectoryForUser(FileId $fileId): string
     {
-        return "path/{$fileId->getValue()}";
+        return "path/{$fileId->value}";
     }
 
     /**

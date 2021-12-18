@@ -17,19 +17,16 @@ use App\Domain\Models\File\Type\FileSize;
  */
 class FileUploadUseCase
 {
-    private IFileRepository $fileRepository;
-    private IFileStorageRepository $fileStorageRepository;
-
     /**
      * constructor
      *
      * @param \App\Domain\Models\File\IFileRepository $fileRepository fileRepository
      * @param \App\Domain\Models\File\IFileStorageRepository $fileStorageRepository fileStorageRepository
      */
-    public function __construct(IFileRepository $fileRepository, IFileStorageRepository $fileStorageRepository)
-    {
-        $this->fileRepository = $fileRepository;
-        $this->fileStorageRepository = $fileStorageRepository;
+    public function __construct(
+        private IFileRepository $fileRepository,
+        private IFileStorageRepository $fileStorageRepository
+    ) {
     }
 
     /**
@@ -40,7 +37,7 @@ class FileUploadUseCase
      */
     public function handle(FileUploadCommand $command): FileId
     {
-        $fileParam = $command->getFile();
+        $fileParam = $command->file;
         $fileId = $this->fileRepository->assignId();
         $directory = $this->fileStorageRepository->getDirectoryForUser($fileId);
         $this->fileStorageRepository->upload($fileParam, $directory);

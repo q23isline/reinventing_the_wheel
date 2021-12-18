@@ -13,16 +13,14 @@ use IteratorAggregate;
  */
 final class UserCollection implements IteratorAggregate
 {
-    private array $attributes;
-
     /**
      * constructor
      *
      * @param \App\Domain\Models\User\User[] $attributes attributes
      */
-    public function __construct(array $attributes = [])
-    {
-        $this->attributes = $attributes;
+    public function __construct(
+        private array $attributes = []
+    ) {
     }
 
     /**

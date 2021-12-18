@@ -34,8 +34,8 @@ final class InMemoryUserRepository implements IUserRepository
      */
     public function getById(UserId $userId): User
     {
-        if (array_key_exists($userId->getValue(), $this->store)) {
-            return $this->clone($this->store[$userId->getValue()]);
+        if (array_key_exists($userId->value, $this->store)) {
+            return $this->clone($this->store[$userId->value]);
         } else {
             throw new RecordNotFoundException();
         }
@@ -47,7 +47,7 @@ final class InMemoryUserRepository implements IUserRepository
     public function findByLoginId(LoginId $loginId): ?User
     {
         foreach ($this->store as $elem) {
-            if ($elem->getLoginId()->getValue() === $loginId->getValue()) {
+            if ($elem->loginId->value === $loginId->value) {
                 return $this->clone($elem);
             }
         }
@@ -74,9 +74,9 @@ final class InMemoryUserRepository implements IUserRepository
      */
     public function save(User $user): UserId
     {
-        $this->store[$user->getId()->getValue()] = $this->clone($user);
+        $this->store[$user->id->value] = $this->clone($user);
 
-        return $user->getId();
+        return $user->id;
     }
 
     /**
@@ -84,9 +84,9 @@ final class InMemoryUserRepository implements IUserRepository
      */
     public function update(User $user): UserId
     {
-        $this->store[$user->getId()->getValue()] = $this->clone($user);
+        $this->store[$user->id->value] = $this->clone($user);
 
-        return $user->getId();
+        return $user->id;
     }
 
     /**
@@ -94,8 +94,8 @@ final class InMemoryUserRepository implements IUserRepository
      */
     public function delete(UserId $userId): void
     {
-        if (array_key_exists($userId->getValue(), $this->store)) {
-            unset($this->store[$userId->getValue()]);
+        if (array_key_exists($userId->value, $this->store)) {
+            unset($this->store[$userId->value]);
         } else {
             throw new RecordNotFoundException();
         }
@@ -107,21 +107,21 @@ final class InMemoryUserRepository implements IUserRepository
      */
     private function clone(User $user): User
     {
-        $birthDay = $user->getBirthDay();
-        $cellPhoneNumber = $user->getCellPhoneNumber();
-        $remarks = $user->getRemarks();
+        $birthDay = $user->birthDay;
+        $cellPhoneNumber = $user->cellPhoneNumber;
+        $remarks = $user->remarks;
 
         return User::reconstruct(
-            $user->getId(),
-            $user->getLoginId(),
-            $user->getPassword(),
-            $user->getRoleName(),
-            $user->getFirstName(),
-            $user->getLastName(),
-            $user->getFirstNameKana(),
-            $user->getLastNameKana(),
-            $user->getMailAddress(),
-            $user->getSex(),
+            $user->id,
+            $user->loginId,
+            $user->password,
+            $user->roleName,
+            $user->firstName,
+            $user->lastName,
+            $user->firstNameKana,
+            $user->lastNameKana,
+            $user->mailAddress,
+            $user->sex,
             empty($birthDay) ? null : $birthDay,
             empty($cellPhoneNumber) ? null : $cellPhoneNumber,
             empty($remarks) ? null : $remarks,

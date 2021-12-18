@@ -10,16 +10,14 @@ use App\Domain\Models\User\Type\UserId;
  */
 final class UserSavedResult
 {
-    private UserId $userId;
-
     /**
      * constructor
      *
      * @param \App\Domain\Models\User\Type\UserId $userId userId
      */
-    public function __construct(UserId $userId)
-    {
-        $this->userId = $userId;
+    public function __construct(
+        private UserId $userId
+    ) {
     }
 
     /**
@@ -30,7 +28,7 @@ final class UserSavedResult
     public function format(): array
     {
         return [
-            'userId' => $this->userId->getValue(),
+            'userId' => $this->userId->value,
         ];
     }
 }

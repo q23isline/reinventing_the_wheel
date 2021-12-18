@@ -10,18 +10,16 @@ use Exception;
  */
 final class NotFoundException extends Exception
 {
-    protected array $errors;
-
     /**
      * constructor
      *
      * @param \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
      * @param \Exception|null $previous previous
      */
-    public function __construct(array $errors = [], ?Exception $previous = null)
-    {
-        $this->errors = $errors;
-
+    public function __construct(
+        protected array $errors = [],
+        ?Exception $previous = null
+    ) {
         // 親 Exception クラスでプロパティ定義済
         $message = 'Not Found';
         $code = 404;
@@ -49,8 +47,8 @@ final class NotFoundException extends Exception
         $errors = [];
         foreach ($this->getErrors() as $error) {
             $errors[] = [
-                'field' => $error->getField(),
-                'reason' => $error->getReason(),
+                'field' => $error->field,
+                'reason' => $error->reason,
             ];
         }
 

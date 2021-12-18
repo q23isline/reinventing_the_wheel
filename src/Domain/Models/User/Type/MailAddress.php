@@ -5,28 +5,18 @@ namespace App\Domain\Models\User\Type;
 
 /**
  * class MailAddress
+ *
+ * @property-read string $value value
  */
 final class MailAddress
 {
-    private string $value;
-
     /**
      * constructor
      *
      * @param string $value value
      */
-    public function __construct(string $value)
-    {
-        $this->value = $value;
-    }
-
-    /**
-     * Get the value of value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->value;
+    public function __construct(
+        public readonly string $value
+    ) {
     }
 }

@@ -19,23 +19,23 @@ use App\Domain\Models\User\Type\UserId;
 
 /**
  * class User
+ *
+ * @property-read \App\Domain\Models\User\Type\UserId $id id
+ * @property-read \App\Domain\Models\User\Type\LoginId $loginId loginId
+ * @property-read \App\Domain\Models\User\Type\Password $password password
+ * @property-read \App\Domain\Models\User\Type\RoleName $roleName roleName
+ * @property-read \App\Domain\Models\User\Type\FirstName $firstName firstName
+ * @property-read \App\Domain\Models\User\Type\LastName $lastName lastName
+ * @property-read \App\Domain\Models\User\Type\FirstNameKana $firstNameKana firstNameKana
+ * @property-read \App\Domain\Models\User\Type\LastNameKana $lastNameKana lastNameKana
+ * @property-read \App\Domain\Models\User\Type\MailAddress $mailAddress mailAddress
+ * @property-read \App\Domain\Models\User\Type\Sex $sex sex
+ * @property-read \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
+ * @property-read \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
+ * @property-read \App\Domain\Models\User\Type\Remarks|null $remarks remarks
  */
 final class User
 {
-    private UserId $id;
-    private LoginId $loginId;
-    private Password $password;
-    private RoleName $roleName;
-    private FirstName $firstName;
-    private LastName $lastName;
-    private FirstNameKana $firstNameKana;
-    private LastNameKana $lastNameKana;
-    private MailAddress $mailAddress;
-    private Sex $sex;
-    private ?BirthDay $birthDay = null;
-    private ?CellPhoneNumber $cellPhoneNumber = null;
-    private ?Remarks $remarks = null;
-
     /**
      * constructor
      *
@@ -55,33 +55,20 @@ final class User
      * @return void
      */
     private function __construct(
-        UserId $id,
-        LoginId $loginId,
-        Password $password,
-        RoleName $roleName,
-        FirstName $firstName,
-        LastName $lastName,
-        FirstNameKana $firstNameKana,
-        LastNameKana $lastNameKana,
-        MailAddress $mailAddress,
-        Sex $sex,
-        ?BirthDay $birthDay,
-        ?CellPhoneNumber $cellPhoneNumber,
-        ?Remarks $remarks
+        public readonly UserId $id,
+        public readonly LoginId $loginId,
+        public readonly Password $password,
+        public readonly RoleName $roleName,
+        public readonly FirstName $firstName,
+        public readonly LastName $lastName,
+        public readonly FirstNameKana $firstNameKana,
+        public readonly LastNameKana $lastNameKana,
+        public readonly MailAddress $mailAddress,
+        public readonly Sex $sex,
+        public readonly ?BirthDay $birthDay = null,
+        public readonly ?CellPhoneNumber $cellPhoneNumber = null,
+        public readonly ?Remarks $remarks = null
     ) {
-        $this->id = $id;
-        $this->loginId = $loginId;
-        $this->password = $password;
-        $this->roleName = $roleName;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->firstNameKana = $firstNameKana;
-        $this->lastNameKana = $lastNameKana;
-        $this->mailAddress = $mailAddress;
-        $this->sex = $sex;
-        $this->birthDay = $birthDay;
-        $this->cellPhoneNumber = $cellPhoneNumber;
-        $this->remarks = $remarks;
     }
 
     /**
@@ -187,6 +174,9 @@ final class User
 
     /**
      * 更新
+     * TODO: 自身のプロパティを更新したいが readonly アクセス修飾子は一度初期化したら上書きできないため、
+     *       新しいオブジェクトとして返す。 `private set` をサポートされたら書き換える。
+     *       <https://www.php.net/manual/ja/language.oop5.properties.php>
      *
      * @param \App\Domain\Models\User\Type\LoginId $loginId loginId
      * @param \App\Domain\Models\User\Type\Password $password password
@@ -200,7 +190,7 @@ final class User
      * @param \App\Domain\Models\User\Type\BirthDay|null $birthDay birthDay
      * @param \App\Domain\Models\User\Type\CellPhoneNumber|null $cellPhoneNumber cellPhoneNumber
      * @param \App\Domain\Models\User\Type\Remarks|null $remarks remarks
-     * @return void
+     * @return self
      */
     public function update(
         LoginId $loginId,
@@ -215,19 +205,22 @@ final class User
         ?BirthDay $birthDay,
         ?CellPhoneNumber $cellPhoneNumber,
         ?Remarks $remarks
-    ): void {
-        $this->loginId = $loginId;
-        $this->password = $password;
-        $this->roleName = $roleName;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->firstNameKana = $firstNameKana;
-        $this->lastNameKana = $lastNameKana;
-        $this->mailAddress = $mailAddress;
-        $this->sex = $sex;
-        $this->birthDay = $birthDay;
-        $this->cellPhoneNumber = $cellPhoneNumber;
-        $this->remarks = $remarks;
+    ): self {
+        return new self(
+            $this->id,
+            $loginId,
+            $password,
+            $roleName,
+            $firstName,
+            $lastName,
+            $firstNameKana,
+            $lastNameKana,
+            $mailAddress,
+            $sex,
+            $birthDay,
+            $cellPhoneNumber,
+            $remarks,
+        );
     }
 
     /**
@@ -243,136 +236,6 @@ final class User
             return true;
         }
 
-        return $this->id->getValue() === $other->getId()->getValue();
-    }
-
-    /**
-     * Get the value of id
-     *
-     * @return \App\Domain\Models\User\Type\UserId
-     */
-    public function getId(): UserId
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get the value of loginId
-     *
-     * @return \App\Domain\Models\User\Type\LoginId
-     */
-    public function getLoginId(): LoginId
-    {
-        return $this->loginId;
-    }
-
-    /**
-     * Get the value of password
-     *
-     * @return \App\Domain\Models\User\Type\Password
-     */
-    public function getPassword(): Password
-    {
-        return $this->password;
-    }
-
-    /**
-     * Get the value of roleName
-     *
-     * @return \App\Domain\Models\User\Type\RoleName
-     */
-    public function getRoleName(): RoleName
-    {
-        return $this->roleName;
-    }
-
-    /**
-     * Get the value of firstName
-     *
-     * @return \App\Domain\Models\User\Type\FirstName
-     */
-    public function getFirstName(): FirstName
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Get the value of lastName
-     *
-     * @return \App\Domain\Models\User\Type\LastName
-     */
-    public function getLastName(): LastName
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Get the value of firstNameKana
-     *
-     * @return \App\Domain\Models\User\Type\FirstNameKana
-     */
-    public function getFirstNameKana(): FirstNameKana
-    {
-        return $this->firstNameKana;
-    }
-
-    /**
-     * Get the value of lastNameKana
-     *
-     * @return \App\Domain\Models\User\Type\LastNameKana
-     */
-    public function getLastNameKana(): LastNameKana
-    {
-        return $this->lastNameKana;
-    }
-
-    /**
-     * Get the value of mailAddress
-     *
-     * @return \App\Domain\Models\User\Type\MailAddress
-     */
-    public function getMailAddress(): MailAddress
-    {
-        return $this->mailAddress;
-    }
-
-    /**
-     * Get the value of sex
-     *
-     * @return \App\Domain\Models\User\Type\Sex
-     */
-    public function getSex(): Sex
-    {
-        return $this->sex;
-    }
-
-    /**
-     * Get the value of birthDay
-     *
-     * @return \App\Domain\Models\User\Type\BirthDay|null
-     */
-    public function getBirthDay(): ?BirthDay
-    {
-        return $this->birthDay;
-    }
-
-    /**
-     * Get the value of cellPhoneNumber
-     *
-     * @return \App\Domain\Models\User\Type\CellPhoneNumber|null
-     */
-    public function getCellPhoneNumber(): ?CellPhoneNumber
-    {
-        return $this->cellPhoneNumber;
-    }
-
-    /**
-     * Get the value of remarks
-     *
-     * @return \App\Domain\Models\User\Type\Remarks|null
-     */
-    public function getRemarks(): ?Remarks
-    {
-        return $this->remarks;
+        return $this->id->value === $other->id->value;
     }
 }

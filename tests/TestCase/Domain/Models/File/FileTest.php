@@ -40,11 +40,11 @@ final class FileTest extends TestCase
         );
 
         // Assert
-        $this->assertEquals($id, $file->getId());
-        $this->assertEquals($fileName, $file->getFileName());
-        $this->assertEquals($fileSize, $file->getFileSize());
-        $this->assertEquals($contentType, $file->getContentType());
-        $this->assertEquals($fileDirectory, $file->getFileDirectory());
+        $this->assertEquals($id, $file->id);
+        $this->assertEquals($fileName, $file->fileName);
+        $this->assertEquals($fileSize, $file->fileSize);
+        $this->assertEquals($contentType, $file->contentType);
+        $this->assertEquals($fileDirectory, $file->fileDirectory);
     }
 
     /**
@@ -69,10 +69,10 @@ final class FileTest extends TestCase
         );
 
         // Assert
-        $this->assertEquals($id, $file->getId());
-        $this->assertEquals($fileName, $file->getFileName());
-        $this->assertEquals($fileSize, $file->getFileSize());
-        $this->assertEquals($contentType, $file->getContentType());
-        $this->assertEquals($fileDirectory, $file->getFileDirectory());
+        $this->assertEquals($id, $file->id);
+        $this->assertEquals($fileName, $file->fileName);
+        $this->assertEquals($fileSize, $file->fileSize);
+        $this->assertEquals($contentType, $file->contentType);
+        $this->assertEquals($fileDirectory, $file->fileDirectory);
     }
 }

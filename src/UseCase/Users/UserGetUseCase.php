@@ -11,16 +11,14 @@ use App\Domain\Models\User\Type\UserId;
  */
 class UserGetUseCase
 {
-    private IUserRepository $userRepository;
-
     /**
      * constructor
      *
      * @param \App\Domain\Models\User\IUserRepository $userRepository userRepository
      */
-    public function __construct(IUserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
+    public function __construct(
+        private IUserRepository $userRepository
+    ) {
     }
 
     /**
@@ -31,7 +29,7 @@ class UserGetUseCase
      */
     public function handle(UserGetCommand $command): UserData
     {
-        $userId = new UserId($command->getUserId());
+        $userId = new UserId($command->userId);
         $user = $this->userRepository->getById($userId);
 
         return new UserData($user);
