@@ -41,7 +41,7 @@ final class LoginIdTest extends TestCase
         $actualLoginId = new LoginId($loginId);
 
         // Assert
-        $this->assertEquals($loginId, $actualLoginId->getValue());
+        $this->assertEquals($loginId, $actualLoginId->value);
     }
 
     /**
@@ -56,7 +56,7 @@ final class LoginIdTest extends TestCase
         $actualLoginId = new LoginId($loginId);
 
         // Assert
-        $this->assertEquals($loginId, $actualLoginId->getValue());
+        $this->assertEquals($loginId, $actualLoginId->value);
     }
 
     /**

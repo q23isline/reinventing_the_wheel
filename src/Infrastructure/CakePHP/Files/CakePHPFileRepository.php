@@ -31,16 +31,16 @@ final class CakePHPFileRepository implements IFileRepository
 
         $saveData = [
             'Files' => [
-                'name' => $file->getFileName()->getValue(),
-                'size' => $file->getFileSize()->getValue(),
-                'content_type' => $file->getContentType()->getValue(),
-                'directory' => $file->getFileDirectory()->getValue(),
+                'name' => $file->fileName->value,
+                'size' => $file->fileSize->value,
+                'content_type' => $file->contentType->value,
+                'directory' => $file->fileDirectory->value,
             ],
         ];
 
         $entity = $model->newEmptyEntity();
         $entity = $model->patchEntity($entity, $saveData);
-        $entity->id = $file->getId()->getValue();
+        $entity->id = $file->id->value;
         $saved = $model->saveOrFail($entity);
 
         return new FileId($saved->id);

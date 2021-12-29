@@ -8,6 +8,8 @@ use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class RoleName
+ *
+ * @property-read string $value value
  */
 final class RoleName
 {
@@ -17,7 +19,7 @@ final class RoleName
         'viewer',
     ];
 
-    private string $value;
+    public readonly string $value;
 
     /**
      * constructor
@@ -32,15 +34,5 @@ final class RoleName
         }
 
         $this->value = $value;
-    }
-
-    /**
-     * Get the value of value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->value;
     }
 }

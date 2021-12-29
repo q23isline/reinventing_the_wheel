@@ -10,16 +10,14 @@ use App\Domain\Models\User\IUserRepository;
  */
 class UserListUseCase
 {
-    private IUserRepository $userRepository;
-
     /**
      * constructor
      *
      * @param \App\Domain\Models\User\IUserRepository $userRepository userRepository
      */
-    public function __construct(IUserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
+    public function __construct(
+        private IUserRepository $userRepository
+    ) {
     }
 
     /**
@@ -30,7 +28,7 @@ class UserListUseCase
      */
     public function handle(UserListCommand $command): array
     {
-        $searchKeyword = $command->getKeyword();
+        $searchKeyword = $command->keyword;
 
         $users = $this->userRepository->findAll($searchKeyword);
 

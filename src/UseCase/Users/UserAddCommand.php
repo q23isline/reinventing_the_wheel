@@ -8,21 +8,34 @@ use App\Domain\Shared\Exception\ValidateException;
 
 /**
  * class UserAddCommand
+ *
+ * @property-read string $loginId loginId
+ * @property-read string $password password
+ * @property-read string $roleName roleName
+ * @property-read string $firstName firstName
+ * @property-read string $lastName lastName
+ * @property-read string $firstNameKana firstNameKana
+ * @property-read string $lastNameKana lastNameKana
+ * @property-read string $mailAddress mailAddress
+ * @property-read string $sex sex
+ * @property-read string|null $birthDay birthDay
+ * @property-read string|null $cellPhoneNumber cellPhoneNumber
+ * @property-read string|null $remarks remarks
  */
 final class UserAddCommand
 {
-    private string $loginId;
-    private string $password;
-    private string $roleName;
-    private string $firstName;
-    private string $lastName;
-    private string $firstNameKana;
-    private string $lastNameKana;
-    private string $mailAddress;
-    private string $sex;
-    private ?string $birthDay;
-    private ?string $cellPhoneNumber;
-    private ?string $remarks;
+    public readonly string $loginId;
+    public readonly string $password;
+    public readonly string $roleName;
+    public readonly string $firstName;
+    public readonly string $lastName;
+    public readonly string $firstNameKana;
+    public readonly string $lastNameKana;
+    public readonly string $mailAddress;
+    public readonly string $sex;
+    public readonly ?string $birthDay;
+    public readonly ?string $cellPhoneNumber;
+    public readonly ?string $remarks;
 
     /**
      * constructor
@@ -74,126 +87,6 @@ final class UserAddCommand
         $this->birthDay = $birthDay;
         $this->cellPhoneNumber = $cellPhoneNumber;
         $this->remarks = $remarks;
-    }
-
-    /**
-     * Get the value of loginId
-     *
-     * @return string
-     */
-    public function getLoginId(): string
-    {
-        return $this->loginId;
-    }
-
-    /**
-     * Get the value of password
-     *
-     * @return string
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
-
-    /**
-     * Get the value of roleName
-     *
-     * @return string
-     */
-    public function getRoleName(): string
-    {
-        return $this->roleName;
-    }
-
-    /**
-     * Get the value of firstName
-     *
-     * @return string
-     */
-    public function getFirstName(): string
-    {
-        return $this->firstName;
-    }
-
-    /**
-     * Get the value of lastName
-     *
-     * @return string
-     */
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Get the value of firstNameKana
-     *
-     * @return string
-     */
-    public function getFirstNameKana(): string
-    {
-        return $this->firstNameKana;
-    }
-
-    /**
-     * Get the value of lastNameKana
-     *
-     * @return string
-     */
-    public function getLastNameKana(): string
-    {
-        return $this->lastNameKana;
-    }
-
-    /**
-     * Get the value of mailAddress
-     *
-     * @return string
-     */
-    public function getMailAddress(): string
-    {
-        return $this->mailAddress;
-    }
-
-    /**
-     * Get the value of sex
-     *
-     * @return string
-     */
-    public function getSex(): string
-    {
-        return $this->sex;
-    }
-
-    /**
-     * Get the value of birthDay
-     *
-     * @return string|null
-     */
-    public function getBirthDay(): ?string
-    {
-        return $this->birthDay;
-    }
-
-    /**
-     * Get the value of cellPhoneNumber
-     *
-     * @return string|null
-     */
-    public function getCellPhoneNumber(): ?string
-    {
-        return $this->cellPhoneNumber;
-    }
-
-    /**
-     * Get the value of remarks
-     *
-     * @return string
-     */
-    public function getRemarks(): ?string
-    {
-        return $this->remarks;
     }
 
     /**

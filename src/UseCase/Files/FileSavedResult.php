@@ -10,16 +10,14 @@ use App\Domain\Models\File\Type\FileId;
  */
 final class FileSavedResult
 {
-    private FileId $fileId;
-
     /**
      * constructor
      *
      * @param \App\Domain\Models\File\Type\FileId $fileId fileId
      */
-    public function __construct(FileId $fileId)
-    {
-        $this->fileId = $fileId;
+    public function __construct(
+        private FileId $fileId
+    ) {
     }
 
     /**
@@ -30,7 +28,7 @@ final class FileSavedResult
     public function format(): array
     {
         return [
-            'fileId' => $this->fileId->getValue(),
+            'fileId' => $this->fileId->value,
         ];
     }
 }

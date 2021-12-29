@@ -41,7 +41,7 @@ final class CakePHPUserRepository implements IUserRepository
     public function getById(UserId $userId): User
     {
         $model = TableRegistry::getTableLocator()->get('Users');
-        $record = $model->get($userId->getValue());
+        $record = $model->get($userId->value);
 
         // パスワード等 Entity の hidden 項目を toArray() で返すようにする
         $record->setHidden([]);
@@ -56,7 +56,7 @@ final class CakePHPUserRepository implements IUserRepository
     {
         $model = TableRegistry::getTableLocator()->get('Users');
         $records = $model->find()
-            ->where(['username' => $loginId->getValue()])
+            ->where(['username' => $loginId->value])
             ->toArray();
 
         if (empty($records)) {
@@ -110,26 +110,25 @@ final class CakePHPUserRepository implements IUserRepository
 
         $saveData = [
             'Users' => [
-                'username' => $user->getLoginId()->getValue(),
-                'password' => $user->getPassword()->getValue(),
-                'role' => $user->getRoleName()->getValue(),
-                'first_name' => $user->getFirstName()->getValue(),
-                'last_name' => $user->getLastName()->getValue(),
-                'first_name_kana' => $user->getFirstNameKana()->getValue(),
-                'last_name_kana' => $user->getLastNameKana()->getValue(),
-                'mail_address' => $user->getMailAddress()->getValue(),
-                'sex' => $user->getSex()->getValue(),
-                'birth_day' => is_null($user->getBirthDay()) ? null : $user->getBirthDay()->getValue(),
-                'cell_phone_number' =>
-                    is_null($user->getCellPhoneNumber()) ? null : $user->getCellPhoneNumber()->getValue(),
-                'remarks' => is_null($user->getRemarks()) ? null : $user->getRemarks()->getValue(),
+                'username' => $user->loginId->value,
+                'password' => $user->password->value,
+                'role' => $user->roleName->value,
+                'first_name' => $user->firstName->value,
+                'last_name' => $user->lastName->value,
+                'first_name_kana' => $user->firstNameKana->value,
+                'last_name_kana' => $user->lastNameKana->value,
+                'mail_address' => $user->mailAddress->value,
+                'sex' => $user->sex->value,
+                'birth_day' => $user->birthDay?->value,
+                'cell_phone_number' => $user->cellPhoneNumber?->value,
+                'remarks' => $user->remarks?->value,
             ],
         ];
 
         $entity = $model->newEmptyEntity();
         $entity = $model->patchEntity($entity, $saveData);
         // $saveData に id を設定しても patchEntity() 時に id が消え去るため、明示的に設定
-        $entity->id = $user->getId()->getValue();
+        $entity->id = $user->id->value;
         $saved = $model->saveOrFail($entity);
 
         return new UserId($saved->id);
@@ -144,23 +143,22 @@ final class CakePHPUserRepository implements IUserRepository
 
         $saveData = [
             'Users' => [
-                'username' => $user->getLoginId()->getValue(),
-                'password' => $user->getPassword()->getValue(),
-                'role' => $user->getRoleName()->getValue(),
-                'first_name' => $user->getFirstName()->getValue(),
-                'last_name' => $user->getLastName()->getValue(),
-                'first_name_kana' => $user->getFirstNameKana()->getValue(),
-                'last_name_kana' => $user->getLastNameKana()->getValue(),
-                'mail_address' => $user->getMailAddress()->getValue(),
-                'sex' => $user->getSex()->getValue(),
-                'birth_day' => is_null($user->getBirthDay()) ? null : $user->getBirthDay()->getValue(),
-                'cell_phone_number' =>
-                    is_null($user->getCellPhoneNumber()) ? null : $user->getCellPhoneNumber()->getValue(),
-                'remarks' => is_null($user->getRemarks()) ? null : $user->getRemarks()->getValue(),
+                'username' => $user->loginId->value,
+                'password' => $user->password->value,
+                'role' => $user->roleName->value,
+                'first_name' => $user->firstName->value,
+                'last_name' => $user->lastName->value,
+                'first_name_kana' => $user->firstNameKana->value,
+                'last_name_kana' => $user->lastNameKana->value,
+                'mail_address' => $user->mailAddress->value,
+                'sex' => $user->sex->value,
+                'birth_day' => $user->birthDay?->value,
+                'cell_phone_number' => $user->cellPhoneNumber?->value,
+                'remarks' => $user->remarks?->value,
             ],
         ];
 
-        $entity = $model->get($user->getId()->getValue());
+        $entity = $model->get($user->id->value);
         $entity = $model->patchEntity($entity, $saveData);
         $saved = $model->saveOrFail($entity);
 
@@ -173,7 +171,7 @@ final class CakePHPUserRepository implements IUserRepository
     public function delete(UserId $userId): void
     {
         $model = TableRegistry::getTableLocator()->get('Users');
-        $entity = $model->get($userId->getValue());
+        $entity = $model->get($userId->value);
         $model->deleteOrFail($entity);
     }
 

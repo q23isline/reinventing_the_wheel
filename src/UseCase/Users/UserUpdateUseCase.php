@@ -26,19 +26,16 @@ use App\Domain\Shared\Exception\ValidateException;
  */
 class UserUpdateUseCase
 {
-    private IUserRepository $userRepository;
-    private UserService $userService;
-
     /**
      * constructor
      *
      * @param \App\Domain\Models\User\IUserRepository $userRepository userRepository
      * @param \App\Domain\Services\UserService $userService userService
      */
-    public function __construct(IUserRepository $userRepository, UserService $userService)
-    {
-        $this->userRepository = $userRepository;
-        $this->userService = $userService;
+    public function __construct(
+        private IUserRepository $userRepository,
+        private UserService $userService
+    ) {
     }
 
     /**
@@ -50,22 +47,22 @@ class UserUpdateUseCase
      */
     public function handle(UserUpdateCommand $command): UserId
     {
-        $data = $this->userRepository->getById(new UserId($command->getUserId()));
+        $data = $this->userRepository->getById(new UserId($command->userId));
 
-        $birthDay = $command->getBirthDay();
-        $cellPhoneNumber = $command->getCellPhoneNumber();
-        $remarks = $command->getRemarks();
+        $birthDay = $command->birthDay;
+        $cellPhoneNumber = $command->cellPhoneNumber;
+        $remarks = $command->remarks;
 
-        $data->update(
-            new LoginId($command->getLoginId()),
-            new Password($command->getPassword()),
-            new RoleName($command->getRoleName()),
-            new FirstName($command->getFirstName()),
-            new LastName($command->getLastName()),
-            new FirstNameKana($command->getFirstNameKana()),
-            new LastNameKana($command->getLastNameKana()),
-            new MailAddress($command->getMailAddress()),
-            new Sex($command->getSex()),
+        $data = $data->update(
+            new LoginId($command->loginId),
+            new Password($command->password),
+            new RoleName($command->roleName),
+            new FirstName($command->firstName),
+            new LastName($command->lastName),
+            new FirstNameKana($command->firstNameKana),
+            new LastNameKana($command->lastNameKana),
+            new MailAddress($command->mailAddress),
+            new Sex($command->sex),
             empty($birthDay) ? null : new BirthDay($birthDay),
             empty($cellPhoneNumber) ? null : new CellPhoneNumber($cellPhoneNumber),
             empty($remarks) ? null : new Remarks($remarks),

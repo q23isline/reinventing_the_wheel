@@ -11,16 +11,14 @@ use App\Domain\Models\User\Type\UserId;
  */
 class UserDeleteUseCase
 {
-    private IUserRepository $userRepository;
-
     /**
      * constructor
      *
      * @param \App\Domain\Models\User\IUserRepository $userRepository userRepository
      */
-    public function __construct(IUserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
+    public function __construct(
+        private IUserRepository $userRepository
+    ) {
     }
 
     /**
@@ -31,7 +29,7 @@ class UserDeleteUseCase
      */
     public function handle(UserDeleteCommand $command): void
     {
-        $userId = new UserId($command->getUserId());
+        $userId = new UserId($command->userId);
         $this->userRepository->delete($userId);
     }
 }

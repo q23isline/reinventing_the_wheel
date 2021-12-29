@@ -8,16 +8,14 @@ namespace App\UseCase\Users;
  */
 final class UserGetResult
 {
-    private UserData $userData;
-
     /**
      * constructor
      *
      * @param \App\UseCase\Users\UserData $userData userData
      */
-    public function __construct(UserData $userData)
-    {
-        $this->userData = $userData;
+    public function __construct(
+        private UserData $userData
+    ) {
     }
 
     /**
@@ -29,18 +27,18 @@ final class UserGetResult
     {
         return [
             'data' => [
-                'id' => $this->userData->getId(),
-                'loginId' => $this->userData->getLoginId(),
-                'roleName' => $this->userData->getRoleName(),
-                'firstName' => $this->userData->getFirstName(),
-                'lastName' => $this->userData->getLastName(),
-                'firstNameKana' => $this->userData->getFirstNameKana(),
-                'lastNameKana' => $this->userData->getLastNameKana(),
-                'mailAddress' => $this->userData->getMailAddress(),
-                'sex' => $this->userData->getSex(),
-                'birthDay' => $this->userData->getBirthDay(),
-                'cellPhoneNumber' => $this->userData->getCellPhoneNumber(),
-                'remarks' => $this->userData->getRemarks(),
+                'id' => $this->userData->id,
+                'loginId' => $this->userData->loginId,
+                'roleName' => $this->userData->roleName,
+                'firstName' => $this->userData->firstName,
+                'lastName' => $this->userData->lastName,
+                'firstNameKana' => $this->userData->firstNameKana,
+                'lastNameKana' => $this->userData->lastNameKana,
+                'mailAddress' => $this->userData->mailAddress,
+                'sex' => $this->userData->sex,
+                'birthDay' => $this->userData->birthDay,
+                'cellPhoneNumber' => $this->userData->cellPhoneNumber,
+                'remarks' => $this->userData->remarks,
             ],
         ];
     }

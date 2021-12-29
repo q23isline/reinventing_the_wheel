@@ -9,10 +9,12 @@ use Laminas\Diactoros\UploadedFile;
 
 /**
  * class FileUploadCommand
+ *
+ * @property-read \Laminas\Diactoros\UploadedFile $file file
  */
 final class FileUploadCommand
 {
-    private UploadedFile $file;
+    public readonly UploadedFile $file;
 
     /**
      * constructor
@@ -30,16 +32,6 @@ final class FileUploadCommand
         if (count($errors) > 0) {
             throw new ValidateException($errors);
         }
-    }
-
-    /**
-     * Get the value of file
-     *
-     * @return \Laminas\Diactoros\UploadedFile
-     */
-    public function getFile(): UploadedFile
-    {
-        return $this->file;
     }
 
     /**
