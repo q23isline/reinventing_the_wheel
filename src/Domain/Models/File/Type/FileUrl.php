@@ -5,28 +5,18 @@ namespace App\Domain\Models\File\Type;
 
 /**
  * class FileUrl
+ *
+ * @property-read string $value value
  */
 final class FileUrl
 {
-    private string $value;
-
     /**
      * constructor
      *
      * @param string $value value
      */
-    public function __construct(string $value)
-    {
-        $this->value = $value;
-    }
-
-    /**
-     * Get the value of value
-     *
-     * @return string
-     */
-    public function getValue(): string
-    {
-        return $this->value;
+    public function __construct(
+        public readonly string $value
+    ) {
     }
 }
