@@ -8,6 +8,7 @@ use App\Domain\Models\File\Type\FileDirectory;
 use App\Domain\Models\File\Type\FileId;
 use App\Domain\Models\File\Type\FileName;
 use App\Domain\Models\File\Type\FileUrl;
+use Cake\Core\Configure;
 use Laminas\Diactoros\UploadedFile;
 
 /**
@@ -18,10 +19,12 @@ final class InMemoryFileStorageRepository implements IFileStorageRepository
     /**
      * @inheritDoc
      */
-    public function getUrl(FileDirectory $fileDirectory, FileId $fileId, FileName $fileName): FileUrl
+    public function getUrl(FileDirectory $fileDirectory, FileName $fileName): FileUrl
     {
+        $fullBaseUrl = Configure::read('App.fullBaseUrl');
+
         return new FileUrl(
-            "{$_SERVER['SERVER_NAME']}/{$fileDirectory->value}/{$fileId->value}/{$fileName->value}"
+            "{$fullBaseUrl}/{$fileDirectory->value}/{$fileName->value}"
         );
     }
 

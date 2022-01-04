@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\UseCase\Files;
 
-use App\Domain\Models\File\Type\FileId;
+use App\Domain\Models\File\Type\FileUrl;
 
 /**
  * class FileSavedResult
@@ -13,10 +13,10 @@ final class FileSavedResult
     /**
      * constructor
      *
-     * @param \App\Domain\Models\File\Type\FileId $fileId fileId
+     * @param \App\Domain\Models\File\Type\FileUrl $fileUrl fileUrl
      */
     public function __construct(
-        private FileId $fileId
+        private FileUrl $fileUrl
     ) {
     }
 
@@ -28,7 +28,7 @@ final class FileSavedResult
     public function format(): array
     {
         return [
-            'fileId' => $this->fileId->value,
+            'url' => $this->fileUrl->value,
         ];
     }
 }

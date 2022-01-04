@@ -50,13 +50,13 @@ class FilesController extends AppController
                 $jsonData['file'] ?? null,
             );
 
-            $fileId = $this->fileUploadUseCase->handle($command);
-            $result = new FileSavedResult($fileId);
+            $fileUrl = $this->fileUploadUseCase->handle($command);
+            $result = new FileSavedResult($fileUrl);
             $data = $result->format();
 
             $this->set($data);
             $this->viewBuilder()->setClassName('Json')
-                ->setOption('serialize', ['fileId']);
+                ->setOption('serialize', ['url']);
         } catch (ValidateException $e) {
             $data = $e->format();
 

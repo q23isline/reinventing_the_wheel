@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller\Api\V1;
 
-use App\Domain\Models\File\Type\FileId;
+use App\Domain\Models\File\Type\FileUrl;
 use App\UseCase\Files\FileUploadUseCase;
 use Cake\Event\EventInterface;
 use Cake\Event\EventManager;
@@ -63,15 +63,15 @@ class FilesControllerTest extends TestCase
             ),
         ];
 
-        $id = '00676011-5447-4eb1-bde1-001880663af3';
+        $url = 'http://localhost/uploadFiles/Users/00676011-5447-4eb1-bde1-001880663af3/test.png';
         $mockFileUploadUseCase = $this->createMock(FileUploadUseCase::class);
         $mockFileUploadUseCase->expects($this->once())
             ->method('handle')
-            ->will($this->returnValue(new FileId($id)));
+            ->will($this->returnValue(new FileUrl($url)));
 
         $this->overridePrivatePropertyWithMock('fileUploadUseCase', $mockFileUploadUseCase);
 
-        $expected = ['fileId' => $id];
+        $expected = ['url' => $url];
         $expected = json_encode($expected, JSON_PRETTY_PRINT);
 
         // Act

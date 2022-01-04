@@ -18,11 +18,10 @@ interface IFileStorageRepository
      * ファイル保存 URL を取得する
      *
      * @param \App\Domain\Models\File\Type\FileDirectory $fileDirectory fileDirectory
-     * @param \App\Domain\Models\File\Type\FileId $fileId fileId
      * @param \App\Domain\Models\File\Type\FileName $fileName fileName
      * @return \App\Domain\Models\File\Type\FileUrl
      */
-    public function getUrl(FileDirectory $fileDirectory, FileId $fileId, FileName $fileName): FileUrl;
+    public function getUrl(FileDirectory $fileDirectory, FileName $fileName): FileUrl;
 
     /**
      * ファイル保存ディレクトリを取得する（ユーザー用）
