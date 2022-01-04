@@ -61,7 +61,6 @@ class ProfileAddUseCase
                 $file->id,
                 $this->fileStorageRepository->getUrl(
                     $file->fileDirectory,
-                    $file->id,
                     $file->fileName,
                 )
             );
