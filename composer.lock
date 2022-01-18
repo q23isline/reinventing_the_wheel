@@ -4037,16 +4037,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.2.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "cbe085f9fdead5b6d62e4c022ca52dc9427a10ee"
+                "reference": "5bd02c86beb4c024dd4662b6443f5d5332a0ae12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/cbe085f9fdead5b6d62e4c022ca52dc9427a10ee",
-                "reference": "cbe085f9fdead5b6d62e4c022ca52dc9427a10ee",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/5bd02c86beb4c024dd4662b6443f5d5332a0ae12",
+                "reference": "5bd02c86beb4c024dd4662b6443f5d5332a0ae12",
                 "shasum": ""
             },
             "require": {
@@ -4062,7 +4062,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -4077,7 +4077,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.2.0"
+                "source": "https://github.com/phpstan/phpstan/tree/1.4.1"
             },
             "funding": [
                 {
@@ -4097,7 +4097,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-18T14:09:01+00:00"
+            "time": "2022-01-17T16:35:17+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -6314,5 +6314,5 @@
         "php": ">=7.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }
