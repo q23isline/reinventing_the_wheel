@@ -74,15 +74,59 @@ final class UserUpdateCommand
     ) {
         $errors = [];
 
-        $this->setProperty('loginId', $loginId, $errors);
-        $this->setProperty('password', $password, $errors);
-        $this->setProperty('roleName', $roleName, $errors);
-        $this->setProperty('firstName', $firstName, $errors);
-        $this->setProperty('lastName', $lastName, $errors);
-        $this->setProperty('firstNameKana', $firstNameKana, $errors);
-        $this->setProperty('lastNameKana', $lastNameKana, $errors);
-        $this->setProperty('mailAddress', $mailAddress, $errors);
-        $this->setProperty('sex', $sex, $errors);
+        if (empty($loginId)) {
+            $errors[] = new ExceptionItem('loginId', '必須項目が不足しています。');
+        } else {
+            $this->loginId = $loginId;
+        }
+
+        if (empty($password)) {
+            $errors[] = new ExceptionItem('password', '必須項目が不足しています。');
+        } else {
+            $this->password = $password;
+        }
+
+        if (empty($roleName)) {
+            $errors[] = new ExceptionItem('roleName', '必須項目が不足しています。');
+        } else {
+            $this->roleName = $roleName;
+        }
+
+        if (empty($firstName)) {
+            $errors[] = new ExceptionItem('firstName', '必須項目が不足しています。');
+        } else {
+            $this->firstName = $firstName;
+        }
+
+        if (empty($lastName)) {
+            $errors[] = new ExceptionItem('lastName', '必須項目が不足しています。');
+        } else {
+            $this->lastName = $lastName;
+        }
+
+        if (empty($firstNameKana)) {
+            $errors[] = new ExceptionItem('firstNameKana', '必須項目が不足しています。');
+        } else {
+            $this->firstNameKana = $firstNameKana;
+        }
+
+        if (empty($lastNameKana)) {
+            $errors[] = new ExceptionItem('lastNameKana', '必須項目が不足しています。');
+        } else {
+            $this->lastNameKana = $lastNameKana;
+        }
+
+        if (empty($mailAddress)) {
+            $errors[] = new ExceptionItem('mailAddress', '必須項目が不足しています。');
+        } else {
+            $this->mailAddress = $mailAddress;
+        }
+
+        if (empty($sex)) {
+            $errors[] = new ExceptionItem('sex', '必須項目が不足しています。');
+        } else {
+            $this->sex = $sex;
+        }
 
         if (count($errors) > 0) {
             throw new ValidateException($errors);
@@ -92,22 +136,5 @@ final class UserUpdateCommand
         $this->cellPhoneNumber = $cellPhoneNumber;
         $this->remarks = $remarks;
         $this->userId = $userId;
-    }
-
-    /**
-     * プロパティに値をセットする
-     *
-     * @param string $propertyName propertyName
-     * @param mixed $value value
-     * @param \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
-     * @return void
-     */
-    private function setProperty(string $propertyName, $value, array &$errors): void
-    {
-        if (empty($value)) {
-            $errors[] = new ExceptionItem($propertyName, '必須項目が不足しています。');
-        } else {
-            $this->{$propertyName} = $value;
-        }
     }
 }

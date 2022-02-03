@@ -27,27 +27,14 @@ final class FileUploadCommand
     ) {
         $errors = [];
 
-        $this->setProperty('file', $file, $errors);
+        if (empty($file)) {
+            $errors[] = new ExceptionItem('file', '必須項目が不足しています。');
+        } else {
+            $this->file = $file;
+        }
 
         if (count($errors) > 0) {
             throw new ValidateException($errors);
-        }
-    }
-
-    /**
-     * プロパティに値をセットする
-     *
-     * @param string $propertyName propertyName
-     * @param mixed $value value
-     * @param \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
-     * @return void
-     */
-    private function setProperty(string $propertyName, $value, array &$errors): void
-    {
-        if (empty($value)) {
-            $errors[] = new ExceptionItem($propertyName, '必須項目が不足しています。');
-        } else {
-            $this->{$propertyName} = $value;
         }
     }
 }
