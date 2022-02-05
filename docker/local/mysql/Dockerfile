@@ -1,4 +1,4 @@
-FROM mysql:5.7
+FROM mysql:8.0
 
 # Windowsのファイルシステムの問題により、マウント後に読み取り専用の権限へ変更する
 # <https://qiita.com/koyo-miyamura/items/4d1430b9086c5d4a58a5>
