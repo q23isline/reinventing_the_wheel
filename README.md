@@ -61,8 +61,19 @@ custom styles.
     ```
 
 2. `config/.env.example`をコピーし、`config/.env`として貼り付ける
-    - `SECURITY_SALT`の値は適当に書き換える
+    - ファイル内の`SECURITY_SALT`の値は適当に書き換える
+
+    ```bash
+    cd reinventing_the_wheel
+    cp config/.env.example config/.env
+    ```
+
 3. `config/app_local.example.php`をコピーし、`config/app_local.php`として貼り付ける
+
+    ```bash
+    cp config/app_local.example.php config/app_local.php
+    ```
+
 4. アプリ立ち上げ
 
     ```bash
@@ -93,6 +104,17 @@ custom styles.
   - admin
 - Password
   - admin00
+
+### Permission Denied対策
+
+- ログイン後、画面にPermission Deniedエラーが表示される場合、以下を実行
+  - 本番環境では適切に権限を付与すべきだがとりあえず動くようにフル権限を付与
+
+```bash
+sudo chmod 777 -R vendor
+sudo chmod 777 -R tmp
+sudo chmod 777 -R logs
+```
 
 ## コード静的解析＆ユニットテスト
 
