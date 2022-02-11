@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 use Cake\Datasource\ConnectionManager;
-use Cake\Utility\Text;
 use Migrations\AbstractSeed;
 
 /**
@@ -24,10 +23,11 @@ class AbProfilesSeed extends AbstractSeed
     {
         $datetime = date('Y-m-d H:i:s');
         // 右端 3桁不足している UUID
+        $uuidBase = '4a90fd6e-1784-4a60-83ed-be37b3bfa';
         $userUuidBase = '01509588-3882-42dd-9ab2-485e8e579';
         $data = [
             [
-                'id' => Text::uuid(),
+                'id' => $uuidBase . sprintf('%03d', 1),
                 'user_id' => $userUuidBase . sprintf('%03d', 1),
                 'first_name' => 'admin',
                 'last_name' => '管理者',
@@ -41,7 +41,7 @@ class AbProfilesSeed extends AbstractSeed
                 'modified' => $datetime,
             ],
             [
-                'id' => Text::uuid(),
+                'id' => $uuidBase . sprintf('%03d', 2),
                 'user_id' => $userUuidBase . sprintf('%03d', 2),
                 'first_name' => 'editor',
                 'last_name' => '編集者',
@@ -55,7 +55,7 @@ class AbProfilesSeed extends AbstractSeed
                 'modified' => $datetime,
             ],
             [
-                'id' => Text::uuid(),
+                'id' => $uuidBase . sprintf('%03d', 3),
                 'user_id' => $userUuidBase . sprintf('%03d', 3),
                 'first_name' => 'viewer',
                 'last_name' => '閲覧者',
@@ -71,10 +71,11 @@ class AbProfilesSeed extends AbstractSeed
         ];
 
         // 右端 3桁不足している UUID
+        $uuidBase = '99999999-1784-4a60-83ed-be37b3bfa';
         $userUuidBase = '99999999-3882-42dd-9ab2-485e8e579';
         for ($i = 0; $i < 100; $i++) {
             $user = [
-                'id' => Text::uuid(),
+                'id' => $uuidBase . sprintf('%03d', $i),
                 'user_id' => $userUuidBase . sprintf('%03d', $i),
                 'first_name' => '太郎' . $i,
                 'last_name' => 'テスト',
