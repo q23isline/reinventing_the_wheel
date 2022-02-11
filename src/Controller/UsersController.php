@@ -129,7 +129,7 @@ class UsersController extends AppController
     {
         $result = $this->Authentication->getResult();
         // ユーザーがログインしている場合は、そのユーザーを送り出してください。
-        if ($result->isValid()) {
+        if (!is_null($result) && $result->isValid()) {
             $target = $this->Authentication->getLoginRedirect() ?? '/users';
 
             return $this->redirect($target);
