@@ -16,8 +16,8 @@
             <?= $this->Form->create($user) ?>
             <fieldset>
                 <legend><?= __('Add User') ?></legend>
-                    <?php
-                    echo $this->Form->control('username');
+                <?php
+                    echo $this->Form->control('mail_address');
                     echo $this->Form->control('password');
                     echo $this->Form->control('role', [
                         'options' => [
@@ -26,23 +26,7 @@
                             'viewer' => 'viewer',
                         ],
                     ]);
-                    echo $this->Form->control('last_name');
-                    echo $this->Form->control('first_name');
-                    echo $this->Form->control('last_name_kana');
-                    echo $this->Form->control('first_name_kana');
-                    echo $this->Form->control('mail_address');
-                    echo $this->Form->control('sex', [
-                        'options' => [
-                            '0' => '未選択',
-                            '1' => '男性',
-                            '2' => '女性',
-                            '9' => 'その他',
-                        ],
-                    ]);
-                    echo $this->Form->control('birth_day');
-                    echo $this->Form->control('cell_phone_number');
-                    echo $this->Form->control('remarks');
-                    ?>
+                ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>

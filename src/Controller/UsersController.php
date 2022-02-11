@@ -51,7 +51,7 @@ class UsersController extends AppController
             'contain' => [],
         ]);
 
-        $this->set('user', $user);
+        $this->set(compact('user'));
     }
 
     /**

@@ -11,22 +11,16 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('username') ?></th>
-                    <th><?= $this->Paginator->sort('role') ?></th>
-                    <th><?= $this->Paginator->sort('last_name') ?></th>
-                    <th><?= $this->Paginator->sort('first_name') ?></th>
                     <th><?= $this->Paginator->sort('mail_address') ?></th>
+                    <th><?= $this->Paginator->sort('role') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($users as $user) : ?>
                 <tr>
-                    <td><?= h($user->username) ?></td>
-                    <td><?= h($user->role) ?></td>
-                    <td><?= h($user->last_name) ?></td>
-                    <td><?= h($user->first_name) ?></td>
                     <td><?= h($user->mail_address) ?></td>
+                    <td><?= h($user->role) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>

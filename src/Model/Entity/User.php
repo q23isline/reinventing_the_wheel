@@ -10,18 +10,9 @@ use Cake\ORM\Entity;
  * User Entity
  *
  * @property string $id
- * @property string $username
+ * @property string $mail_address
  * @property string $password
  * @property string $role
- * @property string $first_name
- * @property string $last_name
- * @property string $first_name_kana
- * @property string $last_name_kana
- * @property string $mail_address
- * @property string $sex
- * @property \Cake\I18n\FrozenDate|null $birth_day
- * @property string|null $cell_phone_number
- * @property string|null $remarks
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  */
@@ -37,18 +28,9 @@ class User extends Entity
      * @var array<string,bool>
      */
     protected $_accessible = [
-        'username' => true,
+        'mail_address' => true,
         'password' => true,
         'role' => true,
-        'first_name' => true,
-        'last_name' => true,
-        'first_name_kana' => true,
-        'last_name_kana' => true,
-        'mail_address' => true,
-        'sex' => true,
-        'birth_day' => true,
-        'cell_phone_number' => true,
-        'remarks' => true,
         'created' => true,
         'modified' => true,
     ];
