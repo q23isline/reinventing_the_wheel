@@ -139,13 +139,23 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
     {
         $service = new AuthenticationService();
 
-        // 認証されていない場合にユーザーがどこにリダイレクトするかを定義します。
-        $service->setConfig([
+        $path = $request->getUri()->getPath();
+        $isApi = (strpos($path, '/api/') === 0);
+
+        // 未認証で API の時は 401 エラーにするため null 設定
+        $unauthenticatedRedirect = null;
+        if (!$isApi) {
+            // 未認証で、API ではない時はログイン画面へ遷移させる
             // Router クラスで URL を指定しないとログインできないため指定
-            'unauthenticatedRedirect' => Router::url([
+            $unauthenticatedRedirect = Router::url([
                 'controller' => 'Users',
                 'action' => 'login',
-            ]),
+            ]);
+        }
+
+        // 認証されていない場合にユーザーがどこにリダイレクトするかを定義します。
+        $service->setConfig([
+            'unauthenticatedRedirect' => $unauthenticatedRedirect,
             'queryParam' => 'redirect',
         ]);
 
@@ -158,10 +168,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         $service->loadAuthenticator('Authentication.Session');
         $service->loadAuthenticator('Authentication.Form', [
             'fields' => $fields,
-            'loginUrl' => Router::url([
-                'controller' => 'Users',
-                'action' => 'login',
-            ]),
+            'loginUrl' => $unauthenticatedRedirect,
         ]);
 
         // 識別子を読み込みます。
