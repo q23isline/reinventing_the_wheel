@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Migrations\AbstractMigration;
 
-class CreateUserFiles extends AbstractMigration
+class CreateUsers extends AbstractMigration
 {
     public $autoId = false;
 
@@ -17,25 +17,29 @@ class CreateUserFiles extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('user_files');
-        $table->addColumn('id', 'integer', [
-            'autoIncrement' => true,
+        $table = $this->table('users');
+        $table->addColumn('id', 'uuid', [
             'default' => null,
-            'limit' => 11,
             'null' => false,
             'comment' => 'ID',
         ]);
-        $table->addColumn('user_id', 'string', [
+        $table->addColumn('mail_address', 'string', [
             'default' => null,
             'limit' => 255,
             'null' => false,
-            'comment' => 'ユーザーID',
+            'comment' => 'メールアドレス',
         ]);
-        $table->addColumn('file_id', 'string', [
+        $table->addColumn('password', 'string', [
             'default' => null,
             'limit' => 255,
             'null' => false,
-            'comment' => 'ファイルID',
+            'comment' => 'パスワード',
+        ]);
+        $table->addColumn('role', 'string', [
+            'default' => null,
+            'limit' => 20,
+            'null' => false,
+            'comment' => '権限',
         ]);
         $table->addColumn('created', 'datetime', [
             'default' => null,
@@ -50,18 +54,7 @@ class CreateUserFiles extends AbstractMigration
         $table->addPrimaryKey([
             'id',
         ]);
-        $table->addForeignKey(
-            'user_id',
-            'users',
-            'id',
-            ['delete' => 'CASCADE', 'update' => 'NO_ACTION'],
-        );
-        $table->addForeignKey(
-            'file_id',
-            'files',
-            'id',
-            ['delete' => 'CASCADE', 'update' => 'NO_ACTION'],
-        );
+        $table->addIndex(['mail_address'], ['unique' => true, 'name' => 'users_IDX1']);
         $table->create();
     }
 }
