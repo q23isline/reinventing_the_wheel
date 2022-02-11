@@ -44,29 +44,8 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 
-        $this->loadComponent('Auth', [
-            // controllerのisAuthorized()メソッドを呼ばせる
-            'authorize' => 'Controller',
-
-            'loginAction' => [
-                'controller' => 'Users',
-                'action' => 'login',
-                // プレフィックス無しの UsersController->index() を参照させるため
-                'prefix' => false,
-            ],
-            'loginRedirect' => [
-                'controller' => 'Users',
-                'action' => 'index',
-                // プレフィックス無しの UsersController->index() を参照させるため
-                'prefix' => false,
-            ],
-            'logoutRedirect' => [
-                'controller' => 'Users',
-                'action' => 'login',
-                // プレフィックス無しの UsersController->index() を参照させるため
-                'prefix' => false,
-            ],
-        ]);
+        // Add this line to check authentication result and lock your site
+        $this->loadComponent('Authentication.Authentication');
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.

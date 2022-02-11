@@ -23,7 +23,9 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Auth->allow(['add', 'logout']);
+        // コントローラの beforeFilter か initialize で、
+        // ログインしている必要のないアクションを作成します。
+        $this->Authentication->allowUnauthenticated(['login']);
     }
 
     /**
@@ -125,14 +127,17 @@ class UsersController extends AppController
      */
     public function login()
     {
-        if ($this->request->is('post')) {
-            $user = $this->Auth->identify();
-            if ($user) {
-                $this->Auth->setUser($user);
+        $result = $this->Authentication->getResult();
+        // ユーザーがログインしている場合は、そのユーザーを送り出してください。
+        if ($result->isValid()) {
+            $target = $this->Authentication->getLoginRedirect() ?? '/users';
 
-                return $this->redirect($this->Auth->redirectUrl());
-            }
-            $this->Flash->error(__('Invalid username or password, try again'));
+            return $this->redirect($target);
+        }
+
+        // ユーザーの送信と認証に失敗した場合にエラーを表示します
+        if ($this->request->is('post')) {
+            $this->Flash->error(__('Invalid mail address or password'));
         }
     }
 
@@ -143,7 +148,9 @@ class UsersController extends AppController
      */
     public function logout()
     {
-        return $this->redirect($this->Auth->logout());
+        $this->Authentication->logout();
+
+        return $this->redirect(['controller' => 'Users', 'action' => 'login']);
     }
 
     /**

@@ -1,11 +1,12 @@
 <div class="users form">
-<?= $this->Flash->render() ?>
-<?= $this->Form->create() ?>
+    <?= $this->Flash->render() ?>
+    <h3>Login</h3>
+    <?= $this->Form->create() ?>
     <fieldset>
-        <legend><?= __('Please enter your username and password') ?></legend>
-        <?= $this->Form->control('username') ?>
-        <?= $this->Form->control('password') ?>
+        <legend><?= __('Please enter your mail address and password') ?></legend>
+        <?= $this->Form->control('mail_address', ['required' => true]) ?>
+        <?= $this->Form->control('password', ['required' => true]) ?>
     </fieldset>
-<?= $this->Form->button(__('Login')) ?>
-<?= $this->Form->end() ?>
+    <?= $this->Form->submit(__('Login')); ?>
+    <?= $this->Form->end() ?>
 </div>

@@ -61,7 +61,7 @@ class UsersTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('mail_address')
+            ->email('mail_address')
             ->maxLength('mail_address', 255)
             ->requirePresence('mail_address', 'create')
             ->notEmptyString('mail_address')
