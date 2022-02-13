@@ -181,20 +181,4 @@ final class Profile
             $remarks,
         );
     }
-
-    /**
-     * isMyself
-     *
-     * @param \App\Domain\Models\Profile\Profile $other other
-     * @return bool
-     */
-    public function isMyself(Profile $other): bool
-    {
-        if ($this === $other) {
-            // 同じクラスの同じインスタンスであれば true
-            return true;
-        }
-
-        return $this->id->value === $other->id->value;
-    }
 }
