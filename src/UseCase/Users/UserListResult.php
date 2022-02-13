@@ -29,17 +29,8 @@ final class UserListResult
         foreach ($this->userData as $source) {
             $data[] = [
                 'id' => $source->id,
-                'loginId' => $source->loginId,
-                'roleName' => $source->roleName,
-                'firstName' => $source->firstName,
-                'lastName' => $source->lastName,
-                'firstNameKana' => $source->firstNameKana,
-                'lastNameKana' => $source->lastNameKana,
                 'mailAddress' => $source->mailAddress,
-                'sex' => $source->sex,
-                'birthDay' => $source->birthDay,
-                'cellPhoneNumber' => $source->cellPhoneNumber,
-                'remarks' => $source->remarks,
+                'roleName' => $source->roleName,
             ];
         }
 

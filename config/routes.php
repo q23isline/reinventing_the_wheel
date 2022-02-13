@@ -104,6 +104,34 @@ return static function (RouteBuilder $routes) {
             ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
             ->setPass(['userId']);
 
+        $builder->connect('/users/profiles', ['controller' => 'Profiles', 'action' => 'index'])
+            ->setMethods(['GET']);
+        $builder->connect('/users/{userId}/profiles', ['controller' => 'Profiles', 'action' => 'add'])
+            ->setMethods(['POST'])
+            ->setPatterns(['userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'])
+            ->setPass(['userId']);
+        $builder->connect('/users/{userId}/profiles/{profileId}', ['controller' => 'Profiles', 'action' => 'view'])
+            ->setMethods(['GET'])
+            ->setPatterns([
+                'userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}',
+                'profileId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}',
+            ])
+            ->setPass(['userId', 'profileId']);
+        $builder->connect('/users/{userId}/profiles/{profileId}', ['controller' => 'Profiles', 'action' => 'edit'])
+            ->setMethods(['PUT'])
+            ->setPatterns([
+                'userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}',
+                'profileId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}',
+            ])
+            ->setPass(['userId', 'profileId']);
+        $builder->connect('/users/{userId}/profiles/{profileId}', ['controller' => 'Profiles', 'action' => 'delete'])
+            ->setMethods(['DELETE'])
+            ->setPatterns([
+                'userId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}',
+                'profileId' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}',
+            ])
+            ->setPass(['userId', 'profileId']);
+
         $builder->connect('/files', ['controller' => 'Files', 'action' => 'upload'])->setMethods(['POST']);
     });
 };

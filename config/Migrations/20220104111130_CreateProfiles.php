@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Migrations\AbstractMigration;
 
-class CreateUsers extends AbstractMigration
+class CreateProfiles extends AbstractMigration
 {
     public $autoId = false;
 
@@ -17,29 +17,16 @@ class CreateUsers extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('users');
+        $table = $this->table('profiles');
         $table->addColumn('id', 'uuid', [
             'default' => null,
             'null' => false,
             'comment' => 'ID',
         ]);
-        $table->addColumn('username', 'string', [
+        $table->addColumn('user_id', 'uuid', [
             'default' => null,
-            'limit' => 50,
             'null' => false,
-            'comment' => 'ログインID',
-        ]);
-        $table->addColumn('password', 'string', [
-            'default' => null,
-            'limit' => 255,
-            'null' => false,
-            'comment' => 'パスワード',
-        ]);
-        $table->addColumn('role', 'string', [
-            'default' => null,
-            'limit' => 20,
-            'null' => false,
-            'comment' => 'ロール名',
+            'comment' => 'ユーザーID',
         ]);
         $table->addColumn('first_name', 'string', [
             'default' => null,
@@ -57,19 +44,13 @@ class CreateUsers extends AbstractMigration
             'default' => null,
             'limit' => 50,
             'null' => false,
-            'comment' => 'メイ',
+            'comment' => '名（かな）',
         ]);
         $table->addColumn('last_name_kana', 'string', [
             'default' => null,
             'limit' => 50,
             'null' => false,
-            'comment' => 'セイ',
-        ]);
-        $table->addColumn('mail_address', 'string', [
-            'default' => null,
-            'limit' => 255,
-            'null' => false,
-            'comment' => 'メールアドレス',
+            'comment' => '姓（かな）',
         ]);
         $table->addColumn('sex', 'string', [
             'default' => '0',
@@ -106,15 +87,19 @@ class CreateUsers extends AbstractMigration
         $table->addPrimaryKey([
             'id',
         ]);
-        $table->addIndex(['username'], ['unique' => true, 'name' => 'users_IDX1']);
-        $table->addIndex(['mail_address'], ['unique' => true, 'name' => 'users_IDX2']);
-        $table->addIndex(['cell_phone_number'], ['unique' => true, 'name' => 'users_IDX3']);
+        $table->addForeignKey(
+            'user_id',
+            'users',
+            'id',
+            ['delete' => 'CASCADE', 'update' => 'NO_ACTION'],
+        );
+        $table->addIndex(['cell_phone_number'], ['unique' => true, 'name' => 'profiles_IDX1']);
         $table->create();
 
         if ($table->getAdapter()->getAdapterType() === 'mysql') {
             // マイグレーションで ngram 設定できないため、SQL 直接実行する
             // FULLTEXT INDEX は MySQL のみで実行させる（テスト実行時は sqlite のため、エラー防止）
-            $this->execute('ALTER TABLE users ADD FULLTEXT users_FTIDX1 (remarks) WITH PARSER ngram');
+            $this->execute('ALTER TABLE profiles ADD FULLTEXT profiles_FTIDX1 (remarks) WITH PARSER ngram');
         }
     }
 }

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace App\UseCase\Users;
+namespace App\UseCase\Profiles;
 
 /**
- * class UserListCommand
+ * class ProfileListCommand
  *
  * @property-read string|null $keyword keyword
  */
-final class UserListCommand
+final class ProfileListCommand
 {
     /**
      * constructor

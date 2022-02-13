@@ -4,18 +4,9 @@ declare(strict_types=1);
 namespace App\Infrastructure\CakePHP\Users;
 
 use App\Domain\Models\User\IUserRepository;
-use App\Domain\Models\User\Type\BirthDay;
-use App\Domain\Models\User\Type\CellPhoneNumber;
-use App\Domain\Models\User\Type\FirstName;
-use App\Domain\Models\User\Type\FirstNameKana;
-use App\Domain\Models\User\Type\LastName;
-use App\Domain\Models\User\Type\LastNameKana;
-use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
-use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
-use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
 use App\Domain\Models\User\User;
 use App\Domain\Models\User\UserCollection;
@@ -52,11 +43,11 @@ final class CakePHPUserRepository implements IUserRepository
     /**
      * @inheritDoc
      */
-    public function findByLoginId(LoginId $loginId): ?User
+    public function findByMailAddress(MailAddress $mailAddress): ?User
     {
         $model = TableRegistry::getTableLocator()->get('Users');
         $records = $model->find()
-            ->where(['username' => $loginId->value])
+            ->where(['mail_address' => $mailAddress->value])
             ->toArray();
 
         if (empty($records)) {
@@ -71,27 +62,10 @@ final class CakePHPUserRepository implements IUserRepository
     /**
      * @inheritDoc
      */
-    public function findAll(?string $searchKeyword = null): UserCollection
+    public function findAll(): UserCollection
     {
         $model = TableRegistry::getTableLocator()->get('Users');
-        $query = $model->find();
-
-        if (!empty($searchKeyword)) {
-            $query = $query->where([
-                'OR' => [
-                    'last_name LIKE :searchKeywordForLike',
-                    'first_name LIKE :searchKeywordForLike',
-                    'last_name_kana LIKE :searchKeywordForLike',
-                    'first_name_kana LIKE :searchKeywordForLike',
-                    'mail_address LIKE :searchKeywordForLike',
-                    'MATCH (remarks) AGAINST (:searchKeywordForFulltext IN BOOLEAN MODE)',
-                ],
-            ])->bind(':searchKeywordForLike', '%' . $searchKeyword . '%', 'string')
-            ->bind(':searchKeywordForFulltext', $searchKeyword, 'string');
-        }
-
-        $records = $query->all()->toArray();
-
+        $records = $model->find()->all()->toArray();
         $data = new UserCollection();
         foreach ($records as $record) {
             $record->setHidden([]);
@@ -110,18 +84,9 @@ final class CakePHPUserRepository implements IUserRepository
 
         $saveData = [
             'Users' => [
-                'username' => $user->loginId->value,
+                'mail_address' => $user->mailAddress->value,
                 'password' => $user->password->value,
                 'role' => $user->roleName->value,
-                'first_name' => $user->firstName->value,
-                'last_name' => $user->lastName->value,
-                'first_name_kana' => $user->firstNameKana->value,
-                'last_name_kana' => $user->lastNameKana->value,
-                'mail_address' => $user->mailAddress->value,
-                'sex' => $user->sex->value,
-                'birth_day' => $user->birthDay?->value,
-                'cell_phone_number' => $user->cellPhoneNumber?->value,
-                'remarks' => $user->remarks?->value,
             ],
         ];
 
@@ -143,18 +108,9 @@ final class CakePHPUserRepository implements IUserRepository
 
         $saveData = [
             'Users' => [
-                'username' => $user->loginId->value,
+                'mail_address' => $user->mailAddress->value,
                 'password' => $user->password->value,
                 'role' => $user->roleName->value,
-                'first_name' => $user->firstName->value,
-                'last_name' => $user->lastName->value,
-                'first_name_kana' => $user->firstNameKana->value,
-                'last_name_kana' => $user->lastNameKana->value,
-                'mail_address' => $user->mailAddress->value,
-                'sex' => $user->sex->value,
-                'birth_day' => $user->birthDay?->value,
-                'cell_phone_number' => $user->cellPhoneNumber?->value,
-                'remarks' => $user->remarks?->value,
             ],
         ];
 
@@ -181,24 +137,11 @@ final class CakePHPUserRepository implements IUserRepository
      */
     private function buildEntity(array $record): User
     {
-        $birthDay = $record['birth_day'];
-        $cellPhoneNumber = $record['cell_phone_number'];
-        $remarks = $record['remarks'];
-
         return User::reconstruct(
             new UserId($record['id']),
-            new LoginId($record['username']),
+            new MailAddress($record['mail_address']),
             new Password($record['password']),
             new RoleName($record['role']),
-            new FirstName($record['first_name']),
-            new LastName($record['last_name']),
-            new FirstNameKana($record['first_name_kana']),
-            new LastNameKana($record['last_name_kana']),
-            new MailAddress($record['mail_address']),
-            new Sex($record['sex']),
-            empty($birthDay) ? null : new BirthDay($birthDay->format('Y-m-d')),
-            empty($cellPhoneNumber) ? null : new CellPhoneNumber($cellPhoneNumber),
-            empty($remarks) ? null : new Remarks($remarks),
         );
     }
 }

@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Domain\Models\User\Type;
+namespace App\Domain\Models\Profile\Type;
 
 /**
- * class FirstNameKana
+ * class BirthDay
  *
  * @property-read string $value value
  */
-final class FirstNameKana
+final class BirthDay
 {
     /**
      * constructor

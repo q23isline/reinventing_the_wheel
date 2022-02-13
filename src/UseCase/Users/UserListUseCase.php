@@ -23,14 +23,11 @@ class UserListUseCase
     /**
      * ユーザー一覧を取得する
      *
-     * @param \App\UseCase\Users\UserListCommand $command command
      * @return \App\UseCase\Users\UserData[]
      */
-    public function handle(UserListCommand $command): array
+    public function handle(): array
     {
-        $searchKeyword = $command->keyword;
-
-        $users = $this->userRepository->findAll($searchKeyword);
+        $users = $this->userRepository->findAll();
 
         $userData = [];
         foreach ($users as $user) {

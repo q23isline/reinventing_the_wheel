@@ -6,18 +6,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * UserFile Entity
+ * ProfileFile Entity
  *
  * @property int $id
- * @property string $user_id
+ * @property string $profile_id
  * @property string $file_id
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  *
- * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Profile $profile
  * @property \App\Model\Entity\File $file
  */
-class UserFile extends Entity
+class ProfileFile extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -29,11 +29,11 @@ class UserFile extends Entity
      * @var array<string,bool>
      */
     protected $_accessible = [
-        'user_id' => true,
+        'profile_id' => true,
         'file_id' => true,
         'created' => true,
         'modified' => true,
-        'user' => true,
+        'profile' => true,
         'file' => true,
     ];
 }

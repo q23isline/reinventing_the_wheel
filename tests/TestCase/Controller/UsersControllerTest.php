@@ -52,17 +52,9 @@ class UsersControllerTest extends TestCase
         // Arrange
         // 管理者でログイン
         $authUser = [
-            'id' => 1,
-            'username' => 'admin',
-            'role' => 'admin',
-            'first_name' => 'admin',
-            'last_name' => '管理者',
-            'first_name_kana' => 'アドミン',
-            'last_name_kana' => 'カンリシャ',
+            'id' => '41559b8b-e831-4972-8afa-21ee8b952d85',
             'mail_address' => 'admin@example.com',
-            'sex' => '1',
-            'birth_day' => '2021-10-14',
-            'cell_phone_number' => '09012345678',
+            'role' => 'admin',
             'created' => '2020-01-01 00:00:00',
             'modified' => '2020-01-02 00:00:00',
         ];
@@ -86,6 +78,6 @@ class UsersControllerTest extends TestCase
         $this->assertResponseCode(200);
         // ユーザー情報を返却すること
         $users = $this->viewVariable('users')->toArray();
-        $this->assertEquals($expectUsers[0]['username'], $users[0]->username);
+        $this->assertEquals($expectUsers[0]['mail_address'], $users[0]->mail_address);
     }
 }

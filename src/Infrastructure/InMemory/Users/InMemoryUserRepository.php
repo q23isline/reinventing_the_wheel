@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\InMemory\Users;
 
 use App\Domain\Models\User\IUserRepository;
-use App\Domain\Models\User\Type\LoginId;
+use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\UserId;
 use App\Domain\Models\User\User;
 use App\Domain\Models\User\UserCollection;
@@ -44,10 +44,10 @@ final class InMemoryUserRepository implements IUserRepository
     /**
      * @inheritDoc
      */
-    public function findByLoginId(LoginId $loginId): ?User
+    public function findByMailAddress(MailAddress $mailAddress): ?User
     {
         foreach ($this->store as $elem) {
-            if ($elem->loginId->value === $loginId->value) {
+            if ($elem->mailAddress->value === $mailAddress->value) {
                 return $this->clone($elem);
             }
         }
@@ -58,7 +58,7 @@ final class InMemoryUserRepository implements IUserRepository
     /**
      * @inheritDoc
      */
-    public function findAll(?string $searchKeyword = null): UserCollection
+    public function findAll(): UserCollection
     {
         $data = new UserCollection();
         foreach ($this->store as $elem) {
@@ -107,24 +107,11 @@ final class InMemoryUserRepository implements IUserRepository
      */
     private function clone(User $user): User
     {
-        $birthDay = $user->birthDay;
-        $cellPhoneNumber = $user->cellPhoneNumber;
-        $remarks = $user->remarks;
-
         return User::reconstruct(
             $user->id,
-            $user->loginId,
+            $user->mailAddress,
             $user->password,
             $user->roleName,
-            $user->firstName,
-            $user->lastName,
-            $user->firstNameKana,
-            $user->lastNameKana,
-            $user->mailAddress,
-            $user->sex,
-            empty($birthDay) ? null : $birthDay,
-            empty($cellPhoneNumber) ? null : $cellPhoneNumber,
-            empty($remarks) ? null : $remarks,
         );
     }
 }

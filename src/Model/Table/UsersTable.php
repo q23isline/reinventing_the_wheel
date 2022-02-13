@@ -42,6 +42,10 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->hasMany('Profiles', [
+            'foreignKey' => 'user_id',
+        ]);
     }
 
     /**
@@ -57,11 +61,11 @@ class UsersTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('username')
-            ->maxLength('username', 50)
-            ->requirePresence('username', 'create')
-            ->notEmptyString('username')
-            ->add('username', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->email('mail_address')
+            ->maxLength('mail_address', 255)
+            ->requirePresence('mail_address', 'create')
+            ->notEmptyString('mail_address')
+            ->add('mail_address', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('password')
@@ -84,66 +88,6 @@ class UsersTable extends Table
                 ],
             ]);
 
-        $validator
-            ->scalar('first_name')
-            ->maxLength('first_name', 50)
-            ->requirePresence('first_name', 'create')
-            ->notEmptyString('first_name');
-
-        $validator
-            ->scalar('last_name')
-            ->maxLength('last_name', 50)
-            ->requirePresence('last_name', 'create')
-            ->notEmptyString('last_name');
-
-        $validator
-            ->scalar('first_name_kana')
-            ->maxLength('first_name_kana', 50)
-            ->requirePresence('first_name_kana', 'create')
-            ->notEmptyString('first_name_kana');
-
-        $validator
-            ->scalar('last_name_kana')
-            ->maxLength('last_name_kana', 50)
-            ->requirePresence('last_name_kana', 'create')
-            ->notEmptyString('last_name_kana');
-
-        $validator
-            ->scalar('mail_address')
-            ->maxLength('mail_address', 255)
-            ->requirePresence('mail_address', 'create')
-            ->notEmptyString('mail_address')
-            ->add('mail_address', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
-        $validator
-            ->scalar('sex')
-            ->maxLength('sex', 1)
-            ->notEmptyString('sex')
-            ->add('sex', 'inList', [
-                'rule' => [
-                    'inList', [
-                        '0', // 不明
-                        '1', // 男性
-                        '2', // 女性
-                        '9', // 適用不能
-                    ],
-                ],
-            ]);
-
-        $validator
-            ->date('birth_day')
-            ->allowEmptyDate('birth_day');
-
-        $validator
-            ->scalar('cell_phone_number')
-            ->maxLength('cell_phone_number', 11)
-            ->allowEmptyString('cell_phone_number')
-            ->add('cell_phone_number', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
-
-        $validator
-            ->scalar('remarks')
-            ->allowEmptyString('remarks');
-
         return $validator;
     }
 
@@ -156,15 +100,7 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
         $rules->add($rules->isUnique(['mail_address']), ['errorField' => 'mail_address']);
-        $rules->add(
-            $rules->isUnique(
-                ['cell_phone_number'],
-                ['allowMultipleNulls' => true]
-            ),
-            ['errorField' => 'cell_phone_number']
-        );
 
         return $rules;
     }

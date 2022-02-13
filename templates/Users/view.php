@@ -19,48 +19,12 @@
             <h3><?= h($user->id) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Username') ?></th>
-                    <td><?= h($user->username) ?></td>
+                    <th><?= __('Mail Address') ?></th>
+                    <td><?= h($user->mail_address) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Role') ?></th>
                     <td><?= h($user->role) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('LastName') ?></th>
-                    <td><?= h($user->last_name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('FirstName') ?></th>
-                    <td><?= h($user->first_name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('LastNameKana') ?></th>
-                    <td><?= h($user->last_name_kana) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('FirstNameKana') ?></th>
-                    <td><?= h($user->first_name_kana) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('MailAddress') ?></th>
-                    <td><?= h($user->mail_address) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Sex') ?></th>
-                    <td><?= h($user->sex) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('BirthDay') ?></th>
-                    <td><?= h($user->birth_day) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('CellPhoneNumber') ?></th>
-                    <td><?= h($user->cell_phone_number) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Remarks') ?></th>
-                    <td><?= h($user->remarks) ?></td>
                 </tr>
             </table>
         </div>

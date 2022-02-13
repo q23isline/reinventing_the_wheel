@@ -100,8 +100,8 @@ custom styles.
 
 ### ログイン情報
 
-- Username
-  - admin
+- Mail Address
+  - admin@example.com
 - Password
   - admin00
 

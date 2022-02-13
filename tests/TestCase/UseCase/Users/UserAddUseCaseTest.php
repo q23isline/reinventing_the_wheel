@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\UseCase\Users;
 
-use App\Domain\Models\User\Type\LoginId;
+use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Services\UserService;
 use App\Domain\Shared\Exception\ValidateException;
 use App\Infrastructure\InMemory\Users\InMemoryUserRepository;
@@ -30,20 +30,11 @@ final class UserAddUseCaseTest extends TestCase
         $userService = new UserService($userRepository);
         $userAddUseCase = new UserAddUseCase($userRepository, $userService);
 
-        $loginId = 'test';
+        $mailAddress = 'test@example.com';
         $inputData = new UserAddCommand(
-            loginId: $loginId,
+            mailAddress: $mailAddress,
             password: 'p@ssw0rd',
             roleName: 'viewer',
-            firstName: 'test1',
-            lastName: 'test2',
-            firstNameKana: 'テストイチ',
-            lastNameKana: 'テストニ',
-            mailAddress: 'test@example.com',
-            sex: '1',
-            birthDay: '1980-01-01',
-            cellPhoneNumber: '09012345678',
-            remarks: 'テストメモ',
         );
 
         // Act
@@ -51,8 +42,8 @@ final class UserAddUseCaseTest extends TestCase
 
         // Assert
         // ユーザーが正しく保存されているか
-        $createdLoginId = new LoginId($loginId);
-        $createdUser = $userRepository->findByLoginId($createdLoginId);
+        $createdMailAddress = new MailAddress($mailAddress);
+        $createdUser = $userRepository->findByMailAddress($createdMailAddress);
         $this->assertNotNull($createdUser);
     }
 
@@ -61,29 +52,20 @@ final class UserAddUseCaseTest extends TestCase
      *
      * @return void
      */
-    public function test_ユーザーが登録できないこと：登録済ログインID(): void
+    public function test_ユーザーが登録できないこと：登録済メールアドレス(): void
     {
         // Arrange
         $userRepository = new InMemoryUserRepository();
         $userService = new UserService($userRepository);
         $userAddUseCase = new UserAddUseCase($userRepository, $userService);
 
-        $loginId = 'test';
-        $user = (new TestUserFactory())->create(loginId: $loginId);
+        $mailAddress = 'test@example.com';
+        $user = (new TestUserFactory())->create(mailAddress: $mailAddress);
         $userRepository->save($user);
         $inputData = new UserAddCommand(
-            loginId: $loginId,
+            mailAddress: 'test@example.com',
             password: 'p@ssw0rd',
             roleName: 'viewer',
-            firstName: 'test1',
-            lastName: 'test2',
-            firstNameKana: 'テストイチ',
-            lastNameKana: 'テストニ',
-            mailAddress: 'test@example.com',
-            sex: '1',
-            birthDay: '1980-01-01',
-            cellPhoneNumber: '09012345678',
-            remarks: 'テストメモ',
         );
 
         // Assert
