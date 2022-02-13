@@ -28,17 +28,8 @@ final class UserGetResult
         return [
             'data' => [
                 'id' => $this->userData->id,
-                'loginId' => $this->userData->loginId,
-                'roleName' => $this->userData->roleName,
-                'firstName' => $this->userData->firstName,
-                'lastName' => $this->userData->lastName,
-                'firstNameKana' => $this->userData->firstNameKana,
-                'lastNameKana' => $this->userData->lastNameKana,
                 'mailAddress' => $this->userData->mailAddress,
-                'sex' => $this->userData->sex,
-                'birthDay' => $this->userData->birthDay,
-                'cellPhoneNumber' => $this->userData->cellPhoneNumber,
-                'remarks' => $this->userData->remarks,
+                'roleName' => $this->userData->roleName,
             ],
         ];
     }

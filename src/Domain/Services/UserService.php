@@ -29,7 +29,7 @@ final class UserService
      */
     public function isExists(User $user): bool
     {
-        $duplicatedUser = $this->userRepository->findByLoginId($user->loginId);
+        $duplicatedUser = $this->userRepository->findByMailAddress($user->mailAddress);
 
         if (is_null($duplicatedUser) || $duplicatedUser->isMyself($user)) {
             return false;

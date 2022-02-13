@@ -16,7 +16,6 @@ use App\UseCase\Users\UserDeleteUseCase;
 use App\UseCase\Users\UserGetCommand;
 use App\UseCase\Users\UserGetResult;
 use App\UseCase\Users\UserGetUseCase;
-use App\UseCase\Users\UserListCommand;
 use App\UseCase\Users\UserListResult;
 use App\UseCase\Users\UserListUseCase;
 use App\UseCase\Users\UserSavedResult;
@@ -64,11 +63,7 @@ class UsersController extends AppController
      */
     public function index(): void
     {
-        $params = $this->request->getQueryParams();
-        $keyword = $params['q'] ?? null;
-        $command = new UserListCommand($keyword);
-
-        $userData = $this->userListUseCase->handle($command);
+        $userData = $this->userListUseCase->handle();
         $result = new UserListResult($userData);
         $data = $result->format();
 
@@ -118,18 +113,9 @@ class UsersController extends AppController
 
         try {
             $command = new UserAddCommand(
-                $jsonData['loginId'] ?? null,
+                $jsonData['mailAddress'] ?? null,
                 $jsonData['password'] ?? null,
                 $jsonData['roleName'] ?? null,
-                $jsonData['firstName'] ?? null,
-                $jsonData['lastName'] ?? null,
-                $jsonData['firstNameKana'] ?? null,
-                $jsonData['lastNameKana'] ?? null,
-                $jsonData['mailAddress'] ?? null,
-                $jsonData['sex'] ?? null,
-                $jsonData['birthDay'] ?? null,
-                $jsonData['cellPhoneNumber'] ?? null,
-                $jsonData['remarks'] ?? null,
             );
 
             $userId = $this->userAddUseCase->handle($command);
@@ -162,18 +148,9 @@ class UsersController extends AppController
         try {
             $command = new UserUpdateCommand(
                 $userId,
-                $jsonData['loginId'] ?? null,
+                $jsonData['mailAddress'] ?? null,
                 $jsonData['password'] ?? null,
                 $jsonData['roleName'] ?? null,
-                $jsonData['firstName'] ?? null,
-                $jsonData['lastName'] ?? null,
-                $jsonData['firstNameKana'] ?? null,
-                $jsonData['lastNameKana'] ?? null,
-                $jsonData['mailAddress'] ?? null,
-                $jsonData['sex'] ?? null,
-                $jsonData['birthDay'] ?? null,
-                $jsonData['cellPhoneNumber'] ?? null,
-                $jsonData['remarks'] ?? null,
             );
 
             $userId = $this->userUpdateUseCase->handle($command);
