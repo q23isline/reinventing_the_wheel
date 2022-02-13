@@ -119,8 +119,8 @@ final class CakePHPProfileRepository implements IProfileRepository
         $profileFilesModel = TableRegistry::getTableLocator()->get('ProfileFiles');
 
         $profileFilesSaveData = [
-            'UserFiles' => [
-                'user_id' => $profile->id->value,
+            'ProfileFiles' => [
+                'profile_id' => $profile->id->value,
                 'file_id' => $profile->profileImage->id->value,
             ],
         ];
