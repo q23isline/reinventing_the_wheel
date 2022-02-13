@@ -79,35 +79,17 @@ class UsersControllerTest extends TestCase
             new UserData(
                 User::reconstruct(
                     new UserId('00676011-5447-4eb1-bde1-001880663af3'),
-                    new LoginId('test1018'),
+                    new MailAddress('saito6@example.com'),
                     new Password('password'),
                     new RoleName('viewer'),
-                    new FirstName('斉藤'),
-                    new LastName('太郎'),
-                    new FirstNameKana('サイトウ'),
-                    new LastNameKana('タロウ'),
-                    new MailAddress('saito6@example.com'),
-                    new Sex('1'),
-                    new BirthDay('1990-01-01'),
-                    new CellPhoneNumber('09011111116'),
-                    new Remarks('斉藤メモ'),
                 )
             ),
             new UserData(
                 User::reconstruct(
                     new UserId('01522f07-609a-415c-9f66-023e981a5523'),
-                    new LoginId('test80'),
+                    new MailAddress('test80@example.com'),
                     new Password('password'),
                     new RoleName('viewer'),
-                    new FirstName('太郎80'),
-                    new LastName('テスト'),
-                    new FirstNameKana('タロウ80'),
-                    new LastNameKana('テスト'),
-                    new MailAddress('test80@example.com'),
-                    new Sex('0'),
-                    null,
-                    null,
-                    null,
                 )
             ),
         ];
@@ -123,31 +105,13 @@ class UsersControllerTest extends TestCase
             'data' => [
                 [
                     'id' => '00676011-5447-4eb1-bde1-001880663af3',
-                    'loginId' => 'test1018',
-                    'roleName' => 'viewer',
-                    'firstName' => '斉藤',
-                    'lastName' => '太郎',
-                    'firstNameKana' => 'サイトウ',
-                    'lastNameKana' => 'タロウ',
                     'mailAddress' => 'saito6@example.com',
-                    'sex' => '1',
-                    'birthDay' => '1990-01-01',
-                    'cellPhoneNumber' => '09011111116',
-                    'remarks' => '斉藤メモ',
+                    'roleName' => 'viewer',
                 ],
                 [
                     'id' => '01522f07-609a-415c-9f66-023e981a5523',
-                    'loginId' => 'test80',
-                    'roleName' => 'viewer',
-                    'firstName' => '太郎80',
-                    'lastName' => 'テスト',
-                    'firstNameKana' => 'タロウ80',
-                    'lastNameKana' => 'テスト',
                     'mailAddress' => 'test80@example.com',
-                    'sex' => '0',
-                    'birthDay' => '',
-                    'cellPhoneNumber' => '',
-                    'remarks' => '',
+                    'roleName' => 'viewer',
                 ],
             ],
         ];
@@ -176,18 +140,9 @@ class UsersControllerTest extends TestCase
         $userDtos = new UserData(
             User::reconstruct(
                 new UserId($id),
-                new LoginId('test1018'),
+                new MailAddress('saito6@example.com'),
                 new Password('password'),
                 new RoleName('viewer'),
-                new FirstName('斉藤'),
-                new LastName('太郎'),
-                new FirstNameKana('サイトウ'),
-                new LastNameKana('タロウ'),
-                new MailAddress('saito6@example.com'),
-                new Sex('1'),
-                new BirthDay('1990-01-01'),
-                new CellPhoneNumber('09011111116'),
-                new Remarks('斉藤メモ'),
             )
         );
 
@@ -201,17 +156,8 @@ class UsersControllerTest extends TestCase
         $expected = [
             'data' => [
                 'id' => $id,
-                'loginId' => 'test1018',
-                'roleName' => 'viewer',
-                'firstName' => '斉藤',
-                'lastName' => '太郎',
-                'firstNameKana' => 'サイトウ',
-                'lastNameKana' => 'タロウ',
                 'mailAddress' => 'saito6@example.com',
-                'sex' => '1',
-                'birthDay' => '1990-01-01',
-                'cellPhoneNumber' => '09011111116',
-                'remarks' => '斉藤メモ',
+                'roleName' => 'viewer',
             ],
         ];
 
@@ -277,18 +223,9 @@ class UsersControllerTest extends TestCase
     {
         // Arrange
         $requestData = [
-            'loginId' => 'test1018',
+            'mailAddress' => 'saito6@example.com',
             'password' => 'password',
             'roleName' => 'viewer',
-            'firstName' => '斉藤',
-            'lastName' => '太郎',
-            'firstNameKana' => 'サイトウ',
-            'lastNameKana' => 'タロウ',
-            'mailAddress' => 'saito6@example.com',
-            'sex' => '1',
-            'birthDay' => '1990-01-01',
-            'cellPhoneNumber' => '09011111116',
-            'remarks' => '斉藤メモ',
         ];
 
         $id = '00676011-5447-4eb1-bde1-001880663af3';
@@ -326,7 +263,7 @@ class UsersControllerTest extends TestCase
                 'message' => 'Bad Request',
                 'errors' => [
                     [
-                        'field' => 'loginId',
+                        'field' => 'mailAddress',
                         'reason' => '必須項目が不足しています。',
                     ],
                     [
@@ -335,30 +272,6 @@ class UsersControllerTest extends TestCase
                     ],
                     [
                         'field' => 'roleName',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'firstName',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'lastName',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'firstNameKana',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'lastNameKana',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'mailAddress',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'sex',
                         'reason' => '必須項目が不足しています。',
                     ],
                 ],
@@ -387,18 +300,9 @@ class UsersControllerTest extends TestCase
         // Arrange
         $id = '00676011-5447-4eb1-bde1-001880663af3';
         $requestData = [
-            'loginId' => 'test1018',
+            'mailAddress' => 'saito6@example.com',
             'password' => 'password',
             'roleName' => 'viewer',
-            'firstName' => '斉藤',
-            'lastName' => '太郎',
-            'firstNameKana' => 'サイトウ',
-            'lastNameKana' => 'タロウ',
-            'mailAddress' => 'saito6@example.com',
-            'sex' => '1',
-            'birthDay' => '1990-01-01',
-            'cellPhoneNumber' => '09011111116',
-            'remarks' => '斉藤メモ',
         ];
 
         $mockUserUpdateUseCase = $this->createMock(UserUpdateUseCase::class);
@@ -431,18 +335,9 @@ class UsersControllerTest extends TestCase
         // Arrange
         $id = '00676011-5447-4eb1-bde1-001880663af3';
         $requestData = [
-            'loginId' => 'test1018',
+            'mailAddress' => 'saito6@example.com',
             'password' => 'password',
             'roleName' => 'viewer',
-            'firstName' => '斉藤',
-            'lastName' => '太郎',
-            'firstNameKana' => 'サイトウ',
-            'lastNameKana' => 'タロウ',
-            'mailAddress' => 'saito6@example.com',
-            'sex' => '1',
-            'birthDay' => '1990-01-01',
-            'cellPhoneNumber' => '09011111116',
-            'remarks' => '斉藤メモ',
         ];
 
         $mockUserUpdateUseCase = $this->createMock(UserUpdateUseCase::class);
@@ -491,7 +386,7 @@ class UsersControllerTest extends TestCase
                 'message' => 'Bad Request',
                 'errors' => [
                     [
-                        'field' => 'loginId',
+                        'field' => 'mailAddress',
                         'reason' => '必須項目が不足しています。',
                     ],
                     [
@@ -500,30 +395,6 @@ class UsersControllerTest extends TestCase
                     ],
                     [
                         'field' => 'roleName',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'firstName',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'lastName',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'firstNameKana',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'lastNameKana',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'mailAddress',
-                        'reason' => '必須項目が不足しています。',
-                    ],
-                    [
-                        'field' => 'sex',
                         'reason' => '必須項目が不足しています。',
                     ],
                 ],

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\UseCase\Users;
 
-use App\Domain\Models\User\Type\LoginId;
+use App\Domain\Models\User\Type\MailAddress;
 use App\Infrastructure\InMemory\Users\InMemoryUserRepository;
 use App\UseCase\Users\UserDeleteCommand;
 use App\UseCase\Users\UserDeleteUseCase;
@@ -29,10 +29,10 @@ final class UserDeleteUseCaseTest extends TestCase
         $userDeleteUseCase = new UserDeleteUseCase($userRepository);
 
         $userId = '01509588-3882-42dd-9ab2-485e8e579a8e';
-        $loginId = 'test';
+        $mailAddress = 'test@example.com';
         $user = (new TestUserFactory())->create(
             userId: $userId,
-            loginId: $loginId,
+            mailAddress: $mailAddress,
         );
         $userRepository->save($user);
         $inputData = new UserDeleteCommand($userId);
@@ -42,8 +42,8 @@ final class UserDeleteUseCaseTest extends TestCase
 
         // Assert
         // ユーザーが正しく削除されているか
-        $deletedUserId = new LoginId($loginId);
-        $deletedUser = $userRepository->findByLoginId($deletedUserId);
+        $deletedMailAddress = new MailAddress($mailAddress);
+        $deletedUser = $userRepository->findByMailAddress($deletedMailAddress);
         $this->assertNull($deletedUser);
     }
 

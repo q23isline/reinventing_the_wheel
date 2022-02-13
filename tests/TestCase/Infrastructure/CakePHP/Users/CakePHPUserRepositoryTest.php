@@ -3,18 +3,9 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Infrastructure\CakePHP\Users;
 
-use App\Domain\Models\User\Type\BirthDay;
-use App\Domain\Models\User\Type\CellPhoneNumber;
-use App\Domain\Models\User\Type\FirstName;
-use App\Domain\Models\User\Type\FirstNameKana;
-use App\Domain\Models\User\Type\LastName;
-use App\Domain\Models\User\Type\LastNameKana;
-use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
-use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
-use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
 use App\Domain\Models\User\User;
 use App\Domain\Models\User\UserCollection;
@@ -66,18 +57,9 @@ final class CakePHPUserRepositoryTest extends TestCase
 
         $expect = User::reconstruct(
             new UserId($userId),
-            new LoginId('admin'),
+            new MailAddress('admin@example.com'),
             new Password('password'),
             new RoleName('admin'),
-            new FirstName('admin'),
-            new LastName('管理者'),
-            new FirstNameKana('アドミン'),
-            new LastNameKana('カンリシャ'),
-            new MailAddress('admin@example.com'),
-            new Sex('1'),
-            new BirthDay('2021-10-14'),
-            new CellPhoneNumber('09012345678'),
-            new Remarks('管理者メモ'),
         );
 
         // Act
@@ -90,29 +72,20 @@ final class CakePHPUserRepositoryTest extends TestCase
     /**
      * @return void
      */
-    public function test_ログインIDによってユーザー情報を取得すること(): void
+    public function test_メールアドレスによってユーザー情報を取得すること(): void
     {
         // Arrange
-        $loginId = 'admin';
+        $mailAddress = 'admin@example.com';
 
         $expect = User::reconstruct(
             new UserId('41559b8b-e831-4972-8afa-21ee8b952d85'),
-            new LoginId($loginId),
+            new MailAddress($mailAddress),
             new Password('password'),
             new RoleName('admin'),
-            new FirstName('admin'),
-            new LastName('管理者'),
-            new FirstNameKana('アドミン'),
-            new LastNameKana('カンリシャ'),
-            new MailAddress('admin@example.com'),
-            new Sex('1'),
-            new BirthDay('2021-10-14'),
-            new CellPhoneNumber('09012345678'),
-            new Remarks('管理者メモ'),
         );
 
         // Act
-        $actual = (new CakePHPUserRepository())->findByLoginId(new LoginId($loginId));
+        $actual = (new CakePHPUserRepository())->findByMailAddress(new MailAddress($mailAddress));
 
         // Assert
         $this->assertEquals($expect, $actual);
@@ -121,13 +94,13 @@ final class CakePHPUserRepositoryTest extends TestCase
     /**
      * @return void
      */
-    public function test_ログインIDに一致するユーザー情報が存在しない場合空を返すこと(): void
+    public function test_メールアドレスに一致するユーザー情報が存在しない場合空を返すこと(): void
     {
         // Arrange
-        $loginId = 'sample';
+        $mailAddress = 'sample@example.com';
 
         // Act
-        $actual = (new CakePHPUserRepository())->findByLoginId(new LoginId($loginId));
+        $actual = (new CakePHPUserRepository())->findByMailAddress(new MailAddress($mailAddress));
 
         // Assert
         $this->assertNull($actual);
@@ -142,33 +115,15 @@ final class CakePHPUserRepositoryTest extends TestCase
         $expect = new UserCollection([
             User::reconstruct(
                 new UserId('41559b8b-e831-4972-8afa-21ee8b952d85'),
-                new LoginId('admin'),
+                new MailAddress('admin@example.com'),
                 new Password('password'),
                 new RoleName('admin'),
-                new FirstName('admin'),
-                new LastName('管理者'),
-                new FirstNameKana('アドミン'),
-                new LastNameKana('カンリシャ'),
-                new MailAddress('admin@example.com'),
-                new Sex('1'),
-                new BirthDay('2021-10-14'),
-                new CellPhoneNumber('09012345678'),
-                new Remarks('管理者メモ'),
             ),
             User::reconstruct(
                 new UserId('99999999-5447-4eb1-bde1-001880663af3'),
-                new LoginId('test1018'),
+                new MailAddress('saito6@example.com'),
                 new Password('password'),
                 new RoleName('viewer'),
-                new FirstName('斉藤'),
-                new LastName('太郎'),
-                new FirstNameKana('サイトウ'),
-                new LastNameKana('タロウ'),
-                new MailAddress('saito6@example.com'),
-                new Sex('1'),
-                new BirthDay('1990-01-01'),
-                new CellPhoneNumber('09011111116'),
-                new Remarks('斉藤メモ'),
             ),
         ]);
 
@@ -188,18 +143,9 @@ final class CakePHPUserRepositoryTest extends TestCase
         $userId = '01509588-3882-42dd-9ab2-485e8e579a8e';
         $user = User::reconstruct(
             new UserId($userId),
-            new LoginId('test'),
+            new MailAddress('test1@example.com'),
             new Password('p@ssw0rd1'),
             new RoleName('editor'),
-            new FirstName('test2'),
-            new LastName('test3'),
-            new FirstNameKana('テストニ'),
-            new LastNameKana('テストサン'),
-            new MailAddress('test1@example.com'),
-            new Sex('2'),
-            new BirthDay('1980-01-02'),
-            new CellPhoneNumber('09012345679'),
-            new Remarks('テストメモ'),
         );
 
         // Act
@@ -218,18 +164,9 @@ final class CakePHPUserRepositoryTest extends TestCase
         $userId = '99999999-5447-4eb1-bde1-001880663af3';
         $user = User::reconstruct(
             new UserId($userId),
-            new LoginId('test'),
+            new MailAddress('test1@example.com'),
             new Password('p@ssw0rd1'),
             new RoleName('editor'),
-            new FirstName('test2'),
-            new LastName('test3'),
-            new FirstNameKana('テストニ'),
-            new LastNameKana('テストサン'),
-            new MailAddress('test1@example.com'),
-            new Sex('2'),
-            new BirthDay('1980-01-02'),
-            new CellPhoneNumber('09012345679'),
-            new Remarks('テストメモ'),
         );
 
         // Act

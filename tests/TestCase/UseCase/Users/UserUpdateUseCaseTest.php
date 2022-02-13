@@ -32,48 +32,21 @@ final class UserUpdateUseCaseTest extends TestCase
         $userUpdateUseCase = new UserUpdateUseCase($userRepository, $userService);
 
         $userId = '01509588-3882-42dd-9ab2-485e8e579a8e';
-        $loginId = 'test1';
+        $mailAddress = 'test1@example.com';
         $password = 'p@ssw0rd1';
         $roleName = 'editor';
-        $firstName = 'test2';
-        $lastName = 'test3';
-        $firstNameKana = 'テストニ';
-        $lastNameKana = 'テストサン';
-        $mailAddress = 'test1@example.com';
-        $sex = '2';
-        $birthDay = '1980-01-02';
-        $cellPhoneNumber = '09012345679';
-        $remarks = 'テストメモ';
         $user = (new TestUserFactory())->create(
             userId: $userId,
-            loginId: 'test',
+            mailAddress: 'test@example.com',
             password: 'p@ssw0rd',
             roleName: 'viewer',
-            firstName: 'test1',
-            lastName: 'test2',
-            firstNameKana: 'テストイチ',
-            lastNameKana: 'テストニ',
-            mailAddress: 'test@example.com',
-            sex: '1',
-            birthDay: '1980-01-01',
-            cellPhoneNumber: '09012345678',
-            remarks: 'テストメモ',
         );
         $userRepository->save($user);
         $inputData = new UserUpdateCommand(
             userId: $userId,
-            loginId: $loginId,
+            mailAddress: $mailAddress,
             password: $password,
             roleName: $roleName,
-            firstName: $firstName,
-            lastName: $lastName,
-            firstNameKana: $firstNameKana,
-            lastNameKana: $lastNameKana,
-            mailAddress: $mailAddress,
-            sex: $sex,
-            birthDay: $birthDay,
-            cellPhoneNumber: $cellPhoneNumber,
-            remarks: $remarks,
         );
 
         // Act
@@ -84,18 +57,9 @@ final class UserUpdateUseCaseTest extends TestCase
         $updatedUserId = new UserId($userId);
         $updatedUser = $userRepository->getById($updatedUserId);
         $this->assertEquals($userId, $updatedUser->id->value);
-        $this->assertEquals($loginId, $updatedUser->loginId->value);
+        $this->assertEquals($mailAddress, $updatedUser->mailAddress->value);
         $this->assertEquals($password, $updatedUser->password->value);
         $this->assertEquals($roleName, $updatedUser->roleName->value);
-        $this->assertEquals($firstName, $updatedUser->firstName->value);
-        $this->assertEquals($lastName, $updatedUser->lastName->value);
-        $this->assertEquals($firstNameKana, $updatedUser->firstNameKana->value);
-        $this->assertEquals($lastNameKana, $updatedUser->lastNameKana->value);
-        $this->assertEquals($mailAddress, $updatedUser->mailAddress->value);
-        $this->assertEquals($sex, $updatedUser->sex->value);
-        $this->assertEquals($birthDay, $updatedUser->birthDay->value);
-        $this->assertEquals($cellPhoneNumber, $updatedUser->cellPhoneNumber->value);
-        $this->assertEquals($remarks, $updatedUser->remarks->value);
     }
 
     /**
@@ -112,18 +76,9 @@ final class UserUpdateUseCaseTest extends TestCase
 
         $inputData = new UserUpdateCommand(
             userId: '01509588-3882-42dd-9ab2-485e8e579a8e',
-            loginId: 'test',
+            mailAddress: 'test1@example.com',
             password: 'p@ssw0rd1',
             roleName: 'editor',
-            firstName: 'test2',
-            lastName: 'test3',
-            firstNameKana: 'テストニ',
-            lastNameKana: 'テストサン',
-            mailAddress: 'test1@example.com',
-            sex: '2',
-            birthDay: '1980-01-02',
-            cellPhoneNumber: '09012345679',
-            remarks: 'テストメモ',
         );
 
         // Assert
@@ -139,7 +94,7 @@ final class UserUpdateUseCaseTest extends TestCase
      *
      * @return void
      */
-    public function test_ユーザーが更新できないこと：登録済ログインID(): void
+    public function test_ユーザーが更新できないこと：登録済メールアドレス(): void
     {
         // Arrange
         $userRepository = new InMemoryUserRepository();
@@ -147,31 +102,22 @@ final class UserUpdateUseCaseTest extends TestCase
         $userUpdateUseCase = new UserUpdateUseCase($userRepository, $userService);
 
         $userId = '01509588-3882-42dd-9ab2-485e8e579a8e';
-        $loginId = 'test1';
+        $mailAddress = 'test1@example.com';
         $updateTargetUser = (new TestUserFactory())->create(
             userId: $userId,
-            loginId: 'test'
+            mailAddress: 'test@example.com'
         );
         $userRepository->save($updateTargetUser);
         $otherUser = (new TestUserFactory())->create(
             userId: '99999999-3882-42dd-9ab2-485e8e579a8e',
-            loginId: $loginId
+            mailAddress: $mailAddress
         );
         $userRepository->save($otherUser);
         $inputData = new UserUpdateCommand(
             userId: $userId,
-            loginId: $loginId,
+            mailAddress: 'test1@example.com',
             password: 'p@ssw0rd1',
             roleName: 'editor',
-            firstName: 'test2',
-            lastName: 'test3',
-            firstNameKana: 'テストニ',
-            lastNameKana: 'テストサン',
-            mailAddress: 'test1@example.com',
-            sex: '2',
-            birthDay: '1980-01-02',
-            cellPhoneNumber: '09012345679',
-            remarks: 'テストメモ',
         );
 
         // Assert
