@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\UseCase\Profiles;
 
+use App\Infrastructure\InMemory\Files\InMemoryFileRepository;
+use App\Infrastructure\InMemory\Files\InMemoryFileStorageRepository;
 use App\Infrastructure\InMemory\Profiles\InMemoryProfileRepository;
 use App\UseCase\Profiles\ProfileAddCommand;
 use App\UseCase\Profiles\ProfileAddUseCase;
@@ -24,7 +26,9 @@ final class ProfileAddUseCaseTest extends TestCase
     {
         // Arrange
         $profileRepository = new InMemoryProfileRepository();
-        $profileAddUseCase = new ProfileAddUseCase($profileRepository);
+        $fileRepository = new InMemoryFileRepository();
+        $fileStorageRepository = new InMemoryFileStorageRepository();
+        $profileAddUseCase = new ProfileAddUseCase($profileRepository, $fileRepository, $fileStorageRepository);
 
         $userId = '41559b8b-e831-4972-8afa-21ee8b952d85';
         $inputData = new ProfileAddCommand(
@@ -37,6 +41,8 @@ final class ProfileAddUseCaseTest extends TestCase
             birthDay: '1980-01-01',
             cellPhoneNumber: '09012345678',
             remarks: 'テストメモ',
+            // ファイル登録テストはいったんしない
+            profileImageFileId: null,
         );
 
         // Act
