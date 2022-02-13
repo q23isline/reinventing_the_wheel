@@ -3,18 +3,9 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller\Api\V1;
 
-use App\Domain\Models\User\Type\BirthDay;
-use App\Domain\Models\User\Type\CellPhoneNumber;
-use App\Domain\Models\User\Type\FirstName;
-use App\Domain\Models\User\Type\FirstNameKana;
-use App\Domain\Models\User\Type\LastName;
-use App\Domain\Models\User\Type\LastNameKana;
-use App\Domain\Models\User\Type\LoginId;
 use App\Domain\Models\User\Type\MailAddress;
 use App\Domain\Models\User\Type\Password;
-use App\Domain\Models\User\Type\Remarks;
 use App\Domain\Models\User\Type\RoleName;
-use App\Domain\Models\User\Type\Sex;
 use App\Domain\Models\User\Type\UserId;
 use App\Domain\Models\User\User;
 use App\UseCase\Users\UserAddUseCase;
