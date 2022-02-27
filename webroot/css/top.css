@@ -1,0 +1,188 @@
+/* サインイン */
+body {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+
+    background: url(/img/top-background.png), #FFFFFF;
+}
+
+/* 入力ボックス（メールアドレス） */
+.box#mail-address {
+    position: absolute;
+    width: 561px;
+    height: 44px;
+    left: 679px;
+    top: 478px;
+}
+
+/* ボックス */
+.box {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+}
+
+/* placeholder */
+.placeholder {
+    position: absolute;
+    left: 5.17%;
+    right: 68.45%;
+    top: 9.09%;
+    bottom: 9.63%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+
+    color: #888888;
+}
+
+/* 入力ボックス（パスワード） */
+.box#password {
+    position: absolute;
+    width: 561px;
+    height: 44px;
+    left: 679px;
+    top: 557px;
+}
+
+/* RTW */
+#logo {
+    position: absolute;
+    left: 0.68%;
+    right: 92.19%;
+    top: 0%;
+    bottom: 90.46%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 56px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+
+    border: 1px solid #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Group 10 */
+.button {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 4px 146px;
+
+    position: absolute;
+    width: 364px;
+    height: 36px;
+    left: 776px;
+    top: 692px;
+
+    background: #3B5BCD;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 100px;
+}
+
+.button#sign-in {
+    /* Sign in */
+    position: static;
+    left: 40.11%;
+    right: 40.11%;
+    top: 11.11%;
+    bottom: 11.11%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+/* Reinventing The Wheel */
+#reinventing-the-wheel {
+    position: absolute;
+    width: 877px;
+    height: 92px;
+    left: calc(50% - 877px/2 - 0.5px);
+    top: calc(50% - 92px/2 - 198px);
+}
+
+/* Reinventing The Wheel */
+#reinventing-the-wheel.text {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 85px;
+    line-height: 100px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Link >> */
+#create-account {
+    position: absolute;
+    width: 324px;
+    height: 44px;
+    left: 1240px;
+    top: 818px;
+}
+
+/* Link >> */
+#create-account.text {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    text-decoration-line: underline;
+
+    color: #FFFFFF;
+
+    border: 1px solid #000000;
+}
