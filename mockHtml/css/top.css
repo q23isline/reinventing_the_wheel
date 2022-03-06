@@ -1,6 +1,7 @@
 body {
     background-image: url(/mockHtml/img/top-background.png);
     background-position: center;
+    background-attachment: fixed;
 }
 .wrapper {
 }
@@ -11,6 +12,7 @@ header {
     align-items: center;
     display: flex;
     box-sizing: border-box;
+    position: fixed;
 }
 .container {
 }
@@ -83,4 +85,62 @@ header > .icons > .icon.circle {
     padding-inline-start: 52px;
     border: none;
     outline: none;
+}
+#input::-webkit-search-cancel-button {
+   position: absolute;
+   right: 15px;
+   cursor: pointer;
+}
+.profile-detail {
+    height: 150px;
+    background: #C5CBE9;
+    border-radius: 10px;
+}
+.profile-detail > .profile-header {
+    margin-top: 12px;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+}
+.profile-detail > .profile-header > .icon {
+    display: block;
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+.profile-detail > .profile-header > .icon.circle {
+    background: #5c6bc0;
+    color: #c5cbe9;
+    border-radius: 50%;
+    align-items: center;
+    text-align: center;
+    line-height: 28px;
+}
+.profile-detail > .profile-header > .name {
+    align-items: center;
+}
+.profile-detail > .e-mail {
+    align-items: center;
+    text-align: left;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: 12px;
+}
+.profile-detail > .remark {
+    align-items: center;
+    text-align: left;
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: 12px;
+}
+#searches {
+    width: 650px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1em;
+    row-gap: 1em;
+    margin-top: 38px;
+    margin-left: auto;
+    margin-right: auto;
 }
