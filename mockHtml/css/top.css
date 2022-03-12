@@ -1,6 +1,8 @@
 body {
     background-image: url(/mockHtml/img/top-background.png);
-    background-position: center;
+    background-position: center center;
+    background-repeat: no-repeat no-repeat;
+    background-size: cover;
     background-attachment: fixed;
 }
 .wrapper {
@@ -87,13 +89,13 @@ header > .icons > .icon.circle {
     outline: none;
 }
 #input::-webkit-search-cancel-button {
-   position: absolute;
-   right: 15px;
-   cursor: pointer;
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
 }
 .profile-detail {
     height: 150px;
-    background: #C5CBE9;
+    background: #c5cbe9;
     border-radius: 10px;
 }
 .profile-detail > .profile-header {
