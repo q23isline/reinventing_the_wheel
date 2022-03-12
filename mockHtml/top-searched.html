@@ -1,193 +1,219 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Reinventing The Wheel</title>
-        <meta name="description" content="Reinventing The Wheel" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reinventing The Wheel</title>
+    <meta name="description" content="Reinventing The Wheel" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/top.css" />
+  </head>
 
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css"
-        />
-        <link rel="stylesheet" href="css/top.css" />
-    </head>
-
-    <body>
-        <div class="wrapper">
-            <header>
-                <div class="logo">
-                    <a href="top.html"> RTW </a>
-                </div>
-                <div class="icons">
-                    <div class="icon">
-                        <svg
-                            width="33"
-                            height="33"
-                            view-box="0 0 33 33"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M28.0778 18.2988L28.0428 18.5824L28.2694 18.7565L31.7049 21.3965L31.7048 21.3966L31.715 21.4041C31.8279 21.4864 31.866 21.6208 31.7828 21.769L28.4939 27.3047L28.4938 27.3046L28.4896 27.312C28.4109 27.4497 28.2434 27.5083 28.0945 27.4531L24.0039 25.8544L23.7476 25.7542L23.5258 25.9172C22.7111 26.516 21.8225 27.0335 20.8603 27.4153L20.5916 27.5219L20.5499 27.808L19.9328 32.048L19.9312 32.0584L19.9302 32.0689C19.9188 32.1795 19.8165 32.3 19.6252 32.3H13.0422C12.881 32.3 12.7513 32.2005 12.7117 32.0309L12.097 27.808L12.0553 27.5219L11.7866 27.4153C10.8229 27.0329 9.9554 26.5351 9.1226 25.9183L8.90046 25.7537L8.64298 25.8544L4.56544 27.448C4.38522 27.5013 4.22449 27.4296 4.15728 27.312L4.15734 27.3119L4.15301 27.3047L0.867437 21.7746C0.799787 21.6431 0.837805 21.479 0.9427 21.396L4.4164 18.7583L4.6563 18.5761L4.60739 18.2789C4.52987 17.8079 4.49059 17.2951 4.49059 16.8C4.49059 16.317 4.54817 15.8061 4.62796 15.3212L4.67688 15.024L4.43698 14.8418L0.960322 12.2018L0.960379 12.2018L0.952526 12.196C0.839583 12.1137 0.801523 11.9793 0.884651 11.8311L4.17359 6.29544L4.17365 6.29548L4.17785 6.28812C4.25654 6.15042 4.42408 6.0918 4.57291 6.14698L8.66356 7.74574L8.91992 7.84594L9.1417 7.68292C9.95638 7.08407 10.8449 6.56663 11.8072 6.1848L12.0759 6.07816L12.1176 5.79207L12.7343 1.55463C12.7583 1.40389 12.8735 1.30005 13.0422 1.30005H19.6252C19.8096 1.30005 19.9319 1.41873 19.9537 1.55471C19.9538 1.55523 19.9539 1.55576 19.954 1.55629L20.5705 5.79207L20.6121 6.07816L20.8809 6.1848C21.8446 6.56723 22.7121 7.06496 23.5449 7.68183L23.767 7.84637L24.0245 7.74574L28.102 6.1521C28.2823 6.09883 28.443 6.17051 28.5102 6.28812L28.5101 6.28816L28.5145 6.29544L31.8 11.8255C31.8677 11.957 31.8297 12.121 31.7249 12.204L28.2511 14.8418L28.0112 15.024L28.0601 15.3212C28.1377 15.7927 28.1769 16.2855 28.1769 16.8C28.1769 17.3147 28.1377 17.8137 28.0778 18.2988ZM9.66217 16.8C9.66217 20.3894 12.6766 23.3 16.3337 23.3C19.9909 23.3 23.0053 20.3894 23.0053 16.8C23.0053 13.2107 19.9909 10.3 16.3337 10.3C12.6766 10.3 9.66217 13.2107 9.66217 16.8Z"
-                                fill="white"
-                                stroke="black"
-                            />
-                        </svg>
-                    </div>
-                    <div class="icon circle">T</div>
-                </div>
-            </header>
-
-            <div class="container">
-                <div class="main">
-                    <div id="logo">Reinventing The Wheel</div>
-                    <div id="input-wrapper">
-                        <input
-                            type="search"
-                            id="input"
-                            placeholder="Search..."
-                            value="田中"
-                        />
-                        <div id="search-icon">
-                            <svg
-                                width="24"
-                                height="24"
-                                view-box="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M17.1527 15.0943H16.0686L15.6844 14.7238C17.0292 13.1595 17.8388 11.1286 17.8388 8.91938C17.8388 3.99314 13.8456 0 8.91938 0C3.99314 0 0 3.99314 0 8.91938C0 13.8456 3.99314 17.8388 8.91938 17.8388C11.1286 17.8388 13.1595 17.0292 14.7238 15.6844L15.0943 16.0686V17.1527L21.9554 24L24 21.9554L17.1527 15.0943V15.0943ZM8.91938 15.0943C5.50257 15.0943 2.74443 12.3362 2.74443 8.91938C2.74443 5.50257 5.50257 2.74443 8.91938 2.74443C12.3362 2.74443 15.0943 5.50257 15.0943 8.91938C15.0943 12.3362 12.3362 15.0943 8.91938 15.0943Z"
-                                    fill="#666666"
-                                />
-                            </svg>
-                        </div>
-                    </div>
-                    <div id="searches">
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                        <div class="profile-detail">
-                            <div class="profile-header">
-                                <div class="icon circle">T</div>
-                                <div class="name">田中 太郎</div>
-                            </div>
-                            <div class="e-mail">tanaka@example.com</div>
-                            <div class="remark">自己紹介テキストやメモになります。テキストテキストテキスト...</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="logo">
+          <a href="top.html">RTW</a>
         </div>
-    </body>
+        <div class="icons">
+          <div class="icon">
+            <svg
+              width="33"
+              height="33"
+              view-box="0 0 33 33"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M28.0778 18.2988L28.0428 18.5824L28.2694 18.7565L31.7049 21.3965L31.7048 21.3966L31.715 21.4041C31.8279 21.4864 31.866 21.6208 31.7828 21.769L28.4939 27.3047L28.4938 27.3046L28.4896 27.312C28.4109 27.4497 28.2434 27.5083 28.0945 27.4531L24.0039 25.8544L23.7476 25.7542L23.5258 25.9172C22.7111 26.516 21.8225 27.0335 20.8603 27.4153L20.5916 27.5219L20.5499 27.808L19.9328 32.048L19.9312 32.0584L19.9302 32.0689C19.9188 32.1795 19.8165 32.3 19.6252 32.3H13.0422C12.881 32.3 12.7513 32.2005 12.7117 32.0309L12.097 27.808L12.0553 27.5219L11.7866 27.4153C10.8229 27.0329 9.9554 26.5351 9.1226 25.9183L8.90046 25.7537L8.64298 25.8544L4.56544 27.448C4.38522 27.5013 4.22449 27.4296 4.15728 27.312L4.15734 27.3119L4.15301 27.3047L0.867437 21.7746C0.799787 21.6431 0.837805 21.479 0.9427 21.396L4.4164 18.7583L4.6563 18.5761L4.60739 18.2789C4.52987 17.8079 4.49059 17.2951 4.49059 16.8C4.49059 16.317 4.54817 15.8061 4.62796 15.3212L4.67688 15.024L4.43698 14.8418L0.960322 12.2018L0.960379 12.2018L0.952526 12.196C0.839583 12.1137 0.801523 11.9793 0.884651 11.8311L4.17359 6.29544L4.17365 6.29548L4.17785 6.28812C4.25654 6.15042 4.42408 6.0918 4.57291 6.14698L8.66356 7.74574L8.91992 7.84594L9.1417 7.68292C9.95638 7.08407 10.8449 6.56663 11.8072 6.1848L12.0759 6.07816L12.1176 5.79207L12.7343 1.55463C12.7583 1.40389 12.8735 1.30005 13.0422 1.30005H19.6252C19.8096 1.30005 19.9319 1.41873 19.9537 1.55471C19.9538 1.55523 19.9539 1.55576 19.954 1.55629L20.5705 5.79207L20.6121 6.07816L20.8809 6.1848C21.8446 6.56723 22.7121 7.06496 23.5449 7.68183L23.767 7.84637L24.0245 7.74574L28.102 6.1521C28.2823 6.09883 28.443 6.17051 28.5102 6.28812L28.5101 6.28816L28.5145 6.29544L31.8 11.8255C31.8677 11.957 31.8297 12.121 31.7249 12.204L28.2511 14.8418L28.0112 15.024L28.0601 15.3212C28.1377 15.7927 28.1769 16.2855 28.1769 16.8C28.1769 17.3147 28.1377 17.8137 28.0778 18.2988ZM9.66217 16.8C9.66217 20.3894 12.6766 23.3 16.3337 23.3C19.9909 23.3 23.0053 20.3894 23.0053 16.8C23.0053 13.2107 19.9909 10.3 16.3337 10.3C12.6766 10.3 9.66217 13.2107 9.66217 16.8Z"
+                fill="white"
+                stroke="black"
+              />
+            </svg>
+          </div>
+          <div class="icon circle">T</div>
+        </div>
+      </header>
+
+      <div class="container">
+        <div class="main">
+          <div id="logo">Reinventing The Wheel</div>
+          <div id="input-wrapper">
+            <input
+              type="search"
+              id="input"
+              placeholder="Search..."
+              value="田中"
+            />
+            <div id="search-icon">
+              <svg
+                width="24"
+                height="24"
+                view-box="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.1527 15.0943H16.0686L15.6844 14.7238C17.0292 13.1595 17.8388 11.1286 17.8388 8.91938C17.8388 3.99314 13.8456 0 8.91938 0C3.99314 0 0 3.99314 0 8.91938C0 13.8456 3.99314 17.8388 8.91938 17.8388C11.1286 17.8388 13.1595 17.0292 14.7238 15.6844L15.0943 16.0686V17.1527L21.9554 24L24 21.9554L17.1527 15.0943V15.0943ZM8.91938 15.0943C5.50257 15.0943 2.74443 12.3362 2.74443 8.91938C2.74443 5.50257 5.50257 2.74443 8.91938 2.74443C12.3362 2.74443 15.0943 5.50257 15.0943 8.91938C15.0943 12.3362 12.3362 15.0943 8.91938 15.0943Z"
+                  fill="#666666"
+                />
+              </svg>
+            </div>
+          </div>
+          <div id="searches">
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+            <div class="profile-detail">
+              <div class="profile-header">
+                <div class="icon circle">T</div>
+                <div class="name">田中 太郎</div>
+              </div>
+              <div class="e-mail">tanaka@example.com</div>
+              <div class="remark">
+                自己紹介テキストやメモになります。テキストテキストテキスト...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
