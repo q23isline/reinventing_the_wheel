@@ -41,8 +41,8 @@
   text-align: center;
 }
 .footer {
-  background-color: darkslategray;
-  color: #ffffff;
+  color: #000000;
+  height: 60px;
   padding-top: 30px;
   padding-bottom: 15px;
   align-items: center;
@@ -51,7 +51,6 @@
 .copyright {
   font-size: 14px;
   font-weight: bold;
-  margin-top: 90px;
 }
 @media (max-width: 800px) {
   .header {
