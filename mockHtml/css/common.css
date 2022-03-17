@@ -89,7 +89,12 @@
     height: 28px;
     line-height: 28px;
   }
+  .footer {
+    height: 30px;
+    padding-top: 15px;
+    padding-bottom: 7px;
+  }
   .copyright {
-    margin-top: 50px;
+    margin-top: 25px;
   }
 }

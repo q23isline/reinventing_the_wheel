@@ -111,3 +111,39 @@ h1.logo {
   font-size: 13px;
   line-height: 20px;
 }
+@media (max-width: 800px) {
+  h1.logo {
+    min-height: 160px;
+    font-size: 48px;
+    margin-bottom: 80px;
+  }
+  .search-box {
+    width: 90%;
+  }
+  .header-search {
+    top: 50px;
+  }
+  .search-results {
+    width: 90%;
+    grid-template-columns: repeat(auto-fit, 160px);
+    margin-top: 80px;
+  }
+  .profile-detail {
+    height: 150px;
+  }
+  .profile-detail .profile-header {
+    margin-top: 12px;
+    margin-left: 4px;
+  }
+  .profile-detail .profile-header .name {
+    font-size: 14px;
+  }
+  .profile-detail .e-mail {
+    margin-top: 12px;
+    font-size: 12px;
+  }
+  .profile-detail .remark {
+    margin-top: 12px;
+    font-size: 10px;
+  }
+}
