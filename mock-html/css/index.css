@@ -35,6 +35,7 @@ h1.logo {
 .search-icon {
   width: 24px;
   height: 24px;
+  cursor: pointer;
   left: 12px;
   position: absolute;
   top: calc((44px - 24px) / 2);
