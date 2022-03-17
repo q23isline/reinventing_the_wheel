@@ -9,8 +9,6 @@ body {
 }
 .first-view {
   text-align: center;
-  margin-left: auto;
-  margin-right: auto;
 }
 h1.logo {
   min-height: 200px;
@@ -23,12 +21,16 @@ h1.logo {
   color: #ffffff;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.search {
+.search-box {
   width: 560px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
   align-items: center;
+}
+.header-search {
+  position: sticky;
+  top: 15px;
 }
 .search-icon {
   width: 24px;
