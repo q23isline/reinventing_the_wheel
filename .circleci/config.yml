@@ -89,10 +89,9 @@ jobs:
             - ./vendor
 
       # run tests with phpunit or codecept
-      - run:
-        - cp config/app_local.example.php config/app_local.php
-        - cp config/.env.example config/.env
-        - ./vendor/bin/phpunit
+      - run: cp config/app_local.example.php config/app_local.php
+      - run: cp config/.env.example config/.env
+      - run: ./vendor/bin/phpunit
 workflows:
   version: 2
   build_test:
