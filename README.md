@@ -122,11 +122,26 @@ sudo chmod 777 -R logs
 docker exec -it --env XDEBUG_MODE=coverage app php composer.phar check
 ```
 
+### コーディング標準チェック単体実行
+
+```bash
+# コーディング標準チェック実行
+docker exec -it --env XDEBUG_MODE=coverage app ./vendor/bin/phpcs --colors -p src/ tests/
+# コーディング標準チェック自動整形実行
+docker exec -it --env XDEBUG_MODE=coverage app ./vendor/bin/phpcbf --colors -p src/ tests/
+```
+
+### 静的分析チェック単体実行
+
+```bash
+docker exec -it --env XDEBUG_MODE=coverage app ./vendor/bin/phpstan analyse
+```
+
 ### ユニットテスト単体実行
 
 ```bash
 # テスト実行
-docker exec -it --env XDEBUG_MODE=coverage app ./vendor/bin/phpunit
+docker exec -it --env XDEBUG_MODE=coverage app ./vendor/bin/phpunit --colors=always
 # カバレッジ生成
 docker exec -it --env XDEBUG_MODE=coverage app ./vendor/bin/phpunit --coverage-html webroot/coverage
 ```
