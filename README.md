@@ -74,7 +74,14 @@ custom styles.
     cp config/app_local.example.php config/app_local.php
     ```
 
-4. アプリ立ち上げ
+4. DB コンテナ起動時に Permission Denied で起動できない状態にならないように権限付与する
+
+    ```bash
+    sudo chmod 777 logs
+    sudo chmod 777 logs/db
+    ```
+
+5. アプリ立ち上げ
 
     ```bash
     docker-compose build
