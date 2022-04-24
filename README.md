@@ -221,7 +221,7 @@ redoc-cli bundle xxxxxx.yaml
 - [VS Code | Marketplace | PHP Debug](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug)をインストールする
 - VS CodeにXDebug用の構成ファイル（launch.json）を追加する
 
-```json
+```JSONC
 {
     "version": "0.2.0",
     "configurations": [
@@ -232,6 +232,10 @@ redoc-cli bundle xxxxxx.yaml
             "hostname": "0.0.0.0",
             "pathMappings": {
                 "/var/www/html/": "${workspaceRoot}"
+            },
+            "environment": {
+                // デバッグ時はログレベルを 7
+                "XDEBUG_CONFIG": "log_level=7"
             }
         }
     ]
