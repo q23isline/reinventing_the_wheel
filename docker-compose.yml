@@ -37,16 +37,25 @@ services:
     depends_on:
       - db
   db:
-    build: ./docker/local/mysql
+    image: mysql:8.0
     container_name: db
     ports:
       - 3306:3306
+    # パスワードで mysql にログインできるようにする
+    command: --authentication_policy=mysql_native_password
+    # mbind: Operation not permitted が mysql エラーログに表示されないようにする対策
+    cap_add:
+      - SYS_NICE
     environment:
       - MYSQL_DATABASE=reinventing_the_wheel
       - MYSQL_USER=default
       - MYSQL_PASSWORD=secret
       - MYSQL_ROOT_PASSWORD=root
+      # タイムゾーンを 東京 にする
+      - TZ=Asia/Tokyo
     volumes:
+      - ./logs/db:/var/log/mysql
+      - ./docker/local/mysql/etc-mysql.cnf:/etc/mysql/conf.d/etc-mysql.cnf
       - ./docker/local/mysql/init:/docker-entrypoint-initdb.d
       - db-data:/var/lib/mysql
     networks:
