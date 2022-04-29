@@ -1,18 +1,11 @@
 FROM php:8.1.0-fpm-buster
 
-RUN apt-get update
+# CakePHP が依存している拡張機能
+RUN apt-get update \
+    && apt-get install -y libicu-dev \
+    && docker-php-ext-install intl \
+    && docker-php-ext-install pdo_mysql
 
-RUN apt-get install -y git libzip-dev zip unzip \
-    && docker-php-ext-install zip
-
-RUN docker-php-ext-install pdo_mysql
-
-RUN apt-get install -y libicu-dev \
-    && docker-php-ext-configure intl \
-    && docker-php-ext-install intl
-
-RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd
-
-RUN pecl install xdebug && docker-php-ext-enable xdebug
+# デバッグ実行用拡張機能
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
