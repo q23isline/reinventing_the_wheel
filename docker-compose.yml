@@ -7,6 +7,7 @@ networks:
     driver: bridge
 
 volumes:
+  vendor:
   db-data:
     driver: local
 
@@ -28,11 +29,13 @@ services:
     depends_on:
       - app
   app:
-    build: ./docker/local/php-fpm
+    build:
+      context: .
+      dockerfile: ./docker/local/php-fpm/Dockerfile
     container_name: app
     volumes:
       - ./:/var/www/html
-      - ./docker/local/php-fpm/php.ini:/usr/local/etc/php/php.ini
+      - vendor:/var/www/html/vendor
     networks:
       - backend
     depends_on:
