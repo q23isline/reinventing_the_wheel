@@ -2,14 +2,11 @@ version: '3.8'
 
 networks:
   frontend:
-    driver: bridge
   backend:
-    driver: bridge
 
 volumes:
   vendor:
   db-data:
-    driver: local
 
 services:
   web:
