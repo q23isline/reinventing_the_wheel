@@ -64,4 +64,7 @@ session_id('cli');
 // load schema from a SQL dump file with
 // use Cake\TestSuite\SchemaLoader;
 // (new SchemaManager())->loadSqlFiles('./tests/schema.sql', 'test');
-(new Migrator())->run();
+// (new Migrator())->run();
+// テスト実行ごとに一部テーブルが DROP されず、エラーが発生するため、hasMany() に変更
+// <https://book.cakephp.org/4/ja/development/testing.html#creating-test-database-schema>
+(new Migrator())->runMany([]);
