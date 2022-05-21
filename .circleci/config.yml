@@ -89,7 +89,7 @@ jobs:
       - run: cp config/.env.example config/.env
       - run:
           name: "Run tests"
-          command: phpdbg -qrr -Scli ./vendor/bin/phpunit --coverage-html build/coverage-report
+          command: phpdbg -qrr ./vendor/bin/phpunit --coverage-html build/coverage-report
           environment:
             XDEBUG_MODE: coverage
       - store_artifacts:

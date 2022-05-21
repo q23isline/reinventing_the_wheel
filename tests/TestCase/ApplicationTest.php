@@ -40,12 +40,20 @@ class ApplicationTest extends IntegrationTestCase
         $app->bootstrap();
         $plugins = $app->getPlugins();
 
-        $this->assertCount(5, $plugins);
-        $this->assertSame('Cake/Repl', $plugins->get('Cake/Repl')->getName());
-        $this->assertSame('Bake', $plugins->get('Bake')->getName());
-        $this->assertSame('DebugKit', $plugins->get('DebugKit')->getName());
-        $this->assertSame('Migrations', $plugins->get('Migrations')->getName());
-        $this->assertSame('Authentication', $plugins->get('Authentication')->getName());
+        // テスト実行コマンドが phpdbg で実行であれば cli の時に呼び出されるプラグインが
+        // 呼び出されないため、条件分岐
+        if (PHP_SAPI === 'phpdbg') {
+            $this->assertCount(2, $plugins);
+            $this->assertSame('DebugKit', $plugins->get('DebugKit')->getName());
+            $this->assertSame('Authentication', $plugins->get('Authentication')->getName());
+        } else {
+            $this->assertCount(5, $plugins);
+            $this->assertSame('Cake/Repl', $plugins->get('Cake/Repl')->getName());
+            $this->assertSame('Bake', $plugins->get('Bake')->getName());
+            $this->assertSame('DebugKit', $plugins->get('DebugKit')->getName());
+            $this->assertSame('Migrations', $plugins->get('Migrations')->getName());
+            $this->assertSame('Authentication', $plugins->get('Authentication')->getName());
+        }
     }
 
     /**
