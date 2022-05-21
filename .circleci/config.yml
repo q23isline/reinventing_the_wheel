@@ -88,13 +88,6 @@ jobs:
       - run: cp config/app_local.example.php config/app_local.php
       - run: cp config/.env.example config/.env
       - run:
-          name: "Run tests and export HTML"
-          command: phpdbg -qrr ./vendor/bin/phpunit --coverage-html build/coverage-report
-          environment:
-            XDEBUG_MODE: coverage
-      - store_artifacts:
-          path: build/coverage-report
-      - run:
           name: "Run tests and export XML"
           command: |
             mkdir -p ~/phpunit
