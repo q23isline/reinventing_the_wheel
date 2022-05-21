@@ -91,7 +91,7 @@ jobs:
           name: "Run tests"
           command: |
             mkdir -p ~/phpunit
-            phpdbg -qrr ./vendor/bin/phpunit --log-junit phpunit/junit.xml --coverage-html build/coverage
+            phpdbg -qrr ./vendor/bin/phpunit --log-junit ~/phpunit/junit.xml --coverage-html build/coverage
           environment:
             XDEBUG_MODE: coverage
           when: always
