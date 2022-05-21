@@ -1,14 +1,16 @@
 # Reinventing the wheel
 
-[![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg?maxAge=43200)](./LICENSE)
+[![LICENSE](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 ![releases](https://img.shields.io/github/release/q23isline/reinventing_the_wheel.svg?logo=github)
-![Build Status](https://github.com/cakephp/app/actions/workflows/ci.yml/badge.svg?branch=master)
-[![Total Downloads](https://img.shields.io/packagist/dt/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
-[![PHPStan](https://img.shields.io/badge/PHPStan-level%208-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)
 [![CircleCI](https://img.shields.io/circleci/build/github/q23isline/reinventing_the_wheel/develop.svg?label=CircleCI&logo=circleci)](https://circleci.com/gh/q23isline/reinventing_the_wheel)
-[![Github Releases Stats](https://img.shields.io/github/downloads/q23isline/reinventing_the_wheel/total.svg?logo=github)](https://somsubhra.github.io/github-release-stats/?username=q23isline&repository=reinventing_the_wheel&per_page=30)
-[![Stars](https://img.shields.io/github/stars/q23isline/reinventing_the_wheel.svg?style=social)](https://starchart.cc/q23isline/reinventing_the_wheel)
-[![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20Visual%20Studio%20Code&labelColor=2c2c32&color=007acc&logoColor=007acc)](https://open.vscode.dev/q23isline/reinventing_the_wheel)
+[![GitHub Actions](https://github.com/q23isline/reinventing_the_wheel/actions/workflows/ci.yml/badge.svg)](https://github.com/q23isline/reinventing_the_wheel/actions/workflows/ci.yml)
+[![PHPStan](https://img.shields.io/badge/PHPStan-level%208-brightgreen.svg)](https://github.com/phpstan/phpstan)
+[![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20Visual%20Studio%20Code&labelColor=555555&color=007acc&logoColor=007acc)](https://open.vscode.dev/q23isline/reinventing_the_wheel)
+
+[![PHP](https://img.shields.io/static/v1?logo=php&label=PHP&message=v8.1.0&labelColor=555555&color=777BB4&logoColor=777BB4)](https://www.php.net)
+[![CakePHP](https://img.shields.io/static/v1?logo=cakephp&label=CakePHP&message=v4.3.8&labelColor=555555&color=D33C43&logoColor=D33C43)](https://cakephp.org)
+[![MySQL](https://img.shields.io/static/v1?logo=mysql&label=MySQL&message=v8.0&labelColor=555555&color=4479A1&logoColor=4479A1)](https://dev.mysql.com)
+[![NGINX](https://img.shields.io/static/v1?logo=nginx&label=NGINX&message=v1.21&labelColor=555555&color=009639&logoColor=009639)](https://www.nginx.com)
 
 ## はじめにやること
 
