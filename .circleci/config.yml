@@ -10,7 +10,7 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       # Specify the version you desire here
-      - image: circleci/php:8.0.12-fpm-buster
+      - image: cimg/php:8.1
 
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
@@ -37,7 +37,7 @@ jobs:
 
   coding-standard:
     docker:
-      - image: circleci/php:8.0.12-fpm-buster
+      - image: cimg/php:8.1
     steps:
       - checkout
       - run: sudo apt update
@@ -52,48 +52,46 @@ jobs:
           paths:
             - ./vendor
       - run: composer cs-check
-  # PHP 8.1 のコンビニエンスイメージがなく、
-  # PHP 8.1 の新機能の readonly アクセス修飾子を利用しているクラスが軒並みエラーとなるためコメント
-  # static-analysis:
-  #   docker:
-  #     - image: circleci/php:8.0.12-fpm-buster
-  #   steps:
-  #     - checkout
-  #     - run: sudo apt update
-  #     - run: sudo docker-php-ext-install zip
-  #     - restore_cache:
-  #         keys:
-  #           - v1-dependencies-{{ checksum "composer.json" }}
-  #           - v1-dependencies-
-  #     - run: composer install -n --prefer-dist
-  #     - save_cache:
-  #         key: v1-dependencies-{{ checksum "composer.json" }}
-  #         paths:
-  #           - ./vendor
-  #     - run: vendor/bin/phpstan.phar analyse
-  # test:
-  #   docker:
-  #     - image: circleci/php:8.0.12-fpm-buster
-  #       environment:
-  #         DATABASE_TEST_URL: sqlite://./testdb.sqlite
-  #   steps:
-  #     - checkout
-  #     - run: sudo apt update
-  #     - run: sudo docker-php-ext-install zip
-  #     - restore_cache:
-  #         keys:
-  #           - v1-dependencies-{{ checksum "composer.json" }}
-  #           - v1-dependencies-
-  #     - run: composer install -n --prefer-dist
-  #     - save_cache:
-  #         key: v1-dependencies-{{ checksum "composer.json" }}
-  #         paths:
-  #           - ./vendor
+  static-analysis:
+    docker:
+      - image: cimg/php:8.1
+    steps:
+      - checkout
+      - run: sudo apt update
+      - run: sudo docker-php-ext-install zip
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+      - run: composer install -n --prefer-dist
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+      - run: vendor/bin/phpstan.phar analyse
+  test:
+    docker:
+      - image: cimg/php:8.1
+        environment:
+          DATABASE_TEST_URL: sqlite://./testdb.sqlite
+    steps:
+      - checkout
+      - run: sudo apt update
+      - run: sudo docker-php-ext-install zip
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            - v1-dependencies-
+      - run: composer install -n --prefer-dist
+      - save_cache:
+          key: v1-dependencies-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
 
-  #     # run tests with phpunit or codecept
-  #     - run: cp config/app_local.example.php config/app_local.php
-  #     - run: cp config/.env.example config/.env
-  #     - run: ./vendor/bin/phpunit
+      # run tests with phpunit or codecept
+      - run: cp config/app_local.example.php config/app_local.php
+      - run: cp config/.env.example config/.env
+      - run: ./vendor/bin/phpunit
 workflows:
   version: 2
   build_test:
@@ -102,9 +100,9 @@ workflows:
       - coding-standard:
           requires:
             - build
-      # - static-analysis:
-      #     requires:
-      #       - build
-      # - test:
-      #     requires:
-      #       - build
+      - static-analysis:
+          requires:
+            - build
+      - test:
+          requires:
+            - build
