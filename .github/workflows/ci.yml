@@ -27,7 +27,7 @@ jobs:
       with:
         php-version: ${{ matrix.php-version }}
         extensions: mbstring, intl, pdo_sqlite
-        coverage: none
+        coverage: xdebug
 
     - name: Composer install
       run: |
@@ -38,11 +38,6 @@ jobs:
         fi
         composer run-script post-install-cmd --no-interaction
 
-    - name: codecov install
-      run: |
-        curl -Os https://uploader.codecov.io/latest/linux/codecov
-        chmod +x codecov
-
     - name: Run PHPUnit
       run: |
         cp config/app_local.example.php config/app_local.php
@@ -51,8 +46,9 @@ jobs:
       env:
         DATABASE_TEST_URL: sqlite://./testdb.sqlite
 
-      - name: Upload coverage
-        run: ./codecov webroot/coverage
+    - uses: codecov/codecov-action@v1
+      with:
+        directory: webroot/coverage
 
   coding-standard:
     name: Coding Standard
