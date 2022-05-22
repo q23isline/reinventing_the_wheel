@@ -46,8 +46,11 @@ jobs:
       env:
         DATABASE_TEST_URL: sqlite://./testdb.sqlite
 
-      after_success:
-        - bash <(curl -s https://codecov.io/bash)
+    - name: Upload codecov
+      run: |
+        bash <(curl -s https://codecov.io/bash)
+        chmod +x codecov
+        ./codecov coverage.xml
 
   coding-standard:
     name: Coding Standard
