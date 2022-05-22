@@ -42,13 +42,12 @@ jobs:
       run: |
         cp config/app_local.example.php config/app_local.php
         cp config/.env.example config/.env
-        phpdbg -qrr vendor/bin/phpunit --coverage-xml webroot/coverage
+        vendor/bin/phpunit --coverage-clover coverage.xml
       env:
         DATABASE_TEST_URL: sqlite://./testdb.sqlite
 
-    - uses: codecov/codecov-action@v1
-      with:
-        directory: webroot/coverage
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
 
   coding-standard:
     name: Coding Standard
