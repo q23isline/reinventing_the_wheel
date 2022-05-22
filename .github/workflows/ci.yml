@@ -38,13 +38,21 @@ jobs:
         fi
         composer run-script post-install-cmd --no-interaction
 
+    - name: codecov install
+      run: |
+        curl -Os https://uploader.codecov.io/latest/linux/codecov
+        chmod +x codecov
+
     - name: Run PHPUnit
       run: |
         cp config/app_local.example.php config/app_local.php
         cp config/.env.example config/.env
-        vendor/bin/phpunit
+        phpdbg -qrr vendor/bin/phpunit --coverage-xml webroot/coverage
       env:
         DATABASE_TEST_URL: sqlite://./testdb.sqlite
+
+      - name: Upload coverage
+        run: ./codecov webroot/coverage
 
   coding-standard:
     name: Coding Standard
