@@ -4,6 +4,7 @@
 ![releases](https://img.shields.io/github/release/q23isline/reinventing_the_wheel.svg?logo=github)
 [![CircleCI](https://img.shields.io/circleci/build/github/q23isline/reinventing_the_wheel/develop.svg?label=CircleCI&logo=circleci)](https://circleci.com/gh/q23isline/reinventing_the_wheel)
 [![GitHub Actions](https://github.com/q23isline/reinventing_the_wheel/actions/workflows/ci.yml/badge.svg)](https://github.com/q23isline/reinventing_the_wheel/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/q23isline/reinventing_the_wheel/branch/develop/graph/badge.svg?token=V54N7W8GHQ)](https://codecov.io/gh/q23isline/reinventing_the_wheel)
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%208-brightgreen.svg)](https://github.com/phpstan/phpstan)
 [![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20Visual%20Studio%20Code&labelColor=555555&color=007acc&logoColor=007acc)](https://open.vscode.dev/q23isline/reinventing_the_wheel)
 
