@@ -29,9 +29,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 require dirname(__DIR__) . '/config/bootstrap.php';
 
-$_SERVER['PHP_SELF'] = '/';
-
-if (empty($_SERVER['HTTP_HOST'])) {
+if (empty($_SERVER['HTTP_HOST']) && !Configure::read('App.fullBaseUrl')) {
     Configure::write('App.fullBaseUrl', 'http://localhost');
 }
 
@@ -62,6 +60,6 @@ session_id('cli');
 // If you are not using CakePHP's migrations you can
 // hook into your migration tool of choice here or
 // load schema from a SQL dump file with
-// use Cake\TestSuite\SchemaLoader;
-// (new SchemaManager())->loadSqlFiles('./tests/schema.sql', 'test');
+// use Cake\TestSuite\Fixture\SchemaLoader;
+// (new SchemaLoader())->loadSqlFiles('./tests/schema.sql', 'test');
 (new Migrator())->run();

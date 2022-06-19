@@ -3,7 +3,6 @@
 /config/app_local.php
 /config/.env
 /logs/*
-!.empty
 /tmp/*
 /vendor/*
 
@@ -14,7 +13,9 @@
 ._*
 .Spotlight-V100
 .Trashes
-Icon?
+# Icon must end with two \r
+Icon
+
 ehthumbs.db
 Thumbs.db
 .directory
@@ -23,6 +24,7 @@ Thumbs.db
 #######################
 # PHPUnit
 .phpunit.result.cache
+tests.sqlite
 # vim
 *~
 *.swp
@@ -40,13 +42,17 @@ Thumbs.db
 nbproject/*
 # Visual Studio Code
 .vscode
+# nova
+.nova
 # Sass preprocessor
 .sass-cache/
+# node
+/node_modules/*
+# yarn
+yarn-debug.log
+yarn-error.log
 # PHP coverage
 /webroot/coverage/*
-
-# テスト実行時に利用する DB
-tests.sqlite
 
 # ファイル保存時に配置するファイル実態
 /webroot/uploadFiles/Users/*

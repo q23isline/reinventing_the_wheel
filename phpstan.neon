@@ -5,7 +5,6 @@ parameters:
     bootstrapFiles:
         - config/paths.php
     paths:
-        - src
+        - src/
     excludePaths:
         - src/Console/Installer.php
-        - src/Controller/PagesController.php
