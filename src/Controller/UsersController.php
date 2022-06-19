@@ -50,7 +50,7 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['Profiles'],
+            'contain' => [],
         ]);
 
         $this->set(compact('user'));
