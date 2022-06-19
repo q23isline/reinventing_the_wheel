@@ -10,6 +10,9 @@ on:
     branches:
       - '*'
 
+permissions:
+  contents: read
+
 jobs:
   testsuite:
     runs-on: ubuntu-18.04
@@ -20,7 +23,7 @@ jobs:
     name: PHP ${{ matrix.php-version }}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -55,7 +58,7 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -75,7 +78,7 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -85,7 +88,7 @@ jobs:
         coverage: none
 
     - name: Composer install
-      run: composer require --dev phpstan/phpstan:^0.12
+      run: composer require --dev phpstan/phpstan:^1.0.0
 
     - name: Run phpstan
-      run: vendor/bin/phpstan.phar analyse
+      run: vendor/bin/phpstan

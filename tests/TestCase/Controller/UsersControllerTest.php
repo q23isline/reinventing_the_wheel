@@ -18,10 +18,11 @@ class UsersControllerTest extends TestCase
     /**
      * Fixtures
      *
-     * @var array
+     * @var array<string>
      */
     protected $fixtures = [
         'app.Users',
+        'app.Profiles',
     ];
 
     /**

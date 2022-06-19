@@ -17,25 +17,30 @@ declare(strict_types=1);
 namespace App\Test\TestCase;
 
 use App\Application;
+use Cake\Core\Configure;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
-use Cake\TestSuite\IntegrationTestCase;
+use Cake\TestSuite\IntegrationTestTrait;
+use Cake\TestSuite\TestCase;
 use InvalidArgumentException;
 
 /**
  * ApplicationTest class
  */
-class ApplicationTest extends IntegrationTestCase
+class ApplicationTest extends TestCase
 {
+    use IntegrationTestTrait;
+
     /**
-     * testBootstrap
+     * Test bootstrap in production.
      *
      * @return void
      */
     public function testBootstrap()
     {
+        Configure::write('debug', false);
         $app = new Application(dirname(dirname(__DIR__)) . '/config');
         $app->bootstrap();
         $plugins = $app->getPlugins();
@@ -43,17 +48,33 @@ class ApplicationTest extends IntegrationTestCase
         // テスト実行コマンドが phpdbg で実行であれば cli の時に呼び出されるプラグインが
         // 呼び出されないため、条件分岐
         if (PHP_SAPI === 'phpdbg') {
-            $this->assertCount(2, $plugins);
-            $this->assertSame('DebugKit', $plugins->get('DebugKit')->getName());
-            $this->assertSame('Authentication', $plugins->get('Authentication')->getName());
+            $this->assertFalse($plugins->has('Bake'));
+            $this->assertFalse($plugins->has('DebugKit'));
+            $this->assertFalse($plugins->has('Migrations'));
+            $this->assertFalse($plugins->has('Cake/Repl'));
+            $this->assertTrue($plugins->has('Authentication'));
         } else {
-            $this->assertCount(5, $plugins);
-            $this->assertSame('Cake/Repl', $plugins->get('Cake/Repl')->getName());
-            $this->assertSame('Bake', $plugins->get('Bake')->getName());
-            $this->assertSame('DebugKit', $plugins->get('DebugKit')->getName());
-            $this->assertSame('Migrations', $plugins->get('Migrations')->getName());
-            $this->assertSame('Authentication', $plugins->get('Authentication')->getName());
+            $this->assertTrue($plugins->has('Bake'));
+            $this->assertFalse($plugins->has('DebugKit'));
+            $this->assertTrue($plugins->has('Migrations'));
+            $this->assertTrue($plugins->has('Cake/Repl'));
+            $this->assertTrue($plugins->has('Authentication'));
         }
+    }
+
+    /**
+     * Test bootstrap add DebugKit plugin in debug mode.
+     *
+     * @return void
+     */
+    public function testBootstrapInDebug()
+    {
+        Configure::write('debug', true);
+        $app = new Application(dirname(dirname(__DIR__)) . '/config');
+        $app->bootstrap();
+        $plugins = $app->getPlugins();
+
+        $this->assertTrue($plugins->has('DebugKit'), 'plugins has DebugKit?');
     }
 
     /**
