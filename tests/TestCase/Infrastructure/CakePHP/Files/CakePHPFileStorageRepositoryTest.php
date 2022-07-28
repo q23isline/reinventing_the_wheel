@@ -43,17 +43,17 @@ final class CakePHPFileStorageRepositoryTest extends TestCase
         $tempFileName = 'file.jpg';
         // <https://book.cakephp.org/4/ja/development/testing.html#id35>
         $file = new UploadedFile(
-            "/{$tempFileDirectory}/{$tempFileName}",
+            TMP . "/{$tempFileDirectory}/{$tempFileName}",
             12345,
             \UPLOAD_ERR_OK,
             $fileName,
             'image/jpeg'
         );
 
-        if (!is_dir("/{$tempFileDirectory}")) {
+        if (!is_dir(TMP . "/{$tempFileDirectory}")) {
             // 一時ファイル用のファイル作成
-            mkdir("/{$tempFileDirectory}", 0755, true);
-            touch("/{$tempFileDirectory}/{$tempFileName}");
+            mkdir(TMP . "/{$tempFileDirectory}", 0755, true);
+            touch(TMP . "/{$tempFileDirectory}/{$tempFileName}");
         }
 
         if (is_dir(WWW_ROOT . "{$directory}")) {
@@ -70,9 +70,9 @@ final class CakePHPFileStorageRepositoryTest extends TestCase
 
         // 元の状態（削除）にしておく
         // 一時ファイル自体は自動で削除される
-        rmdir("/{$tempFileDirectory}");
-        rmdir('/path/to');
-        rmdir('/path');
+        rmdir(TMP . "/{$tempFileDirectory}");
+        rmdir(TMP . '/path/to');
+        rmdir(TMP . '/path');
         unlink(WWW_ROOT . "{$directory}/{$fileName}");
         rmdir(WWW_ROOT . "{$directory}");
     }
