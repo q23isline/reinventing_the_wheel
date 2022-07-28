@@ -52,13 +52,20 @@ final class CakePHPProfileRepository implements IProfileRepository
         $query = $model->find();
 
         if (!empty($searchKeyword)) {
+            // TODO: テストのための条件分岐になっているので なんとかする
+            if ($model->getConnection()->config()['driver'] === 'Cake\Database\Driver\Mysql') {
+                $remarksQuery = 'MATCH (remarks) AGAINST (:searchKeywordForFulltext IN BOOLEAN MODE)';
+            } else {
+                $remarksQuery = 'remarks MATCH :searchKeywordForFulltext';
+            }
+
             $query = $query->where([
                 'OR' => [
                     'last_name LIKE :searchKeywordForLike',
                     'first_name LIKE :searchKeywordForLike',
                     'last_name_kana LIKE :searchKeywordForLike',
                     'first_name_kana LIKE :searchKeywordForLike',
-                    'MATCH (remarks) AGAINST (:searchKeywordForFulltext IN BOOLEAN MODE)',
+                    $remarksQuery,
                 ],
             ])->bind(':searchKeywordForLike', '%' . $searchKeyword . '%', 'string')
             ->bind(':searchKeywordForFulltext', $searchKeyword, 'string');

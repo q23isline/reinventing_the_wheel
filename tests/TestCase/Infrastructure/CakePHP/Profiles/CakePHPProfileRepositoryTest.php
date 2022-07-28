@@ -126,6 +126,35 @@ final class CakePHPProfileRepositoryTest extends TestCase
     /**
      * @return void
      */
+    public function test_検索に一致するプロフィール情報を取得すること(): void
+    {
+        // Arrange
+        $searchKeyword = '管理者';
+        $expect = new ProfileCollection([
+            Profile::reconstruct(
+                new ProfileId('c2e37627-ac0a-45e0-9dfd-eb5d703d8989'),
+                new UserId('41559b8b-e831-4972-8afa-21ee8b952d85'),
+                new FirstName('admin'),
+                new LastName('管理者'),
+                new FirstNameKana('アドミン'),
+                new LastNameKana('カンリシャ'),
+                new Sex('1'),
+                new BirthDay('2021-10-14'),
+                new CellPhoneNumber('09012345678'),
+                new Remarks('管理者メモ'),
+            ),
+        ]);
+
+        // Act
+        $actual = (new CakePHPProfileRepository())->findAll($searchKeyword);
+
+        // Assert
+        $this->assertEquals($expect, $actual);
+    }
+
+    /**
+     * @return void
+     */
     public function test_プロフィール情報を保存すること(): void
     {
         // Arrange
