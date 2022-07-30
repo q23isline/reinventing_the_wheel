@@ -112,4 +112,33 @@ class PagesControllerTest extends TestCase
         $this->assertThat(403, $this->logicalNot(new StatusCode($this->_response)));
         $this->assertResponseNotContains('CSRF');
     }
+
+    /**
+     * testRedirectRoot method
+     *
+     * @return void
+     */
+    public function testRedirectRoot()
+    {
+        Configure::write('debug', true);
+        $this->get('/pages');
+
+        $this->assertRedirectContains('/');
+    }
+
+    /**
+     * testDisplaySubPage method
+     *
+     * @return void
+     */
+    public function testDisplaySubPage()
+    {
+        Configure::write('debug', true);
+        $this->get('/pages/home/not_existing');
+
+        $this->assertResponseFailure();
+        $this->assertResponseContains('Missing Template');
+        $this->assertResponseContains('Stacktrace');
+        $this->assertResponseContains('not_existing.php');
+    }
 }

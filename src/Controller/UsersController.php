@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Event\EventInterface;
+use Cake\Utility\Text;
 
 /**
  * Users Controller
@@ -66,6 +67,10 @@ class UsersController extends AppController
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+
+            // SQLite だと自動で ID に UUID を設定してくれないため、手動で設定する
+            $user->id = Text::uuid();
+
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -113,8 +118,6 @@ class UsersController extends AppController
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));
-        } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -151,29 +154,5 @@ class UsersController extends AppController
         $this->Authentication->logout();
 
         return $this->redirect(['controller' => 'Users', 'action' => 'login']);
-    }
-
-    /**
-     * 操作権限があるかどうか
-     *
-     * @param array<string,string> $user usersモデル
-     * @return bool 操作権限があればtrue、それ以外はfalse
-     */
-    public function isAuthorized(array $user): bool
-    {
-        // 一覧、詳細はeditor、viewer操作可能
-        if (in_array($this->request->getParam('action'), ['index', 'view'], true)) {
-            if (isset($user['role']) && in_array($user['role'], ['editor', 'viewer'], true)) {
-                return true;
-            }
-        }
-        // 編集、削除はeditorのみ可能
-        if (in_array($this->request->getParam('action'), ['edit', 'delete'], true)) {
-            if (isset($user['role']) && $user['role'] === 'editor') {
-                return true;
-            }
-        }
-
-        return parent::isAuthorized($user);
     }
 }

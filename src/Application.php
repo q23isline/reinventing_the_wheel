@@ -54,7 +54,10 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         parent::bootstrap();
 
         if (PHP_SAPI === 'cli') {
+            // @codeCoverageIgnoreStart
+            // `phpdbg -qrr phpunit` コマンドだと PHP_SAPI は 'phpdbg' となり、通過しないため、カバレッジ対象外
             $this->bootstrapCli();
+            // @codeCoverageIgnoreEnd
         } else {
             FactoryLocator::add(
                 'Table',
@@ -183,6 +186,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
      * That is when running commands.
      *
      * @return void
+     * @codeCoverageIgnore
      */
     protected function bootstrapCli(): void
     {

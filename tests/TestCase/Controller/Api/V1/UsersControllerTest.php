@@ -155,7 +155,7 @@ class UsersControllerTest extends TestCase
         $expected = json_encode($expected, JSON_PRETTY_PRINT);
 
         // Act
-        $this->get("/api/v1/users/${id}");
+        $this->get("/api/v1/users/{$id}");
 
         // Assert
         // 正常にアクセスできること
@@ -196,7 +196,7 @@ class UsersControllerTest extends TestCase
         $expected = json_encode($expected, JSON_PRETTY_PRINT);
 
         // Act
-        $this->get("/api/v1/users/${id}");
+        $this->get("/api/v1/users/{$id}");
 
         // Assert
         // 404エラーになること
@@ -307,7 +307,7 @@ class UsersControllerTest extends TestCase
         $expected = json_encode($expected, JSON_PRETTY_PRINT);
 
         // Act
-        $this->put("/api/v1/users/${id}", $requestData);
+        $this->put("/api/v1/users/{$id}", $requestData);
 
         // Assert
         // 正常にアクセスできること
@@ -353,7 +353,7 @@ class UsersControllerTest extends TestCase
         $expected = json_encode($expected, JSON_PRETTY_PRINT);
 
         // Act
-        $this->put("/api/v1/users/${id}", $requestData);
+        $this->put("/api/v1/users/{$id}", $requestData);
 
         // Assert
         // 404エラーになること
@@ -395,7 +395,7 @@ class UsersControllerTest extends TestCase
         $expected = json_encode($expected, JSON_PRETTY_PRINT);
 
         // Act
-        $this->put("/api/v1/users/${id}", $requestData);
+        $this->put("/api/v1/users/{$id}", $requestData);
 
         // Assert
         // 400エラーになること
@@ -420,7 +420,7 @@ class UsersControllerTest extends TestCase
         $this->overridePrivatePropertyWithMock('userDeleteUseCase', $mockUserDeleteUseCase);
 
         // Act
-        $this->delete("/api/v1/users/${id}");
+        $this->delete("/api/v1/users/{$id}");
 
         // Assert
         // 正常にアクセスできること
@@ -460,7 +460,7 @@ class UsersControllerTest extends TestCase
         $expected = json_encode($expected, JSON_PRETTY_PRINT);
 
         // Act
-        $this->delete("/api/v1/users/${id}");
+        $this->delete("/api/v1/users/{$id}");
 
         // Assert
         // 404エラーになること
