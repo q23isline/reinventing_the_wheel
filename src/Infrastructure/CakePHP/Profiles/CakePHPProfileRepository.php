@@ -54,7 +54,10 @@ final class CakePHPProfileRepository implements IProfileRepository
         if (!empty($searchKeyword)) {
             // TODO: テストのための条件分岐になっているので なんとかする
             if ($model->getConnection()->config()['driver'] === 'Cake\Database\Driver\Mysql') {
+                // @codeCoverageIgnoreStart
+                // PHPUnit では SQLite でのテストとなるため、カバレッジ対象外
                 $remarksQuery = 'MATCH (remarks) AGAINST (:searchKeywordForFulltext IN BOOLEAN MODE)';
+                // @codeCoverageIgnoreEnd
             } else {
                 $remarksQuery = 'remarks MATCH :searchKeywordForFulltext';
             }
