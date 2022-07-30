@@ -54,21 +54,4 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
     }
-
-    /**
-     * 操作権限があるかどうか
-     *
-     * @param array<string,string> $user usersモデル
-     * @return bool adminであればtrue、それ以外はfalse
-     */
-    public function isAuthorized(array $user): bool
-    {
-        // 管理者はすべての操作にアクセス可能
-        if (isset($user['role']) && $user['role'] === 'admin') {
-            return true;
-        }
-
-        // デフォルトは拒否
-        return false;
-    }
 }

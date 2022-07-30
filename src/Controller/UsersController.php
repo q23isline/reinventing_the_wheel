@@ -152,28 +152,4 @@ class UsersController extends AppController
 
         return $this->redirect(['controller' => 'Users', 'action' => 'login']);
     }
-
-    /**
-     * 操作権限があるかどうか
-     *
-     * @param array<string,string> $user usersモデル
-     * @return bool 操作権限があればtrue、それ以外はfalse
-     */
-    public function isAuthorized(array $user): bool
-    {
-        // 一覧、詳細はeditor、viewer操作可能
-        if (in_array($this->request->getParam('action'), ['index', 'view'], true)) {
-            if (isset($user['role']) && in_array($user['role'], ['editor', 'viewer'], true)) {
-                return true;
-            }
-        }
-        // 編集、削除はeditorのみ可能
-        if (in_array($this->request->getParam('action'), ['edit', 'delete'], true)) {
-            if (isset($user['role']) && $user['role'] === 'editor') {
-                return true;
-            }
-        }
-
-        return parent::isAuthorized($user);
-    }
 }
