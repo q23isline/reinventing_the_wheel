@@ -17,7 +17,6 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
-use Cake\Routing\Router;
 use Cake\TestSuite\Constraint\Response\StatusCode;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
@@ -124,8 +123,7 @@ class PagesControllerTest extends TestCase
         Configure::write('debug', true);
         $this->get('/pages');
 
-        $this->assertResponseCode(302);
-        $this->assertContains(Router::url('/', true), $this->_response->getHeader('Location'));
+        $this->assertRedirectContains('/');
     }
 
     /**
