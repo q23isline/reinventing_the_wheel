@@ -17,6 +17,7 @@ declare(strict_types=1);
 namespace App\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
+use Cake\Routing\Router;
 use Cake\TestSuite\Constraint\Response\StatusCode;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
@@ -111,5 +112,35 @@ class PagesControllerTest extends TestCase
 
         $this->assertThat(403, $this->logicalNot(new StatusCode($this->_response)));
         $this->assertResponseNotContains('CSRF');
+    }
+
+    /**
+     * testRedirectRoot method
+     *
+     * @return void
+     */
+    public function testRedirectRoot()
+    {
+        Configure::write('debug', true);
+        $this->get('/pages');
+
+        $this->assertResponseCode(302);
+        $this->assertContains(Router::url('/', true), $this->_response->getHeader('Location'));
+    }
+
+    /**
+     * testDisplaySubPage method
+     *
+     * @return void
+     */
+    public function testDisplaySubPage()
+    {
+        Configure::write('debug', true);
+        $this->get('/pages/home/not_existing');
+
+        $this->assertResponseFailure();
+        $this->assertResponseContains('Missing Template');
+        $this->assertResponseContains('Stacktrace');
+        $this->assertResponseContains('not_existing.php');
     }
 }
