@@ -39,3 +39,6 @@ WORKDIR /var/www/html
 COPY ./docker/local/php-fpm/php.ini /usr/local/etc/php/php.ini
 COPY . /var/www/html
 COPY --from=composer /app/vendor /var/www/html/vendor
+
+RUN chmod ugo+w -R logs
+RUN chmod 777 -R tmp
