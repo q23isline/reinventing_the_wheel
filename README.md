@@ -38,8 +38,7 @@
 4. DB コンテナ起動時に Permission Denied で起動できない状態にならないように権限付与する
 
     ```bash
-    sudo chmod 777 logs
-    sudo chmod 777 logs/db
+    sudo chmod ugo+w -R logs
     ```
 
 5. アプリ立ち上げ
@@ -52,14 +51,6 @@
     docker exec -it app bin/cake migrations seed
     ```
 
-- `exec: \"./bin/cake\": permission denied": unknown`が表示された場合  
-  （windowsのUbuntuディストリビューションとかで）
-  - 権限付与コマンド実行
-
-    ```bash
-    chmod +x bin/cake
-    ```
-
 ## 動作確認
 
 ### URL
@@ -68,10 +59,9 @@
 
 ### ログイン情報
 
-- Mail Address
-  - admin@example.com
-- Password
-  - admin00
+| Mail Address      | Password |
+| ----------------- | -------- |
+| admin@example.com | admin00  |
 
 ### Permission Denied対策
 
@@ -79,9 +69,8 @@
   - 本番環境では適切に権限を付与すべきだがとりあえず動くようにフル権限を付与
 
 ```bash
-sudo chmod 777 -R vendor
 sudo chmod 777 -R tmp
-sudo chmod 777 -R logs
+sudo chmod ugo+w -R logs
 ```
 
 ## コード静的解析＆ユニットテスト
