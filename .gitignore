@@ -55,5 +55,32 @@ yarn-error.log
 /webroot/coverage/*
 
 # ファイル保存時に配置するファイル実態
-/webroot/uploadFiles/Users/*
-!/webroot/uploadFiles/Users/.gitkeep
+/webroot/uploadFiles/*
+!/webroot/uploadFiles/.gitkeep
+
+# ログファイル
+!/logs/db/
+/logs/db/*
+!/logs/db/.gitkeep
+!/logs/web/
+/logs/web/*
+!/logs/web/.gitkeep
+
+# キャッシュファイル
+!/tmp/cache/
+/tmp/cache/*
+!/tmp/cache/models/
+/tmp/cache/models/*
+!/tmp/cache/models/.gitkeep
+!/tmp/cache/persistent/
+/tmp/cache/persistent/*
+!/tmp/cache/persistent/.gitkeep
+!/tmp/cache/views/
+/tmp/cache/views/*
+!/tmp/cache/views/.gitkeep
+!/tmp/sessions/
+/tmp/sessions/*
+!/tmp/sessions/.gitkeep
+!/tmp/tests/
+/tmp/tests/*
+!/tmp/tests/.gitkeep
