@@ -42,12 +42,12 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@aa1fe473f9c687b6fb896056d771232c0bc41161
         with:
+          php-version: "8.1"
           coverage: none
           tools: phpmd
 
       - name: Run PHPMD
         run: phpmd src sarif codesize --reportfile phpmd-results.sarif
-        continue-on-error: true
 
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v2
