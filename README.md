@@ -47,10 +47,13 @@
     docker compose build --no-cache
     docker compose down -v
     sudo rm -rf vendor
+    sudo rm -rf node_modules
     docker create -it --name app reinventing_the_wheel-app bash
     sudo docker cp app:/var/www/html/vendor $(pwd)
+    sudo docker cp app:/var/www/html/node_modules $(pwd)
     docker rm -f app
     sudo chown $(whoami):$(whoami) -R vendor
+    sudo chown $(whoami):$(whoami) -R node_modules
     docker compose up -d
     docker exec -it app bin/cake migrations migrate
     docker exec -it app bin/cake migrations seed
