@@ -2,11 +2,11 @@
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
-    "baseUrl": "./",
+    "baseUrl": "./front/",
     "moduleResolution": "node",
     "paths": {
       "@/*": [
-        "src/*"
+        "front/src/*"
       ]
     },
     "lib": [
