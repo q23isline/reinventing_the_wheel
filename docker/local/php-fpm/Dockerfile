@@ -15,6 +15,17 @@ COPY composer.lock /app/composer.lock
 
 RUN php composer.phar install
 
+# node で関連ライブラリインストール用イメージ
+FROM node:16.17.0-alpine3.15 AS node
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY package.json /app/package.json
+COPY yarn.lock /app/yarn.lock
+
+RUN npm install
+
 # アプリ用イメージ
 FROM php:8.2.7-fpm-alpine
 
@@ -35,11 +46,17 @@ RUN apk add autoconf \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug
 
+# Vue.js が依存している拡張機能
+RUN apk add nodejs \
+    && apk add npm
+
 WORKDIR /var/www/html
 
 COPY ./docker/local/php-fpm/php.ini /usr/local/etc/php/php.ini
 COPY . /var/www/html
 COPY --from=composer /app/vendor /var/www/html/vendor
+
+COPY --from=node /app/node_modules /var/www/html/node_modules
 
 RUN chmod ugo+w -R logs
 RUN chmod 777 -R tmp
