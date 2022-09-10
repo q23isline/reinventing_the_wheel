@@ -34,7 +34,7 @@ services:
     volumes:
       - ./:/var/www/html
       - vendor:/var/www/html/vendor
-      - node:/var/www/html/node_modules
+      - node:/var/www/html/front/node_modules
     networks:
       - backend
     depends_on:
