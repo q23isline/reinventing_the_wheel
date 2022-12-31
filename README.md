@@ -98,9 +98,9 @@ docker exec -it app ./vendor/bin/phpstan analyse
 
 ```bash
 # テスト実行
-docker exec -it app phpdbg -qrr ./vendor/bin/phpunit --colors=always
+docker exec -it --env XDEBUG_MODE=coverage app ./vendor/bin/phpunit --colors=always
 # カバレッジ生成
-docker exec -it --env XDEBUG_MODE=coverage app phpdbg -qrr ./vendor/bin/phpunit --coverage-html webroot/coverage
+docker exec -it --env XDEBUG_MODE=coverage app ./vendor/bin/phpunit --coverage-html webroot/coverage
 ```
 
 - カバレッジ確認URL
