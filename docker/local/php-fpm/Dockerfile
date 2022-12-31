@@ -1,5 +1,5 @@
 # composer で関連ライブラリインストール用イメージ
-FROM php:8.1.0-fpm-alpine AS composer
+FROM php:8.1.13-fpm-alpine AS composer
 
 # CakePHP が依存している拡張機能
 RUN apk update \
@@ -16,7 +16,7 @@ COPY composer.lock /app/composer.lock
 RUN php composer.phar install
 
 # アプリ用イメージ
-FROM php:8.1.0-fpm-alpine
+FROM php:8.1.13-fpm-alpine
 
 # CakePHP が依存している拡張機能
 RUN apk update \
@@ -31,6 +31,7 @@ RUN apk add autoconf \
     && apk add gcc \
     && apk add g++ \
     && apk add make \
+    && apk add linux-headers \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug
 
