@@ -9,7 +9,7 @@
 [![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20Visual%20Studio%20Code&labelColor=555555&color=007acc&logoColor=007acc)](https://open.vscode.dev/q23isline/reinventing_the_wheel)
 
 [![PHP](https://img.shields.io/static/v1?logo=php&label=PHP&message=v8.1.13&labelColor=555555&color=777BB4&logoColor=777BB4)](https://www.php.net)
-[![CakePHP](https://img.shields.io/static/v1?logo=cakephp&label=CakePHP&message=v4.4.9s&labelColor=555555&color=D33C43&logoColor=D33C43)](https://cakephp.org)
+[![CakePHP](https://img.shields.io/static/v1?logo=cakephp&label=CakePHP&message=v4.4.9&labelColor=555555&color=D33C43&logoColor=D33C43)](https://cakephp.org)
 [![MySQL](https://img.shields.io/static/v1?logo=mysql&label=MySQL&message=v8.0&labelColor=555555&color=4479A1&logoColor=4479A1)](https://dev.mysql.com)
 [![NGINX](https://img.shields.io/static/v1?logo=nginx&label=NGINX&message=v1.21&labelColor=555555&color=009639&logoColor=009639)](https://www.nginx.com)
 
