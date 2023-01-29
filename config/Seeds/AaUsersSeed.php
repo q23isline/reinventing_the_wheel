@@ -20,7 +20,7 @@ class AaUsersSeed extends AbstractSeed
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $datetime = date('Y-m-d H:i:s');
         // 右端 3桁不足している UUID
