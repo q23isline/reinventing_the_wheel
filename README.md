@@ -44,9 +44,10 @@
 5. アプリ立ち上げ
 
     ```bash
-    docker-compose build
+    docker-compose build --no-cache
     docker-compose up -d
-    docker exec -it app php composer.phar install
+    sudo rm -rf vendor
+    sudo docker cp app:/var/www/html/vendor $(pwd)
     docker exec -it app bin/cake migrations migrate
     docker exec -it app bin/cake migrations seed
     ```
