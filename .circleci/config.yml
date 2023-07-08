@@ -10,7 +10,7 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       # Specify the version you desire here
-      - image: cimg/php:8.1
+      - image: cimg/php:8.2
 
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
@@ -36,7 +36,7 @@ jobs:
 
   coding-standard:
     docker:
-      - image: cimg/php:8.1
+      - image: cimg/php:8.2
     steps:
       - checkout
       - run: sudo apt update
@@ -52,7 +52,7 @@ jobs:
       - run: composer cs-check
   static-analysis:
     docker:
-      - image: cimg/php:8.1
+      - image: cimg/php:8.2
     steps:
       - checkout
       - run: sudo apt update
@@ -68,7 +68,7 @@ jobs:
       - run: vendor/bin/phpstan.phar analyse
   test:
     docker:
-      - image: cimg/php:8.1
+      - image: cimg/php:8.2
         environment:
           DATABASE_TEST_URL: sqlite://./testdb.sqlite
     steps:
