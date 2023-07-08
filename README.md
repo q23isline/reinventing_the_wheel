@@ -8,7 +8,7 @@
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%208-brightgreen.svg)](https://github.com/phpstan/phpstan)
 [![Open in Visual Studio Code](https://img.shields.io/static/v1?logo=visualstudiocode&label=&message=Open%20in%20Visual%20Studio%20Code&labelColor=555555&color=007acc&logoColor=007acc)](https://open.vscode.dev/q23isline/reinventing_the_wheel)
 
-[![PHP](https://img.shields.io/static/v1?logo=php&label=PHP&message=v8.1.13&labelColor=555555&color=777BB4&logoColor=777BB4)](https://www.php.net)
+[![PHP](https://img.shields.io/static/v1?logo=php&label=PHP&message=v8.2.7&labelColor=555555&color=777BB4&logoColor=777BB4)](https://www.php.net)
 [![CakePHP](https://img.shields.io/static/v1?logo=cakephp&label=CakePHP&message=v4.4.15&labelColor=555555&color=D33C43&logoColor=D33C43)](https://cakephp.org)
 [![MySQL](https://img.shields.io/static/v1?logo=mysql&label=MySQL&message=v8.0&labelColor=555555&color=4479A1&logoColor=4479A1)](https://dev.mysql.com)
 [![NGINX](https://img.shields.io/static/v1?logo=nginx&label=NGINX&message=v1.21&labelColor=555555&color=009639&logoColor=009639)](https://www.nginx.com)
@@ -44,13 +44,31 @@
 5. アプリ立ち上げ
 
     ```bash
-    docker-compose build --no-cache
-    docker-compose up -d
+    docker compose build --no-cache
+    docker compose down -v
     sudo rm -rf vendor
+    docker create -it --name app reinventing_the_wheel-app bash
     sudo docker cp app:/var/www/html/vendor $(pwd)
+    docker rm -f app
+    sudo chown $(whoami):$(whoami) -R vendor
+    docker compose up -d
     docker exec -it app bin/cake migrations migrate
     docker exec -it app bin/cake migrations seed
     ```
+
+## 日常的にやること
+
+### システム起動
+
+```bash
+docker compose up -d
+```
+
+### システム終了
+
+```bash
+docker compose down
+```
 
 ## 動作確認
 
