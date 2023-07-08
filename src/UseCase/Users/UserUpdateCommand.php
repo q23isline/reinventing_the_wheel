@@ -40,26 +40,23 @@ final class UserUpdateCommand
 
         if (empty($mailAddress)) {
             $errors[] = new ExceptionItem('mailAddress', '必須項目が不足しています。');
-        } else {
-            $this->mailAddress = $mailAddress;
         }
 
         if (empty($password)) {
             $errors[] = new ExceptionItem('password', '必須項目が不足しています。');
-        } else {
-            $this->password = $password;
         }
 
         if (empty($roleName)) {
             $errors[] = new ExceptionItem('roleName', '必須項目が不足しています。');
-        } else {
-            $this->roleName = $roleName;
         }
 
-        if (count($errors) > 0) {
+        if (empty($mailAddress) || empty($password) || empty($roleName)) {
             throw new ValidateException($errors);
         }
 
         $this->userId = $userId;
+        $this->mailAddress = $mailAddress;
+        $this->password = $password;
+        $this->roleName = $roleName;
     }
 }

@@ -60,38 +60,33 @@ final class ProfileUpdateCommand
 
         if (empty($firstName)) {
             $errors[] = new ExceptionItem('firstName', '必須項目が不足しています。');
-        } else {
-            $this->firstName = $firstName;
         }
 
         if (empty($lastName)) {
             $errors[] = new ExceptionItem('lastName', '必須項目が不足しています。');
-        } else {
-            $this->lastName = $lastName;
         }
 
         if (empty($firstNameKana)) {
             $errors[] = new ExceptionItem('firstNameKana', '必須項目が不足しています。');
-        } else {
-            $this->firstNameKana = $firstNameKana;
         }
 
         if (empty($lastNameKana)) {
             $errors[] = new ExceptionItem('lastNameKana', '必須項目が不足しています。');
-        } else {
-            $this->lastNameKana = $lastNameKana;
         }
 
         if (empty($sex)) {
             $errors[] = new ExceptionItem('sex', '必須項目が不足しています。');
-        } else {
-            $this->sex = $sex;
         }
 
-        if (count($errors) > 0) {
+        if (empty($firstName) || empty($lastName) || empty($firstNameKana) || empty($lastNameKana) || empty($sex)) {
             throw new ValidateException($errors);
         }
 
+        $this->firstName = $firstName;
+        $this->lastName = $lastName;
+        $this->firstNameKana = $firstNameKana;
+        $this->lastNameKana = $lastNameKana;
+        $this->sex = $sex;
         $this->birthDay = $birthDay;
         $this->cellPhoneNumber = $cellPhoneNumber;
         $this->remarks = $remarks;
