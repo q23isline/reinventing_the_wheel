@@ -27,6 +27,7 @@ final class CakePHPFileRepository implements IFileRepository
      */
     public function save(File $file): FileId
     {
+        /** @var \App\Model\Table\FilesTable $model */
         $model = TableRegistry::getTableLocator()->get('Files');
 
         $saveData = [

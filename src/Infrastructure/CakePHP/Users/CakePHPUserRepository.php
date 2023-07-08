@@ -31,6 +31,7 @@ final class CakePHPUserRepository implements IUserRepository
      */
     public function getById(UserId $userId): User
     {
+        /** @var \App\Model\Table\UsersTable $model */
         $model = TableRegistry::getTableLocator()->get('Users');
         $record = $model->get($userId->value);
 
@@ -45,6 +46,7 @@ final class CakePHPUserRepository implements IUserRepository
      */
     public function findByMailAddress(MailAddress $mailAddress): ?User
     {
+        /** @var \App\Model\Table\UsersTable $model */
         $model = TableRegistry::getTableLocator()->get('Users');
         $records = $model->find()
             ->where(['mail_address' => $mailAddress->value])
@@ -64,6 +66,7 @@ final class CakePHPUserRepository implements IUserRepository
      */
     public function findAll(): UserCollection
     {
+        /** @var \App\Model\Table\UsersTable $model */
         $model = TableRegistry::getTableLocator()->get('Users');
         $records = $model->find()->all()->toArray();
         $data = new UserCollection();
@@ -80,6 +83,7 @@ final class CakePHPUserRepository implements IUserRepository
      */
     public function save(User $user): UserId
     {
+        /** @var \App\Model\Table\UsersTable $model */
         $model = TableRegistry::getTableLocator()->get('Users');
 
         $saveData = [
@@ -104,6 +108,7 @@ final class CakePHPUserRepository implements IUserRepository
      */
     public function update(User $user): UserId
     {
+        /** @var \App\Model\Table\UsersTable $model */
         $model = TableRegistry::getTableLocator()->get('Users');
 
         $saveData = [
@@ -126,6 +131,7 @@ final class CakePHPUserRepository implements IUserRepository
      */
     public function delete(UserId $userId): void
     {
+        /** @var \App\Model\Table\UsersTable $model */
         $model = TableRegistry::getTableLocator()->get('Users');
         $entity = $model->get($userId->value);
         $model->deleteOrFail($entity);

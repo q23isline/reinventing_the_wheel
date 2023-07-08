@@ -37,6 +37,7 @@ final class CakePHPProfileRepository implements IProfileRepository
      */
     public function getById(ProfileId $profileId): Profile
     {
+        /** @var \App\Model\Table\ProfilesTable $model */
         $model = TableRegistry::getTableLocator()->get('Profiles');
         $record = $model->get($profileId->value);
 
@@ -48,6 +49,7 @@ final class CakePHPProfileRepository implements IProfileRepository
      */
     public function findAll(?string $searchKeyword = null): ProfileCollection
     {
+        /** @var \App\Model\Table\ProfilesTable $model */
         $model = TableRegistry::getTableLocator()->get('Profiles');
         $query = $model->find();
 
@@ -89,6 +91,7 @@ final class CakePHPProfileRepository implements IProfileRepository
      */
     public function save(Profile $profile): ProfileId
     {
+        /** @var \App\Model\Table\ProfilesTable $model */
         $model = TableRegistry::getTableLocator()->get('Profiles');
 
         $saveData = [
@@ -119,6 +122,7 @@ final class CakePHPProfileRepository implements IProfileRepository
      */
     public function update(Profile $profile): ProfileId
     {
+        /** @var \App\Model\Table\ProfilesTable $model */
         $model = TableRegistry::getTableLocator()->get('Profiles');
 
         $saveData = [
@@ -146,6 +150,7 @@ final class CakePHPProfileRepository implements IProfileRepository
      */
     public function delete(ProfileId $profileId): void
     {
+        /** @var \App\Model\Table\ProfilesTable $model */
         $model = TableRegistry::getTableLocator()->get('Profiles');
         $entity = $model->get($profileId->value);
         $model->deleteOrFail($entity);
