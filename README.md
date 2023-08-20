@@ -50,10 +50,16 @@
     docker create -it --name app reinventing_the_wheel-app bash
     sudo docker cp app:/var/www/html/vendor $(pwd)
     docker rm -f app
-    sudo chown $(whoami):$(whoami) -R vendor
+    sudo chown -R $(whoami):$(whoami) vendor
     docker compose up -d
     docker exec -it app bin/cake migrations migrate
     docker exec -it app bin/cake migrations seed
+    ```
+
+    ※ Mac OS で `chown: {自身のユーザー名}: illegal group name` エラーが発生する場合、以下のコマンドを代わりに実行する
+
+    ```bash
+    sudo chown -R $(whoami):staff vendor
     ```
 
 ## 日常的にやること
