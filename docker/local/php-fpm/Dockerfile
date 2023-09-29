@@ -1,9 +1,9 @@
 # composer で関連ライブラリインストール用イメージ
-FROM php:8.2.7-fpm-alpine AS composer
+FROM php:8.2.10-fpm-alpine AS composer
 
 # CakePHP が依存している拡張機能
 RUN apk update \
-    && apk add icu-dev \
+    && apk add --no-cache icu-data-full icu-dev \
     && docker-php-ext-install intl
 
 RUN mkdir /app
@@ -16,22 +16,19 @@ COPY composer.lock /app/composer.lock
 RUN php composer.phar install
 
 # アプリ用イメージ
-FROM php:8.2.7-fpm-alpine
+FROM php:8.2.10-fpm-alpine
 
 # CakePHP が依存している拡張機能
 RUN apk update \
-    && apk add icu-dev \
+    && apk add --no-cache icu-data-full icu-dev \
     && docker-php-ext-install intl
 
 # MySQL へ DB 保存する拡張機能
 RUN docker-php-ext-install pdo_mysql
 
 # デバッグ実行用拡張機能
-RUN apk add autoconf \
-    && apk add gcc \
-    && apk add g++ \
-    && apk add make \
-    && apk add linux-headers \
+RUN apk update \
+    && apk add --no-cache autoconf gcc g++ make linux-headers \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug
 
