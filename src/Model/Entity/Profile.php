@@ -15,11 +15,11 @@ use Cake\ORM\Entity;
  * @property string $first_name_kana
  * @property string $last_name_kana
  * @property string $sex
- * @property \Cake\I18n\FrozenDate|null $birth_day
+ * @property \Cake\I18n\Date|null $birth_day
  * @property string|null $cell_phone_number
  * @property string|null $remarks
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime $modified
  *
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\ProfileFile[] $profile_files
@@ -33,9 +33,9 @@ class Profile extends Entity
      * be mass assigned. For security purposes, it is advised to set '*' to false
      * (or remove it), and explicitly make individual fields accessible as needed.
      *
-     * @var array<string,bool>
+     * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'user_id' => true,
         'first_name' => true,
         'last_name' => true,

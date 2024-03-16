@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
+ * @var iterable<\App\Model\Entity\User> $users
  */
 ?>
 <div class="users index content">
@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($users as $user) : ?>
+                <?php foreach ($users as $user): ?>
                 <tr>
                     <td><?= h($user->mail_address) ?></td>
                     <td><?= h($user->role) ?></td>

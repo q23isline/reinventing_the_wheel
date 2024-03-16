@@ -18,9 +18,9 @@ class UsersControllerTest extends TestCase
     /**
      * Fixtures
      *
-     * @var array<string>
+     * @var list<string>
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.Users',
         'app.Profiles',
     ];
@@ -28,7 +28,7 @@ class UsersControllerTest extends TestCase
     /**
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -46,6 +46,15 @@ class UsersControllerTest extends TestCase
                 ],
             ],
         ]);
+    }
+
+    /**
+     * @return void
+     */
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        $this->getTableLocator()->clear();
     }
 
     /**
@@ -240,7 +249,7 @@ class UsersControllerTest extends TestCase
      * @return void
      * @uses \App\Controller\UsersController::delete()
      */
-    public function testDelete(): void
+    public function testDeleteSuccess(): void
     {
         // Arrange
         $id = '41559b8b-e831-4972-8afa-21ee8b952d85';
@@ -255,6 +264,31 @@ class UsersControllerTest extends TestCase
         $users = $this->getTableLocator()->get('Users');
         $query = $users->find()->where(['id' => $id]);
         $this->assertEquals(0, $query->count());
+    }
+
+    /**
+     * Test delete method
+     *
+     * @return void
+     * @uses \App\Controller\UsersController::delete()
+     */
+    public function testDeleteFailed(): void
+    {
+        // Arrange
+        $id = '41559b8b-e831-4972-8afa-21ee8b952d85';
+        $model = $this->getMockForModel('Users', ['delete']);
+        $model->expects($this->once())
+            ->method('delete')
+            ->willReturn(false);
+
+        // Act
+        $this->delete("/users/delete/{$id}");
+
+        // Assert
+        // リダイレクトすること
+        $this->assertResponseCode(302);
+        // エラーになること
+        $this->assertFlashMessage('The user could not be deleted. Please, try again.', 'flash');
     }
 
     /**

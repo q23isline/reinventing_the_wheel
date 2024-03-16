@@ -5,7 +5,7 @@ use Migrations\AbstractMigration;
 
 class CreateProfileFiles extends AbstractMigration
 {
-    public $autoId = false;
+    public bool $autoId = false;
 
     /**
      * Change Method.
@@ -15,7 +15,7 @@ class CreateProfileFiles extends AbstractMigration
      *
      * @return void
      */
-    public function change()
+    public function change(): void
     {
         $table = $this->table('profile_files');
         $table->addColumn('id', 'integer', [

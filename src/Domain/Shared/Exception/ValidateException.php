@@ -13,7 +13,7 @@ final class ValidateException extends Exception
     /**
      * constructor
      *
-     * @param \App\Domain\Shared\Exception\ExceptionItem[] $errors errors
+     * @param array<\App\Domain\Shared\Exception\ExceptionItem> $errors errors
      * @param \Exception|null $previous previous
      */
     public function __construct(
@@ -32,7 +32,7 @@ final class ValidateException extends Exception
     /**
      * Get the value of errors
      *
-     * @return \App\Domain\Shared\Exception\ExceptionItem[]
+     * @return array<\App\Domain\Shared\Exception\ExceptionItem>
      */
     public function getErrors(): array
     {
@@ -42,7 +42,7 @@ final class ValidateException extends Exception
     /**
      * 整形する
      *
-     * @return array<string,array>
+     * @return array<string,array<string,mixed>>
      */
     public function format(): array
     {

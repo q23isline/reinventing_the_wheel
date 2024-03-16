@@ -76,9 +76,9 @@ final class ProfileUpdateUseCaseTest extends TestCase
         $this->assertEquals($firstNameKana, $updatedProfile->firstNameKana->value);
         $this->assertEquals($lastNameKana, $updatedProfile->lastNameKana->value);
         $this->assertEquals($sex, $updatedProfile->sex->value);
-        $this->assertEquals($birthDay, $updatedProfile->birthDay->value);
-        $this->assertEquals($cellPhoneNumber, $updatedProfile->cellPhoneNumber->value);
-        $this->assertEquals($remarks, $updatedProfile->remarks->value);
+        $this->assertEquals($birthDay, $updatedProfile->birthDay?->value);
+        $this->assertEquals($cellPhoneNumber, $updatedProfile->cellPhoneNumber?->value);
+        $this->assertEquals($remarks, $updatedProfile->remarks?->value);
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-use Cake\Auth\DefaultPasswordHasher;
+use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\Datasource\ConnectionManager;
 use Migrations\AbstractSeed;
 
@@ -86,10 +86,10 @@ class AaUsersSeed extends AbstractSeed
      * @param string $password パスワード
      * @return string ハッシュ化されたパスワード
      */
-    private function _setPassword($password)
+    private function _setPassword(string $password): string
     {
-        if (strlen($password) > 0) {
-            return (new DefaultPasswordHasher())->hash($password);
-        }
+        $hasher = new DefaultPasswordHasher();
+
+        return $hasher->hash($password);
     }
 }

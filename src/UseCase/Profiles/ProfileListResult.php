@@ -11,7 +11,7 @@ final class ProfileListResult
     /**
      * constructor
      *
-     * @param \App\UseCase\Profiles\ProfileData[] $profileData profileData
+     * @param array<\App\UseCase\Profiles\ProfileData> $profileData profileData
      */
     public function __construct(
         private array $profileData
@@ -21,7 +21,7 @@ final class ProfileListResult
     /**
      * 整形する
      *
-     * @return array<string,array>
+     * @return array<string,array<mixed>>
      */
     public function format(): array
     {

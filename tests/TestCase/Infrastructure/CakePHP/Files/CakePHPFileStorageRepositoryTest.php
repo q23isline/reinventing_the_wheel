@@ -7,6 +7,7 @@ use App\Domain\Models\File\Type\FileId;
 use App\Infrastructure\CakePHP\Files\CakePHPFileStorageRepository;
 use Cake\TestSuite\TestCase;
 use Laminas\Diactoros\UploadedFile;
+use const UPLOAD_ERR_OK;
 
 /**
  * App\Infrastructure\CakePHP\Files\CakePHPFileStorageRepository Test Case
@@ -45,7 +46,7 @@ final class CakePHPFileStorageRepositoryTest extends TestCase
         $file = new UploadedFile(
             TMP . "/{$tempFileDirectory}/{$tempFileName}",
             12345,
-            \UPLOAD_ERR_OK,
+            UPLOAD_ERR_OK,
             $fileName,
             'image/jpeg'
         );

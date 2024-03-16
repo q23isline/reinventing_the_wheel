@@ -16,7 +16,7 @@ final class ProfileCollection implements IteratorAggregate
     /**
      * constructor
      *
-     * @param \App\Domain\Models\Profile\Profile[] $attributes attributes
+     * @param array<\App\Domain\Models\Profile\Profile> $attributes attributes
      */
     public function __construct(
         private array $attributes = []

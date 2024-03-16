@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-use Cake\Auth\DefaultPasswordHasher;
+use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 
 /**
@@ -13,8 +13,9 @@ use Cake\ORM\Entity;
  * @property string $mail_address
  * @property string $password
  * @property string $role
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime $modified
+ *
  * @property \App\Model\Entity\Profile[] $profiles
  */
 class User extends Entity
@@ -28,7 +29,7 @@ class User extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'mail_address' => true,
         'password' => true,
         'role' => true,
@@ -40,9 +41,9 @@ class User extends Entity
     /**
      * Fields that are excluded from JSON versions of the entity.
      *
-     * @var array<string>
+     * @var list<string>
      */
-    protected $_hidden = [
+    protected array $_hidden = [
         'password',
     ];
 
@@ -50,12 +51,12 @@ class User extends Entity
      * パスワードを生成する
      *
      * @param string $password パスワード
-     * @return string|false|void ハッシュ化されたパスワード
+     * @return string ハッシュ化されたパスワード
      */
-    protected function _setPassword(string $password)
+    protected function _setPassword(string $password): string
     {
-        if (strlen($password) > 0) {
-            return (new DefaultPasswordHasher())->hash($password);
-        }
+        $hasher = new DefaultPasswordHasher();
+
+        return $hasher->hash($password);
     }
 }

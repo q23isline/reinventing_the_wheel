@@ -25,7 +25,7 @@ class FilesControllerTest extends TestCase
     /**
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -67,7 +67,7 @@ class FilesControllerTest extends TestCase
         $mockFileUploadUseCase = $this->createMock(FileUploadUseCase::class);
         $mockFileUploadUseCase->expects($this->once())
             ->method('handle')
-            ->will($this->returnValue(new FileId($id)));
+            ->willReturn(new FileId($id));
 
         $this->overridePrivatePropertyWithMock('fileUploadUseCase', $mockFileUploadUseCase);
 
@@ -81,7 +81,7 @@ class FilesControllerTest extends TestCase
         // 正常にアクセスできること
         $this->assertResponseCode(200);
         // ユーザー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -114,7 +114,7 @@ class FilesControllerTest extends TestCase
         // 400エラーになること
         $this->assertResponseCode(400);
         // エラー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**

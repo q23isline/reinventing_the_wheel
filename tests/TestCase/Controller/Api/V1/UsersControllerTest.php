@@ -34,7 +34,7 @@ class UsersControllerTest extends TestCase
     /**
      * @return void
      */
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -88,7 +88,7 @@ class UsersControllerTest extends TestCase
         $mockUserListUseCase = $this->createMock(UserListUseCase::class);
         $mockUserListUseCase->expects($this->once())
             ->method('handle')
-            ->will($this->returnValue($userDtos));
+            ->willReturn($userDtos);
 
         $this->overridePrivatePropertyWithMock('userListUseCase', $mockUserListUseCase);
 
@@ -116,7 +116,7 @@ class UsersControllerTest extends TestCase
         // 正常にアクセスできること
         $this->assertResponseCode(200);
         // ユーザー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -140,7 +140,7 @@ class UsersControllerTest extends TestCase
         $mockUserGetUseCase = $this->createMock(UserGetUseCase::class);
         $mockUserGetUseCase->expects($this->once())
             ->method('handle')
-            ->will($this->returnValue($userDtos));
+            ->willReturn($userDtos);
 
         $this->overridePrivatePropertyWithMock('userGetUseCase', $mockUserGetUseCase);
 
@@ -161,7 +161,7 @@ class UsersControllerTest extends TestCase
         // 正常にアクセスできること
         $this->assertResponseCode(200);
         // ユーザー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -202,7 +202,7 @@ class UsersControllerTest extends TestCase
         // 404エラーになること
         $this->assertResponseCode(404);
         // エラー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -223,7 +223,7 @@ class UsersControllerTest extends TestCase
         $mockUserAddUseCase = $this->createMock(UserAddUseCase::class);
         $mockUserAddUseCase->expects($this->once())
             ->method('handle')
-            ->will($this->returnValue(new UserId($id)));
+            ->willReturn(new UserId($id));
 
         $this->overridePrivatePropertyWithMock('userAddUseCase', $mockUserAddUseCase);
 
@@ -237,7 +237,7 @@ class UsersControllerTest extends TestCase
         // 正常にアクセスできること
         $this->assertResponseCode(200);
         // ユーザー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -278,7 +278,7 @@ class UsersControllerTest extends TestCase
         // 400エラーになること
         $this->assertResponseCode(400);
         // エラー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -299,7 +299,7 @@ class UsersControllerTest extends TestCase
         $mockUserUpdateUseCase = $this->createMock(UserUpdateUseCase::class);
         $mockUserUpdateUseCase->expects($this->once())
             ->method('handle')
-            ->will($this->returnValue(new UserId($id)));
+            ->willReturn(new UserId($id));
 
         $this->overridePrivatePropertyWithMock('userUpdateUseCase', $mockUserUpdateUseCase);
 
@@ -313,7 +313,7 @@ class UsersControllerTest extends TestCase
         // 正常にアクセスできること
         $this->assertResponseCode(200);
         // ユーザー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -359,7 +359,7 @@ class UsersControllerTest extends TestCase
         // 404エラーになること
         $this->assertResponseCode(404);
         // エラー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -401,7 +401,7 @@ class UsersControllerTest extends TestCase
         // 400エラーになること
         $this->assertResponseCode(400);
         // エラー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -426,7 +426,7 @@ class UsersControllerTest extends TestCase
         // 正常にアクセスできること
         $this->assertResponseCode(200);
         // null を返却すること
-        $this->assertEquals('null', (string)$this->_response->getBody());
+        $this->assertEquals('null', (string)$this->_response?->getBody());
     }
 
     /**
@@ -466,7 +466,7 @@ class UsersControllerTest extends TestCase
         // 404エラーになること
         $this->assertResponseCode(404);
         // エラー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**

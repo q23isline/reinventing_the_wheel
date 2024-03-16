@@ -32,9 +32,9 @@ final class CakePHPProfileRepositoryTest extends TestCase
     /**
      * Fixtures
      *
-     * @var array
+     * @var list<string>
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.Users',
         'app.Profiles',
     ];

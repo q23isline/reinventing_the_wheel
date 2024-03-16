@@ -11,8 +11,8 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $profile_id
  * @property string $file_id
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime $modified
  *
  * @property \App\Model\Entity\Profile $profile
  * @property \App\Model\Entity\File $file
@@ -26,9 +26,9 @@ class ProfileFile extends Entity
      * be mass assigned. For security purposes, it is advised to set '*' to false
      * (or remove it), and explicitly make individual fields accessible as needed.
      *
-     * @var array<string,bool>
+     * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'profile_id' => true,
         'file_id' => true,
         'created' => true,

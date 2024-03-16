@@ -26,14 +26,23 @@ $checkConnection = function (string $name) {
     $error = null;
     $connected = false;
     try {
-        $connection = ConnectionManager::get($name);
-        $connected = $connection->connect();
+        ConnectionManager::get($name)->getDriver()->connect();
+        // No exception means success
+        $connected = true;
     } catch (Exception $connectionError) {
         $error = $connectionError->getMessage();
         if (method_exists($connectionError, 'getAttributes')) {
             $attributes = $connectionError->getAttributes();
             if (isset($attributes['message'])) {
                 $error .= '<br />' . $attributes['message'];
+            }
+        }
+        if ($name === 'debug_kit') {
+            $error = 'Try adding your current <b>top level domain</b> to the
+                <a href="https://book.cakephp.org/debugkit/5/en/index.html#configuration" target="_blank">DebugKit.safeTld</a>
+            config and reload.';
+            if (!in_array('sqlite', \PDO::getAvailableDrivers())) {
+                $error .= '<br />You need to install the PHP extension <code>pdo_sqlite</code> so DebugKit can work properly.';
             }
         }
     }
@@ -59,9 +68,7 @@ endif;
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake', 'home']) ?>
+    <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake', 'home']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -74,7 +81,7 @@ endif;
                 <img alt="CakePHP" src="https://cakephp.org/v2/img/logos/CakePHP_Logo.svg" width="350" />
             </a>
             <h1>
-                Welcome to CakePHP <?= h(Configure::version()) ?> Strawberry (🍓)
+                Welcome to CakePHP <?= h(Configure::version()) ?> Chiffon (🍰)
             </h1>
         </div>
     </header>
@@ -90,8 +97,8 @@ endif;
                             <ul>
                                 <li class="bullet problem">
                                     URL rewriting is not properly configured on your server.<br />
-                                    1) <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/en/installation.html#url-rewriting">Help me configure it</a><br />
-                                    2) <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/en/development/configuration.html#general-configuration">I don't / can't use URL rewriting</a>
+                                    1) <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/en/installation.html#url-rewriting">Help me configure it</a><br />
+                                    2) <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/en/development/configuration.html#general-configuration">I don't / can't use URL rewriting</a>
                                 </li>
                             </ul>
                         </div>
@@ -102,10 +109,10 @@ endif;
                     <div class="column">
                         <h4>Environment</h4>
                         <ul>
-                        <?php if (version_compare(PHP_VERSION, '7.4.0', '>=')) : ?>
-                            <li class="bullet success">Your version of PHP is 7.4.0 or higher (detected <?= PHP_VERSION ?>).</li>
+                        <?php if (version_compare(PHP_VERSION, '8.1.0', '>=')) : ?>
+                            <li class="bullet success">Your version of PHP is 8.1.0 or higher (detected <?= PHP_VERSION ?>).</li>
                         <?php else : ?>
-                            <li class="bullet problem">Your version of PHP is too low. You need PHP 7.4.0 or higher to use CakePHP (detected <?= PHP_VERSION ?>).</li>
+                            <li class="bullet problem">Your version of PHP is too low. You need PHP 8.1.0 or higher to use CakePHP (detected <?= PHP_VERSION ?>).</li>
                         <?php endif; ?>
 
                         <?php if (extension_loaded('mbstring')) : ?>
@@ -179,7 +186,7 @@ endif;
                             <?php if ($result['connected']) : ?>
                                 <li class="bullet success">DebugKit can connect to the database.</li>
                             <?php else : ?>
-                                <li class="bullet problem">DebugKit is <strong>not</strong> able to connect to the database.<br /><?= $result['error'] ?></li>
+                                <li class="bullet problem">There are configuration problems present which need to be fixed:<br /><?= $result['error'] ?></li>
                             <?php endif; ?>
                         <?php else : ?>
                             <li class="bullet problem">DebugKit is <strong>not</strong> loaded.</li>
@@ -191,18 +198,17 @@ endif;
                 <div class="row">
                     <div class="column links">
                         <h3>Getting Started</h3>
-                        <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/en/">CakePHP Documentation</a>
-                        <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/en/tutorials-and-examples/cms/installation.html">The 20 min CMS Tutorial</a>
+                        <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/en/">CakePHP Documentation</a>
+                        <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/en/tutorials-and-examples/cms/installation.html">The 20 min CMS Tutorial</a>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="column links">
                         <h3>Help and Bug Reports</h3>
-                        <a target="_blank" rel="noopener" href="irc://irc.freenode.net/cakephp">irc.freenode.net #cakephp</a>
-                        <a target="_blank" rel="noopener" href="http://cakesf.herokuapp.com/">Slack</a>
+                        <a target="_blank" rel="noopener" href="https://slack-invite.cakephp.org/">Slack</a>
                         <a target="_blank" rel="noopener" href="https://github.com/cakephp/cakephp/issues">CakePHP Issues</a>
-                        <a target="_blank" rel="noopener" href="http://discourse.cakephp.org/">CakePHP Forum</a>
+                        <a target="_blank" rel="noopener" href="https://discourse.cakephp.org/">CakePHP Forum</a>
                     </div>
                 </div>
                 <hr>
@@ -211,7 +217,7 @@ endif;
                         <h3>Docs and Downloads</h3>
                         <a target="_blank" rel="noopener" href="https://api.cakephp.org/">CakePHP API</a>
                         <a target="_blank" rel="noopener" href="https://bakery.cakephp.org">The Bakery</a>
-                        <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/en/">CakePHP Documentation</a>
+                        <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/en/">CakePHP Documentation</a>
                         <a target="_blank" rel="noopener" href="https://plugins.cakephp.org">CakePHP plugins repo</a>
                         <a target="_blank" rel="noopener" href="https://github.com/cakephp/">CakePHP Code</a>
                         <a target="_blank" rel="noopener" href="https://github.com/FriendsOfCake/awesome-cakephp">CakePHP Awesome List</a>

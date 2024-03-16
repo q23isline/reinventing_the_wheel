@@ -16,7 +16,7 @@ final class UserCollection implements IteratorAggregate
     /**
      * constructor
      *
-     * @param \App\Domain\Models\User\User[] $attributes attributes
+     * @param array<\App\Domain\Models\User\User> $attributes attributes
      */
     public function __construct(
         private array $attributes = []

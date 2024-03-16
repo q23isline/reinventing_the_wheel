@@ -36,7 +36,7 @@ class PagesController extends AppController
      * 事前処理
      *
      * @param \Cake\Event\EventInterface $event イベント
-     * @return void
+     * @return \Cake\Http\Response|null|void
      */
     public function beforeFilter(EventInterface $event)
     {
