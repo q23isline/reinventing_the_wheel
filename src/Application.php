@@ -163,22 +163,4 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
         return $service;
     }
-
-    /**
-     * Bootstrapping for CLI application.
-     *
-     * That is when running commands.
-     *
-     * @return void
-     * @codeCoverageIgnore
-     */
-    protected function bootstrapCli(): void
-    {
-        $this->addOptionalPlugin('Cake/Repl');
-        $this->addOptionalPlugin('Bake');
-
-        $this->addPlugin('Migrations');
-
-        // Load more plugins here
-    }
 }
