@@ -84,6 +84,9 @@ jobs:
           paths:
             - ./vendor
 
+      - run: sudo pecl install xdebug
+      - run: sudo docker-php-ext-enable xdebug
+
       # run tests with phpunit or codecept
       - run: cp config/app_local.example.php config/app_local.php
       - run: cp config/.env.example config/.env
