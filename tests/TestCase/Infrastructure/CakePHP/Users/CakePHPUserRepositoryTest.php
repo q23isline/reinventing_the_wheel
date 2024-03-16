@@ -26,9 +26,9 @@ final class CakePHPUserRepositoryTest extends TestCase
     /**
      * Fixtures
      *
-     * @var array
+     * @var list<string>
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.Users',
     ];
 

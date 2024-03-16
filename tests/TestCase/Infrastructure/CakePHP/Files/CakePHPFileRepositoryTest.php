@@ -25,9 +25,9 @@ final class CakePHPFileRepositoryTest extends TestCase
     /**
      * Fixtures
      *
-     * @var array
+     * @var list<string>
      */
-    protected $fixtures = [
+    protected array $fixtures = [
         'app.Files',
     ];
 

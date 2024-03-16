@@ -11,7 +11,7 @@ final class UserListResult
     /**
      * constructor
      *
-     * @param \App\UseCase\Users\UserData[] $userData userData
+     * @param array<\App\UseCase\Users\UserData> $userData userData
      */
     public function __construct(
         private array $userData
@@ -21,7 +21,7 @@ final class UserListResult
     /**
      * 整形する
      *
-     * @return array<string,array>
+     * @return array<string,array<mixed>>
      */
     public function format(): array
     {

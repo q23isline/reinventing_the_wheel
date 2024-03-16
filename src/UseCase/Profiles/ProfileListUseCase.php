@@ -24,7 +24,7 @@ class ProfileListUseCase
      * プロフィール一覧を取得する
      *
      * @param \App\UseCase\Profiles\ProfileListCommand $command command
-     * @return \App\UseCase\Profiles\ProfileData[]
+     * @return array<\App\UseCase\Profiles\ProfileData>
      */
     public function handle(ProfileListCommand $command): array
     {

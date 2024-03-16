@@ -23,7 +23,7 @@ class UserListUseCase
     /**
      * ユーザー一覧を取得する
      *
-     * @return \App\UseCase\Users\UserData[]
+     * @return array<\App\UseCase\Users\UserData>
      */
     public function handle(): array
     {

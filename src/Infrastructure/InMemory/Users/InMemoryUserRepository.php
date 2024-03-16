@@ -12,11 +12,12 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * class InMemoryUserRepository
- *
- * @property array<string,\App\Domain\Models\User\User> $store store
  */
 final class InMemoryUserRepository implements IUserRepository
 {
+    /**
+     * @var array<string,\App\Domain\Models\User\User> $store store
+     */
     public array $store = [];
 
     /**

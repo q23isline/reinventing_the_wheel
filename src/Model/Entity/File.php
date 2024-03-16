@@ -13,8 +13,10 @@ use Cake\ORM\Entity;
  * @property int $size
  * @property string $content_type
  * @property string $directory
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime $modified
+ *
+ * @property \App\Model\Entity\ProfileFile[] $profile_files
  */
 class File extends Entity
 {
@@ -25,14 +27,15 @@ class File extends Entity
      * be mass assigned. For security purposes, it is advised to set '*' to false
      * (or remove it), and explicitly make individual fields accessible as needed.
      *
-     * @var array<string,bool>
+     * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'name' => true,
         'size' => true,
         'content_type' => true,
         'directory' => true,
         'created' => true,
         'modified' => true,
+        'profile_files' => true,
     ];
 }

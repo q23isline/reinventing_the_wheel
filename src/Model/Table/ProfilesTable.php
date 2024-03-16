@@ -14,17 +14,17 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\ProfileFilesTable&\Cake\ORM\Association\HasMany $ProfileFiles
  * @method \App\Model\Entity\Profile newEmptyEntity()
  * @method \App\Model\Entity\Profile newEntity(array $data, array $options = [])
- * @method \App\Model\Entity\Profile[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Profile get($primaryKey, $options = [])
- * @method \App\Model\Entity\Profile findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method array<\App\Model\Entity\Profile> newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Profile get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \App\Model\Entity\Profile findOrCreate($search, ?callable $callback = null, array $options = [])
  * @method \App\Model\Entity\Profile patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Profile[] patchEntities(iterable $entities, array $data, array $options = [])
- * @method \App\Model\Entity\Profile|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Profile saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Profile[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Profile[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\Profile[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Profile[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method array<\App\Model\Entity\Profile> patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Profile|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method \App\Model\Entity\Profile saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method iterable<\App\Model\Entity\Profile>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Profile>|false saveMany(iterable $entities, array $options = [])
+ * @method iterable<\App\Model\Entity\Profile>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Profile> saveManyOrFail(iterable $entities, array $options = [])
+ * @method iterable<\App\Model\Entity\Profile>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Profile>|false deleteMany(iterable $entities, array $options = [])
+ * @method iterable<\App\Model\Entity\Profile>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Profile> deleteManyOrFail(iterable $entities, array $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class ProfilesTable extends Table
@@ -32,7 +32,7 @@ class ProfilesTable extends Table
     /**
      * Initialize method
      *
-     * @param array $config The configuration for the Table.
+     * @param array<string, mixed> $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void
@@ -65,6 +65,10 @@ class ProfilesTable extends Table
         $validator
             ->uuid('id')
             ->allowEmptyString('id', null, 'create');
+
+        $validator
+            ->uuid('user_id')
+            ->notEmptyString('user_id');
 
         $validator
             ->scalar('first_name')
@@ -139,7 +143,7 @@ class ProfilesTable extends Table
             ['errorField' => 'cell_phone_number']
         );
 
-        $rules->add($rules->existsIn('user_id', 'Users'), ['errorField' => 'user_id']);
+        $rules->add($rules->existsIn(['user_id'], 'Users'), ['errorField' => 'user_id']);
 
         return $rules;
     }

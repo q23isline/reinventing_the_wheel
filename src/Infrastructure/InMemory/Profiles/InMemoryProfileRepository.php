@@ -11,11 +11,12 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * class InMemoryProfileRepository
- *
- * @property array<string,\App\Domain\Models\Profile\Profile> $store store
  */
 final class InMemoryProfileRepository implements IProfileRepository
 {
+    /**
+     * @var array<string,\App\Domain\Models\Profile\Profile> $store store
+     */
     public array $store = [];
 
     /**
