@@ -1,5 +1,5 @@
 # composer で関連ライブラリインストール用イメージ
-FROM php:8.2.10-fpm-alpine AS composer
+FROM php:8.3.4-fpm-alpine AS composer
 
 # CakePHP が依存している拡張機能
 RUN apk update \
@@ -16,7 +16,7 @@ COPY composer.lock /app/composer.lock
 RUN php composer.phar install
 
 # アプリ用イメージ
-FROM php:8.2.10-fpm-alpine
+FROM php:8.3.4-fpm-alpine
 
 # CakePHP が依存している拡張機能
 RUN apk update \
