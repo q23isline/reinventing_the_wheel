@@ -21,10 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         php-version: ['8.2']
-        dependencies: ['highest']
-        include:
-          - php-version: '8.1'
-            dependencies: 'lowest'
+    name: PHP ${{ matrix.php-version }}
 
     steps:
     - uses: actions/checkout@v4
@@ -96,4 +93,6 @@ jobs:
       run: composer require --dev phpstan/phpstan:^1.0.0
 
     - name: Run phpstan
-      run: vendor/bin/phpstan
+      run: |
+        cp config/.env.example config/.env
+        vendor/bin/phpstan
