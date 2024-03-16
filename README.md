@@ -10,7 +10,7 @@
 
 [![PHP](https://img.shields.io/static/v1?logo=php&label=PHP&message=v8.3.4&labelColor=555555&color=777BB4&logoColor=777BB4)](https://www.php.net)
 [![CakePHP](https://img.shields.io/static/v1?logo=cakephp&label=CakePHP&message=v5.0.6&labelColor=555555&color=D33C43&logoColor=D33C43)](https://cakephp.org)
-[![MySQL](https://img.shields.io/static/v1?logo=mysql&label=MySQL&message=v8.0&labelColor=555555&color=4479A1&logoColor=4479A1)](https://dev.mysql.com)
+[![MySQL](https://img.shields.io/static/v1?logo=mysql&label=MySQL&message=v8.3&labelColor=555555&color=4479A1&logoColor=4479A1)](https://dev.mysql.com)
 [![NGINX](https://img.shields.io/static/v1?logo=nginx&label=NGINX&message=v1.21&labelColor=555555&color=009639&logoColor=009639)](https://www.nginx.com)
 
 ## はじめにやること
