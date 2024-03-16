@@ -106,7 +106,7 @@ class ProfilesControllerTest extends TestCase
         $mockProfileListUseCase = $this->createMock(ProfileListUseCase::class);
         $mockProfileListUseCase->expects($this->once())
             ->method('handle')
-            ->will($this->returnValue($profileDtos));
+            ->willReturn($profileDtos);
 
         $this->overridePrivatePropertyWithMock('profileListUseCase', $mockProfileListUseCase);
 
@@ -146,7 +146,7 @@ class ProfilesControllerTest extends TestCase
         // 正常にアクセスできること
         $this->assertResponseCode(200);
         // プロフィール情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -177,7 +177,7 @@ class ProfilesControllerTest extends TestCase
         $mockProfileGetUseCase = $this->createMock(ProfileGetUseCase::class);
         $mockProfileGetUseCase->expects($this->once())
             ->method('handle')
-            ->will($this->returnValue($profileDtos));
+            ->willReturn($profileDtos);
 
         $this->overridePrivatePropertyWithMock('profileGetUseCase', $mockProfileGetUseCase);
 
@@ -204,7 +204,7 @@ class ProfilesControllerTest extends TestCase
         // 正常にアクセスできること
         $this->assertResponseCode(200);
         // プロフィール情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -246,7 +246,7 @@ class ProfilesControllerTest extends TestCase
         // 404エラーになること
         $this->assertResponseCode(404);
         // エラー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -273,7 +273,7 @@ class ProfilesControllerTest extends TestCase
         $mockProfileAddUseCase = $this->createMock(ProfileAddUseCase::class);
         $mockProfileAddUseCase->expects($this->once())
             ->method('handle')
-            ->will($this->returnValue(new ProfileId($id)));
+            ->willReturn(new ProfileId($id));
 
         $this->overridePrivatePropertyWithMock('profileAddUseCase', $mockProfileAddUseCase);
 
@@ -287,7 +287,7 @@ class ProfilesControllerTest extends TestCase
         // 正常にアクセスできること
         $this->assertResponseCode(200);
         // プロフィール情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -337,7 +337,7 @@ class ProfilesControllerTest extends TestCase
         // 400エラーになること
         $this->assertResponseCode(400);
         // エラー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -364,7 +364,7 @@ class ProfilesControllerTest extends TestCase
         $mockProfileUpdateUseCase = $this->createMock(ProfileUpdateUseCase::class);
         $mockProfileUpdateUseCase->expects($this->once())
             ->method('handle')
-            ->will($this->returnValue(new ProfileId($id)));
+            ->willReturn(new ProfileId($id));
 
         $this->overridePrivatePropertyWithMock('profileUpdateUseCase', $mockProfileUpdateUseCase);
 
@@ -378,7 +378,7 @@ class ProfilesControllerTest extends TestCase
         // 正常にアクセスできること
         $this->assertResponseCode(200);
         // プロフィール情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -430,7 +430,7 @@ class ProfilesControllerTest extends TestCase
         // 404エラーになること
         $this->assertResponseCode(404);
         // エラー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -481,7 +481,7 @@ class ProfilesControllerTest extends TestCase
         // 400エラーになること
         $this->assertResponseCode(400);
         // エラー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
@@ -507,7 +507,7 @@ class ProfilesControllerTest extends TestCase
         // 正常にアクセスできること
         $this->assertResponseCode(200);
         // null を返却すること
-        $this->assertEquals('null', (string)$this->_response->getBody());
+        $this->assertEquals('null', (string)$this->_response?->getBody());
     }
 
     /**
@@ -548,7 +548,7 @@ class ProfilesControllerTest extends TestCase
         // 404エラーになること
         $this->assertResponseCode(404);
         // エラー情報を返却すること
-        $this->assertEquals($expected, (string)$this->_response->getBody());
+        $this->assertEquals($expected, (string)$this->_response?->getBody());
     }
 
     /**
