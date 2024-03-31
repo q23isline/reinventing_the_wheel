@@ -12,6 +12,9 @@
 [![CakePHP](https://img.shields.io/static/v1?logo=cakephp&label=CakePHP&message=v5.0.6&labelColor=555555&color=D33C43&logoColor=D33C43)](https://cakephp.org)
 [![MySQL](https://img.shields.io/static/v1?logo=mysql&label=MySQL&message=v8.3&labelColor=555555&color=4479A1&logoColor=4479A1)](https://dev.mysql.com)
 [![NGINX](https://img.shields.io/static/v1?logo=nginx&label=NGINX&message=v1.21&labelColor=555555&color=009639&logoColor=009639)](https://www.nginx.com)
+[![Node.js](https://img.shields.io/static/v1?logo=node.js&label=Node.js&message=v20.10.0&labelColor=555555&color=339933&logoColor=339933)](https://nodejs.org)
+[![npm](https://img.shields.io/static/v1?logo=npm&label=npm&message=v10.2.3&labelColor=555555&color=CB3837&logoColor=CB3837)](https://www.npmjs.com/)
+[![Vue.js](https://img.shields.io/static/v1?logo=vue.js&label=Vue.js&message=v3.10.2&labelColor=555555&color=4FC08D&logoColor=4FC08D)](https://ja.vuejs.org/)
 
 ## はじめにやること
 
@@ -51,7 +54,14 @@
     sudo docker cp app:/var/www/html/vendor $(pwd)
     docker rm -f app
     sudo chown -R $(whoami):$(whoami) vendor
+    sudo rm -rf frontend/node_modules
+    docker create -it --name front reinventing_the_wheel-front bash
+    sudo docker cp front:/front/vue/node_modules $(pwd)/frontend
+    docker rm -f front
+    sudo chown -R $(whoami):$(whoami) frontend/node_modules
     docker compose up -d
+    sudo rm -rf webroot/*
+    docker compose exec front npm run build
     docker exec -it app bin/cake migrations migrate
     docker exec -it app bin/cake migrations seed
     ```
@@ -76,6 +86,13 @@ docker compose up -d
 docker compose down
 ```
 
+### フロントエンドのビルド
+
+```bash
+sudo rm -rf webroot/*
+docker compose exec front npm run build
+```
+
 ## 動作確認
 
 ### URL
@@ -97,6 +114,16 @@ docker compose down
 sudo chmod -R 777 tmp
 sudo chmod -R ugo+w logs
 ```
+
+## フロントエンド開発
+
+```bash
+docker compose exec front npm run dev
+```
+
+- 以下の URL にアクセスすることで Vue の内容を確認できる
+  - <http://localhost:5173>
+- 終了するときはターミナルで Ctrl + c
 
 ## コード静的解析＆ユニットテスト
 
@@ -130,6 +157,12 @@ docker exec -it --env XDEBUG_MODE=coverage app ./vendor/bin/phpunit --coverage-h
 
 - カバレッジ確認URL
   - <http://localhost/coverage/index.html>
+
+## フロントエンド静的解析単体実行
+
+```bash
+docker compose exec front npm run lint
+```
 
 ## sudoモデリング
 

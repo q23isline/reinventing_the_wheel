@@ -6,6 +6,7 @@ networks:
 
 volumes:
   vendor:
+  node:
   db-data:
 
 services:
@@ -37,6 +38,24 @@ services:
       - backend
     depends_on:
       - db
+  front:
+    build:
+      context: .
+      dockerfile: ./docker/local/node/Dockerfile
+    container_name: front
+    ports:
+      - 5173:5173
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/front/vue
+      - ./logs/front:/root/.npm/_logs
+      - ./webroot:/front/webroot
+      - node:/front/vue/node_modules
+    networks:
+      - backend
+    stdin_open: true
+    tty: true
   db:
     image: mysql:8.3
     container_name: db
